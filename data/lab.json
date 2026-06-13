@@ -89,5 +89,135 @@
       "notes": [],
       "moves": []
     }
+  ],
+  "feedingPlans": [
+    {
+      "id": "plan-1",
+      "targetType": "animal",
+      "targetId": "ani-1001",
+      "feedType": "标准颗粒饲料",
+      "feedTimes": ["08:00", "18:00"],
+      "dailyAmount": 5.0,
+      "keeper": "林青",
+      "status": "active",
+      "startDate": "2026-06-01",
+      "endDate": null,
+      "createdAt": "2026-06-01T00:00:00.000Z",
+      "notes": "代谢观察组，每日定量饲喂"
+    },
+    {
+      "id": "plan-2",
+      "targetType": "animal",
+      "targetId": "ani-1002",
+      "feedType": "高蛋白饲料",
+      "feedTimes": ["09:00"],
+      "dailyAmount": 4.5,
+      "keeper": "周遥",
+      "status": "active",
+      "startDate": "2026-06-05",
+      "endDate": null,
+      "createdAt": "2026-06-05T00:00:00.000Z",
+      "notes": "免疫实验组，每日一次"
+    },
+    {
+      "id": "plan-3",
+      "targetType": "cage",
+      "targetId": "A-01",
+      "feedType": "SPF级饲料",
+      "feedTimes": ["07:30", "19:30"],
+      "dailyAmount": 15.0,
+      "keeper": "林青",
+      "status": "active",
+      "startDate": "2026-05-15",
+      "endDate": null,
+      "createdAt": "2026-05-15T00:00:00.000Z",
+      "notes": "SPF区A架笼位统一饲喂"
+    },
+    {
+      "id": "plan-4",
+      "targetType": "cage",
+      "targetId": "B-03",
+      "feedType": "普通维持饲料",
+      "feedTimes": ["08:30"],
+      "dailyAmount": 10.0,
+      "keeper": "周遥",
+      "status": "active",
+      "startDate": "2026-05-20",
+      "endDate": null,
+      "createdAt": "2026-05-20T00:00:00.000Z",
+      "notes": "普通区B架笼位每日一次"
+    }
+  ],
+  "feedingRecords": [
+    {
+      "id": "record-1",
+      "planId": "plan-1",
+      "targetType": "animal",
+      "targetId": "ani-1001",
+      "date": "2026-06-13",
+      "scheduledTime": "08:00",
+      "actualTime": "2026-06-13T08:05:00.000Z",
+      "feedType": "标准颗粒饲料",
+      "amount": 2.5,
+      "keeper": "林青",
+      "status": "completed",
+      "notes": "食欲良好，全部吃完"
+    },
+    {
+      "id": "record-2",
+      "planId": "plan-1",
+      "targetType": "animal",
+      "targetId": "ani-1001",
+      "date": "2026-06-13",
+      "scheduledTime": "18:00",
+      "actualTime": "2026-06-13T18:10:00.000Z",
+      "feedType": "标准颗粒饲料",
+      "amount": 2.5,
+      "keeper": "林青",
+      "status": "completed",
+      "notes": ""
+    },
+    {
+      "id": "record-3",
+      "planId": "plan-2",
+      "targetType": "animal",
+      "targetId": "ani-1002",
+      "date": "2026-06-13",
+      "scheduledTime": "09:00",
+      "actualTime": "2026-06-13T09:15:00.000Z",
+      "feedType": "高蛋白饲料",
+      "amount": 4.5,
+      "keeper": "周遥",
+      "status": "completed",
+      "notes": "进食正常"
+    },
+    {
+      "id": "record-4",
+      "planId": "plan-3",
+      "targetType": "cage",
+      "targetId": "A-01",
+      "date": "2026-06-12",
+      "scheduledTime": "07:30",
+      "actualTime": "2026-06-12T07:35:00.000Z",
+      "feedType": "SPF级饲料",
+      "amount": 7.5,
+      "keeper": "林青",
+      "status": "completed",
+      "notes": ""
+    },
+    {
+      "id": "record-5",
+      "planId": "plan-3",
+      "targetType": "cage",
+      "targetId": "A-01",
+      "date": "2026-06-12",
+      "scheduledTime": "19:30",
+      "actualTime": "2026-06-12T19:40:00.000Z",
+      "feedType": "SPF级饲料",
+      "amount": 7.5,
+      "keeper": "林青",
+      "status": "completed",
+      "notes": ""
+    }
   ]
 }

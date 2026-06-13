@@ -137,7 +137,7 @@ const server = http.createServer(async (req, res) => {
 
       if (req.method === "POST" && action === "move") {
         const input = await body(req);
-        const validation = validateCageForAnimal(db, input.cageId);
+        const validation = validateCageForAnimal(db, input.cageId, animal.cageId);
         if (!validation.valid) {
           return send(res, 422, { error: "cage_validation_failed", details: validation.errors });
         }

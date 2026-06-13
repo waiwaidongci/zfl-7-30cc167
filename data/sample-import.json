@@ -1,0 +1,110 @@
+[
+  {
+    "id": "ani-2001",
+    "strain": "C57BL/6J",
+    "cageId": "A-01",
+    "sex": "male",
+    "birthDate": "2026-03-15",
+    "project": "代谢观察",
+    "keeper": "林青",
+    "observationNodes": ["2026-06-25", "2026-07-10"]
+  },
+  {
+    "id": "ani-2002",
+    "strain": "C57BL/6J",
+    "cageId": "A-01",
+    "sex": "female",
+    "birthDate": "2026-03-16",
+    "project": "代谢观察",
+    "keeper": "林青"
+  },
+  {
+    "id": "ani-2003",
+    "strain": "BALB/c",
+    "cageId": "B-04",
+    "sex": "male",
+    "birthDate": "2026-02-20",
+    "project": "免疫反应",
+    "keeper": "周遥"
+  },
+  {
+    "id": "ani-1001",
+    "strain": "C57BL/6J",
+    "cageId": "A-02",
+    "sex": "female",
+    "birthDate": "2026-01-20",
+    "project": "代谢观察",
+    "keeper": "林青"
+  },
+  {
+    "id": "ani-2001",
+    "strain": "C57BL/6J",
+    "cageId": "A-02",
+    "sex": "male",
+    "birthDate": "2026-03-15",
+    "project": "代谢观察",
+    "keeper": "林青"
+  },
+  {
+    "id": "ani-2004",
+    "strain": "C57BL/6J",
+    "cageId": "X-99",
+    "sex": "female",
+    "birthDate": "2026-03-10",
+    "project": "代谢观察",
+    "keeper": "林青"
+  },
+  {
+    "id": "ani-2005",
+    "strain": "",
+    "cageId": "A-02",
+    "sex": "unknown",
+    "birthDate": "2026/03/10",
+    "project": "",
+    "keeper": ""
+  },
+  {
+    "id": "ani-2006",
+    "strain": "BALB/c",
+    "cageId": "B-03",
+    "sex": "male",
+    "birthDate": "2026-02-25",
+    "project": "免疫反应",
+    "keeper": "周遥"
+  },
+  {
+    "id": "ani-2007",
+    "strain": "BALB/c",
+    "cageId": "B-03",
+    "sex": "female",
+    "birthDate": "2026-02-26",
+    "project": "免疫反应",
+    "keeper": "周遥"
+  },
+  {
+    "id": "ani-2008",
+    "strain": "BALB/c",
+    "cageId": "B-03",
+    "sex": "male",
+    "birthDate": "2026-02-27",
+    "project": "免疫反应",
+    "keeper": "周遥"
+  },
+  {
+    "id": "ani-2009",
+    "strain": "BALB/c",
+    "cageId": "B-03",
+    "sex": "female",
+    "birthDate": "2026-02-28",
+    "project": "免疫反应",
+    "keeper": "周遥"
+  },
+  {
+    "strain": "BALB/c",
+    "cageId": "B-04",
+    "sex": "female",
+    "birthDate": "2026-03-01",
+    "project": "免疫反应",
+    "keeper": "周遥"
+  }
+]

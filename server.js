@@ -2,7 +2,7 @@ import http from "node:http";
 import { loadDb, saveDb, send, body, readQuery } from "./lib/helpers.js";
 import { handleCageRoutes } from "./routes/cageRoutes.js";
 import { handleFeedingRoutes } from "./routes/feedingRoutes.js";
-import { validateCageForAnimal } from "./lib/cageValidator.js";
+import { handleAnimalRoutes } from "./routes/animalRoutes.js";
 
 const seed = {
   cages: [
@@ -206,6 +206,8 @@ const server = http.createServer(async (req, res) => {
           "POST /animals/:id/notes",
           "POST /animals/:id/move",
           "POST /animals/:id/remove",
+          "POST /animals/import/preview",
+          "POST /animals/import",
           "GET /reports/stock",
           "GET /reports/upcoming?days=7",
           "GET /feeding/plans?targetType=&targetId=&status=&keeper=",
@@ -228,79 +230,8 @@ const server = http.createServer(async (req, res) => {
     const feedingHandled = await handleFeedingRoutes(req, res, url, db);
     if (feedingHandled) return;
 
-    if (req.method === "GET" && url.pathname === "/animals") {
-      const project = url.searchParams.get("project");
-      const cageId = url.searchParams.get("cageId");
-      const status = url.searchParams.get("status");
-      let animals = db.animals;
-      if (project) animals = animals.filter((a) => a.project === project);
-      if (cageId) animals = animals.filter((a) => a.cageId === cageId);
-      if (status) animals = animals.filter((a) => a.status === status);
-      return send(res, 200, animals);
-    }
-
-    if (req.method === "POST" && url.pathname === "/animals") {
-      const input = await body(req);
-      const validation = validateCageForAnimal(db, input.cageId);
-      if (!validation.valid) {
-        return send(res, 422, { error: "cage_validation_failed", details: validation.errors });
-      }
-      const animal = {
-        id: input.id || `ani-${Date.now()}`,
-        strain: input.strain,
-        cageId: input.cageId,
-        sex: input.sex,
-        birthDate: input.birthDate,
-        project: input.project,
-        keeper: input.keeper,
-        status: "active",
-        observationNodes: input.observationNodes || [],
-        notes: [],
-        moves: []
-      };
-      db.animals.push(animal);
-      await saveDb(db);
-      return send(res, 201, animal);
-    }
-
-    const animalMatch = url.pathname.match(/^\/animals\/([^/]+)(?:\/([^/]+))?$/);
-    if (animalMatch) {
-      const [, id, action] = animalMatch;
-      const animal = db.animals.find((item) => item.id === id);
-      if (!animal) return send(res, 404, { error: "animal_not_found" });
-
-      if (req.method === "GET" && !action) return send(res, 200, animal);
-
-      if (req.method === "POST" && action === "notes") {
-        const input = await body(req);
-        const note = { id: `note-${Date.now()}`, date: input.date || new Date().toISOString().slice(0, 10), weight: input.weight, condition: input.condition, keeper: input.keeper || animal.keeper };
-        animal.notes.push(note);
-        await saveDb(db);
-        return send(res, 201, note);
-      }
-
-      if (req.method === "POST" && action === "move") {
-        const input = await body(req);
-        const validation = validateCageForAnimal(db, input.cageId, animal.cageId);
-        if (!validation.valid) {
-          return send(res, 422, { error: "cage_validation_failed", details: validation.errors });
-        }
-        const move = { id: `move-${Date.now()}`, from: animal.cageId, to: input.cageId, movedAt: new Date().toISOString(), reason: input.reason || "笼位调整" };
-        animal.cageId = input.cageId;
-        animal.moves.push(move);
-        await saveDb(db);
-        return send(res, 200, animal);
-      }
-
-      if (req.method === "POST" && action === "remove") {
-        const input = await body(req);
-        animal.status = "removed";
-        animal.removedAt = new Date().toISOString();
-        animal.removeReason = input.reason || "移出";
-        await saveDb(db);
-        return send(res, 200, animal);
-      }
-    }
+    const animalHandled = await handleAnimalRoutes(req, res, url, db);
+    if (animalHandled) return;
 
     if (req.method === "GET" && url.pathname === "/reports/stock") {
       const active = db.animals.filter((a) => a.status === "active");

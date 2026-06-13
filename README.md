@@ -11,15 +11,23 @@ npm start
 ## 项目结构
 
 ```
-├── server.js              # 入口：HTTP 服务器、动物路由、校验集成
+├── server.js              # 入口：HTTP 服务器、路由分发
 ├── lib/
 │   ├── helpers.js         # 公共工具：send / body / readQuery / loadDb / saveDb
 │   ├── cageData.js        # 笼位数据操作：listCages / getCage / addCage / disableCage / countOccupancy
-│   └── cageValidator.js   # 笼位校验：存在性 / 停用 / 容量
+│   ├── cageValidator.js   # 笼位校验：存在性 / 停用 / 容量
+│   ├── animalData.js      # 动物数据操作：listAnimals / getAnimal / addAnimal / batchAddAnimals
+│   ├── animalValidator.js # 动物字段校验：必填字段 / 性别 / 出生日期格式
+│   └── batchImportValidator.js # 批量导入校验：重复ID / 缺失笼位 / 容量冲突 / 预览
 ├── routes/
-│   └── cageRoutes.js      # 笼位路由处理
+│   ├── cageRoutes.js      # 笼位路由处理
+│   ├── animalRoutes.js    # 动物路由处理（含批量导入预览/确认）
+│   └── feedingRoutes.js   # 饲喂路由处理
 ├── data/
-│   └── lab.json           # JSON 持久化存储
+│   ├── lab.json           # JSON 持久化存储
+│   └── sample-import.json # 批量导入示例数据
+├── scripts/
+│   └── test-batch-import.js # 批量导入测试脚本
 └── README.md
 ```
 
@@ -110,6 +118,19 @@ npm start
 
 新增动物（建档），自动校验 `cageId` 对应笼位。
 
+请求体字段说明：
+
+| 字段              | 必填 | 说明                       |
+| ----------------- | ---- | -------------------------- |
+| id                | 否   | 动物编号，不传则自动生成   |
+| strain            | 是   | 品系                       |
+| cageId            | 是   | 所属笼位                   |
+| sex               | 是   | 性别：male / female        |
+| birthDate         | 是   | 出生日期，格式 YYYY-MM-DD  |
+| project           | 是   | 所属项目                   |
+| keeper            | 是   | 饲养员                     |
+| observationNodes  | 否   | 观察节点日期数组           |
+
 ### GET /animals/:id
 
 获取单个动物详情。
@@ -125,6 +146,148 @@ npm start
 ### POST /animals/:id/remove
 
 移出动物。
+
+## 批量导入模块
+
+### POST /animals/import/preview
+
+批量导入预览，接收一组待建档动物，返回字段校验结果、重复ID、缺失笼位、容量冲突和可导入数量。
+
+**请求体**：动物对象数组
+
+**响应示例（200）**：
+
+```json
+{
+  "total": 12,
+  "importable": 5,
+  "fieldErrors": [
+    {
+      "index": 6,
+      "id": "ani-2005",
+      "errors": [
+        { "code": "missing_field", "field": "strain", "message": "缺少必填字段：strain" },
+        { "code": "invalid_sex", "field": "sex", "message": "性别必须是 male 或 female，当前值：unknown" },
+        { "code": "invalid_birth_date", "field": "birthDate", "message": "出生日期格式应为 YYYY-MM-DD，当前值：2026/03/10" },
+        { "code": "missing_field", "field": "project", "message": "缺少必填字段：project" },
+        { "code": "missing_field", "field": "keeper", "message": "缺少必填字段：keeper" }
+      ]
+    }
+  ],
+  "duplicateIds": [
+    {
+      "index": 3,
+      "id": "ani-1001",
+      "type": "exists_in_db",
+      "message": "动物 ID ani-1001 已存在于数据库中"
+    },
+    {
+      "index": 0,
+      "id": "ani-2001",
+      "type": "duplicate_in_batch",
+      "message": "动物 ID ani-2001 在导入批次中重复出现"
+    },
+    {
+      "index": 4,
+      "id": "ani-2001",
+      "type": "duplicate_in_batch",
+      "message": "动物 ID ani-2001 在导入批次中重复出现"
+    }
+  ],
+  "missingCages": [
+    {
+      "cageId": "X-99",
+      "message": "笼位 X-99 不存在"
+    }
+  ],
+  "capacityConflicts": [
+    {
+      "cageId": "B-03",
+      "currentOccupancy": 1,
+      "batchCount": 4,
+      "capacity": 5,
+      "afterImport": 5,
+      "overflow": 0,
+      "message": "笼位 B-03 容量不足：当前 1 只，导入 4 只，共 5/5，超出 0 只"
+    }
+  ],
+  "validItems": [
+    {
+      "index": 0,
+      "id": "ani-2001",
+      "strain": "C57BL/6J",
+      "cageId": "A-01",
+      "sex": "male",
+      "birthDate": "2026-03-15",
+      "project": "代谢观察",
+      "keeper": "林青"
+    }
+  ]
+}
+```
+
+**错误响应**：
+
+| 状态码 | 错误码          | 说明                   |
+| ------ | --------------- | ---------------------- |
+| 400    | invalid_input   | 请求体不是数组         |
+| 400    | empty_batch     | 导入批次为空           |
+
+### POST /animals/import
+
+确认批量导入，仅导入通过所有校验的动物记录。
+
+**请求体**：动物对象数组（与预览接口相同）
+
+**成功响应（201）**：
+
+```json
+{
+  "imported": 5,
+  "totalRequested": 12,
+  "skipped": 7,
+  "animals": [
+    {
+      "id": "ani-2001",
+      "strain": "C57BL/6J",
+      "cageId": "A-01",
+      "sex": "male",
+      "birthDate": "2026-03-15",
+      "project": "代谢观察",
+      "keeper": "林青",
+      "status": "active",
+      "observationNodes": ["2026-06-25", "2026-07-10"],
+      "notes": [],
+      "moves": []
+    }
+  ],
+  "warnings": {
+    "fieldErrors": [...],
+    "duplicateIds": [...],
+    "missingCages": [...],
+    "capacityConflicts": [...]
+  }
+}
+```
+
+**错误响应**：
+
+| 状态码 | 错误码            | 说明                       |
+| ------ | ----------------- | -------------------------- |
+| 400    | invalid_input     | 请求体不是数组             |
+| 400    | empty_batch       | 导入批次为空               |
+| 422    | no_importable_items | 没有可导入的有效记录    |
+
+**校验规则**：
+
+| 校验项       | 说明                                                         |
+| ------------ | ------------------------------------------------------------ |
+| 字段校验     | 必填字段缺失、性别值非法、出生日期格式错误等                 |
+| 重复ID       | 与数据库中现有动物ID重复，或批次内ID重复                     |
+| 缺失笼位     | 笼位ID不存在或笼位已停用                                     |
+| 容量冲突     | 导入后笼位动物总数超过容量（按笼位维度叠加批次内所有动物）   |
+
+> 提示：建议先调用 `/animals/import/preview` 预览校验结果，确认无误后再调用 `/animals/import` 执行导入。
 
 ## 报表接口
 

@@ -1,0 +1,9 @@
+{
+  "name": "zfl-7-lab-animal-room-api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  }
+}

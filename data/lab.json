@@ -1,0 +1,51 @@
+{
+  "animals": [
+    {
+      "id": "ani-1001",
+      "strain": "C57BL/6J",
+      "cageId": "A-01",
+      "sex": "female",
+      "birthDate": "2026-01-20",
+      "project": "代谢观察",
+      "keeper": "林青",
+      "status": "active",
+      "observationNodes": [
+        "2026-06-18",
+        "2026-07-02"
+      ],
+      "notes": [
+        {
+          "id": "note-1",
+          "date": "2026-06-10",
+          "weight": 21.4,
+          "condition": "正常进食",
+          "keeper": "林青"
+        }
+      ],
+      "moves": [
+        {
+          "id": "move-1",
+          "from": "检疫区",
+          "to": "A-01",
+          "movedAt": "2026-05-01T09:30:00.000Z",
+          "reason": "检疫结束"
+        }
+      ]
+    },
+    {
+      "id": "ani-1002",
+      "strain": "BALB/c",
+      "cageId": "B-03",
+      "sex": "male",
+      "birthDate": "2026-02-03",
+      "project": "免疫反应",
+      "keeper": "周遥",
+      "status": "active",
+      "observationNodes": [
+        "2026-06-15"
+      ],
+      "notes": [],
+      "moves": []
+    }
+  ]
+}

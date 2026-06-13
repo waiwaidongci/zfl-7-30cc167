@@ -96,8 +96,11 @@
       "targetType": "animal",
       "targetId": "ani-1001",
       "feedType": "标准颗粒饲料",
-      "feedTimes": ["08:00", "18:00"],
-      "dailyAmount": 5.0,
+      "feedTimes": [
+        "08:00",
+        "18:00"
+      ],
+      "dailyAmount": 5,
       "keeper": "林青",
       "status": "active",
       "startDate": "2026-06-01",
@@ -110,7 +113,9 @@
       "targetType": "animal",
       "targetId": "ani-1002",
       "feedType": "高蛋白饲料",
-      "feedTimes": ["09:00"],
+      "feedTimes": [
+        "09:00"
+      ],
       "dailyAmount": 4.5,
       "keeper": "周遥",
       "status": "active",
@@ -124,8 +129,11 @@
       "targetType": "cage",
       "targetId": "A-01",
       "feedType": "SPF级饲料",
-      "feedTimes": ["07:30", "19:30"],
-      "dailyAmount": 15.0,
+      "feedTimes": [
+        "07:30",
+        "19:30"
+      ],
+      "dailyAmount": 15,
       "keeper": "林青",
       "status": "active",
       "startDate": "2026-05-15",
@@ -138,8 +146,10 @@
       "targetType": "cage",
       "targetId": "B-03",
       "feedType": "普通维持饲料",
-      "feedTimes": ["08:30"],
-      "dailyAmount": 10.0,
+      "feedTimes": [
+        "08:30"
+      ],
+      "dailyAmount": 10,
       "keeper": "周遥",
       "status": "active",
       "startDate": "2026-05-20",

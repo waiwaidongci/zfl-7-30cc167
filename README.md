@@ -160,17 +160,17 @@ npm start
 ```json
 {
   "total": 12,
-  "importable": 5,
+  "importable": 7,
   "fieldErrors": [
     {
       "index": 6,
       "id": "ani-2005",
       "errors": [
         { "code": "missing_field", "field": "strain", "message": "缺少必填字段：strain" },
-        { "code": "invalid_sex", "field": "sex", "message": "性别必须是 male 或 female，当前值：unknown" },
-        { "code": "invalid_birth_date", "field": "birthDate", "message": "出生日期格式应为 YYYY-MM-DD，当前值：2026/03/10" },
         { "code": "missing_field", "field": "project", "message": "缺少必填字段：project" },
-        { "code": "missing_field", "field": "keeper", "message": "缺少必填字段：keeper" }
+        { "code": "missing_field", "field": "keeper", "message": "缺少必填字段：keeper" },
+        { "code": "invalid_sex", "field": "sex", "message": "性别必须是 male 或 female，当前值：unknown" },
+        { "code": "invalid_birth_date", "field": "birthDate", "message": "出生日期格式应为 YYYY-MM-DD，当前值：2026/03/10" }
       ]
     }
   ],
@@ -200,25 +200,15 @@ npm start
       "message": "笼位 X-99 不存在"
     }
   ],
-  "capacityConflicts": [
-    {
-      "cageId": "B-03",
-      "currentOccupancy": 1,
-      "batchCount": 4,
-      "capacity": 5,
-      "afterImport": 5,
-      "overflow": 0,
-      "message": "笼位 B-03 容量不足：当前 1 只，导入 4 只，共 5/5，超出 0 只"
-    }
-  ],
+  "capacityConflicts": [],
   "validItems": [
     {
-      "index": 0,
-      "id": "ani-2001",
+      "index": 1,
+      "id": "ani-2002",
       "strain": "C57BL/6J",
       "cageId": "A-01",
-      "sex": "male",
-      "birthDate": "2026-03-15",
+      "sex": "female",
+      "birthDate": "2026-03-16",
       "project": "代谢观察",
       "keeper": "林青"
     }
@@ -243,20 +233,20 @@ npm start
 
 ```json
 {
-  "imported": 5,
+  "imported": 7,
   "totalRequested": 12,
-  "skipped": 7,
+  "skipped": 5,
   "animals": [
     {
-      "id": "ani-2001",
+      "id": "ani-2002",
       "strain": "C57BL/6J",
       "cageId": "A-01",
-      "sex": "male",
-      "birthDate": "2026-03-15",
+      "sex": "female",
+      "birthDate": "2026-03-16",
       "project": "代谢观察",
       "keeper": "林青",
       "status": "active",
-      "observationNodes": ["2026-06-25", "2026-07-10"],
+      "observationNodes": [],
       "notes": [],
       "moves": []
     }

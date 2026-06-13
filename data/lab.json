@@ -1,4 +1,46 @@
 {
+  "cages": [
+    {
+      "id": "A-01",
+      "area": "SPF区",
+      "rack": "A",
+      "capacity": 5,
+      "status": "active",
+      "createdAt": "2026-05-01T00:00:00.000Z"
+    },
+    {
+      "id": "A-02",
+      "area": "SPF区",
+      "rack": "A",
+      "capacity": 5,
+      "status": "active",
+      "createdAt": "2026-05-01T00:00:00.000Z"
+    },
+    {
+      "id": "B-03",
+      "area": "普通区",
+      "rack": "B",
+      "capacity": 5,
+      "status": "active",
+      "createdAt": "2026-05-01T00:00:00.000Z"
+    },
+    {
+      "id": "B-04",
+      "area": "普通区",
+      "rack": "B",
+      "capacity": 5,
+      "status": "active",
+      "createdAt": "2026-05-01T00:00:00.000Z"
+    },
+    {
+      "id": "C-01",
+      "area": "检疫区",
+      "rack": "C",
+      "capacity": 3,
+      "status": "active",
+      "createdAt": "2026-05-01T00:00:00.000Z"
+    }
+  ],
   "animals": [
     {
       "id": "ani-1001",

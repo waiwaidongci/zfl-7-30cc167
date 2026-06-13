@@ -1,14 +1,16 @@
 import http from "node:http";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
-import { existsSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
-
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const dbPath = join(__dirname, "data", "lab.json");
-const port = Number(process.env.PORT || 3007);
+import { loadDb, saveDb, send, body, readQuery } from "./lib/helpers.js";
+import { handleCageRoutes } from "./routes/cageRoutes.js";
+import { validateCageForAnimal } from "./lib/cageValidator.js";
 
 const seed = {
+  cages: [
+    { id: "A-01", area: "SPF区", rack: "A", capacity: 5, status: "active", createdAt: "2026-05-01T00:00:00.000Z" },
+    { id: "A-02", area: "SPF区", rack: "A", capacity: 5, status: "active", createdAt: "2026-05-01T00:00:00.000Z" },
+    { id: "B-03", area: "普通区", rack: "B", capacity: 5, status: "active", createdAt: "2026-05-01T00:00:00.000Z" },
+    { id: "B-04", area: "普通区", rack: "B", capacity: 5, status: "active", createdAt: "2026-05-01T00:00:00.000Z" },
+    { id: "C-01", area: "检疫区", rack: "C", capacity: 3, status: "active", createdAt: "2026-05-01T00:00:00.000Z" }
+  ],
   animals: [
     {
       id: "ani-1001",
@@ -43,33 +45,7 @@ const seed = {
   ]
 };
 
-async function loadDb() {
-  if (!existsSync(dbPath)) {
-    await mkdir(dirname(dbPath), { recursive: true });
-    await writeFile(dbPath, JSON.stringify(seed, null, 2));
-  }
-  return JSON.parse(await readFile(dbPath, "utf8"));
-}
-
-async function saveDb(db) {
-  await writeFile(dbPath, JSON.stringify(db, null, 2));
-}
-
-function send(res, status, data) {
-  res.writeHead(status, { "Content-Type": "application/json; charset=utf-8" });
-  res.end(JSON.stringify(data, null, 2));
-}
-
-async function body(req) {
-  const chunks = [];
-  for await (const chunk of req) chunks.push(chunk);
-  if (!chunks.length) return {};
-  return JSON.parse(Buffer.concat(chunks).toString("utf8"));
-}
-
-function readQuery(req) {
-  return new URL(req.url, `http://${req.headers.host}`);
-}
+const port = Number(process.env.PORT || 3007);
 
 function hoursUntil(dateText) {
   return (new Date(dateText).getTime() - Date.now()) / 36e5;
@@ -77,13 +53,22 @@ function hoursUntil(dateText) {
 
 const server = http.createServer(async (req, res) => {
   try {
+    let db = await loadDb();
+    if (!db) {
+      await saveDb(seed);
+      db = JSON.parse(JSON.stringify(seed));
+    }
+
     const url = readQuery(req);
-    const db = await loadDb();
 
     if (req.method === "GET" && url.pathname === "/") {
       return send(res, 200, {
         service: "实验动物房笼位和饲养记录API",
         endpoints: [
+          "GET /cages?area=&rack=&status=",
+          "GET /cages/:id",
+          "POST /cages",
+          "POST /cages/:id/disable",
           "GET /animals?project=&cageId=&status=",
           "POST /animals",
           "GET /animals/:id",
@@ -96,19 +81,26 @@ const server = http.createServer(async (req, res) => {
       });
     }
 
+    const handled = await handleCageRoutes(req, res, url, db);
+    if (handled) return;
+
     if (req.method === "GET" && url.pathname === "/animals") {
       const project = url.searchParams.get("project");
       const cageId = url.searchParams.get("cageId");
       const status = url.searchParams.get("status");
       let animals = db.animals;
-      if (project) animals = animals.filter((animal) => animal.project === project);
-      if (cageId) animals = animals.filter((animal) => animal.cageId === cageId);
-      if (status) animals = animals.filter((animal) => animal.status === status);
+      if (project) animals = animals.filter((a) => a.project === project);
+      if (cageId) animals = animals.filter((a) => a.cageId === cageId);
+      if (status) animals = animals.filter((a) => a.status === status);
       return send(res, 200, animals);
     }
 
     if (req.method === "POST" && url.pathname === "/animals") {
       const input = await body(req);
+      const validation = validateCageForAnimal(db, input.cageId);
+      if (!validation.valid) {
+        return send(res, 422, { error: "cage_validation_failed", details: validation.errors });
+      }
       const animal = {
         id: input.id || `ani-${Date.now()}`,
         strain: input.strain,
@@ -145,6 +137,10 @@ const server = http.createServer(async (req, res) => {
 
       if (req.method === "POST" && action === "move") {
         const input = await body(req);
+        const validation = validateCageForAnimal(db, input.cageId);
+        if (!validation.valid) {
+          return send(res, 422, { error: "cage_validation_failed", details: validation.errors });
+        }
         const move = { id: `move-${Date.now()}`, from: animal.cageId, to: input.cageId, movedAt: new Date().toISOString(), reason: input.reason || "笼位调整" };
         animal.cageId = input.cageId;
         animal.moves.push(move);
@@ -163,9 +159,9 @@ const server = http.createServer(async (req, res) => {
     }
 
     if (req.method === "GET" && url.pathname === "/reports/stock") {
-      const active = db.animals.filter((animal) => animal.status === "active");
-      const byProject = Object.fromEntries(active.reduce((map, animal) => map.set(animal.project, (map.get(animal.project) || 0) + 1), new Map()));
-      const byCage = Object.fromEntries(active.reduce((map, animal) => map.set(animal.cageId, (map.get(animal.cageId) || 0) + 1), new Map()));
+      const active = db.animals.filter((a) => a.status === "active");
+      const byProject = Object.fromEntries(active.reduce((map, a) => map.set(a.project, (map.get(a.project) || 0) + 1), new Map()));
+      const byCage = Object.fromEntries(active.reduce((map, a) => map.set(a.cageId, (map.get(a.cageId) || 0) + 1), new Map()));
       return send(res, 200, { total: active.length, byProject, byCage });
     }
 

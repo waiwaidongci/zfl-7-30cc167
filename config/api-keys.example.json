@@ -4,29 +4,51 @@
       "key": "admin-key-demo-001",
       "role": "admin",
       "name": "系统管理员",
-      "description": "拥有所有接口的完整访问权限",
-      "createdAt": "2026-06-01T00:00:00.000Z"
+      "description": "拥有所有接口的完整访问权限，所有房间和项目均无限制",
+      "createdAt": "2026-06-01T00:00:00.000Z",
+      "allowedRoomIds": ["*"],
+      "allowedProjectIds": ["*"],
+      "allowedZones": ["*"]
     },
     {
       "key": "keeper-key-demo-001",
       "role": "keeper",
       "name": "饲养员-林青",
-      "description": "可进行动物建档、记录、移笼、饲喂等日常操作",
-      "createdAt": "2026-06-01T00:00:00.000Z"
+      "description": "仅负责主动物房（room-default）日常饲养操作，可访问主动物房所有项目",
+      "createdAt": "2026-06-01T00:00:00.000Z",
+      "allowedRoomIds": ["room-default"],
+      "allowedProjectIds": ["*"],
+      "allowedZones": ["zone-default", "zone-conventional", "zone-quarantine", "zone-breeding"]
     },
     {
       "key": "keeper-key-demo-002",
       "role": "keeper",
       "name": "饲养员-周遥",
-      "description": "可进行动物建档、记录、移笼、饲喂等日常操作",
-      "createdAt": "2026-06-01T00:00:00.000Z"
+      "description": "负责主动物房和新动物房，侧重免疫实验和转基因操作",
+      "createdAt": "2026-06-01T00:00:00.000Z",
+      "allowedRoomIds": ["room-default", "room-secondary"],
+      "allowedProjectIds": ["*"],
+      "allowedZones": ["zone-default", "zone-conventional", "zone-quarantine", "zone-breeding", "zone-transgenic", "zone-special"]
     },
     {
       "key": "readonly-key-demo-001",
       "role": "readonly",
       "name": "只读用户-审计员",
-      "description": "仅能查询数据，不能执行任何写操作",
-      "createdAt": "2026-06-01T00:00:00.000Z"
+      "description": "仅能查询所有房间和项目的数据，不能执行任何写操作",
+      "createdAt": "2026-06-01T00:00:00.000Z",
+      "allowedRoomIds": ["*"],
+      "allowedProjectIds": ["*"],
+      "allowedZones": ["*"]
+    },
+    {
+      "key": "project-keeper-demo-001",
+      "role": "keeper",
+      "name": "项目专员-肿瘤组",
+      "description": "仅能访问肿瘤研究相关的动物和数据，限制在主动物房",
+      "createdAt": "2026-06-01T00:00:00.000Z",
+      "allowedRoomIds": ["room-default"],
+      "allowedProjectIds": ["proj-oncology", "project-default"],
+      "allowedZones": ["zone-default", "zone-conventional"]
     }
   ]
 }

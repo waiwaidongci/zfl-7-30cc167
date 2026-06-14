@@ -44,6 +44,274 @@ npm start
 └── README.md
 ```
 
+## 多动物房与项目隔离模块
+
+### 模块概述
+
+将单一实验动物房扩展为多房间、多区域、多项目空间的隔离管理体系。每只动物、笼位、饲养员、报表和观察提醒都必须归属到明确房间或项目；旧数据启动后自动迁移到默认房间；查询接口支持按房间过滤，写接口防止动物被移动到无权限或不同房间的笼位。
+
+### 核心数据模型
+
+#### 1. 房间 (Room)
+
+| 字段            | 类型   | 说明                                       |
+| --------------- | ------ | ------------------------------------------ |
+| `id`            | string | 房间ID，默认主房间为 `room-default`        |
+| `name`          | string | 房间名称，如「主动物房」「新动物房」       |
+| `building`      | string | 所属楼栋，如「实验楼A」                    |
+| `floor`         | string | 楼层，如「3F」                             |
+| `status`        | string | 状态：`active`/`maintenance`/`disabled`    |
+| `capacity`      | number | 笼位总容量                                 |
+| `climateControl`| object | 温湿度控制：`temperature`, `humidity`, `lightingSchedule` |
+| `description`   | string | 房间描述                                   |
+| `createdAt`     | string | 创建时间                                   |
+
+#### 2. 区域 (Zone)
+
+| 字段        | 类型   | 说明                                     |
+| ----------- | ------ | ---------------------------------------- |
+| `id`        | string | 区域ID，默认SPF区为 `zone-default`       |
+| `roomId`    | string | 所属房间ID（必填）                       |
+| `name`      | string | 区域名称：SPF区/普通区/检疫区/繁育区等   |
+| `rackPrefix`| string | 笼架前缀，用于快速识别笼位归属           |
+| `capacity`  | number | 区域容量                                 |
+| `description`|string | 区域描述                                 |
+
+#### 3. 项目空间 (Project)
+
+| 字段                    | 类型   | 说明                                    |
+| ----------------------- | ------ | --------------------------------------- |
+| `id`                    | string | 项目ID，默认项目为 `project-default`    |
+| `name`                  | string | 项目名称（唯一）                        |
+| `roomId`                | string | 关联房间ID（可选）                      |
+| `code`                  | string | 项目编号，如 `MET-01`                   |
+| `status`                | string | 状态：`active`/`suspended`/`completed`  |
+| `principalInvestigator` | string | 项目负责人                              |
+| `targetSampleSize`      | number | 目标样本量                              |
+| `description`           | string | 项目描述                                |
+
+#### 4. 饲养员 (Keeper)
+
+| 字段              | 类型     | 说明                                              |
+| ----------------- | -------- | ------------------------------------------------- |
+| `id`              | string   | 饲养员ID，如 `keeper-lq`                          |
+| `name`            | string   | 姓名                                              |
+| `employeeId`      | string   | 工号                                              |
+| `status`          | string   | 状态：`active`/`inactive`/`leave`                 |
+| `role`            | string   | 岗位：`keeper`/`senior_keeper`/`facility_manager` |
+| `roomIds`         | string[] | 负责房间ID数组，`["*"]` 表示所有房间              |
+| `defaultProjectId`| string   | 默认负责项目ID                                    |
+| `contact`         | object   | 联系方式：`phone`, `email`                        |
+| `specialties`     | string[] | 专业技能标签                                      |
+| `permissions`     | object   | 操作权限：`allowWean`, `allowBreedingPair`, `allowQuarantineRelease`, `allowRoomAccess` |
+| `joinDate`        | string   | 入职日期                                          |
+
+### 数据归属关系
+
+```
+Room (动物房)
+  └── Zone (区域)
+        └── Cage (笼位) ──┐
+                           ├─→ Animal (动物) ──┐
+                           │                     ├── FeedingPlan / FeedingRecord
+                           │                     ├── HealthEvent
+                           │                     └── ObservationNode (观察提醒)
+                           │
+Project (项目空间) ────────┘
+                           │
+BreedingPair / BreedingLitter
+```
+
+- **推导规则**：动物的 `roomId`/`zoneId` 由其所在笼位推导得出
+- **写入时强制**：新增笼位必须指定 `roomId`/`zoneId`；新增动物通过笼位自动归属
+- **冗余存储**：动物、繁育、饲喂、健康事件均冗余存储 `roomId`/`zoneId`/`projectId`，便于直接过滤
+
+### 旧数据自动迁移
+
+系统启动时 `migrateDb()` 中自动执行 `migrateLegacyFacilityData()`：
+
+1. **补齐集合**：创建缺失的 `rooms`/`zones`/`projects`/`keepers` 集合
+2. **创建默认房间**：自动创建 `room-default`「主动物房」+ `zone-default`「SPF区」+ `project-default`「默认项目」
+3. **笼位补全**：无 `roomId` 的笼位 → 按 `area` 匹配 Zone，找不到则归默认房间/区域
+4. **动物补全**：无 `roomId` 的动物 → 从笼位推导或用默认
+5. **项目创建**：扫描动物/繁育中出现的 `project` 名称 → 自动创建 Project 记录并填充 `projectId`
+6. **饲养员创建**：扫描动物/事件中出现的 `keeper` 姓名 → 自动创建 Keeper 记录
+7. **业务记录补全**：为历史 `feedingPlans`/`feedingRecords`/`breedingPairs`/`breedingLitters`/`healthEvents` 补充 `roomId`/`zoneId`/`projectId`
+
+迁移完成后自动保存到 `data/lab.json`，旧版数据无需手动处理。
+
+### 房间/项目级权限配置
+
+在 API Key 配置中新增三个可选白名单字段（见 `config/api-keys.example.json`）：
+
+| 字段               | 类型       | 说明                                             | 默认值    |
+| ------------------ | ---------- | ------------------------------------------------ | --------- |
+| `allowedRoomIds`   | `string[]` | 允许访问的房间ID，`["*"]` 表示全部               | `["*"]`   |
+| `allowedProjectIds`| `string[]` | 允许访问的项目ID，`["*"]` 表示全部               | `["*"]`   |
+| `allowedZones`     | `string[]` | 允许访问的区域（暂用于前端展示）                 | `["*"]`   |
+
+示例（饲养员林青仅允许主动物房）：
+```json
+{
+  "key": "keeper-key-demo-001",
+  "role": "keeper",
+  "name": "饲养员-林青",
+  "allowedRoomIds": ["room-default"],
+  "allowedProjectIds": ["*"]
+}
+```
+
+### 跨房间移动校验
+
+动物移动（`POST /animals/:id/move`）和检疫放行（`POST /animals/:id/quarantine/release`）自动在 `cageValidator.js` 中执行：
+
+| 校验场景                           | 错误码                     | 说明                                     |
+| ---------------------------------- | -------------------------- | ---------------------------------------- |
+| 无目标房间权限                     | `cage_room_no_permission`  | 当前用户未被授予目标笼位所在房间的访问权 |
+| 源房间与目标房间不一致且角色非admin| `cross_room_move_not_allowed` | 饲养员角色不可跨房间移动动物          |
+| 目标房间被拒绝访问                 | `target_room_access_denied`| 权限白名单校验不通过                     |
+
+> 校验逻辑位于 `lib/cageValidator.js` 的 `validateCageForAnimal()`，非管理员用户会自动检查目标房间权限和跨房间移动合法性，不集中在 `server.js` 判断。
+
+### 设施模块接口
+
+#### GET /facility/overview
+
+设施概览：返回所有房间、区域、项目、饲养员列表 + 按房间维度的笼位使用统计。非管理员自动按 `allowedRoomIds` 过滤。
+
+#### GET /facility/defaults
+
+返回默认房间/区域/项目ID：
+```json
+{
+  "defaultRoomId": "room-default",
+  "defaultZoneId": "zone-default",
+  "defaultProjectId": "project-default"
+}
+```
+
+#### GET /rooms?status=&building=
+
+查询房间列表，支持按状态和楼栋过滤。
+
+#### GET /rooms/:id
+
+房间详情。非管理员需在 `allowedRoomIds` 白名单内，否则返回 `403`。
+
+#### POST /rooms [admin]
+
+新增房间。必填字段：`name`。
+
+#### PATCH /rooms/:id [admin]
+
+更新房间信息。
+
+#### GET /zones?roomId=
+
+查询区域列表，支持按房间过滤。
+
+#### GET /zones/:id
+
+区域详情，按所属房间校验权限。
+
+#### POST /zones [admin]
+
+新增区域。必填字段：`name`, `roomId`。
+
+#### GET /projects?status=&roomId=
+
+查询项目空间列表。
+
+#### GET /projects/:id
+
+项目详情。
+
+#### POST /projects [admin]
+
+新增项目。必填字段：`name`；可选：`roomId`（项目绑定房间）。
+
+#### PATCH /projects/:id [admin]
+
+更新项目信息。
+
+#### GET /keepers?status=&roomId=
+
+查询饲养员列表。非管理员仅能看到 `active` 状态。
+
+#### GET /keepers/:id
+
+饲养员详情。
+
+#### POST /keepers [admin]
+
+新增饲养员。必填字段：`name`。
+
+#### PATCH /keepers/:id [admin]
+
+更新饲养员信息。
+
+#### GET /resolve/room-by-cage/:cageId
+
+根据笼位ID反向解析所属房间/区域，供前端下拉联动使用。
+
+### 查询过滤汇总
+
+所有列表接口均新增以下过滤参数（路由层 → 数据层逐层透传）：
+
+| 模块接口              | 新增过滤参数                         |
+| --------------------- | ------------------------------------ |
+| `GET /cages`          | `roomId`, `zoneId`                   |
+| `GET /animals`        | `roomId`, `zoneId`, `keeper`, `projectId` |
+| `GET /reports/stock`  | `roomId`, `projectId`                |
+| `GET /reports/upcoming` | `roomId`                           |
+| `GET /reports/health-events` | `roomId`                       |
+| `GET /feeding/plans`  | `roomId`, `project`                  |
+| `GET /feeding/records`| `roomId`, `project`                  |
+| `GET /breeding/pairs` | `roomId`, `zoneId`, `project`        |
+| `GET /breeding/litters`| `roomId`, `zoneId`, `cageId`        |
+| `GET /breeding/stats` | `roomId`, `projectId`                |
+| `GET /health-events`  | `roomId`                             |
+| `GET /health-events/stats` | `roomId`                        |
+
+### 报表口径扩展
+
+#### GET /reports/stock
+
+响应新增以下字段：
+
+| 字段           | 说明                              |
+| -------------- | --------------------------------- |
+| `byProjectId`  | 按项目ID分组（替代旧版 `byProject` 按名称分组） |
+| `byRoom`       | 按房间ID分组的数量统计            |
+
+#### GET /reports/upcoming
+
+每条观察节点记录新增归属信息：
+
+| 字段       | 来源           |
+| ---------- | -------------- |
+| `roomId`   | 动物.roomId    |
+| `zoneId`   | 动物.zoneId    |
+| `projectId`| 动物.projectId |
+
+#### GET /reports/health-events / GET /health-events/stats
+
+统计维度新增：
+- `byRoom`：按房间ID分组计数
+- `roomId`：筛选参数
+
+### 种子数据
+
+启动时若无 `data/lab.json`，自动生成演示数据：
+
+**3 个房间**：主动物房、新动物房、独立检疫楼
+**6 个区域**：SPF区、普通区、检疫区、繁育区、转基因区、特殊项目区
+**7 个项目**：默认、代谢、免疫、肿瘤、疫苗、繁育、转基因
+**3 名饲养员**：林青（仅主房）、周遥（主房+新动物房）、管理员（所有）
+**所有笼位/动物/繁育/饲喂/健康事件**：均按笼位→区域→房间链条正确归属对应 `roomId`/`zoneId`/`projectId`
+
+---
+
 ## 笼位模块接口
 
 ### GET /cages

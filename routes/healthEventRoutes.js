@@ -47,7 +47,8 @@ function handleStats(req, res, url, db) {
       handler: url.searchParams.get("handler"),
       assignee: url.searchParams.get("assignee"),
       fromDate: url.searchParams.get("fromDate"),
-      toDate: url.searchParams.get("toDate")
+      toDate: url.searchParams.get("toDate"),
+      roomId: url.searchParams.get("roomId") || undefined
     };
     send(res, 200, getHealthEventStats(db, filters));
     return true;
@@ -112,7 +113,8 @@ function handleList(req, res, url, db) {
       animalId: url.searchParams.get("animalId"),
       source: url.searchParams.get("source"),
       fromDate: url.searchParams.get("fromDate"),
-      toDate: url.searchParams.get("toDate")
+      toDate: url.searchParams.get("toDate"),
+      roomId: url.searchParams.get("roomId") || undefined
     };
     send(res, 200, listHealthEvents(db, filters));
     return true;

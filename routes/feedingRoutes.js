@@ -30,7 +30,9 @@ function handlePlans(req, res, url, db) {
       targetType: url.searchParams.get("targetType"),
       targetId: url.searchParams.get("targetId"),
       status: url.searchParams.get("status"),
-      keeper: url.searchParams.get("keeper")
+      keeper: url.searchParams.get("keeper"),
+      roomId: url.searchParams.get("roomId") || undefined,
+      project: url.searchParams.get("project") || undefined
     };
     send(res, 200, listFeedingPlans(db, filters));
     return true;
@@ -109,7 +111,9 @@ function handleRecords(req, res, url, db) {
       targetId: url.searchParams.get("targetId"),
       date: url.searchParams.get("date"),
       keeper: url.searchParams.get("keeper"),
-      status: url.searchParams.get("status")
+      status: url.searchParams.get("status"),
+      roomId: url.searchParams.get("roomId") || undefined,
+      project: url.searchParams.get("project") || undefined
     };
     send(res, 200, listFeedingRecords(db, filters));
     return true;

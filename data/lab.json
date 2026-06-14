@@ -1,4 +1,230 @@
 {
+  "rooms": [
+    {
+      "id": "room-default",
+      "name": "主动物房",
+      "code": "R1",
+      "description": "默认主动物房，包含SPF区、普通区、检疫区、繁育区四个功能区域",
+      "status": "active",
+      "address": "",
+      "manager": "",
+      "createdAt": "2026-06-14T10:31:55.060Z"
+    },
+    {
+      "id": "room-secondary",
+      "name": "新动物房",
+      "code": "R2",
+      "description": "扩展动物房，用于特殊项目及转基因品系",
+      "status": "active",
+      "address": "",
+      "manager": "",
+      "createdAt": "2026-06-14T10:31:55.061Z"
+    },
+    {
+      "id": "room-quarantine",
+      "name": "独立检疫楼",
+      "code": "R3",
+      "description": "新入动物检疫隔离区，防止外来病原体污染主动物房",
+      "status": "maintenance",
+      "address": "",
+      "manager": "",
+      "createdAt": "2026-06-14T10:31:55.061Z"
+    }
+  ],
+  "zones": [
+    {
+      "id": "zone-default",
+      "roomId": "room-default",
+      "name": "SPF区",
+      "code": "Z1",
+      "description": "无特定病原体区",
+      "createdAt": "2026-06-14T10:31:55.061Z"
+    },
+    {
+      "id": "zone-conventional",
+      "roomId": "room-default",
+      "name": "普通区",
+      "code": "Z2",
+      "description": "常规饲养区",
+      "createdAt": "2026-06-14T10:31:55.061Z"
+    },
+    {
+      "id": "zone-quarantine",
+      "roomId": "room-default",
+      "name": "检疫区",
+      "code": "Z3",
+      "description": "入房检疫区",
+      "createdAt": "2026-06-14T10:31:55.061Z"
+    },
+    {
+      "id": "zone-breeding",
+      "roomId": "room-default",
+      "name": "繁育区",
+      "code": "Z4",
+      "description": "繁育配对区",
+      "createdAt": "2026-06-14T10:31:55.061Z"
+    },
+    {
+      "id": "zone-transgenic",
+      "roomId": "room-secondary",
+      "name": "转基因区",
+      "code": "Z5",
+      "description": "基因工程动物专用",
+      "createdAt": "2026-06-14T10:31:55.061Z"
+    },
+    {
+      "id": "zone-special",
+      "roomId": "room-secondary",
+      "name": "特殊项目区",
+      "code": "Z6",
+      "description": "行为学、影像学等特殊研究",
+      "createdAt": "2026-06-14T10:31:55.061Z"
+    }
+  ],
+  "projects": [
+    {
+      "id": "project-default",
+      "name": "默认项目",
+      "code": "DEF-001",
+      "roomId": "room-default",
+      "description": "未指定项目的动物默认归属",
+      "status": "active",
+      "manager": "",
+      "startDate": "",
+      "endDate": "",
+      "createdAt": "2026-06-14T10:31:55.061Z"
+    },
+    {
+      "id": "proj-metabolism",
+      "name": "代谢观察",
+      "code": "MET-01",
+      "roomId": "room-default",
+      "description": "代谢相关生理指标长期观察",
+      "status": "active",
+      "manager": "",
+      "startDate": "",
+      "endDate": "",
+      "createdAt": "2026-06-14T10:31:55.061Z"
+    },
+    {
+      "id": "proj-immunology",
+      "name": "免疫反应",
+      "code": "IMM-02",
+      "roomId": "room-default",
+      "description": "免疫原性与抗体反应实验",
+      "status": "active",
+      "manager": "",
+      "startDate": "",
+      "endDate": "",
+      "createdAt": "2026-06-14T10:31:55.061Z"
+    },
+    {
+      "id": "proj-oncology",
+      "name": "肿瘤研究",
+      "code": "ONC-03",
+      "roomId": "room-default",
+      "description": "肿瘤模型建立与药物筛选",
+      "status": "active",
+      "manager": "",
+      "startDate": "",
+      "endDate": "",
+      "createdAt": "2026-06-14T10:31:55.061Z"
+    },
+    {
+      "id": "proj-vaccine",
+      "name": "疫苗测试",
+      "code": "VAC-04",
+      "roomId": "room-default",
+      "description": "疫苗有效性与安全性评估",
+      "status": "suspended",
+      "manager": "",
+      "startDate": "",
+      "endDate": "",
+      "createdAt": "2026-06-14T10:31:55.061Z"
+    },
+    {
+      "id": "proj-breeding",
+      "name": "子代繁育群",
+      "code": "BRD-05",
+      "roomId": "room-default",
+      "description": "常规繁育种群维持",
+      "status": "active",
+      "manager": "",
+      "startDate": "",
+      "endDate": "",
+      "createdAt": "2026-06-14T10:31:55.061Z"
+    },
+    {
+      "id": "proj-transgenic-core",
+      "name": "转基因核心群",
+      "code": "TG-06",
+      "roomId": "room-secondary",
+      "description": "转基因品系保种与扩繁",
+      "status": "active",
+      "manager": "",
+      "startDate": "",
+      "endDate": "",
+      "createdAt": "2026-06-14T10:31:55.061Z"
+    },
+    {
+      "id": "proj-1781433220051-98s",
+      "name": "繁育种鼠",
+      "code": "PRJ8",
+      "roomId": "room-default",
+      "description": "从旧数据项目字段自动创建：繁育种鼠",
+      "status": "active",
+      "manager": "",
+      "startDate": "",
+      "endDate": "",
+      "createdAt": "2026-06-14T10:33:40.051Z",
+      "migratedFromAnimal": true
+    }
+  ],
+  "keepers": [
+    {
+      "id": "keeper-lq",
+      "name": "林青",
+      "code": "K1",
+      "roomIds": [
+        "room-default"
+      ],
+      "projectIds": [],
+      "role": "senior_keeper",
+      "phone": "",
+      "email": "",
+      "description": "",
+      "createdAt": "2026-06-14T10:31:55.061Z"
+    },
+    {
+      "id": "keeper-zy",
+      "name": "周遥",
+      "code": "K2",
+      "roomIds": [
+        "room-default",
+        "room-secondary"
+      ],
+      "projectIds": [],
+      "role": "keeper",
+      "phone": "",
+      "email": "",
+      "description": "",
+      "createdAt": "2026-06-14T10:31:55.062Z"
+    },
+    {
+      "id": "keeper-gz",
+      "name": "管理员",
+      "code": "K3",
+      "roomIds": [
+        "*"
+      ],
+      "projectIds": [],
+      "role": "facility_manager",
+      "phone": "",
+      "email": "",
+      "description": "",
+      "createdAt": "2026-06-14T10:31:55.062Z"
+    }
+  ],
   "cages": [
     {
       "id": "A-01",
@@ -6,7 +232,9 @@
       "rack": "A",
       "capacity": 5,
       "status": "active",
-      "createdAt": "2026-05-01T00:00:00.000Z"
+      "createdAt": "2026-05-01T00:00:00.000Z",
+      "roomId": "room-default",
+      "zoneId": "zone-default"
     },
     {
       "id": "A-02",
@@ -14,7 +242,9 @@
       "rack": "A",
       "capacity": 5,
       "status": "active",
-      "createdAt": "2026-05-01T00:00:00.000Z"
+      "createdAt": "2026-05-01T00:00:00.000Z",
+      "roomId": "room-default",
+      "zoneId": "zone-default"
     },
     {
       "id": "B-03",
@@ -22,7 +252,9 @@
       "rack": "B",
       "capacity": 5,
       "status": "active",
-      "createdAt": "2026-05-01T00:00:00.000Z"
+      "createdAt": "2026-05-01T00:00:00.000Z",
+      "roomId": "room-default",
+      "zoneId": "zone-conventional"
     },
     {
       "id": "B-04",
@@ -30,7 +262,9 @@
       "rack": "B",
       "capacity": 5,
       "status": "active",
-      "createdAt": "2026-05-01T00:00:00.000Z"
+      "createdAt": "2026-05-01T00:00:00.000Z",
+      "roomId": "room-default",
+      "zoneId": "zone-conventional"
     },
     {
       "id": "C-01",
@@ -38,7 +272,9 @@
       "rack": "C",
       "capacity": 3,
       "status": "active",
-      "createdAt": "2026-05-01T00:00:00.000Z"
+      "createdAt": "2026-05-01T00:00:00.000Z",
+      "roomId": "room-default",
+      "zoneId": "zone-quarantine"
     },
     {
       "id": "D-01",
@@ -46,7 +282,9 @@
       "rack": "D",
       "capacity": 5,
       "status": "active",
-      "createdAt": "2026-05-01T00:00:00.000Z"
+      "createdAt": "2026-05-01T00:00:00.000Z",
+      "roomId": "room-default",
+      "zoneId": "zone-breeding"
     },
     {
       "id": "D-02",
@@ -54,7 +292,9 @@
       "rack": "D",
       "capacity": 5,
       "status": "active",
-      "createdAt": "2026-05-01T00:00:00.000Z"
+      "createdAt": "2026-05-01T00:00:00.000Z",
+      "roomId": "room-default",
+      "zoneId": "zone-breeding"
     },
     {
       "id": "D-03",
@@ -62,7 +302,9 @@
       "rack": "D",
       "capacity": 5,
       "status": "active",
-      "createdAt": "2026-05-01T00:00:00.000Z"
+      "createdAt": "2026-05-01T00:00:00.000Z",
+      "roomId": "room-default",
+      "zoneId": "zone-breeding"
     },
     {
       "id": "D-04",
@@ -70,15 +312,9 @@
       "rack": "D",
       "capacity": 5,
       "status": "active",
-      "createdAt": "2026-05-01T00:00:00.000Z"
-    },
-    {
-      "id": "T-99",
-      "area": "TEST区",
-      "rack": "T",
-      "capacity": 5,
-      "status": "active",
-      "createdAt": "2026-06-14T07:20:56.782Z"
+      "createdAt": "2026-05-01T00:00:00.000Z",
+      "roomId": "room-default",
+      "zoneId": "zone-breeding"
     }
   ],
   "animals": [
@@ -86,6 +322,9 @@
       "id": "ani-1001",
       "strain": "C57BL/6J",
       "cageId": "A-01",
+      "roomId": "room-default",
+      "zoneId": "zone-default",
+      "projectId": "proj-metabolism",
       "sex": "female",
       "birthDate": "2026-01-20",
       "project": "代谢观察",
@@ -163,6 +402,9 @@
       "id": "ani-1002",
       "strain": "BALB/c",
       "cageId": "B-03",
+      "roomId": "room-default",
+      "zoneId": "zone-conventional",
+      "projectId": "proj-immunology",
       "sex": "male",
       "birthDate": "2026-02-03",
       "project": "免疫反应",
@@ -211,6 +453,9 @@
       "id": "ani-1003",
       "strain": "C57BL/6J",
       "cageId": "C-01",
+      "roomId": "room-default",
+      "zoneId": "zone-quarantine",
+      "projectId": "proj-oncology",
       "sex": "male",
       "birthDate": "2026-04-15",
       "project": "肿瘤研究",
@@ -251,6 +496,9 @@
       "id": "ani-1004",
       "strain": "BALB/c",
       "cageId": "C-01",
+      "roomId": "room-default",
+      "zoneId": "zone-quarantine",
+      "projectId": "proj-vaccine",
       "sex": "female",
       "birthDate": "2026-04-20",
       "project": "疫苗测试",
@@ -306,6 +554,9 @@
       "id": "ani-2001",
       "strain": "C57BL/6J",
       "cageId": "A-02",
+      "roomId": "room-default",
+      "zoneId": "zone-default",
+      "projectId": null,
       "sex": "male",
       "birthDate": "2026-01-15",
       "project": "繁育种鼠",
@@ -360,6 +611,9 @@
       "id": "ani-2002",
       "strain": "C57BL/6J",
       "cageId": "A-02",
+      "roomId": "room-default",
+      "zoneId": "zone-default",
+      "projectId": null,
       "sex": "female",
       "birthDate": "2026-01-18",
       "project": "繁育种鼠",
@@ -414,6 +668,9 @@
       "id": "ani-2003",
       "strain": "BALB/c",
       "cageId": "B-04",
+      "roomId": "room-default",
+      "zoneId": "zone-conventional",
+      "projectId": null,
       "sex": "male",
       "birthDate": "2026-02-10",
       "project": "繁育种鼠",
@@ -468,6 +725,9 @@
       "id": "ani-2004",
       "strain": "BALB/c",
       "cageId": "B-04",
+      "roomId": "room-default",
+      "zoneId": "zone-conventional",
+      "projectId": null,
       "sex": "female",
       "birthDate": "2026-02-15",
       "project": "繁育种鼠",
@@ -522,6 +782,9 @@
       "id": "ani-2005",
       "strain": "C57BL/6J",
       "cageId": "A-02",
+      "roomId": "room-default",
+      "zoneId": "zone-default",
+      "projectId": null,
       "sex": "male",
       "birthDate": "2026-03-01",
       "project": "繁育种鼠",
@@ -576,6 +839,9 @@
       "id": "ani-2006",
       "strain": "C57BL/6J",
       "cageId": "A-02",
+      "roomId": "room-default",
+      "zoneId": "zone-default",
+      "projectId": null,
       "sex": "female",
       "birthDate": "2026-03-05",
       "project": "繁育种鼠",
@@ -630,6 +896,9 @@
       "id": "ani-3001",
       "strain": "C57BL/6J",
       "cageId": "D-01",
+      "roomId": "room-default",
+      "zoneId": "zone-breeding",
+      "projectId": "proj-breeding",
       "sex": "male",
       "birthDate": "2026-05-20",
       "project": "子代繁育群",
@@ -685,6 +954,9 @@
       "id": "ani-3002",
       "strain": "C57BL/6J",
       "cageId": "D-01",
+      "roomId": "room-default",
+      "zoneId": "zone-breeding",
+      "projectId": "proj-breeding",
       "sex": "male",
       "birthDate": "2026-05-20",
       "project": "子代繁育群",
@@ -740,6 +1012,9 @@
       "id": "ani-3003",
       "strain": "C57BL/6J",
       "cageId": "D-01",
+      "roomId": "room-default",
+      "zoneId": "zone-breeding",
+      "projectId": "proj-breeding",
       "sex": "male",
       "birthDate": "2026-05-20",
       "project": "子代繁育群",
@@ -795,6 +1070,9 @@
       "id": "ani-3004",
       "strain": "C57BL/6J",
       "cageId": "D-01",
+      "roomId": "room-default",
+      "zoneId": "zone-breeding",
+      "projectId": "proj-breeding",
       "sex": "male",
       "birthDate": "2026-05-20",
       "project": "子代繁育群",
@@ -850,6 +1128,9 @@
       "id": "ani-3005",
       "strain": "C57BL/6J",
       "cageId": "D-02",
+      "roomId": "room-default",
+      "zoneId": "zone-breeding",
+      "projectId": "proj-breeding",
       "sex": "female",
       "birthDate": "2026-05-20",
       "project": "子代繁育群",
@@ -905,6 +1186,9 @@
       "id": "ani-3006",
       "strain": "C57BL/6J",
       "cageId": "D-02",
+      "roomId": "room-default",
+      "zoneId": "zone-breeding",
+      "projectId": "proj-breeding",
       "sex": "female",
       "birthDate": "2026-05-20",
       "project": "子代繁育群",
@@ -960,6 +1244,9 @@
       "id": "ani-3007",
       "strain": "C57BL/6J",
       "cageId": "D-02",
+      "roomId": "room-default",
+      "zoneId": "zone-breeding",
+      "projectId": "proj-breeding",
       "sex": "female",
       "birthDate": "2026-05-20",
       "project": "子代繁育群",
@@ -1010,31 +1297,16 @@
         "weanDate": "2026-06-10",
         "weaningWeight": 8.9
       }
-    },
-    {
-      "id": "ani-1781421656784-93drv",
-      "strain": "C57BL/6J",
-      "cageId": "C-01",
-      "sex": "female",
-      "birthDate": "2026-05-01",
-      "project": "验证项目",
-      "keeper": "测试饲养员",
-      "status": "quarantine",
-      "observationNodes": [],
-      "notes": [],
-      "moves": [],
-      "quarantineRecords": [],
-      "enteredQuarantineAt": "2026-06-14T07:20:56.784Z",
-      "fatherId": null,
-      "motherId": null,
-      "litterId": null,
-      "breedingInfo": null
     }
   ],
   "breedingPairs": [
     {
       "id": "pair-demo-1",
       "cageId": "A-02",
+      "roomId": "room-default",
+      "zoneId": "zone-default",
+      "projectId": "proj-breeding",
+      "project": "子代繁育群",
       "maleId": "ani-2001",
       "femaleId": "ani-2002",
       "pairDate": "2026-04-28",
@@ -1058,6 +1330,10 @@
     {
       "id": "pair-demo-2",
       "cageId": "B-04",
+      "roomId": "room-default",
+      "zoneId": "zone-conventional",
+      "projectId": "project-default",
+      "project": "默认项目",
       "maleId": "ani-2003",
       "femaleId": "ani-2004",
       "pairDate": "2026-05-20",
@@ -1080,6 +1356,10 @@
     {
       "id": "pair-demo-3",
       "cageId": "A-02",
+      "roomId": "room-default",
+      "zoneId": "zone-default",
+      "projectId": "proj-breeding",
+      "project": "子代繁育群",
       "maleId": "ani-2005",
       "femaleId": "ani-2006",
       "pairDate": "2026-06-01",
@@ -1105,6 +1385,10 @@
     {
       "id": "litter-demo-1",
       "pairId": "pair-demo-1",
+      "roomId": "room-default",
+      "zoneId": "zone-default",
+      "projectId": "proj-breeding",
+      "project": "子代繁育群",
       "birthDate": "2026-05-20",
       "totalPups": 8,
       "malePups": 4,
@@ -1138,6 +1422,10 @@
     {
       "id": "litter-demo-2",
       "pairId": "pair-demo-2",
+      "roomId": "room-default",
+      "zoneId": "zone-conventional",
+      "projectId": "project-default",
+      "project": "默认项目",
       "birthDate": "2026-06-10",
       "totalPups": 6,
       "malePups": 3,
@@ -1166,7 +1454,9 @@
       "startDate": "2026-06-01",
       "endDate": null,
       "createdAt": "2026-06-01T00:00:00.000Z",
-      "notes": "代谢观察组，每日定量饲喂"
+      "notes": "代谢观察组，每日定量饲喂",
+      "roomId": "room-default",
+      "zoneId": null
     },
     {
       "id": "plan-2",
@@ -1182,7 +1472,9 @@
       "startDate": "2026-06-05",
       "endDate": null,
       "createdAt": "2026-06-05T00:00:00.000Z",
-      "notes": "免疫实验组，每日一次"
+      "notes": "免疫实验组，每日一次",
+      "roomId": "room-default",
+      "zoneId": null
     },
     {
       "id": "plan-3",
@@ -1199,7 +1491,9 @@
       "startDate": "2026-05-15",
       "endDate": null,
       "createdAt": "2026-05-15T00:00:00.000Z",
-      "notes": "SPF区A架笼位统一饲喂"
+      "notes": "SPF区A架笼位统一饲喂",
+      "roomId": "room-default",
+      "zoneId": "zone-default"
     },
     {
       "id": "plan-4",
@@ -1215,7 +1509,9 @@
       "startDate": "2026-05-20",
       "endDate": null,
       "createdAt": "2026-05-20T00:00:00.000Z",
-      "notes": "普通区B架笼位每日一次"
+      "notes": "普通区B架笼位每日一次",
+      "roomId": "room-default",
+      "zoneId": "zone-conventional"
     }
   ],
   "feedingRecords": [
@@ -1231,7 +1527,9 @@
       "amount": 2.5,
       "keeper": "林青",
       "status": "completed",
-      "notes": "食欲良好，全部吃完"
+      "notes": "食欲良好，全部吃完",
+      "roomId": "room-default",
+      "zoneId": null
     },
     {
       "id": "record-2",
@@ -1245,7 +1543,9 @@
       "amount": 2.5,
       "keeper": "林青",
       "status": "completed",
-      "notes": ""
+      "notes": "",
+      "roomId": "room-default",
+      "zoneId": null
     },
     {
       "id": "record-3",
@@ -1259,7 +1559,9 @@
       "amount": 4.5,
       "keeper": "周遥",
       "status": "completed",
-      "notes": "进食正常"
+      "notes": "进食正常",
+      "roomId": "room-default",
+      "zoneId": null
     },
     {
       "id": "record-4",
@@ -1273,7 +1575,9 @@
       "amount": 7.5,
       "keeper": "林青",
       "status": "completed",
-      "notes": ""
+      "notes": "",
+      "roomId": "room-default",
+      "zoneId": "zone-default"
     },
     {
       "id": "record-5",
@@ -1287,7 +1591,9 @@
       "amount": 7.5,
       "keeper": "林青",
       "status": "completed",
-      "notes": ""
+      "notes": "",
+      "roomId": "room-default",
+      "zoneId": "zone-default"
     },
     {
       "id": "record-6",
@@ -1303,7 +1609,9 @@
       "status": "completed",
       "condition": "断奶后食欲不振，体型偏小",
       "weight": 8.7,
-      "notes": "与同窝相比明显偏小，需加强营养"
+      "notes": "与同窝相比明显偏小，需加强营养",
+      "roomId": "room-default",
+      "zoneId": null
     }
   ],
   "healthEvents": [
@@ -1312,26 +1620,29 @@
       "animalId": "ani-1004",
       "project": "疫苗测试",
       "keeper": "周遥",
-      "source": "historical_quarantine_abnormal",
+      "source": "quarantine_record",
       "sourceRecordId": "qr-6",
-      "condition": "食欲下降 发热 毛发杂乱 发现异常，需密切观察",
+      "condition": "发热38.5℃，食欲下降，精神差；食欲下降 发热 毛发杂乱 发现异常，需密切观察；发热，食欲下降：疑似感染，待进一步检测",
       "abnormalKeywords": [
-        "食欲下降",
         "发热",
+        "食欲下降",
         "毛发杂乱",
-        "检疫标记异常"
+        "精神差",
+        "异常",
+        "检疫标记异常",
+        "疑似"
       ],
       "weightChange": {
-        "previousWeight": 15.2,
-        "previousDate": "2026-06-12",
+        "previousWeight": 14.8,
+        "previousDate": "2026-06-13",
         "currentWeight": 14.8,
-        "diff": -0.4,
-        "percent": -2.63,
-        "daysDiff": 1,
+        "diff": 0,
+        "percent": 0,
+        "daysDiff": 2,
         "threshold": 5,
         "isAbnormal": false
       },
-      "handler": null,
+      "handler": "周遥",
       "assignee": "周遥",
       "status": "in_progress",
       "notes": [
@@ -1345,13 +1656,277 @@
         {
           "id": "hn-demo-2",
           "type": "processing",
-          "content": "已送样检测血常规，体温 38.5℃，持续观察中",
+          "content": "隔离观察，给予电解质水补充，待进一步检查",
           "createdAt": "2026-06-13T14:30:00.000Z",
-          "author": "周遥"
+          "author": "周遥",
+          "metadata": {
+            "treatment": "电解质水",
+            "temperature": "38.5℃"
+          }
+        },
+        {
+          "id": "hn-1781433220050-zt2fj",
+          "type": "auto_merge",
+          "content": "食欲下降 发热 毛发杂乱 发现异常，需密切观察",
+          "createdAt": "2026-06-14T10:33:40.050Z",
+          "author": "system",
+          "keywords": [
+            "食欲下降",
+            "发热",
+            "毛发杂乱",
+            "异常"
+          ]
+        },
+        {
+          "id": "hn-1781433220050-3cxcx",
+          "type": "auto_merge",
+          "content": "发热，食欲下降：疑似感染，待进一步检测",
+          "createdAt": "2026-06-14T10:33:40.050Z",
+          "author": "system",
+          "keywords": [
+            "检疫标记异常",
+            "食欲下降",
+            "发热",
+            "疑似"
+          ]
+        },
+        {
+          "id": "hn-1781433345905-63fk6",
+          "type": "auto_merge",
+          "content": "食欲下降 发热 毛发杂乱 发现异常，需密切观察",
+          "createdAt": "2026-06-14T10:35:45.905Z",
+          "author": "system",
+          "keywords": [
+            "食欲下降",
+            "发热",
+            "毛发杂乱",
+            "异常"
+          ]
+        },
+        {
+          "id": "hn-1781433345909-cje6o",
+          "type": "auto_merge",
+          "content": "发热，食欲下降：疑似感染，待进一步检测",
+          "createdAt": "2026-06-14T10:35:45.909Z",
+          "author": "system",
+          "keywords": [
+            "检疫标记异常",
+            "食欲下降",
+            "发热",
+            "疑似"
+          ]
+        },
+        {
+          "id": "hn-1781433349718-jo9qw",
+          "type": "auto_merge",
+          "content": "食欲下降 发热 毛发杂乱 发现异常，需密切观察",
+          "createdAt": "2026-06-14T10:35:49.718Z",
+          "author": "system",
+          "keywords": [
+            "食欲下降",
+            "发热",
+            "毛发杂乱",
+            "异常"
+          ]
+        },
+        {
+          "id": "hn-1781433349718-18lwd",
+          "type": "auto_merge",
+          "content": "发热，食欲下降：疑似感染，待进一步检测",
+          "createdAt": "2026-06-14T10:35:49.718Z",
+          "author": "system",
+          "keywords": [
+            "检疫标记异常",
+            "食欲下降",
+            "发热",
+            "疑似"
+          ]
+        },
+        {
+          "id": "hn-1781433372104-g8t0t",
+          "type": "auto_merge",
+          "content": "食欲下降 发热 毛发杂乱 发现异常，需密切观察",
+          "createdAt": "2026-06-14T10:36:12.104Z",
+          "author": "system",
+          "keywords": [
+            "食欲下降",
+            "发热",
+            "毛发杂乱",
+            "异常"
+          ]
+        },
+        {
+          "id": "hn-1781433372105-dmfow",
+          "type": "auto_merge",
+          "content": "发热，食欲下降：疑似感染，待进一步检测",
+          "createdAt": "2026-06-14T10:36:12.105Z",
+          "author": "system",
+          "keywords": [
+            "检疫标记异常",
+            "食欲下降",
+            "发热",
+            "疑似"
+          ]
+        },
+        {
+          "id": "hn-1781433405439-daaqe",
+          "type": "auto_merge",
+          "content": "食欲下降 发热 毛发杂乱 发现异常，需密切观察",
+          "createdAt": "2026-06-14T10:36:45.439Z",
+          "author": "system",
+          "keywords": [
+            "食欲下降",
+            "发热",
+            "毛发杂乱",
+            "异常"
+          ]
+        },
+        {
+          "id": "hn-1781433405439-4l5nu",
+          "type": "auto_merge",
+          "content": "发热，食欲下降：疑似感染，待进一步检测",
+          "createdAt": "2026-06-14T10:36:45.439Z",
+          "author": "system",
+          "keywords": [
+            "检疫标记异常",
+            "食欲下降",
+            "发热",
+            "疑似"
+          ]
+        },
+        {
+          "id": "hn-1781433420705-354j1",
+          "type": "auto_merge",
+          "content": "食欲下降 发热 毛发杂乱 发现异常，需密切观察",
+          "createdAt": "2026-06-14T10:37:00.705Z",
+          "author": "system",
+          "keywords": [
+            "食欲下降",
+            "发热",
+            "毛发杂乱",
+            "异常"
+          ]
+        },
+        {
+          "id": "hn-1781433420705-g1ip1",
+          "type": "auto_merge",
+          "content": "发热，食欲下降：疑似感染，待进一步检测",
+          "createdAt": "2026-06-14T10:37:00.705Z",
+          "author": "system",
+          "keywords": [
+            "检疫标记异常",
+            "食欲下降",
+            "发热",
+            "疑似"
+          ]
+        },
+        {
+          "id": "hn-1781433432736-ebow7",
+          "type": "auto_merge",
+          "content": "食欲下降 发热 毛发杂乱 发现异常，需密切观察",
+          "createdAt": "2026-06-14T10:37:12.736Z",
+          "author": "system",
+          "keywords": [
+            "食欲下降",
+            "发热",
+            "毛发杂乱",
+            "异常"
+          ]
+        },
+        {
+          "id": "hn-1781433432736-jkz1s",
+          "type": "auto_merge",
+          "content": "发热，食欲下降：疑似感染，待进一步检测",
+          "createdAt": "2026-06-14T10:37:12.736Z",
+          "author": "system",
+          "keywords": [
+            "检疫标记异常",
+            "食欲下降",
+            "发热",
+            "疑似"
+          ]
+        },
+        {
+          "id": "hn-1781433445654-m47zc",
+          "type": "auto_merge",
+          "content": "食欲下降 发热 毛发杂乱 发现异常，需密切观察",
+          "createdAt": "2026-06-14T10:37:25.654Z",
+          "author": "system",
+          "keywords": [
+            "食欲下降",
+            "发热",
+            "毛发杂乱",
+            "异常"
+          ]
+        },
+        {
+          "id": "hn-1781433445654-dk3pk",
+          "type": "auto_merge",
+          "content": "发热，食欲下降：疑似感染，待进一步检测",
+          "createdAt": "2026-06-14T10:37:25.654Z",
+          "author": "system",
+          "keywords": [
+            "检疫标记异常",
+            "食欲下降",
+            "发热",
+            "疑似"
+          ]
+        },
+        {
+          "id": "hn-1781433462027-upmh5",
+          "type": "auto_merge",
+          "content": "食欲下降 发热 毛发杂乱 发现异常，需密切观察",
+          "createdAt": "2026-06-14T10:37:42.027Z",
+          "author": "system",
+          "keywords": [
+            "食欲下降",
+            "发热",
+            "毛发杂乱",
+            "异常"
+          ]
+        },
+        {
+          "id": "hn-1781433462027-tjykp",
+          "type": "auto_merge",
+          "content": "发热，食欲下降：疑似感染，待进一步检测",
+          "createdAt": "2026-06-14T10:37:42.027Z",
+          "author": "system",
+          "keywords": [
+            "检疫标记异常",
+            "食欲下降",
+            "发热",
+            "疑似"
+          ]
+        },
+        {
+          "id": "hn-1781433788183-f89wm",
+          "type": "auto_merge",
+          "content": "食欲下降 发热 毛发杂乱 发现异常，需密切观察",
+          "createdAt": "2026-06-14T10:43:08.183Z",
+          "author": "system",
+          "keywords": [
+            "食欲下降",
+            "发热",
+            "毛发杂乱",
+            "异常"
+          ]
+        },
+        {
+          "id": "hn-1781433788183-bkzay",
+          "type": "auto_merge",
+          "content": "发热，食欲下降：疑似感染，待进一步检测",
+          "createdAt": "2026-06-14T10:43:08.183Z",
+          "author": "system",
+          "keywords": [
+            "检疫标记异常",
+            "食欲下降",
+            "发热",
+            "疑似"
+          ]
         }
       ],
       "createdAt": "2026-06-13T09:00:00.000Z",
-      "updatedAt": "2026-06-13T14:30:00.000Z",
+      "updatedAt": "2026-06-14T10:43:08.183Z",
       "assignedAt": "2026-06-13T09:05:00.000Z",
       "inProgressAt": "2026-06-13T14:30:00.000Z",
       "closedAt": null,
@@ -1359,7 +1934,9 @@
       "relatedRecordIds": [
         "qr-6",
         "abnormal-mark-ani-1004"
-      ]
+      ],
+      "roomId": "room-default",
+      "projectId": "proj-vaccine"
     },
     {
       "id": "hev-demo-2",
@@ -1395,7 +1972,9 @@
       "closeReason": null,
       "relatedRecordIds": [
         "note-1"
-      ]
+      ],
+      "roomId": "room-default",
+      "projectId": "proj-metabolism"
     },
     {
       "id": "hev-demo-3",
@@ -1431,7 +2010,9 @@
       "closeReason": null,
       "relatedRecordIds": [
         "record-3"
-      ]
+      ],
+      "roomId": "room-default",
+      "projectId": "proj-immunology"
     },
     {
       "id": "hev-demo-4",
@@ -1503,7 +2084,9 @@
       "relatedRecordIds": [
         "record-6",
         "note-w3"
-      ]
+      ],
+      "roomId": "room-default",
+      "projectId": "proj-breeding"
     },
     {
       "id": "hev-demo-5",
@@ -1557,13 +2140,17 @@
       "closeReason": "处理完成，排除病理因素",
       "relatedRecordIds": [
         "qr-4"
-      ]
+      ],
+      "roomId": "room-default",
+      "projectId": "proj-oncology"
     },
     {
-      "id": "hev-1781421656775-tw7ht",
+      "id": "hev-1781433220050-8kdkx",
       "animalId": "ani-1001",
       "project": "代谢观察",
+      "projectId": "proj-metabolism",
       "keeper": "林青",
+      "roomId": "room-default",
       "source": "historical_quarantine",
       "sourceRecordId": "qr-1",
       "condition": "正常 入检初查",
@@ -1584,8 +2171,8 @@
       "assignee": null,
       "status": "pending",
       "notes": [],
-      "createdAt": "2026-06-14T07:20:56.775Z",
-      "updatedAt": "2026-06-14T07:20:56.775Z",
+      "createdAt": "2026-06-14T10:33:40.050Z",
+      "updatedAt": "2026-06-14T10:33:40.050Z",
       "assignedAt": null,
       "inProgressAt": null,
       "closedAt": null,

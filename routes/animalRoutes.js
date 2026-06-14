@@ -9,8 +9,12 @@ export async function handleAnimalRoutes(req, res, url, db) {
   if (req.method === "GET" && url.pathname === "/animals") {
     const filters = {
       project: url.searchParams.get("project"),
+      projectId: url.searchParams.get("projectId") || undefined,
       cageId: url.searchParams.get("cageId"),
-      status: url.searchParams.get("status")
+      status: url.searchParams.get("status"),
+      roomId: url.searchParams.get("roomId") || undefined,
+      zoneId: url.searchParams.get("zoneId") || undefined,
+      keeper: url.searchParams.get("keeper") || undefined
     };
     send(res, 200, listAnimals(db, filters));
     return true;

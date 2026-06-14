@@ -47,7 +47,11 @@ export async function handleBreedingRoutes(req, res, url, db) {
   }
 
   if (req.method === "GET" && url.pathname === "/breeding/stats") {
-    send(res, 200, getBreedingStats(db));
+    const filters = {
+      roomId: url.searchParams.get("roomId") || undefined,
+      projectId: url.searchParams.get("projectId") || undefined
+    };
+    send(res, 200, getBreedingStats(db, filters));
     return true;
   }
 
@@ -128,7 +132,10 @@ async function handleListPairs(req, res, db, url) {
     maleId: url.searchParams.get("maleId"),
     femaleId: url.searchParams.get("femaleId"),
     status: url.searchParams.get("status"),
-    strain: url.searchParams.get("strain")
+    strain: url.searchParams.get("strain"),
+    roomId: url.searchParams.get("roomId") || undefined,
+    zoneId: url.searchParams.get("zoneId") || undefined,
+    project: url.searchParams.get("project") || undefined
   };
   send(res, 200, listBreedingPairs(db, filters));
 }
@@ -179,7 +186,10 @@ async function handleCancelPair(req, res, db, id) {
 async function handleListLitters(req, res, db, url) {
   const filters = {
     pairId: url.searchParams.get("pairId"),
-    status: url.searchParams.get("status")
+    status: url.searchParams.get("status"),
+    cageId: url.searchParams.get("cageId") || undefined,
+    roomId: url.searchParams.get("roomId") || undefined,
+    zoneId: url.searchParams.get("zoneId") || undefined
   };
   send(res, 200, listBreedingLitters(db, filters));
 }

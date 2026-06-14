@@ -4,6 +4,8 @@ import { listCages, getCage, addCage, disableCage } from "../lib/cageData.js";
 export async function handleCageRoutes(req, res, url, db) {
   if (req.method === "GET" && url.pathname === "/cages") {
     const filters = {
+      roomId: url.searchParams.get("roomId") || undefined,
+      zoneId: url.searchParams.get("zoneId") || undefined,
       area: url.searchParams.get("area"),
       rack: url.searchParams.get("rack"),
       status: url.searchParams.get("status")

@@ -4,25 +4,229 @@
       "id": "evt-1",
       "eventType": "ledger.initialized",
       "animalId": null,
-      "timestamp": "2026-06-14T09:07:55.446Z",
+      "timestamp": "2026-06-14T10:33:29.445Z",
       "operator": {
         "role": "system",
         "name": "server_startup",
         "key": "system"
       },
       "payload": {
-        "totalAnimals": 18,
-        "migratedAt": "2026-06-14T09:07:55.445Z"
+        "totalAnimals": 17,
+        "migratedAt": "2026-06-14T10:33:29.444Z"
       },
       "snapshotAfter": null,
       "previousChecksum": null,
       "metadata": {
         "source": "snapshot_migration"
       },
-      "checksum": "2c53c73df1fcad1c8f0e28535c0fb02888604ee9af0324bc8e0569d7ee3f246c"
+      "checksum": "16c46ef4daeab07b4976c4685312286166b9eebf25c23088599879b737d79fbc"
     },
     {
       "id": "evt-2",
+      "eventType": "animal.created",
+      "animalId": "ani-2003",
+      "timestamp": "2026-04-05T00:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "id": "ani-2003",
+        "strain": "BALB/c",
+        "cageId": "B-04",
+        "sex": "male",
+        "birthDate": "2026-02-10",
+        "project": "繁育种鼠",
+        "keeper": "周遥",
+        "initialStatus": "released",
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "breedingInfo": null,
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2003",
+        "strain": "BALB/c",
+        "cageId": "B-04",
+        "sex": "male",
+        "birthDate": "2026-02-10",
+        "project": "繁育种鼠",
+        "keeper": "周遥",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-04-5T09:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "16c46ef4daeab07b4976c4685312286166b9eebf25c23088599879b737d79fbc",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "animal_created"
+      },
+      "checksum": "836c8dacee1bb1b4650a2ca66a88e7e6dc3a4db3a5c34a14723eeaf38b5bf5f9"
+    },
+    {
+      "id": "evt-3",
+      "eventType": "animal.quarantine_record",
+      "animalId": "ani-2003",
+      "timestamp": "2026-04-05T09:00:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "周遥",
+        "key": "migrated"
+      },
+      "payload": {
+        "recordId": "qr-9",
+        "date": "2026-04-5",
+        "temperature": 36.9,
+        "weight": 20.9,
+        "condition": "正常",
+        "symptoms": [],
+        "isAbnormal": false,
+        "notes": "入检初查",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2003",
+        "strain": "BALB/c",
+        "cageId": "B-04",
+        "sex": "male",
+        "birthDate": "2026-02-10",
+        "project": "繁育种鼠",
+        "keeper": "周遥",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-04-5T09:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "836c8dacee1bb1b4650a2ca66a88e7e6dc3a4db3a5c34a14723eeaf38b5bf5f9",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "quarantine_record",
+        "recordId": "qr-9"
+      },
+      "checksum": "421d0a47ce696df325805c777f23b59885ff4bb8402ebb6cbbdee77571309532"
+    },
+    {
+      "id": "evt-4",
+      "eventType": "animal.created",
+      "animalId": "ani-2004",
+      "timestamp": "2026-04-08T00:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "id": "ani-2004",
+        "strain": "BALB/c",
+        "cageId": "B-04",
+        "sex": "female",
+        "birthDate": "2026-02-15",
+        "project": "繁育种鼠",
+        "keeper": "周遥",
+        "initialStatus": "released",
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "breedingInfo": null,
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2004",
+        "strain": "BALB/c",
+        "cageId": "B-04",
+        "sex": "female",
+        "birthDate": "2026-02-15",
+        "project": "繁育种鼠",
+        "keeper": "周遥",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-04-8T09:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "421d0a47ce696df325805c777f23b59885ff4bb8402ebb6cbbdee77571309532",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "animal_created"
+      },
+      "checksum": "2d285a6e7af0673815e1ea79e1f4f065dd76171f1affa3e67386aa5b23a55d5a"
+    },
+    {
+      "id": "evt-5",
+      "eventType": "animal.quarantine_record",
+      "animalId": "ani-2004",
+      "timestamp": "2026-04-08T09:00:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "周遥",
+        "key": "migrated"
+      },
+      "payload": {
+        "recordId": "qr-10",
+        "date": "2026-04-8",
+        "temperature": 36.8,
+        "weight": 22.1,
+        "condition": "正常",
+        "symptoms": [],
+        "isAbnormal": false,
+        "notes": "入检初查",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2004",
+        "strain": "BALB/c",
+        "cageId": "B-04",
+        "sex": "female",
+        "birthDate": "2026-02-15",
+        "project": "繁育种鼠",
+        "keeper": "周遥",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-04-8T09:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "2d285a6e7af0673815e1ea79e1f4f065dd76171f1affa3e67386aa5b23a55d5a",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "quarantine_record",
+        "recordId": "qr-10"
+      },
+      "checksum": "58dee968efb957464a526734ac3e04ed4d2578de1cb3e12dbe720f8a228eece4"
+    },
+    {
+      "id": "evt-6",
       "eventType": "animal.created",
       "animalId": "ani-2001",
       "timestamp": "2026-04-10T00:00:00.000Z",
@@ -55,27 +259,27 @@
         "birthDate": "2026-01-15",
         "project": "繁育种鼠",
         "keeper": "林青",
-        "status": "released",
+        "status": "quarantine",
         "enteredQuarantineAt": "2026-04-10T09:00:00.000Z",
-        "quarantineReleasedAt": "2026-04-20T09:30:00.000Z",
+        "quarantineReleasedAt": null,
         "removedAt": null,
         "fatherId": null,
         "motherId": null,
         "litterId": null,
         "weanedAt": null,
         "notesCount": 0,
-        "movesCount": 1,
-        "quarantineRecordsCount": 1
+        "movesCount": 0,
+        "quarantineRecordsCount": 0
       },
-      "previousChecksum": "2c53c73df1fcad1c8f0e28535c0fb02888604ee9af0324bc8e0569d7ee3f246c",
+      "previousChecksum": "58dee968efb957464a526734ac3e04ed4d2578de1cb3e12dbe720f8a228eece4",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "animal_created"
       },
-      "checksum": "073954a942e25a437bd1c9409811f94e36bd78ef536797ce55f3d1f067ca59df"
+      "checksum": "75791b2d82ea4525dcc2a67369182bfd8cfdbd1216ae433c65cef6fb033b898e"
     },
     {
-      "id": "evt-3",
+      "id": "evt-7",
       "eventType": "animal.created",
       "animalId": "ani-2002",
       "timestamp": "2026-04-10T00:00:00.000Z",
@@ -108,27 +312,27 @@
         "birthDate": "2026-01-18",
         "project": "繁育种鼠",
         "keeper": "林青",
-        "status": "released",
+        "status": "quarantine",
         "enteredQuarantineAt": "2026-04-10T09:00:00.000Z",
-        "quarantineReleasedAt": "2026-04-20T010:40:00.000Z",
+        "quarantineReleasedAt": null,
         "removedAt": null,
         "fatherId": null,
         "motherId": null,
         "litterId": null,
         "weanedAt": null,
         "notesCount": 0,
-        "movesCount": 1,
-        "quarantineRecordsCount": 1
+        "movesCount": 0,
+        "quarantineRecordsCount": 0
       },
-      "previousChecksum": "073954a942e25a437bd1c9409811f94e36bd78ef536797ce55f3d1f067ca59df",
+      "previousChecksum": "75791b2d82ea4525dcc2a67369182bfd8cfdbd1216ae433c65cef6fb033b898e",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "animal_created"
       },
-      "checksum": "5451865018020c5d3cb4edebb47ad5e104d03ff4b438fdfaace3b0f61a7a4274"
+      "checksum": "445449fa562733b8e35cc141408defb9868578e493b3373f57f5828a6747eefa"
     },
     {
-      "id": "evt-4",
+      "id": "evt-8",
       "eventType": "animal.quarantine_record",
       "animalId": "ani-2001",
       "timestamp": "2026-04-10T09:00:00.000Z",
@@ -156,28 +360,28 @@
         "birthDate": "2026-01-15",
         "project": "繁育种鼠",
         "keeper": "林青",
-        "status": "released",
+        "status": "quarantine",
         "enteredQuarantineAt": "2026-04-10T09:00:00.000Z",
-        "quarantineReleasedAt": "2026-04-20T09:30:00.000Z",
+        "quarantineReleasedAt": null,
         "removedAt": null,
         "fatherId": null,
         "motherId": null,
         "litterId": null,
         "weanedAt": null,
         "notesCount": 0,
-        "movesCount": 1,
+        "movesCount": 0,
         "quarantineRecordsCount": 1
       },
-      "previousChecksum": "5451865018020c5d3cb4edebb47ad5e104d03ff4b438fdfaace3b0f61a7a4274",
+      "previousChecksum": "445449fa562733b8e35cc141408defb9868578e493b3373f57f5828a6747eefa",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "quarantine_record",
         "recordId": "qr-7"
       },
-      "checksum": "c7f9bee675a7f6d32949c0c387c341b515686b222d2c1ce7c6651ff2a2a6f769"
+      "checksum": "1800c07acd683b813289f59d2eae8e0751fa49b3b2d57de918a55545c32ab154"
     },
     {
-      "id": "evt-5",
+      "id": "evt-9",
       "eventType": "animal.quarantine_record",
       "animalId": "ani-2002",
       "timestamp": "2026-04-10T09:00:00.000Z",
@@ -205,28 +409,28 @@
         "birthDate": "2026-01-18",
         "project": "繁育种鼠",
         "keeper": "林青",
-        "status": "released",
+        "status": "quarantine",
         "enteredQuarantineAt": "2026-04-10T09:00:00.000Z",
-        "quarantineReleasedAt": "2026-04-20T010:40:00.000Z",
+        "quarantineReleasedAt": null,
         "removedAt": null,
         "fatherId": null,
         "motherId": null,
         "litterId": null,
         "weanedAt": null,
         "notesCount": 0,
-        "movesCount": 1,
+        "movesCount": 0,
         "quarantineRecordsCount": 1
       },
-      "previousChecksum": "c7f9bee675a7f6d32949c0c387c341b515686b222d2c1ce7c6651ff2a2a6f769",
+      "previousChecksum": "1800c07acd683b813289f59d2eae8e0751fa49b3b2d57de918a55545c32ab154",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "quarantine_record",
         "recordId": "qr-8"
       },
-      "checksum": "0d5a07e1fe865664a22cd8f710fd50835085d86504fbe17d20bf0a3b7fcb2ad2"
+      "checksum": "142145c4467de1b03d47f6b73ff76f57a36bc6e665b70d0dc049c84ff750bff1"
     },
     {
-      "id": "evt-6",
+      "id": "evt-10",
       "eventType": "animal.created",
       "animalId": "ani-2005",
       "timestamp": "2026-04-15T00:00:00.000Z",
@@ -259,80 +463,27 @@
         "birthDate": "2026-03-01",
         "project": "繁育种鼠",
         "keeper": "林青",
-        "status": "released",
+        "status": "quarantine",
         "enteredQuarantineAt": "2026-04-15T09:00:00.000Z",
-        "quarantineReleasedAt": "2026-04-25T09:70:00.000Z",
+        "quarantineReleasedAt": null,
         "removedAt": null,
         "fatherId": null,
         "motherId": null,
         "litterId": null,
         "weanedAt": null,
         "notesCount": 0,
-        "movesCount": 1,
-        "quarantineRecordsCount": 1
+        "movesCount": 0,
+        "quarantineRecordsCount": 0
       },
-      "previousChecksum": "0d5a07e1fe865664a22cd8f710fd50835085d86504fbe17d20bf0a3b7fcb2ad2",
+      "previousChecksum": "142145c4467de1b03d47f6b73ff76f57a36bc6e665b70d0dc049c84ff750bff1",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "animal_created"
       },
-      "checksum": "707597cc6718608487fb0d5a952864581e49825f0134681dcffcc22f0d6b1ed4"
+      "checksum": "885c8bea83d1ec4094a125b0a13e317ccab2ce358c6f74a909553c4147e86f0a"
     },
     {
-      "id": "evt-7",
-      "eventType": "animal.created",
-      "animalId": "ani-2004",
-      "timestamp": "2026-04-15T010:60:00.000Z",
-      "operator": {
-        "role": "system",
-        "name": "server_startup",
-        "key": "system"
-      },
-      "payload": {
-        "id": "ani-2004",
-        "strain": "BALB/c",
-        "cageId": "B-04",
-        "sex": "female",
-        "birthDate": "2026-02-15",
-        "project": "繁育种鼠",
-        "keeper": "周遥",
-        "initialStatus": "released",
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "breedingInfo": null,
-        "migrated": true
-      },
-      "snapshotAfter": {
-        "id": "ani-2004",
-        "strain": "BALB/c",
-        "cageId": "B-04",
-        "sex": "female",
-        "birthDate": "2026-02-15",
-        "project": "繁育种鼠",
-        "keeper": "周遥",
-        "status": "released",
-        "enteredQuarantineAt": "2026-04-8T09:00:00.000Z",
-        "quarantineReleasedAt": "2026-04-15T010:60:00.000Z",
-        "removedAt": null,
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "notesCount": 0,
-        "movesCount": 1,
-        "quarantineRecordsCount": 1
-      },
-      "previousChecksum": "707597cc6718608487fb0d5a952864581e49825f0134681dcffcc22f0d6b1ed4",
-      "metadata": {
-        "source": "snapshot_migration",
-        "migrationType": "animal_created"
-      },
-      "checksum": "08955ef72e8321b4bd2a0c138b5f8fb0501e058f1424eb9158b18c273651bc9b"
-    },
-    {
-      "id": "evt-8",
+      "id": "evt-11",
       "eventType": "animal.quarantine_record",
       "animalId": "ani-2005",
       "timestamp": "2026-04-15T09:00:00.000Z",
@@ -360,29 +511,72 @@
         "birthDate": "2026-03-01",
         "project": "繁育种鼠",
         "keeper": "林青",
-        "status": "released",
+        "status": "quarantine",
         "enteredQuarantineAt": "2026-04-15T09:00:00.000Z",
-        "quarantineReleasedAt": "2026-04-25T09:70:00.000Z",
+        "quarantineReleasedAt": null,
         "removedAt": null,
         "fatherId": null,
         "motherId": null,
         "litterId": null,
         "weanedAt": null,
         "notesCount": 0,
-        "movesCount": 1,
+        "movesCount": 0,
         "quarantineRecordsCount": 1
       },
-      "previousChecksum": "08955ef72e8321b4bd2a0c138b5f8fb0501e058f1424eb9158b18c273651bc9b",
+      "previousChecksum": "885c8bea83d1ec4094a125b0a13e317ccab2ce358c6f74a909553c4147e86f0a",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "quarantine_record",
         "recordId": "qr-11"
       },
-      "checksum": "530e0fecd3c49e85d9e7d17cf5a37430984a48d4639704c6a45edfe83c526f7f"
+      "checksum": "ab860a6d2d280148cb6f775a3bc318dbfc3f22f419df1501829a75264691c8d6"
     },
     {
-      "id": "evt-9",
-      "eventType": "animal.created",
+      "id": "evt-12",
+      "eventType": "animal.quarantine_released",
+      "animalId": "ani-2003",
+      "timestamp": "2026-04-15T09:50:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "周遥",
+        "key": "migrated"
+      },
+      "payload": {
+        "approvalId": "qa-5",
+        "targetCageId": "B-04",
+        "notes": "检疫合格，种鼠备用",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2003",
+        "strain": "BALB/c",
+        "cageId": "B-04",
+        "sex": "male",
+        "birthDate": "2026-02-10",
+        "project": "繁育种鼠",
+        "keeper": "周遥",
+        "status": "released",
+        "enteredQuarantineAt": "2026-04-5T09:00:00.000Z",
+        "quarantineReleasedAt": "2026-04-15T09:50:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "ab860a6d2d280148cb6f775a3bc318dbfc3f22f419df1501829a75264691c8d6",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "quarantine_release"
+      },
+      "checksum": "fe1b1ea2becb8b39ca8825846b041d473f0ca24c0ffc00e21cdb1449c67af8c2"
+    },
+    {
+      "id": "evt-13",
+      "eventType": "animal.moved",
       "animalId": "ani-2003",
       "timestamp": "2026-04-15T09:50:00.000Z",
       "operator": {
@@ -391,19 +585,10 @@
         "key": "system"
       },
       "payload": {
-        "id": "ani-2003",
-        "strain": "BALB/c",
-        "cageId": "B-04",
-        "sex": "male",
-        "birthDate": "2026-02-10",
-        "project": "繁育种鼠",
-        "keeper": "周遥",
-        "initialStatus": "released",
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "breedingInfo": null,
+        "moveId": "move-4",
+        "fromCage": "检疫区",
+        "toCage": "B-04",
+        "reason": "检疫结束，作为种鼠使用",
         "migrated": true
       },
       "snapshotAfter": {
@@ -426,15 +611,104 @@
         "movesCount": 1,
         "quarantineRecordsCount": 1
       },
-      "previousChecksum": "530e0fecd3c49e85d9e7d17cf5a37430984a48d4639704c6a45edfe83c526f7f",
+      "previousChecksum": "fe1b1ea2becb8b39ca8825846b041d473f0ca24c0ffc00e21cdb1449c67af8c2",
       "metadata": {
         "source": "snapshot_migration",
-        "migrationType": "animal_created"
+        "migrationType": "move",
+        "moveId": "move-4"
       },
-      "checksum": "bf628d31949349531d83f15e8f315e2deacd15cdedf30ca99b955987b78daf29"
+      "checksum": "45e6a7e7e0ef01bad5012a53166d4f352b8ab472fcd21045ce3c9da9697916f1"
     },
     {
-      "id": "evt-10",
+      "id": "evt-14",
+      "eventType": "animal.quarantine_released",
+      "animalId": "ani-2004",
+      "timestamp": "2026-04-15T11:00:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "周遥",
+        "key": "migrated"
+      },
+      "payload": {
+        "approvalId": "qa-6",
+        "targetCageId": "B-04",
+        "notes": "检疫合格，种鼠备用",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2004",
+        "strain": "BALB/c",
+        "cageId": "B-04",
+        "sex": "female",
+        "birthDate": "2026-02-15",
+        "project": "繁育种鼠",
+        "keeper": "周遥",
+        "status": "released",
+        "enteredQuarantineAt": "2026-04-8T09:00:00.000Z",
+        "quarantineReleasedAt": "2026-04-15T010:60:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "45e6a7e7e0ef01bad5012a53166d4f352b8ab472fcd21045ce3c9da9697916f1",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "quarantine_release"
+      },
+      "checksum": "2f23e780d496f6a069d76b3ae9b2e7fc764e47e97b2844663d8f4c55f05aa7cc"
+    },
+    {
+      "id": "evt-15",
+      "eventType": "animal.moved",
+      "animalId": "ani-2004",
+      "timestamp": "2026-04-15T11:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "moveId": "move-5",
+        "fromCage": "检疫区",
+        "toCage": "B-04",
+        "reason": "检疫结束，作为种鼠使用",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2004",
+        "strain": "BALB/c",
+        "cageId": "B-04",
+        "sex": "female",
+        "birthDate": "2026-02-15",
+        "project": "繁育种鼠",
+        "keeper": "周遥",
+        "status": "released",
+        "enteredQuarantineAt": "2026-04-8T09:00:00.000Z",
+        "quarantineReleasedAt": "2026-04-15T010:60:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 1,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "2f23e780d496f6a069d76b3ae9b2e7fc764e47e97b2844663d8f4c55f05aa7cc",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "move",
+        "moveId": "move-5"
+      },
+      "checksum": "5cef9ad5dc2f9c5fa56854f646ecdad17e0d7f5ff0e33c19576ff895bd30bf1c"
+    },
+    {
+      "id": "evt-16",
       "eventType": "animal.created",
       "animalId": "ani-2006",
       "timestamp": "2026-04-18T00:00:00.000Z",
@@ -467,27 +741,27 @@
         "birthDate": "2026-03-05",
         "project": "繁育种鼠",
         "keeper": "林青",
-        "status": "released",
+        "status": "quarantine",
         "enteredQuarantineAt": "2026-04-18T09:00:00.000Z",
-        "quarantineReleasedAt": "2026-04-28T010:80:00.000Z",
+        "quarantineReleasedAt": null,
         "removedAt": null,
         "fatherId": null,
         "motherId": null,
         "litterId": null,
         "weanedAt": null,
         "notesCount": 0,
-        "movesCount": 1,
-        "quarantineRecordsCount": 1
+        "movesCount": 0,
+        "quarantineRecordsCount": 0
       },
-      "previousChecksum": "bf628d31949349531d83f15e8f315e2deacd15cdedf30ca99b955987b78daf29",
+      "previousChecksum": "5cef9ad5dc2f9c5fa56854f646ecdad17e0d7f5ff0e33c19576ff895bd30bf1c",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "animal_created"
       },
-      "checksum": "ae90011bd6929c33964dcc98043b7dfd25a15b5a0531f25488e5970cce0b34f4"
+      "checksum": "d9236f30a84d684d7fd837e70eb57111f7fc640367ac49597514ddcf7fb707b2"
     },
     {
-      "id": "evt-11",
+      "id": "evt-17",
       "eventType": "animal.quarantine_record",
       "animalId": "ani-2006",
       "timestamp": "2026-04-18T09:00:00.000Z",
@@ -515,28 +789,28 @@
         "birthDate": "2026-03-05",
         "project": "繁育种鼠",
         "keeper": "林青",
-        "status": "released",
+        "status": "quarantine",
         "enteredQuarantineAt": "2026-04-18T09:00:00.000Z",
-        "quarantineReleasedAt": "2026-04-28T010:80:00.000Z",
+        "quarantineReleasedAt": null,
         "removedAt": null,
         "fatherId": null,
         "motherId": null,
         "litterId": null,
         "weanedAt": null,
         "notesCount": 0,
-        "movesCount": 1,
+        "movesCount": 0,
         "quarantineRecordsCount": 1
       },
-      "previousChecksum": "ae90011bd6929c33964dcc98043b7dfd25a15b5a0531f25488e5970cce0b34f4",
+      "previousChecksum": "d9236f30a84d684d7fd837e70eb57111f7fc640367ac49597514ddcf7fb707b2",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "quarantine_record",
         "recordId": "qr-12"
       },
-      "checksum": "1924bdfed3dfc595c85bbbb86a0beec66331d3eeca551e54d9031418abdebdba"
+      "checksum": "a0cd85708e2e5394c6444ca7173013e00f212a1f1f3fd7a135ef8f2016724ed4"
     },
     {
-      "id": "evt-12",
+      "id": "evt-18",
       "eventType": "animal.created",
       "animalId": "ani-1001",
       "timestamp": "2026-04-20T00:00:00.000Z",
@@ -569,115 +843,27 @@
         "birthDate": "2026-01-20",
         "project": "代谢观察",
         "keeper": "林青",
-        "status": "released",
+        "status": "quarantine",
         "enteredQuarantineAt": "2026-04-20T09:00:00.000Z",
-        "quarantineReleasedAt": "2026-05-01T09:30:00.000Z",
+        "quarantineReleasedAt": null,
         "removedAt": null,
         "fatherId": null,
         "motherId": null,
         "litterId": null,
         "weanedAt": null,
-        "notesCount": 1,
-        "movesCount": 1,
-        "quarantineRecordsCount": 2
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 0
       },
-      "previousChecksum": "1924bdfed3dfc595c85bbbb86a0beec66331d3eeca551e54d9031418abdebdba",
+      "previousChecksum": "a0cd85708e2e5394c6444ca7173013e00f212a1f1f3fd7a135ef8f2016724ed4",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "animal_created"
       },
-      "checksum": "fcdd219d20d69af9c5352baaec9a67cf4971e7093569b370a421caed57414f24"
+      "checksum": "4c8bfa900e6e25fe630e100da1954f75f4ea66ca145249c9d3c9fc7cbdf494af"
     },
     {
-      "id": "evt-13",
-      "eventType": "animal.quarantine_released",
-      "animalId": "ani-2002",
-      "timestamp": "2026-04-20T010:40:00.000Z",
-      "operator": {
-        "role": "keeper",
-        "name": "林青",
-        "key": "migrated"
-      },
-      "payload": {
-        "approvalId": "qa-4",
-        "targetCageId": "A-02",
-        "notes": "检疫合格，种鼠备用",
-        "migrated": true
-      },
-      "snapshotAfter": {
-        "id": "ani-2002",
-        "strain": "C57BL/6J",
-        "cageId": "A-02",
-        "sex": "female",
-        "birthDate": "2026-01-18",
-        "project": "繁育种鼠",
-        "keeper": "林青",
-        "status": "released",
-        "enteredQuarantineAt": "2026-04-10T09:00:00.000Z",
-        "quarantineReleasedAt": "2026-04-20T010:40:00.000Z",
-        "removedAt": null,
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "notesCount": 0,
-        "movesCount": 1,
-        "quarantineRecordsCount": 1
-      },
-      "previousChecksum": "fcdd219d20d69af9c5352baaec9a67cf4971e7093569b370a421caed57414f24",
-      "metadata": {
-        "source": "snapshot_migration",
-        "migrationType": "quarantine_release"
-      },
-      "checksum": "bb920fca1b50a556db06366263ea6bda022251fb6cd217c1b6c538469711d205"
-    },
-    {
-      "id": "evt-14",
-      "eventType": "animal.moved",
-      "animalId": "ani-2002",
-      "timestamp": "2026-04-20T010:40:00.000Z",
-      "operator": {
-        "role": "system",
-        "name": "server_startup",
-        "key": "system"
-      },
-      "payload": {
-        "moveId": "move-3",
-        "fromCage": "检疫区",
-        "toCage": "A-02",
-        "reason": "检疫结束，作为种鼠使用",
-        "migrated": true
-      },
-      "snapshotAfter": {
-        "id": "ani-2002",
-        "strain": "C57BL/6J",
-        "cageId": "A-02",
-        "sex": "female",
-        "birthDate": "2026-01-18",
-        "project": "繁育种鼠",
-        "keeper": "林青",
-        "status": "released",
-        "enteredQuarantineAt": "2026-04-10T09:00:00.000Z",
-        "quarantineReleasedAt": "2026-04-20T010:40:00.000Z",
-        "removedAt": null,
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "notesCount": 0,
-        "movesCount": 1,
-        "quarantineRecordsCount": 1
-      },
-      "previousChecksum": "bb920fca1b50a556db06366263ea6bda022251fb6cd217c1b6c538469711d205",
-      "metadata": {
-        "source": "snapshot_migration",
-        "migrationType": "move",
-        "moveId": "move-3"
-      },
-      "checksum": "a0e971cb02b706767bd743a52dba33f4705614418da79a78b6ce0432c40b590a"
-    },
-    {
-      "id": "evt-15",
+      "id": "evt-19",
       "eventType": "animal.quarantine_record",
       "animalId": "ani-1001",
       "timestamp": "2026-04-20T09:00:00.000Z",
@@ -705,28 +891,28 @@
         "birthDate": "2026-01-20",
         "project": "代谢观察",
         "keeper": "林青",
-        "status": "released",
+        "status": "quarantine",
         "enteredQuarantineAt": "2026-04-20T09:00:00.000Z",
-        "quarantineReleasedAt": "2026-05-01T09:30:00.000Z",
+        "quarantineReleasedAt": null,
         "removedAt": null,
         "fatherId": null,
         "motherId": null,
         "litterId": null,
         "weanedAt": null,
-        "notesCount": 1,
-        "movesCount": 1,
-        "quarantineRecordsCount": 2
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 1
       },
-      "previousChecksum": "a0e971cb02b706767bd743a52dba33f4705614418da79a78b6ce0432c40b590a",
+      "previousChecksum": "4c8bfa900e6e25fe630e100da1954f75f4ea66ca145249c9d3c9fc7cbdf494af",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "quarantine_record",
         "recordId": "qr-1"
       },
-      "checksum": "ec594bb8cb0b7a33452129937b8578485ebd2c014d8d8b99d2807c5334bdac62"
+      "checksum": "b6655d54fbcd3625b70d52de557ae960f65ee10119cb9f809e85bb6ed4921e5c"
     },
     {
-      "id": "evt-16",
+      "id": "evt-20",
       "eventType": "animal.quarantine_released",
       "animalId": "ani-2001",
       "timestamp": "2026-04-20T09:30:00.000Z",
@@ -758,18 +944,18 @@
         "litterId": null,
         "weanedAt": null,
         "notesCount": 0,
-        "movesCount": 1,
+        "movesCount": 0,
         "quarantineRecordsCount": 1
       },
-      "previousChecksum": "ec594bb8cb0b7a33452129937b8578485ebd2c014d8d8b99d2807c5334bdac62",
+      "previousChecksum": "b6655d54fbcd3625b70d52de557ae960f65ee10119cb9f809e85bb6ed4921e5c",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "quarantine_release"
       },
-      "checksum": "e0590096e57255bf9af3b1dd155f54c88fd6b362e4a8816ac5271801e0779786"
+      "checksum": "7789eac313254fccb34d617ad13f420ed2709ef2894178b80630872935800923"
     },
     {
-      "id": "evt-17",
+      "id": "evt-21",
       "eventType": "animal.moved",
       "animalId": "ani-2001",
       "timestamp": "2026-04-20T09:30:00.000Z",
@@ -805,19 +991,107 @@
         "movesCount": 1,
         "quarantineRecordsCount": 1
       },
-      "previousChecksum": "e0590096e57255bf9af3b1dd155f54c88fd6b362e4a8816ac5271801e0779786",
+      "previousChecksum": "7789eac313254fccb34d617ad13f420ed2709ef2894178b80630872935800923",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "move",
         "moveId": "move-2"
       },
-      "checksum": "990190ebb7c622b589b9cbb6a5a3a202a1ba3c11dbd7c86591a98695e8312f18"
+      "checksum": "f1be1ef710c0329639ed84317883ad174fbed7f1e1e4cb5e3a4d44100961c819"
     },
     {
-      "id": "evt-18",
+      "id": "evt-22",
+      "eventType": "animal.quarantine_released",
+      "animalId": "ani-2002",
+      "timestamp": "2026-04-20T10:40:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "林青",
+        "key": "migrated"
+      },
+      "payload": {
+        "approvalId": "qa-4",
+        "targetCageId": "A-02",
+        "notes": "检疫合格，种鼠备用",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2002",
+        "strain": "C57BL/6J",
+        "cageId": "A-02",
+        "sex": "female",
+        "birthDate": "2026-01-18",
+        "project": "繁育种鼠",
+        "keeper": "林青",
+        "status": "released",
+        "enteredQuarantineAt": "2026-04-10T09:00:00.000Z",
+        "quarantineReleasedAt": "2026-04-20T010:40:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "f1be1ef710c0329639ed84317883ad174fbed7f1e1e4cb5e3a4d44100961c819",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "quarantine_release"
+      },
+      "checksum": "e44621d64b559a7e337cfc72586fe37ad45e2f0615c819d8b33c7aa0fcd30b6a"
+    },
+    {
+      "id": "evt-23",
+      "eventType": "animal.moved",
+      "animalId": "ani-2002",
+      "timestamp": "2026-04-20T10:40:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "moveId": "move-3",
+        "fromCage": "检疫区",
+        "toCage": "A-02",
+        "reason": "检疫结束，作为种鼠使用",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2002",
+        "strain": "C57BL/6J",
+        "cageId": "A-02",
+        "sex": "female",
+        "birthDate": "2026-01-18",
+        "project": "繁育种鼠",
+        "keeper": "林青",
+        "status": "released",
+        "enteredQuarantineAt": "2026-04-10T09:00:00.000Z",
+        "quarantineReleasedAt": "2026-04-20T010:40:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 1,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "e44621d64b559a7e337cfc72586fe37ad45e2f0615c819d8b33c7aa0fcd30b6a",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "move",
+        "moveId": "move-3"
+      },
+      "checksum": "b5b9787e14a25432fe9e3a7ad9c94d1c95a9d12cb47c746c46fdfb3b96987f40"
+    },
+    {
+      "id": "evt-24",
       "eventType": "animal.quarantine_released",
       "animalId": "ani-2005",
-      "timestamp": "2026-04-25T09:70:00.000Z",
+      "timestamp": "2026-04-25T10:10:00.000Z",
       "operator": {
         "role": "keeper",
         "name": "林青",
@@ -846,21 +1120,21 @@
         "litterId": null,
         "weanedAt": null,
         "notesCount": 0,
-        "movesCount": 1,
+        "movesCount": 0,
         "quarantineRecordsCount": 1
       },
-      "previousChecksum": "990190ebb7c622b589b9cbb6a5a3a202a1ba3c11dbd7c86591a98695e8312f18",
+      "previousChecksum": "b5b9787e14a25432fe9e3a7ad9c94d1c95a9d12cb47c746c46fdfb3b96987f40",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "quarantine_release"
       },
-      "checksum": "47f4ff32c25e77f2f72df898e9c48975564947a72914e047417eddd2870607c8"
+      "checksum": "938b3ed84a47b29bda72577374ba96f61f47aaf5a11c84ae096cffa476781b76"
     },
     {
-      "id": "evt-19",
+      "id": "evt-25",
       "eventType": "animal.moved",
       "animalId": "ani-2005",
-      "timestamp": "2026-04-25T09:70:00.000Z",
+      "timestamp": "2026-04-25T10:10:00.000Z",
       "operator": {
         "role": "system",
         "name": "server_startup",
@@ -893,16 +1167,16 @@
         "movesCount": 1,
         "quarantineRecordsCount": 1
       },
-      "previousChecksum": "47f4ff32c25e77f2f72df898e9c48975564947a72914e047417eddd2870607c8",
+      "previousChecksum": "938b3ed84a47b29bda72577374ba96f61f47aaf5a11c84ae096cffa476781b76",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "move",
         "moveId": "move-6"
       },
-      "checksum": "8a9399effdde80abe3dddbe6848a54b6d088cb4c987a97c83610d4e671790bdb"
+      "checksum": "4fe8ffb7f41fb012b6a60beb34653ed85777e8acc44965e3c5a8d3102a32d28c"
     },
     {
-      "id": "evt-20",
+      "id": "evt-26",
       "eventType": "animal.quarantine_record",
       "animalId": "ani-1001",
       "timestamp": "2026-04-27T09:00:00.000Z",
@@ -930,31 +1204,31 @@
         "birthDate": "2026-01-20",
         "project": "代谢观察",
         "keeper": "林青",
-        "status": "released",
+        "status": "quarantine",
         "enteredQuarantineAt": "2026-04-20T09:00:00.000Z",
-        "quarantineReleasedAt": "2026-05-01T09:30:00.000Z",
+        "quarantineReleasedAt": null,
         "removedAt": null,
         "fatherId": null,
         "motherId": null,
         "litterId": null,
         "weanedAt": null,
-        "notesCount": 1,
-        "movesCount": 1,
+        "notesCount": 0,
+        "movesCount": 0,
         "quarantineRecordsCount": 2
       },
-      "previousChecksum": "8a9399effdde80abe3dddbe6848a54b6d088cb4c987a97c83610d4e671790bdb",
+      "previousChecksum": "4fe8ffb7f41fb012b6a60beb34653ed85777e8acc44965e3c5a8d3102a32d28c",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "quarantine_record",
         "recordId": "qr-2"
       },
-      "checksum": "b7934b5c9bcabe7d5186f0fed61bce11771caf031c8686079fbd5e60c4a20ef2"
+      "checksum": "371b030dc4d6a262ab02487cec7eb5e90f1491d74692d5c00e77e0f6182ad9d7"
     },
     {
-      "id": "evt-21",
+      "id": "evt-27",
       "eventType": "animal.quarantine_released",
       "animalId": "ani-2006",
-      "timestamp": "2026-04-28T010:80:00.000Z",
+      "timestamp": "2026-04-28T11:20:00.000Z",
       "operator": {
         "role": "keeper",
         "name": "林青",
@@ -983,21 +1257,21 @@
         "litterId": null,
         "weanedAt": null,
         "notesCount": 0,
-        "movesCount": 1,
+        "movesCount": 0,
         "quarantineRecordsCount": 1
       },
-      "previousChecksum": "b7934b5c9bcabe7d5186f0fed61bce11771caf031c8686079fbd5e60c4a20ef2",
+      "previousChecksum": "371b030dc4d6a262ab02487cec7eb5e90f1491d74692d5c00e77e0f6182ad9d7",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "quarantine_release"
       },
-      "checksum": "495d89c227f485ab9cbb617d6975f5d8f253a111f5f1345c025cf48077104042"
+      "checksum": "5f3404cfa5d68e14564fd7ca2f1148b645f992b8afdc5dc13c552bc70ebf4379"
     },
     {
-      "id": "evt-22",
+      "id": "evt-28",
       "eventType": "animal.moved",
       "animalId": "ani-2006",
-      "timestamp": "2026-04-28T010:80:00.000Z",
+      "timestamp": "2026-04-28T11:20:00.000Z",
       "operator": {
         "role": "system",
         "name": "server_startup",
@@ -1030,114 +1304,16 @@
         "movesCount": 1,
         "quarantineRecordsCount": 1
       },
-      "previousChecksum": "495d89c227f485ab9cbb617d6975f5d8f253a111f5f1345c025cf48077104042",
+      "previousChecksum": "5f3404cfa5d68e14564fd7ca2f1148b645f992b8afdc5dc13c552bc70ebf4379",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "move",
         "moveId": "move-7"
       },
-      "checksum": "091439e6f3670dbc30b880ac5e4db8dea0d1802fd983a0183e5a7083d3f58c6b"
+      "checksum": "3f5a8fe5e93c1c3cf8800acee9cdc53d8000a44a25ef1656c445064140546971"
     },
     {
-      "id": "evt-23",
-      "eventType": "animal.quarantine_record",
-      "animalId": "ani-2003",
-      "timestamp": "2026-04-5T09:00:00.000Z",
-      "operator": {
-        "role": "keeper",
-        "name": "周遥",
-        "key": "migrated"
-      },
-      "payload": {
-        "recordId": "qr-9",
-        "date": "2026-04-5",
-        "temperature": 36.9,
-        "weight": 20.9,
-        "condition": "正常",
-        "symptoms": [],
-        "isAbnormal": false,
-        "notes": "入检初查",
-        "migrated": true
-      },
-      "snapshotAfter": {
-        "id": "ani-2003",
-        "strain": "BALB/c",
-        "cageId": "B-04",
-        "sex": "male",
-        "birthDate": "2026-02-10",
-        "project": "繁育种鼠",
-        "keeper": "周遥",
-        "status": "released",
-        "enteredQuarantineAt": "2026-04-5T09:00:00.000Z",
-        "quarantineReleasedAt": "2026-04-15T09:50:00.000Z",
-        "removedAt": null,
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "notesCount": 0,
-        "movesCount": 1,
-        "quarantineRecordsCount": 1
-      },
-      "previousChecksum": "091439e6f3670dbc30b880ac5e4db8dea0d1802fd983a0183e5a7083d3f58c6b",
-      "metadata": {
-        "source": "snapshot_migration",
-        "migrationType": "quarantine_record",
-        "recordId": "qr-9"
-      },
-      "checksum": "9ee75ee477a144b7e0e925db83c0132c7817e8a5c323560ae1624569b5ddce74"
-    },
-    {
-      "id": "evt-24",
-      "eventType": "animal.quarantine_record",
-      "animalId": "ani-2004",
-      "timestamp": "2026-04-8T09:00:00.000Z",
-      "operator": {
-        "role": "keeper",
-        "name": "周遥",
-        "key": "migrated"
-      },
-      "payload": {
-        "recordId": "qr-10",
-        "date": "2026-04-8",
-        "temperature": 36.8,
-        "weight": 22.1,
-        "condition": "正常",
-        "symptoms": [],
-        "isAbnormal": false,
-        "notes": "入检初查",
-        "migrated": true
-      },
-      "snapshotAfter": {
-        "id": "ani-2004",
-        "strain": "BALB/c",
-        "cageId": "B-04",
-        "sex": "female",
-        "birthDate": "2026-02-15",
-        "project": "繁育种鼠",
-        "keeper": "周遥",
-        "status": "released",
-        "enteredQuarantineAt": "2026-04-8T09:00:00.000Z",
-        "quarantineReleasedAt": "2026-04-15T010:60:00.000Z",
-        "removedAt": null,
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "notesCount": 0,
-        "movesCount": 1,
-        "quarantineRecordsCount": 1
-      },
-      "previousChecksum": "9ee75ee477a144b7e0e925db83c0132c7817e8a5c323560ae1624569b5ddce74",
-      "metadata": {
-        "source": "snapshot_migration",
-        "migrationType": "quarantine_record",
-        "recordId": "qr-10"
-      },
-      "checksum": "fa3ff33c81336aba0180b8a3693e5d94d16ae37796f978c859e9b309184e5144"
-    },
-    {
-      "id": "evt-25",
+      "id": "evt-29",
       "eventType": "animal.quarantine_released",
       "animalId": "ani-1001",
       "timestamp": "2026-05-01T09:30:00.000Z",
@@ -1168,19 +1344,19 @@
         "motherId": null,
         "litterId": null,
         "weanedAt": null,
-        "notesCount": 1,
-        "movesCount": 1,
+        "notesCount": 0,
+        "movesCount": 0,
         "quarantineRecordsCount": 2
       },
-      "previousChecksum": "fa3ff33c81336aba0180b8a3693e5d94d16ae37796f978c859e9b309184e5144",
+      "previousChecksum": "3f5a8fe5e93c1c3cf8800acee9cdc53d8000a44a25ef1656c445064140546971",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "quarantine_release"
       },
-      "checksum": "bc4a45e70be41879d49c6bf68d97b796c069bf8d8446614d61e63beb9a699c36"
+      "checksum": "e0496c2b807fc4523cf88175516e537c2828a4317a6440edabf41efcf9ad3a6c"
     },
     {
-      "id": "evt-26",
+      "id": "evt-30",
       "eventType": "animal.moved",
       "animalId": "ani-1001",
       "timestamp": "2026-05-01T09:30:00.000Z",
@@ -1212,20 +1388,20 @@
         "motherId": null,
         "litterId": null,
         "weanedAt": null,
-        "notesCount": 1,
+        "notesCount": 0,
         "movesCount": 1,
         "quarantineRecordsCount": 2
       },
-      "previousChecksum": "bc4a45e70be41879d49c6bf68d97b796c069bf8d8446614d61e63beb9a699c36",
+      "previousChecksum": "e0496c2b807fc4523cf88175516e537c2828a4317a6440edabf41efcf9ad3a6c",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "move",
         "moveId": "move-1"
       },
-      "checksum": "b3707d27a805268a0da0db3212ee89279e9f95ce5aad60d467e7ee215ea1939b"
+      "checksum": "2b12883dfda55a62b4ca86010371608d71a24c4313f39798a770ce9cb0e119ed"
     },
     {
-      "id": "evt-27",
+      "id": "evt-31",
       "eventType": "animal.created",
       "animalId": "ani-1002",
       "timestamp": "2026-05-10T00:00:00.000Z",
@@ -1258,9 +1434,9 @@
         "birthDate": "2026-02-03",
         "project": "免疫反应",
         "keeper": "周遥",
-        "status": "released",
+        "status": "quarantine",
         "enteredQuarantineAt": "2026-05-10T10:00:00.000Z",
-        "quarantineReleasedAt": "2026-05-17T10:00:00.000Z",
+        "quarantineReleasedAt": null,
         "removedAt": null,
         "fatherId": null,
         "motherId": null,
@@ -1268,17 +1444,17 @@
         "weanedAt": null,
         "notesCount": 0,
         "movesCount": 0,
-        "quarantineRecordsCount": 1
+        "quarantineRecordsCount": 0
       },
-      "previousChecksum": "b3707d27a805268a0da0db3212ee89279e9f95ce5aad60d467e7ee215ea1939b",
+      "previousChecksum": "2b12883dfda55a62b4ca86010371608d71a24c4313f39798a770ce9cb0e119ed",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "animal_created"
       },
-      "checksum": "07a612863096bc1cb6ae9ea7dd5cc711f531d486c2aa84016931b4c7f81b31d2"
+      "checksum": "efb68502ff804f6b7bf537ca67ced572ecaec9bda568d7aafeaeb5712a7ba502"
     },
     {
-      "id": "evt-28",
+      "id": "evt-32",
       "eventType": "animal.quarantine_record",
       "animalId": "ani-1002",
       "timestamp": "2026-05-10T10:00:00.000Z",
@@ -1306,9 +1482,9 @@
         "birthDate": "2026-02-03",
         "project": "免疫反应",
         "keeper": "周遥",
-        "status": "released",
+        "status": "quarantine",
         "enteredQuarantineAt": "2026-05-10T10:00:00.000Z",
-        "quarantineReleasedAt": "2026-05-17T10:00:00.000Z",
+        "quarantineReleasedAt": null,
         "removedAt": null,
         "fatherId": null,
         "motherId": null,
@@ -1318,16 +1494,16 @@
         "movesCount": 0,
         "quarantineRecordsCount": 1
       },
-      "previousChecksum": "07a612863096bc1cb6ae9ea7dd5cc711f531d486c2aa84016931b4c7f81b31d2",
+      "previousChecksum": "efb68502ff804f6b7bf537ca67ced572ecaec9bda568d7aafeaeb5712a7ba502",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "quarantine_record",
         "recordId": "qr-3"
       },
-      "checksum": "946ad8c62c601ea6f445d6a48c0ab014129886e110474384ccf7d54d9689ad3f"
+      "checksum": "3fa9417139180482018b5619a9723e6320033bf1ecf319e0fd94cea3f021f547"
     },
     {
-      "id": "evt-29",
+      "id": "evt-33",
       "eventType": "animal.quarantine_released",
       "animalId": "ani-1002",
       "timestamp": "2026-05-17T10:00:00.000Z",
@@ -1362,15 +1538,15 @@
         "movesCount": 0,
         "quarantineRecordsCount": 1
       },
-      "previousChecksum": "946ad8c62c601ea6f445d6a48c0ab014129886e110474384ccf7d54d9689ad3f",
+      "previousChecksum": "3fa9417139180482018b5619a9723e6320033bf1ecf319e0fd94cea3f021f547",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "quarantine_release"
       },
-      "checksum": "9a18d06867f7783c27cd0e4d5806aab68eb0d2f5fd5c38459c260ecbb2675dfa"
+      "checksum": "2761945f35e3cfdaf4a409bf087c0ccd267e08e901c009bdd968bb1260d04449"
     },
     {
-      "id": "evt-30",
+      "id": "evt-34",
       "eventType": "animal.created",
       "animalId": "ani-1003",
       "timestamp": "2026-06-10T00:00:00.000Z",
@@ -1413,17 +1589,17 @@
         "weanedAt": null,
         "notesCount": 0,
         "movesCount": 0,
-        "quarantineRecordsCount": 1
+        "quarantineRecordsCount": 0
       },
-      "previousChecksum": "9a18d06867f7783c27cd0e4d5806aab68eb0d2f5fd5c38459c260ecbb2675dfa",
+      "previousChecksum": "2761945f35e3cfdaf4a409bf087c0ccd267e08e901c009bdd968bb1260d04449",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "animal_created"
       },
-      "checksum": "695f9ba05dde42698b9f38313f4114456a29b18a434b8e35627a69f77f2d676a"
+      "checksum": "8691e64498a050eb9a5b0fc80d35fa6a83e482a52c522b80bdac728f90315f9b"
     },
     {
-      "id": "evt-31",
+      "id": "evt-35",
       "eventType": "animal.created",
       "animalId": "ani-3001",
       "timestamp": "2026-06-10T00:00:00.000Z",
@@ -1470,20 +1646,20 @@
         "fatherId": "ani-2001",
         "motherId": "ani-2002",
         "litterId": "litter-demo-1",
-        "weanedAt": "2026-06-10T10:00:00.000Z",
-        "notesCount": 1,
-        "movesCount": 1,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
         "quarantineRecordsCount": 0
       },
-      "previousChecksum": "695f9ba05dde42698b9f38313f4114456a29b18a434b8e35627a69f77f2d676a",
+      "previousChecksum": "8691e64498a050eb9a5b0fc80d35fa6a83e482a52c522b80bdac728f90315f9b",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "animal_created"
       },
-      "checksum": "4054f196e32be1105c5c564d4ef8d32171ef8452d96a64ce971264de180df3c8"
+      "checksum": "7e1d0460ea6a86a17eef92b062082c41a8ee9cc0c954d2904feb6b77acc2eb36"
     },
     {
-      "id": "evt-32",
+      "id": "evt-36",
       "eventType": "animal.created",
       "animalId": "ani-3002",
       "timestamp": "2026-06-10T00:00:00.000Z",
@@ -1530,20 +1706,20 @@
         "fatherId": "ani-2001",
         "motherId": "ani-2002",
         "litterId": "litter-demo-1",
-        "weanedAt": "2026-06-10T10:00:00.000Z",
-        "notesCount": 1,
-        "movesCount": 1,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
         "quarantineRecordsCount": 0
       },
-      "previousChecksum": "4054f196e32be1105c5c564d4ef8d32171ef8452d96a64ce971264de180df3c8",
+      "previousChecksum": "7e1d0460ea6a86a17eef92b062082c41a8ee9cc0c954d2904feb6b77acc2eb36",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "animal_created"
       },
-      "checksum": "0443d4a347c16f50f8a81e2c7a36986a4474697bbbaf3075f5e498ca29928b9b"
+      "checksum": "d3818851eb5361c744c140e96967668c94d7ddb78ffba2ccc341c90f1a3184d3"
     },
     {
-      "id": "evt-33",
+      "id": "evt-37",
       "eventType": "animal.created",
       "animalId": "ani-3003",
       "timestamp": "2026-06-10T00:00:00.000Z",
@@ -1590,20 +1766,20 @@
         "fatherId": "ani-2001",
         "motherId": "ani-2002",
         "litterId": "litter-demo-1",
-        "weanedAt": "2026-06-10T10:00:00.000Z",
-        "notesCount": 1,
-        "movesCount": 1,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
         "quarantineRecordsCount": 0
       },
-      "previousChecksum": "0443d4a347c16f50f8a81e2c7a36986a4474697bbbaf3075f5e498ca29928b9b",
+      "previousChecksum": "d3818851eb5361c744c140e96967668c94d7ddb78ffba2ccc341c90f1a3184d3",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "animal_created"
       },
-      "checksum": "77cf5eaec0f498755f28502c53ea55a5e2009116ab473eb27eb68087daf20138"
+      "checksum": "7f6eb7c8305d9d1359e475e0992e645f90dfc0f132fa2a27f285629be28598d8"
     },
     {
-      "id": "evt-34",
+      "id": "evt-38",
       "eventType": "animal.created",
       "animalId": "ani-3004",
       "timestamp": "2026-06-10T00:00:00.000Z",
@@ -1650,20 +1826,20 @@
         "fatherId": "ani-2001",
         "motherId": "ani-2002",
         "litterId": "litter-demo-1",
-        "weanedAt": "2026-06-10T10:00:00.000Z",
-        "notesCount": 1,
-        "movesCount": 1,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
         "quarantineRecordsCount": 0
       },
-      "previousChecksum": "77cf5eaec0f498755f28502c53ea55a5e2009116ab473eb27eb68087daf20138",
+      "previousChecksum": "7f6eb7c8305d9d1359e475e0992e645f90dfc0f132fa2a27f285629be28598d8",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "animal_created"
       },
-      "checksum": "3cbc577fcd48fe16a80e640cae124ecfe7610eacda156ce1872c89f5b4fccfb8"
+      "checksum": "235beee6ad865a200e1ffa9cca3d572fba647c7e396ee6a2d3c69998f70029a0"
     },
     {
-      "id": "evt-35",
+      "id": "evt-39",
       "eventType": "animal.created",
       "animalId": "ani-3005",
       "timestamp": "2026-06-10T00:00:00.000Z",
@@ -1710,20 +1886,20 @@
         "fatherId": "ani-2001",
         "motherId": "ani-2002",
         "litterId": "litter-demo-1",
-        "weanedAt": "2026-06-10T10:00:00.000Z",
-        "notesCount": 1,
-        "movesCount": 1,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
         "quarantineRecordsCount": 0
       },
-      "previousChecksum": "3cbc577fcd48fe16a80e640cae124ecfe7610eacda156ce1872c89f5b4fccfb8",
+      "previousChecksum": "235beee6ad865a200e1ffa9cca3d572fba647c7e396ee6a2d3c69998f70029a0",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "animal_created"
       },
-      "checksum": "65328c0e269e4ec7871cded46984efa62643c67feb0eae68a85572a58c7151c4"
+      "checksum": "7e89d8271365febca061fe46433d8a965d746a178e70df435c41837a6f28fa49"
     },
     {
-      "id": "evt-36",
+      "id": "evt-40",
       "eventType": "animal.created",
       "animalId": "ani-3006",
       "timestamp": "2026-06-10T00:00:00.000Z",
@@ -1770,20 +1946,20 @@
         "fatherId": "ani-2001",
         "motherId": "ani-2002",
         "litterId": "litter-demo-1",
-        "weanedAt": "2026-06-10T10:00:00.000Z",
-        "notesCount": 1,
-        "movesCount": 1,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
         "quarantineRecordsCount": 0
       },
-      "previousChecksum": "65328c0e269e4ec7871cded46984efa62643c67feb0eae68a85572a58c7151c4",
+      "previousChecksum": "7e89d8271365febca061fe46433d8a965d746a178e70df435c41837a6f28fa49",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "animal_created"
       },
-      "checksum": "d4dc6ac1a4139309aa1126c79ee295d08338e306b9d0fbe2099e94a34b83b657"
+      "checksum": "8b00773933b91c5017c45ee84b1257abf4334e8d8818b79d4fa73790ba6eda29"
     },
     {
-      "id": "evt-37",
+      "id": "evt-41",
       "eventType": "animal.created",
       "animalId": "ani-3007",
       "timestamp": "2026-06-10T00:00:00.000Z",
@@ -1830,20 +2006,20 @@
         "fatherId": "ani-2001",
         "motherId": "ani-2002",
         "litterId": "litter-demo-1",
-        "weanedAt": "2026-06-10T10:00:00.000Z",
-        "notesCount": 1,
-        "movesCount": 1,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
         "quarantineRecordsCount": 0
       },
-      "previousChecksum": "d4dc6ac1a4139309aa1126c79ee295d08338e306b9d0fbe2099e94a34b83b657",
+      "previousChecksum": "8b00773933b91c5017c45ee84b1257abf4334e8d8818b79d4fa73790ba6eda29",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "animal_created"
       },
-      "checksum": "70fb55cf4e37f17567cb99f15aad537b2360ee70b367685f9b318ca782be5e07"
+      "checksum": "3547c6eae4bd5826f5aff5d5300ba4ffa912afba6a87f1326cff7ca03e119fda"
     },
     {
-      "id": "evt-38",
+      "id": "evt-42",
       "eventType": "animal.moved",
       "animalId": "ani-3001",
       "timestamp": "2026-06-10T10:00:00.000Z",
@@ -1874,21 +2050,21 @@
         "fatherId": "ani-2001",
         "motherId": "ani-2002",
         "litterId": "litter-demo-1",
-        "weanedAt": "2026-06-10T10:00:00.000Z",
-        "notesCount": 1,
+        "weanedAt": null,
+        "notesCount": 0,
         "movesCount": 1,
         "quarantineRecordsCount": 0
       },
-      "previousChecksum": "70fb55cf4e37f17567cb99f15aad537b2360ee70b367685f9b318ca782be5e07",
+      "previousChecksum": "3547c6eae4bd5826f5aff5d5300ba4ffa912afba6a87f1326cff7ca03e119fda",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "move",
         "moveId": "move-w1"
       },
-      "checksum": "a5fad54410a919135e32052a6fa58ff56b840797d759c16081a04aa5f1be844a"
+      "checksum": "3248821b4552a2d0ba8053450b07181857fad519d45bb32ff3385e3867b21dba"
     },
     {
-      "id": "evt-39",
+      "id": "evt-43",
       "eventType": "breeding.litter_weaned",
       "animalId": "ani-3001",
       "timestamp": "2026-06-10T10:00:00.000Z",
@@ -1924,15 +2100,15 @@
         "movesCount": 1,
         "quarantineRecordsCount": 0
       },
-      "previousChecksum": "a5fad54410a919135e32052a6fa58ff56b840797d759c16081a04aa5f1be844a",
+      "previousChecksum": "3248821b4552a2d0ba8053450b07181857fad519d45bb32ff3385e3867b21dba",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "weaned"
       },
-      "checksum": "36547db2437bee5a299b58bfe929390e456f203ad377b6345134cc1e64399b6a"
+      "checksum": "f60ab16e6f33ae990ae11049941dcd36924fb2f8789df67db9180a3abc113665"
     },
     {
-      "id": "evt-40",
+      "id": "evt-44",
       "eventType": "animal.moved",
       "animalId": "ani-3002",
       "timestamp": "2026-06-10T10:00:00.000Z",
@@ -1963,21 +2139,21 @@
         "fatherId": "ani-2001",
         "motherId": "ani-2002",
         "litterId": "litter-demo-1",
-        "weanedAt": "2026-06-10T10:00:00.000Z",
-        "notesCount": 1,
+        "weanedAt": null,
+        "notesCount": 0,
         "movesCount": 1,
         "quarantineRecordsCount": 0
       },
-      "previousChecksum": "36547db2437bee5a299b58bfe929390e456f203ad377b6345134cc1e64399b6a",
+      "previousChecksum": "f60ab16e6f33ae990ae11049941dcd36924fb2f8789df67db9180a3abc113665",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "move",
         "moveId": "move-w2"
       },
-      "checksum": "cbe6f4124b85f58309f73e8023d372d5b588ea4322b69383906e2b45e7cc195b"
+      "checksum": "effef9ed73f98319299815ec796f6d5c4704ed22e9d55d7cedaca884a8aa33a9"
     },
     {
-      "id": "evt-41",
+      "id": "evt-45",
       "eventType": "breeding.litter_weaned",
       "animalId": "ani-3002",
       "timestamp": "2026-06-10T10:00:00.000Z",
@@ -2013,15 +2189,15 @@
         "movesCount": 1,
         "quarantineRecordsCount": 0
       },
-      "previousChecksum": "cbe6f4124b85f58309f73e8023d372d5b588ea4322b69383906e2b45e7cc195b",
+      "previousChecksum": "effef9ed73f98319299815ec796f6d5c4704ed22e9d55d7cedaca884a8aa33a9",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "weaned"
       },
-      "checksum": "85df8c5408bab3a8a9404aec154ded48f34e5b6d9f3b4d463f52bab0fb5bde8e"
+      "checksum": "1fde564884eb6b004619802b96226a738f55daa8a3d67c3fdf759f2deec884b2"
     },
     {
-      "id": "evt-42",
+      "id": "evt-46",
       "eventType": "animal.moved",
       "animalId": "ani-3003",
       "timestamp": "2026-06-10T10:00:00.000Z",
@@ -2052,21 +2228,21 @@
         "fatherId": "ani-2001",
         "motherId": "ani-2002",
         "litterId": "litter-demo-1",
-        "weanedAt": "2026-06-10T10:00:00.000Z",
-        "notesCount": 1,
+        "weanedAt": null,
+        "notesCount": 0,
         "movesCount": 1,
         "quarantineRecordsCount": 0
       },
-      "previousChecksum": "85df8c5408bab3a8a9404aec154ded48f34e5b6d9f3b4d463f52bab0fb5bde8e",
+      "previousChecksum": "1fde564884eb6b004619802b96226a738f55daa8a3d67c3fdf759f2deec884b2",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "move",
         "moveId": "move-w3"
       },
-      "checksum": "22c1fbdef9a568797d6492d1a5dedcc3ac8a3c821d4cf154fdd8661a65b12f95"
+      "checksum": "ef3e85a80c27655f8830c742e9a7d77c1c0b3dd754182eea14a20a60c15b69bf"
     },
     {
-      "id": "evt-43",
+      "id": "evt-47",
       "eventType": "breeding.litter_weaned",
       "animalId": "ani-3003",
       "timestamp": "2026-06-10T10:00:00.000Z",
@@ -2102,15 +2278,15 @@
         "movesCount": 1,
         "quarantineRecordsCount": 0
       },
-      "previousChecksum": "22c1fbdef9a568797d6492d1a5dedcc3ac8a3c821d4cf154fdd8661a65b12f95",
+      "previousChecksum": "ef3e85a80c27655f8830c742e9a7d77c1c0b3dd754182eea14a20a60c15b69bf",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "weaned"
       },
-      "checksum": "2fc2356ae382104c5daa4a173e0cf074b6f7e3fa240258068e46484993d1d571"
+      "checksum": "be75944d2edca4cd43d24b58901fca4ad654692343b2424a4dee3b8a424435d6"
     },
     {
-      "id": "evt-44",
+      "id": "evt-48",
       "eventType": "animal.moved",
       "animalId": "ani-3004",
       "timestamp": "2026-06-10T10:00:00.000Z",
@@ -2141,21 +2317,21 @@
         "fatherId": "ani-2001",
         "motherId": "ani-2002",
         "litterId": "litter-demo-1",
-        "weanedAt": "2026-06-10T10:00:00.000Z",
-        "notesCount": 1,
+        "weanedAt": null,
+        "notesCount": 0,
         "movesCount": 1,
         "quarantineRecordsCount": 0
       },
-      "previousChecksum": "2fc2356ae382104c5daa4a173e0cf074b6f7e3fa240258068e46484993d1d571",
+      "previousChecksum": "be75944d2edca4cd43d24b58901fca4ad654692343b2424a4dee3b8a424435d6",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "move",
         "moveId": "move-w4"
       },
-      "checksum": "e40be9f1c25374dceac0371d4f421b51c527c02688cd229824921aa9942367cf"
+      "checksum": "29bf1aaaaf6da372220429a3c407862f0ed0149aff4834d7f3bd03aa305fd04c"
     },
     {
-      "id": "evt-45",
+      "id": "evt-49",
       "eventType": "breeding.litter_weaned",
       "animalId": "ani-3004",
       "timestamp": "2026-06-10T10:00:00.000Z",
@@ -2191,15 +2367,15 @@
         "movesCount": 1,
         "quarantineRecordsCount": 0
       },
-      "previousChecksum": "e40be9f1c25374dceac0371d4f421b51c527c02688cd229824921aa9942367cf",
+      "previousChecksum": "29bf1aaaaf6da372220429a3c407862f0ed0149aff4834d7f3bd03aa305fd04c",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "weaned"
       },
-      "checksum": "a9b86b0d9f364bcecf76013ec9c8c243ea932c514dd4372be438cd7796e549cb"
+      "checksum": "37eedb729707a63728b5d0cec215afeede2480f9e76dd6d0f25a5cd4d8dc72f9"
     },
     {
-      "id": "evt-46",
+      "id": "evt-50",
       "eventType": "animal.moved",
       "animalId": "ani-3005",
       "timestamp": "2026-06-10T10:00:00.000Z",
@@ -2230,21 +2406,21 @@
         "fatherId": "ani-2001",
         "motherId": "ani-2002",
         "litterId": "litter-demo-1",
-        "weanedAt": "2026-06-10T10:00:00.000Z",
-        "notesCount": 1,
+        "weanedAt": null,
+        "notesCount": 0,
         "movesCount": 1,
         "quarantineRecordsCount": 0
       },
-      "previousChecksum": "a9b86b0d9f364bcecf76013ec9c8c243ea932c514dd4372be438cd7796e549cb",
+      "previousChecksum": "37eedb729707a63728b5d0cec215afeede2480f9e76dd6d0f25a5cd4d8dc72f9",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "move",
         "moveId": "move-w5"
       },
-      "checksum": "ef97bc259adf3f30e898ae16f7dbffdd394e79900452ace015022cbac1a835b4"
+      "checksum": "bef6fe8734fab2ed567c58748a18c9c6051d7fe280eb653662f17c1df24ee6e0"
     },
     {
-      "id": "evt-47",
+      "id": "evt-51",
       "eventType": "breeding.litter_weaned",
       "animalId": "ani-3005",
       "timestamp": "2026-06-10T10:00:00.000Z",
@@ -2280,15 +2456,15 @@
         "movesCount": 1,
         "quarantineRecordsCount": 0
       },
-      "previousChecksum": "ef97bc259adf3f30e898ae16f7dbffdd394e79900452ace015022cbac1a835b4",
+      "previousChecksum": "bef6fe8734fab2ed567c58748a18c9c6051d7fe280eb653662f17c1df24ee6e0",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "weaned"
       },
-      "checksum": "51a59afe018ff50dc81c69b50bef959b8c42256f30046932515ade1d201e533c"
+      "checksum": "cb0ff55e5b1684457a61d90710ffcbdb196b1e7d13ac232c744da90651149ad7"
     },
     {
-      "id": "evt-48",
+      "id": "evt-52",
       "eventType": "animal.moved",
       "animalId": "ani-3006",
       "timestamp": "2026-06-10T10:00:00.000Z",
@@ -2319,21 +2495,21 @@
         "fatherId": "ani-2001",
         "motherId": "ani-2002",
         "litterId": "litter-demo-1",
-        "weanedAt": "2026-06-10T10:00:00.000Z",
-        "notesCount": 1,
+        "weanedAt": null,
+        "notesCount": 0,
         "movesCount": 1,
         "quarantineRecordsCount": 0
       },
-      "previousChecksum": "51a59afe018ff50dc81c69b50bef959b8c42256f30046932515ade1d201e533c",
+      "previousChecksum": "cb0ff55e5b1684457a61d90710ffcbdb196b1e7d13ac232c744da90651149ad7",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "move",
         "moveId": "move-w6"
       },
-      "checksum": "7acc6c962d7f5ac47a29390c7d63cefe26802c504ba32e938a4fa8799c2c6e56"
+      "checksum": "65c5889fe9d136001a7b3046c7266de4ac7c5ad1e5cc200583c3f82f7ce8c3e3"
     },
     {
-      "id": "evt-49",
+      "id": "evt-53",
       "eventType": "breeding.litter_weaned",
       "animalId": "ani-3006",
       "timestamp": "2026-06-10T10:00:00.000Z",
@@ -2369,15 +2545,15 @@
         "movesCount": 1,
         "quarantineRecordsCount": 0
       },
-      "previousChecksum": "7acc6c962d7f5ac47a29390c7d63cefe26802c504ba32e938a4fa8799c2c6e56",
+      "previousChecksum": "65c5889fe9d136001a7b3046c7266de4ac7c5ad1e5cc200583c3f82f7ce8c3e3",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "weaned"
       },
-      "checksum": "a8bf6f5bfa8adf5392e92d146c6b250243c85c887ccea17a2455e790d503e20b"
+      "checksum": "496919fd29f45fa24ee3ce86ffb88f8f0907a1d9d5d7c98d05a0702e1d3561ff"
     },
     {
-      "id": "evt-50",
+      "id": "evt-54",
       "eventType": "animal.moved",
       "animalId": "ani-3007",
       "timestamp": "2026-06-10T10:00:00.000Z",
@@ -2408,21 +2584,21 @@
         "fatherId": "ani-2001",
         "motherId": "ani-2002",
         "litterId": "litter-demo-1",
-        "weanedAt": "2026-06-10T10:00:00.000Z",
-        "notesCount": 1,
+        "weanedAt": null,
+        "notesCount": 0,
         "movesCount": 1,
         "quarantineRecordsCount": 0
       },
-      "previousChecksum": "a8bf6f5bfa8adf5392e92d146c6b250243c85c887ccea17a2455e790d503e20b",
+      "previousChecksum": "496919fd29f45fa24ee3ce86ffb88f8f0907a1d9d5d7c98d05a0702e1d3561ff",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "move",
         "moveId": "move-w7"
       },
-      "checksum": "614da53aafe758b28a17417bb9dce0c0f8d9f21cb30d6874979d976296f20bfa"
+      "checksum": "e64bf34ef20dd77c32ae2ec90e6f10258321530c6753bbeda05efa4d58a1978a"
     },
     {
-      "id": "evt-51",
+      "id": "evt-55",
       "eventType": "breeding.litter_weaned",
       "animalId": "ani-3007",
       "timestamp": "2026-06-10T10:00:00.000Z",
@@ -2458,15 +2634,15 @@
         "movesCount": 1,
         "quarantineRecordsCount": 0
       },
-      "previousChecksum": "614da53aafe758b28a17417bb9dce0c0f8d9f21cb30d6874979d976296f20bfa",
+      "previousChecksum": "e64bf34ef20dd77c32ae2ec90e6f10258321530c6753bbeda05efa4d58a1978a",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "weaned"
       },
-      "checksum": "2280b60732946201d10781404aa7cf08a00e46e8b173d8ebaa656cd1fd123e5d"
+      "checksum": "c349c66e7a3dc069c634f08ef01fdb72559ab0ba807a7d4cebdaf247ad711891"
     },
     {
-      "id": "evt-52",
+      "id": "evt-56",
       "eventType": "animal.note_added",
       "animalId": "ani-1001",
       "timestamp": "2026-06-10T12:00:00.000Z",
@@ -2503,16 +2679,16 @@
         "movesCount": 1,
         "quarantineRecordsCount": 2
       },
-      "previousChecksum": "2280b60732946201d10781404aa7cf08a00e46e8b173d8ebaa656cd1fd123e5d",
+      "previousChecksum": "c349c66e7a3dc069c634f08ef01fdb72559ab0ba807a7d4cebdaf247ad711891",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "note",
         "noteId": "note-1"
       },
-      "checksum": "19a2f39c03352a578ccf30baf4c047a34f36f240a197f9ca7feb7a80d4d0b6e5"
+      "checksum": "cb5a60b6ae545068b0e3f03549a165d22e17eb4166d40355a334f318b59f27db"
     },
     {
-      "id": "evt-53",
+      "id": "evt-57",
       "eventType": "animal.note_added",
       "animalId": "ani-3001",
       "timestamp": "2026-06-10T12:00:00.000Z",
@@ -2544,21 +2720,21 @@
         "fatherId": "ani-2001",
         "motherId": "ani-2002",
         "litterId": "litter-demo-1",
-        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "weanedAt": null,
         "notesCount": 1,
         "movesCount": 1,
         "quarantineRecordsCount": 0
       },
-      "previousChecksum": "19a2f39c03352a578ccf30baf4c047a34f36f240a197f9ca7feb7a80d4d0b6e5",
+      "previousChecksum": "cb5a60b6ae545068b0e3f03549a165d22e17eb4166d40355a334f318b59f27db",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "note",
         "noteId": "note-w1"
       },
-      "checksum": "ef6afa5bf480385f8a8446561ffc550cd91b2f4275e682083f6cd27a581e6e36"
+      "checksum": "4452b824e63f2563e0278592ed07cbeb27274b1b65aa9838391f306323c047b6"
     },
     {
-      "id": "evt-54",
+      "id": "evt-58",
       "eventType": "animal.note_added",
       "animalId": "ani-3002",
       "timestamp": "2026-06-10T12:00:00.000Z",
@@ -2590,21 +2766,21 @@
         "fatherId": "ani-2001",
         "motherId": "ani-2002",
         "litterId": "litter-demo-1",
-        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "weanedAt": null,
         "notesCount": 1,
         "movesCount": 1,
         "quarantineRecordsCount": 0
       },
-      "previousChecksum": "ef6afa5bf480385f8a8446561ffc550cd91b2f4275e682083f6cd27a581e6e36",
+      "previousChecksum": "4452b824e63f2563e0278592ed07cbeb27274b1b65aa9838391f306323c047b6",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "note",
         "noteId": "note-w2"
       },
-      "checksum": "19fd4b0a05fc410788421b391a6403ec32513e9e082d82813eb7c1ae165c9037"
+      "checksum": "0634f57c41f4b564cecbaecd6060d8807c4c5766f037a005c47d74ebb0e621f1"
     },
     {
-      "id": "evt-55",
+      "id": "evt-59",
       "eventType": "animal.note_added",
       "animalId": "ani-3003",
       "timestamp": "2026-06-10T12:00:00.000Z",
@@ -2636,21 +2812,21 @@
         "fatherId": "ani-2001",
         "motherId": "ani-2002",
         "litterId": "litter-demo-1",
-        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "weanedAt": null,
         "notesCount": 1,
         "movesCount": 1,
         "quarantineRecordsCount": 0
       },
-      "previousChecksum": "19fd4b0a05fc410788421b391a6403ec32513e9e082d82813eb7c1ae165c9037",
+      "previousChecksum": "0634f57c41f4b564cecbaecd6060d8807c4c5766f037a005c47d74ebb0e621f1",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "note",
         "noteId": "note-w3"
       },
-      "checksum": "355e88fa171dd53c93cbfb1567ec34b805deeb551e25d19b109ff6cc6331c624"
+      "checksum": "d1178f2efdae055cf2d42673aa79e482e1dde65aaddac85f24c6fde68152b339"
     },
     {
-      "id": "evt-56",
+      "id": "evt-60",
       "eventType": "animal.note_added",
       "animalId": "ani-3004",
       "timestamp": "2026-06-10T12:00:00.000Z",
@@ -2682,21 +2858,21 @@
         "fatherId": "ani-2001",
         "motherId": "ani-2002",
         "litterId": "litter-demo-1",
-        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "weanedAt": null,
         "notesCount": 1,
         "movesCount": 1,
         "quarantineRecordsCount": 0
       },
-      "previousChecksum": "355e88fa171dd53c93cbfb1567ec34b805deeb551e25d19b109ff6cc6331c624",
+      "previousChecksum": "d1178f2efdae055cf2d42673aa79e482e1dde65aaddac85f24c6fde68152b339",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "note",
         "noteId": "note-w4"
       },
-      "checksum": "0598103da00ac80b276bb465d1b2b2c5f7aa6052427c2570a3ad53d545da33a5"
+      "checksum": "07c6d59492593225bdc775d444ec4fd7d9bf64af9421601d504c9c20bc06ad93"
     },
     {
-      "id": "evt-57",
+      "id": "evt-61",
       "eventType": "animal.note_added",
       "animalId": "ani-3005",
       "timestamp": "2026-06-10T12:00:00.000Z",
@@ -2728,21 +2904,21 @@
         "fatherId": "ani-2001",
         "motherId": "ani-2002",
         "litterId": "litter-demo-1",
-        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "weanedAt": null,
         "notesCount": 1,
         "movesCount": 1,
         "quarantineRecordsCount": 0
       },
-      "previousChecksum": "0598103da00ac80b276bb465d1b2b2c5f7aa6052427c2570a3ad53d545da33a5",
+      "previousChecksum": "07c6d59492593225bdc775d444ec4fd7d9bf64af9421601d504c9c20bc06ad93",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "note",
         "noteId": "note-w5"
       },
-      "checksum": "e730d3140622f75c34e9d0c114b8bf73b8cffa07aea8fe3f7819327dfb0dce86"
+      "checksum": "b8ccc0a94b527aeb2a3768ce8009acd928e566c40770e0fb0765ab973709691f"
     },
     {
-      "id": "evt-58",
+      "id": "evt-62",
       "eventType": "animal.note_added",
       "animalId": "ani-3006",
       "timestamp": "2026-06-10T12:00:00.000Z",
@@ -2774,21 +2950,21 @@
         "fatherId": "ani-2001",
         "motherId": "ani-2002",
         "litterId": "litter-demo-1",
-        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "weanedAt": null,
         "notesCount": 1,
         "movesCount": 1,
         "quarantineRecordsCount": 0
       },
-      "previousChecksum": "e730d3140622f75c34e9d0c114b8bf73b8cffa07aea8fe3f7819327dfb0dce86",
+      "previousChecksum": "b8ccc0a94b527aeb2a3768ce8009acd928e566c40770e0fb0765ab973709691f",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "note",
         "noteId": "note-w6"
       },
-      "checksum": "94d0c8a1797fd133c5c1c437a78dae0138f6425b0017e9805f3c186a8b39c134"
+      "checksum": "39fcb6cb2e7683b75ec00ba4441cfba0c8d8a2f7e74756369f3bba32cf61dea6"
     },
     {
-      "id": "evt-59",
+      "id": "evt-63",
       "eventType": "animal.note_added",
       "animalId": "ani-3007",
       "timestamp": "2026-06-10T12:00:00.000Z",
@@ -2820,21 +2996,21 @@
         "fatherId": "ani-2001",
         "motherId": "ani-2002",
         "litterId": "litter-demo-1",
-        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "weanedAt": null,
         "notesCount": 1,
         "movesCount": 1,
         "quarantineRecordsCount": 0
       },
-      "previousChecksum": "94d0c8a1797fd133c5c1c437a78dae0138f6425b0017e9805f3c186a8b39c134",
+      "previousChecksum": "39fcb6cb2e7683b75ec00ba4441cfba0c8d8a2f7e74756369f3bba32cf61dea6",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "note",
         "noteId": "note-w7"
       },
-      "checksum": "819e4c7556d494f1441a7b6903e77ece51ab6b66b6f7b17099ce49208be56483"
+      "checksum": "64061520c2cf75b07a82cce2a15e07d158c7e9c0338a8612acf655d5928c0737"
     },
     {
-      "id": "evt-60",
+      "id": "evt-64",
       "eventType": "animal.quarantine_record",
       "animalId": "ani-1003",
       "timestamp": "2026-06-10T14:00:00.000Z",
@@ -2874,16 +3050,16 @@
         "movesCount": 0,
         "quarantineRecordsCount": 1
       },
-      "previousChecksum": "819e4c7556d494f1441a7b6903e77ece51ab6b66b6f7b17099ce49208be56483",
+      "previousChecksum": "64061520c2cf75b07a82cce2a15e07d158c7e9c0338a8612acf655d5928c0737",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "quarantine_record",
         "recordId": "qr-4"
       },
-      "checksum": "78495f6ae2a011eb2ad6dc2418de03ba07cbe732c8ef3c8820682c9150adc1fc"
+      "checksum": "671276da483830ac1ae2088c90d2f16f1de70c80cc62fb77119d2ad3fa2ad715"
     },
     {
-      "id": "evt-61",
+      "id": "evt-65",
       "eventType": "feeding.recorded",
       "animalId": "ani-3003",
       "timestamp": "2026-06-11T08:35:00.000Z",
@@ -2904,16 +3080,16 @@
         "migrated": true
       },
       "snapshotAfter": null,
-      "previousChecksum": "78495f6ae2a011eb2ad6dc2418de03ba07cbe732c8ef3c8820682c9150adc1fc",
+      "previousChecksum": "671276da483830ac1ae2088c90d2f16f1de70c80cc62fb77119d2ad3fa2ad715",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "feeding_record",
         "recordId": "record-6"
       },
-      "checksum": "9c7a093d2d45bcc0629ad65cc9200d5147abd3a6cb1cd916cdbe616bbd3e7094"
+      "checksum": "02eb96e927c844a6d6989026415eaf452ff25d054bfcb21721a9d31c3b3cb114"
     },
     {
-      "id": "evt-62",
+      "id": "evt-66",
       "eventType": "animal.created",
       "animalId": "ani-1004",
       "timestamp": "2026-06-12T00:00:00.000Z",
@@ -2946,7 +3122,7 @@
         "birthDate": "2026-04-20",
         "project": "疫苗测试",
         "keeper": "周遥",
-        "status": "quarantine_abnormal",
+        "status": "quarantine",
         "enteredQuarantineAt": "2026-06-12T09:00:00.000Z",
         "quarantineReleasedAt": null,
         "removedAt": null,
@@ -2956,17 +3132,17 @@
         "weanedAt": null,
         "notesCount": 0,
         "movesCount": 0,
-        "quarantineRecordsCount": 2
+        "quarantineRecordsCount": 0
       },
-      "previousChecksum": "9c7a093d2d45bcc0629ad65cc9200d5147abd3a6cb1cd916cdbe616bbd3e7094",
+      "previousChecksum": "02eb96e927c844a6d6989026415eaf452ff25d054bfcb21721a9d31c3b3cb114",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "animal_created"
       },
-      "checksum": "e8547b0569ddd100f311a48b28ff06cd36ad486ccb3ca5af6dcae5934d97fea8"
+      "checksum": "63c2dc3bddf6ce3e94e48a5f2788b07094c7dd11cb35fbb8cf09d374771e7ba5"
     },
     {
-      "id": "evt-63",
+      "id": "evt-67",
       "eventType": "animal.quarantine_record",
       "animalId": "ani-1004",
       "timestamp": "2026-06-12T09:00:00.000Z",
@@ -2994,7 +3170,7 @@
         "birthDate": "2026-04-20",
         "project": "疫苗测试",
         "keeper": "周遥",
-        "status": "quarantine_abnormal",
+        "status": "quarantine",
         "enteredQuarantineAt": "2026-06-12T09:00:00.000Z",
         "quarantineReleasedAt": null,
         "removedAt": null,
@@ -3004,18 +3180,18 @@
         "weanedAt": null,
         "notesCount": 0,
         "movesCount": 0,
-        "quarantineRecordsCount": 2
+        "quarantineRecordsCount": 1
       },
-      "previousChecksum": "e8547b0569ddd100f311a48b28ff06cd36ad486ccb3ca5af6dcae5934d97fea8",
+      "previousChecksum": "63c2dc3bddf6ce3e94e48a5f2788b07094c7dd11cb35fbb8cf09d374771e7ba5",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "quarantine_record",
         "recordId": "qr-5"
       },
-      "checksum": "c968c67bea398edc10bd21118990ab3b1ad8f0ddd6c5fed0188e816cb6151e3c"
+      "checksum": "7e7c6cc021be8c3ce445c33dea58bb86239f3deb4b6dbf44a5c871c0e2e47295"
     },
     {
-      "id": "evt-64",
+      "id": "evt-68",
       "eventType": "feeding.recorded",
       "animalId": "ani-1001",
       "timestamp": "2026-06-13T08:05:00.000Z",
@@ -3035,16 +3211,16 @@
         "migrated": true
       },
       "snapshotAfter": null,
-      "previousChecksum": "c968c67bea398edc10bd21118990ab3b1ad8f0ddd6c5fed0188e816cb6151e3c",
+      "previousChecksum": "7e7c6cc021be8c3ce445c33dea58bb86239f3deb4b6dbf44a5c871c0e2e47295",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "feeding_record",
         "recordId": "record-1"
       },
-      "checksum": "d20c4f287f900e17c809099279728f1a2657e40a4e4fcb9d1f7a694c52467502"
+      "checksum": "852accb23be34a7d8e54c7e85988734af2baef570caf9d58dd29b80f40bdc752"
     },
     {
-      "id": "evt-65",
+      "id": "evt-69",
       "eventType": "animal.quarantine_record",
       "animalId": "ani-1004",
       "timestamp": "2026-06-13T09:00:00.000Z",
@@ -3087,16 +3263,16 @@
         "movesCount": 0,
         "quarantineRecordsCount": 2
       },
-      "previousChecksum": "d20c4f287f900e17c809099279728f1a2657e40a4e4fcb9d1f7a694c52467502",
+      "previousChecksum": "852accb23be34a7d8e54c7e85988734af2baef570caf9d58dd29b80f40bdc752",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "quarantine_record",
         "recordId": "qr-6"
       },
-      "checksum": "1e8fc00f9baa7f33ce44bebe424c6080a891c3aa3aff3804831856d60ef8dfdd"
+      "checksum": "7c114647712eb42ca5a0cbf6f0fed7c7820e3905a61fe521008629acd655bcdc"
     },
     {
-      "id": "evt-66",
+      "id": "evt-70",
       "eventType": "animal.quarantine_abnormal",
       "animalId": "ani-1004",
       "timestamp": "2026-06-13T09:00:00.000Z",
@@ -3130,15 +3306,15 @@
         "movesCount": 0,
         "quarantineRecordsCount": 2
       },
-      "previousChecksum": "1e8fc00f9baa7f33ce44bebe424c6080a891c3aa3aff3804831856d60ef8dfdd",
+      "previousChecksum": "7c114647712eb42ca5a0cbf6f0fed7c7820e3905a61fe521008629acd655bcdc",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "quarantine_abnormal"
       },
-      "checksum": "720d3da36f4156cf07d91739b6da4c0b90ac3339170285bc483bf753097b38b8"
+      "checksum": "8cf49492e4463083a3155bd04ab27bc49f37c065dbb30f43ebf6e6ae2165cb64"
     },
     {
-      "id": "evt-67",
+      "id": "evt-71",
       "eventType": "feeding.recorded",
       "animalId": "ani-1002",
       "timestamp": "2026-06-13T09:15:00.000Z",
@@ -3158,16 +3334,16 @@
         "migrated": true
       },
       "snapshotAfter": null,
-      "previousChecksum": "720d3da36f4156cf07d91739b6da4c0b90ac3339170285bc483bf753097b38b8",
+      "previousChecksum": "8cf49492e4463083a3155bd04ab27bc49f37c065dbb30f43ebf6e6ae2165cb64",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "feeding_record",
         "recordId": "record-3"
       },
-      "checksum": "ed879ad42033012a45971dc7c9499781fe75aa3b5f2fd1c56a2d78c5d3b6affb"
+      "checksum": "a59cbbc7f59c652280decbe2e684ae41d1345b97c9ee72b87f0e12e7763b3bb5"
     },
     {
-      "id": "evt-68",
+      "id": "evt-72",
       "eventType": "feeding.recorded",
       "animalId": "ani-1001",
       "timestamp": "2026-06-13T18:10:00.000Z",
@@ -3187,162 +3363,112 @@
         "migrated": true
       },
       "snapshotAfter": null,
-      "previousChecksum": "ed879ad42033012a45971dc7c9499781fe75aa3b5f2fd1c56a2d78c5d3b6affb",
+      "previousChecksum": "a59cbbc7f59c652280decbe2e684ae41d1345b97c9ee72b87f0e12e7763b3bb5",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "feeding_record",
         "recordId": "record-2"
       },
-      "checksum": "8b743b0cae198a882245f58d5a7e0d01b6de34ff38922078e6e5d7a20b15170b"
+      "checksum": "37206203cca58726cd7e8e91d76bb90b62fe9983ba87259c286536df1fc1fd7f"
     },
     {
-      "id": "evt-69",
-      "eventType": "animal.created",
-      "animalId": "ani-1781421656784-93drv",
-      "timestamp": "2026-06-14T07:20:56.784Z",
-      "operator": {
-        "role": "system",
-        "name": "server_startup",
-        "key": "system"
-      },
-      "payload": {
-        "id": "ani-1781421656784-93drv",
-        "strain": "C57BL/6J",
-        "cageId": "C-01",
-        "sex": "female",
-        "birthDate": "2026-05-01",
-        "project": "验证项目",
-        "keeper": "测试饲养员",
-        "initialStatus": "quarantine",
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "breedingInfo": null,
-        "migrated": true
-      },
-      "snapshotAfter": {
-        "id": "ani-1781421656784-93drv",
-        "strain": "C57BL/6J",
-        "cageId": "C-01",
-        "sex": "female",
-        "birthDate": "2026-05-01",
-        "project": "验证项目",
-        "keeper": "测试饲养员",
-        "status": "quarantine",
-        "enteredQuarantineAt": "2026-06-14T07:20:56.784Z",
-        "quarantineReleasedAt": null,
-        "removedAt": null,
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "notesCount": 0,
-        "movesCount": 0,
-        "quarantineRecordsCount": 0
-      },
-      "previousChecksum": "8b743b0cae198a882245f58d5a7e0d01b6de34ff38922078e6e5d7a20b15170b",
-      "metadata": {
-        "source": "snapshot_migration",
-        "migrationType": "animal_created"
-      },
-      "checksum": "84e0a825324885de62677fa1fdb978704d3ff60dc32f2c445e3a53bdd67cc685"
-    },
-    {
-      "id": "evt-70",
+      "id": "evt-73",
       "eventType": "ledger.migrated_from_snapshot",
       "animalId": null,
-      "timestamp": "2026-06-14T09:07:55.455Z",
+      "timestamp": "2026-06-14T10:33:29.532Z",
       "operator": {
         "role": "system",
         "name": "server_startup",
         "key": "system"
       },
       "payload": {
-        "totalAnimals": 18,
-        "totalEvents": 68,
+        "totalAnimals": 17,
+        "totalEvents": 71,
         "feedingEvents": 4
       },
       "snapshotAfter": null,
-      "previousChecksum": "84e0a825324885de62677fa1fdb978704d3ff60dc32f2c445e3a53bdd67cc685",
+      "previousChecksum": "37206203cca58726cd7e8e91d76bb90b62fe9983ba87259c286536df1fc1fd7f",
       "metadata": {
         "source": "snapshot_migration"
       },
-      "checksum": "552ead41ccf282333cd7c53848778b499ca176ccd7a343b78ecea554e04b836c"
+      "checksum": "000fdb0b352b03b00c307c772867b3990cc17b27ad0d061bd5574cac19f16880"
     }
   ],
-  "nextId": 71,
+  "nextId": 74,
   "migratedFromSnapshot": true,
   "checksumChain": [
-    "2c53c73df1fcad1c8f0e28535c0fb02888604ee9af0324bc8e0569d7ee3f246c",
-    "073954a942e25a437bd1c9409811f94e36bd78ef536797ce55f3d1f067ca59df",
-    "5451865018020c5d3cb4edebb47ad5e104d03ff4b438fdfaace3b0f61a7a4274",
-    "c7f9bee675a7f6d32949c0c387c341b515686b222d2c1ce7c6651ff2a2a6f769",
-    "0d5a07e1fe865664a22cd8f710fd50835085d86504fbe17d20bf0a3b7fcb2ad2",
-    "707597cc6718608487fb0d5a952864581e49825f0134681dcffcc22f0d6b1ed4",
-    "08955ef72e8321b4bd2a0c138b5f8fb0501e058f1424eb9158b18c273651bc9b",
-    "530e0fecd3c49e85d9e7d17cf5a37430984a48d4639704c6a45edfe83c526f7f",
-    "bf628d31949349531d83f15e8f315e2deacd15cdedf30ca99b955987b78daf29",
-    "ae90011bd6929c33964dcc98043b7dfd25a15b5a0531f25488e5970cce0b34f4",
-    "1924bdfed3dfc595c85bbbb86a0beec66331d3eeca551e54d9031418abdebdba",
-    "fcdd219d20d69af9c5352baaec9a67cf4971e7093569b370a421caed57414f24",
-    "bb920fca1b50a556db06366263ea6bda022251fb6cd217c1b6c538469711d205",
-    "a0e971cb02b706767bd743a52dba33f4705614418da79a78b6ce0432c40b590a",
-    "ec594bb8cb0b7a33452129937b8578485ebd2c014d8d8b99d2807c5334bdac62",
-    "e0590096e57255bf9af3b1dd155f54c88fd6b362e4a8816ac5271801e0779786",
-    "990190ebb7c622b589b9cbb6a5a3a202a1ba3c11dbd7c86591a98695e8312f18",
-    "47f4ff32c25e77f2f72df898e9c48975564947a72914e047417eddd2870607c8",
-    "8a9399effdde80abe3dddbe6848a54b6d088cb4c987a97c83610d4e671790bdb",
-    "b7934b5c9bcabe7d5186f0fed61bce11771caf031c8686079fbd5e60c4a20ef2",
-    "495d89c227f485ab9cbb617d6975f5d8f253a111f5f1345c025cf48077104042",
-    "091439e6f3670dbc30b880ac5e4db8dea0d1802fd983a0183e5a7083d3f58c6b",
-    "9ee75ee477a144b7e0e925db83c0132c7817e8a5c323560ae1624569b5ddce74",
-    "fa3ff33c81336aba0180b8a3693e5d94d16ae37796f978c859e9b309184e5144",
-    "bc4a45e70be41879d49c6bf68d97b796c069bf8d8446614d61e63beb9a699c36",
-    "b3707d27a805268a0da0db3212ee89279e9f95ce5aad60d467e7ee215ea1939b",
-    "07a612863096bc1cb6ae9ea7dd5cc711f531d486c2aa84016931b4c7f81b31d2",
-    "946ad8c62c601ea6f445d6a48c0ab014129886e110474384ccf7d54d9689ad3f",
-    "9a18d06867f7783c27cd0e4d5806aab68eb0d2f5fd5c38459c260ecbb2675dfa",
-    "695f9ba05dde42698b9f38313f4114456a29b18a434b8e35627a69f77f2d676a",
-    "4054f196e32be1105c5c564d4ef8d32171ef8452d96a64ce971264de180df3c8",
-    "0443d4a347c16f50f8a81e2c7a36986a4474697bbbaf3075f5e498ca29928b9b",
-    "77cf5eaec0f498755f28502c53ea55a5e2009116ab473eb27eb68087daf20138",
-    "3cbc577fcd48fe16a80e640cae124ecfe7610eacda156ce1872c89f5b4fccfb8",
-    "65328c0e269e4ec7871cded46984efa62643c67feb0eae68a85572a58c7151c4",
-    "d4dc6ac1a4139309aa1126c79ee295d08338e306b9d0fbe2099e94a34b83b657",
-    "70fb55cf4e37f17567cb99f15aad537b2360ee70b367685f9b318ca782be5e07",
-    "a5fad54410a919135e32052a6fa58ff56b840797d759c16081a04aa5f1be844a",
-    "36547db2437bee5a299b58bfe929390e456f203ad377b6345134cc1e64399b6a",
-    "cbe6f4124b85f58309f73e8023d372d5b588ea4322b69383906e2b45e7cc195b",
-    "85df8c5408bab3a8a9404aec154ded48f34e5b6d9f3b4d463f52bab0fb5bde8e",
-    "22c1fbdef9a568797d6492d1a5dedcc3ac8a3c821d4cf154fdd8661a65b12f95",
-    "2fc2356ae382104c5daa4a173e0cf074b6f7e3fa240258068e46484993d1d571",
-    "e40be9f1c25374dceac0371d4f421b51c527c02688cd229824921aa9942367cf",
-    "a9b86b0d9f364bcecf76013ec9c8c243ea932c514dd4372be438cd7796e549cb",
-    "ef97bc259adf3f30e898ae16f7dbffdd394e79900452ace015022cbac1a835b4",
-    "51a59afe018ff50dc81c69b50bef959b8c42256f30046932515ade1d201e533c",
-    "7acc6c962d7f5ac47a29390c7d63cefe26802c504ba32e938a4fa8799c2c6e56",
-    "a8bf6f5bfa8adf5392e92d146c6b250243c85c887ccea17a2455e790d503e20b",
-    "614da53aafe758b28a17417bb9dce0c0f8d9f21cb30d6874979d976296f20bfa",
-    "2280b60732946201d10781404aa7cf08a00e46e8b173d8ebaa656cd1fd123e5d",
-    "19a2f39c03352a578ccf30baf4c047a34f36f240a197f9ca7feb7a80d4d0b6e5",
-    "ef6afa5bf480385f8a8446561ffc550cd91b2f4275e682083f6cd27a581e6e36",
-    "19fd4b0a05fc410788421b391a6403ec32513e9e082d82813eb7c1ae165c9037",
-    "355e88fa171dd53c93cbfb1567ec34b805deeb551e25d19b109ff6cc6331c624",
-    "0598103da00ac80b276bb465d1b2b2c5f7aa6052427c2570a3ad53d545da33a5",
-    "e730d3140622f75c34e9d0c114b8bf73b8cffa07aea8fe3f7819327dfb0dce86",
-    "94d0c8a1797fd133c5c1c437a78dae0138f6425b0017e9805f3c186a8b39c134",
-    "819e4c7556d494f1441a7b6903e77ece51ab6b66b6f7b17099ce49208be56483",
-    "78495f6ae2a011eb2ad6dc2418de03ba07cbe732c8ef3c8820682c9150adc1fc",
-    "9c7a093d2d45bcc0629ad65cc9200d5147abd3a6cb1cd916cdbe616bbd3e7094",
-    "e8547b0569ddd100f311a48b28ff06cd36ad486ccb3ca5af6dcae5934d97fea8",
-    "c968c67bea398edc10bd21118990ab3b1ad8f0ddd6c5fed0188e816cb6151e3c",
-    "d20c4f287f900e17c809099279728f1a2657e40a4e4fcb9d1f7a694c52467502",
-    "1e8fc00f9baa7f33ce44bebe424c6080a891c3aa3aff3804831856d60ef8dfdd",
-    "720d3da36f4156cf07d91739b6da4c0b90ac3339170285bc483bf753097b38b8",
-    "ed879ad42033012a45971dc7c9499781fe75aa3b5f2fd1c56a2d78c5d3b6affb",
-    "8b743b0cae198a882245f58d5a7e0d01b6de34ff38922078e6e5d7a20b15170b",
-    "84e0a825324885de62677fa1fdb978704d3ff60dc32f2c445e3a53bdd67cc685",
-    "552ead41ccf282333cd7c53848778b499ca176ccd7a343b78ecea554e04b836c"
+    "16c46ef4daeab07b4976c4685312286166b9eebf25c23088599879b737d79fbc",
+    "836c8dacee1bb1b4650a2ca66a88e7e6dc3a4db3a5c34a14723eeaf38b5bf5f9",
+    "421d0a47ce696df325805c777f23b59885ff4bb8402ebb6cbbdee77571309532",
+    "2d285a6e7af0673815e1ea79e1f4f065dd76171f1affa3e67386aa5b23a55d5a",
+    "58dee968efb957464a526734ac3e04ed4d2578de1cb3e12dbe720f8a228eece4",
+    "75791b2d82ea4525dcc2a67369182bfd8cfdbd1216ae433c65cef6fb033b898e",
+    "445449fa562733b8e35cc141408defb9868578e493b3373f57f5828a6747eefa",
+    "1800c07acd683b813289f59d2eae8e0751fa49b3b2d57de918a55545c32ab154",
+    "142145c4467de1b03d47f6b73ff76f57a36bc6e665b70d0dc049c84ff750bff1",
+    "885c8bea83d1ec4094a125b0a13e317ccab2ce358c6f74a909553c4147e86f0a",
+    "ab860a6d2d280148cb6f775a3bc318dbfc3f22f419df1501829a75264691c8d6",
+    "fe1b1ea2becb8b39ca8825846b041d473f0ca24c0ffc00e21cdb1449c67af8c2",
+    "45e6a7e7e0ef01bad5012a53166d4f352b8ab472fcd21045ce3c9da9697916f1",
+    "2f23e780d496f6a069d76b3ae9b2e7fc764e47e97b2844663d8f4c55f05aa7cc",
+    "5cef9ad5dc2f9c5fa56854f646ecdad17e0d7f5ff0e33c19576ff895bd30bf1c",
+    "d9236f30a84d684d7fd837e70eb57111f7fc640367ac49597514ddcf7fb707b2",
+    "a0cd85708e2e5394c6444ca7173013e00f212a1f1f3fd7a135ef8f2016724ed4",
+    "4c8bfa900e6e25fe630e100da1954f75f4ea66ca145249c9d3c9fc7cbdf494af",
+    "b6655d54fbcd3625b70d52de557ae960f65ee10119cb9f809e85bb6ed4921e5c",
+    "7789eac313254fccb34d617ad13f420ed2709ef2894178b80630872935800923",
+    "f1be1ef710c0329639ed84317883ad174fbed7f1e1e4cb5e3a4d44100961c819",
+    "e44621d64b559a7e337cfc72586fe37ad45e2f0615c819d8b33c7aa0fcd30b6a",
+    "b5b9787e14a25432fe9e3a7ad9c94d1c95a9d12cb47c746c46fdfb3b96987f40",
+    "938b3ed84a47b29bda72577374ba96f61f47aaf5a11c84ae096cffa476781b76",
+    "4fe8ffb7f41fb012b6a60beb34653ed85777e8acc44965e3c5a8d3102a32d28c",
+    "371b030dc4d6a262ab02487cec7eb5e90f1491d74692d5c00e77e0f6182ad9d7",
+    "5f3404cfa5d68e14564fd7ca2f1148b645f992b8afdc5dc13c552bc70ebf4379",
+    "3f5a8fe5e93c1c3cf8800acee9cdc53d8000a44a25ef1656c445064140546971",
+    "e0496c2b807fc4523cf88175516e537c2828a4317a6440edabf41efcf9ad3a6c",
+    "2b12883dfda55a62b4ca86010371608d71a24c4313f39798a770ce9cb0e119ed",
+    "efb68502ff804f6b7bf537ca67ced572ecaec9bda568d7aafeaeb5712a7ba502",
+    "3fa9417139180482018b5619a9723e6320033bf1ecf319e0fd94cea3f021f547",
+    "2761945f35e3cfdaf4a409bf087c0ccd267e08e901c009bdd968bb1260d04449",
+    "8691e64498a050eb9a5b0fc80d35fa6a83e482a52c522b80bdac728f90315f9b",
+    "7e1d0460ea6a86a17eef92b062082c41a8ee9cc0c954d2904feb6b77acc2eb36",
+    "d3818851eb5361c744c140e96967668c94d7ddb78ffba2ccc341c90f1a3184d3",
+    "7f6eb7c8305d9d1359e475e0992e645f90dfc0f132fa2a27f285629be28598d8",
+    "235beee6ad865a200e1ffa9cca3d572fba647c7e396ee6a2d3c69998f70029a0",
+    "7e89d8271365febca061fe46433d8a965d746a178e70df435c41837a6f28fa49",
+    "8b00773933b91c5017c45ee84b1257abf4334e8d8818b79d4fa73790ba6eda29",
+    "3547c6eae4bd5826f5aff5d5300ba4ffa912afba6a87f1326cff7ca03e119fda",
+    "3248821b4552a2d0ba8053450b07181857fad519d45bb32ff3385e3867b21dba",
+    "f60ab16e6f33ae990ae11049941dcd36924fb2f8789df67db9180a3abc113665",
+    "effef9ed73f98319299815ec796f6d5c4704ed22e9d55d7cedaca884a8aa33a9",
+    "1fde564884eb6b004619802b96226a738f55daa8a3d67c3fdf759f2deec884b2",
+    "ef3e85a80c27655f8830c742e9a7d77c1c0b3dd754182eea14a20a60c15b69bf",
+    "be75944d2edca4cd43d24b58901fca4ad654692343b2424a4dee3b8a424435d6",
+    "29bf1aaaaf6da372220429a3c407862f0ed0149aff4834d7f3bd03aa305fd04c",
+    "37eedb729707a63728b5d0cec215afeede2480f9e76dd6d0f25a5cd4d8dc72f9",
+    "bef6fe8734fab2ed567c58748a18c9c6051d7fe280eb653662f17c1df24ee6e0",
+    "cb0ff55e5b1684457a61d90710ffcbdb196b1e7d13ac232c744da90651149ad7",
+    "65c5889fe9d136001a7b3046c7266de4ac7c5ad1e5cc200583c3f82f7ce8c3e3",
+    "496919fd29f45fa24ee3ce86ffb88f8f0907a1d9d5d7c98d05a0702e1d3561ff",
+    "e64bf34ef20dd77c32ae2ec90e6f10258321530c6753bbeda05efa4d58a1978a",
+    "c349c66e7a3dc069c634f08ef01fdb72559ab0ba807a7d4cebdaf247ad711891",
+    "cb5a60b6ae545068b0e3f03549a165d22e17eb4166d40355a334f318b59f27db",
+    "4452b824e63f2563e0278592ed07cbeb27274b1b65aa9838391f306323c047b6",
+    "0634f57c41f4b564cecbaecd6060d8807c4c5766f037a005c47d74ebb0e621f1",
+    "d1178f2efdae055cf2d42673aa79e482e1dde65aaddac85f24c6fde68152b339",
+    "07c6d59492593225bdc775d444ec4fd7d9bf64af9421601d504c9c20bc06ad93",
+    "b8ccc0a94b527aeb2a3768ce8009acd928e566c40770e0fb0765ab973709691f",
+    "39fcb6cb2e7683b75ec00ba4441cfba0c8d8a2f7e74756369f3bba32cf61dea6",
+    "64061520c2cf75b07a82cce2a15e07d158c7e9c0338a8612acf655d5928c0737",
+    "671276da483830ac1ae2088c90d2f16f1de70c80cc62fb77119d2ad3fa2ad715",
+    "02eb96e927c844a6d6989026415eaf452ff25d054bfcb21721a9d31c3b3cb114",
+    "63c2dc3bddf6ce3e94e48a5f2788b07094c7dd11cb35fbb8cf09d374771e7ba5",
+    "7e7c6cc021be8c3ce445c33dea58bb86239f3deb4b6dbf44a5c871c0e2e47295",
+    "852accb23be34a7d8e54c7e85988734af2baef570caf9d58dd29b80f40bdc752",
+    "7c114647712eb42ca5a0cbf6f0fed7c7820e3905a61fe521008629acd655bcdc",
+    "8cf49492e4463083a3155bd04ab27bc49f37c065dbb30f43ebf6e6ae2165cb64",
+    "a59cbbc7f59c652280decbe2e684ae41d1345b97c9ee72b87f0e12e7763b3bb5",
+    "37206203cca58726cd7e8e91d76bb90b62fe9983ba87259c286536df1fc1fd7f",
+    "000fdb0b352b03b00c307c772867b3990cc17b27ad0d061bd5574cac19f16880"
   ]
 }

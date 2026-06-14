@@ -3,7 +3,9 @@ import { loadDb, saveDb, send, body, readQuery } from "./lib/helpers.js";
 import { handleCageRoutes } from "./routes/cageRoutes.js";
 import { handleFeedingRoutes } from "./routes/feedingRoutes.js";
 import { handleAnimalRoutes } from "./routes/animalRoutes.js";
+import { handleBreedingRoutes } from "./routes/breedingRoutes.js";
 import { ANIMAL_STATUS, ACTIVE_STOCK_STATUSES } from "./lib/animalValidator.js";
+import { PAIRING_STATUS, LITTER_STATUS } from "./lib/breedingValidator.js";
 
 const seed = {
   cages: [
@@ -95,6 +97,135 @@ const seed = {
       abnormalReason: "发热，食欲下降",
       abnormalHandler: "周遥",
       abnormalNotes: "疑似感染，待进一步检测"
+    },
+    {
+      id: "ani-2001",
+      strain: "C57BL/6J",
+      cageId: "A-02",
+      sex: "male",
+      birthDate: "2026-01-15",
+      project: "繁育种鼠",
+      keeper: "林青",
+      status: ANIMAL_STATUS.RELEASED,
+      observationNodes: [],
+      notes: [],
+      moves: [
+        { id: "move-2", from: "检疫区", to: "A-02", movedAt: "2026-04-20T09:30:00.000Z", reason: "检疫结束，作为种鼠使用" }
+      ],
+      quarantineRecords: [
+        { id: "qr-7", date: "2026-04-10", temperature: 36.9, weight: 23.5, condition: "正常", symptoms: [], isAbnormal: false, notes: "入检初查", examiner: "林青", createdAt: "2026-04-10T09:00:00.000Z" }
+      ],
+      enteredQuarantineAt: "2026-04-10T09:00:00.000Z",
+      quarantineReleasedAt: "2026-04-20T09:30:00.000Z",
+      quarantineApproval: { id: "qa-3", approvedAt: "2026-04-20T09:30:00.000Z", approver: "林青", targetCageId: "A-02", notes: "检疫合格，种鼠备用" }
+    },
+    {
+      id: "ani-2002",
+      strain: "C57BL/6J",
+      cageId: "A-02",
+      sex: "female",
+      birthDate: "2026-01-18",
+      project: "繁育种鼠",
+      keeper: "林青",
+      status: ANIMAL_STATUS.RELEASED,
+      observationNodes: [],
+      notes: [],
+      moves: [
+        { id: "move-3", from: "检疫区", to: "A-02", movedAt: "2026-04-22T10:00:00.000Z", reason: "检疫结束，作为种鼠使用" }
+      ],
+      quarantineRecords: [
+        { id: "qr-8", date: "2026-04-12", temperature: 36.8, weight: 19.2, condition: "正常", symptoms: [], isAbnormal: false, notes: "入检初查", examiner: "林青", createdAt: "2026-04-12T09:00:00.000Z" }
+      ],
+      enteredQuarantineAt: "2026-04-12T09:00:00.000Z",
+      quarantineReleasedAt: "2026-04-22T10:00:00.000Z",
+      quarantineApproval: { id: "qa-4", approvedAt: "2026-04-22T10:00:00.000Z", approver: "林青", targetCageId: "A-02", notes: "检疫合格，种鼠备用" }
+    },
+    {
+      id: "ani-2003",
+      strain: "BALB/c",
+      cageId: "B-04",
+      sex: "male",
+      birthDate: "2026-02-10",
+      project: "繁育种鼠",
+      keeper: "周遥",
+      status: ANIMAL_STATUS.RELEASED,
+      observationNodes: [],
+      notes: [],
+      moves: [],
+      quarantineRecords: [
+        { id: "qr-9", date: "2026-05-05", temperature: 37.0, weight: 24.0, condition: "正常", symptoms: [], isAbnormal: false, notes: "入检初查", examiner: "周遥", createdAt: "2026-05-05T10:00:00.000Z" }
+      ],
+      enteredQuarantineAt: "2026-05-05T10:00:00.000Z",
+      quarantineReleasedAt: "2026-05-15T10:00:00.000Z",
+      quarantineApproval: { id: "qa-5", approvedAt: "2026-05-15T10:00:00.000Z", approver: "周遥", targetCageId: "B-04", notes: "检疫合格" }
+    },
+    {
+      id: "ani-2004",
+      strain: "BALB/c",
+      cageId: "B-04",
+      sex: "female",
+      birthDate: "2026-02-15",
+      project: "繁育种鼠",
+      keeper: "周遥",
+      status: ANIMAL_STATUS.RELEASED,
+      observationNodes: [],
+      notes: [],
+      moves: [],
+      quarantineRecords: [
+        { id: "qr-10", date: "2026-05-08", temperature: 36.9, weight: 19.5, condition: "正常", symptoms: [], isAbnormal: false, notes: "入检初查", examiner: "周遥", createdAt: "2026-05-08T10:00:00.000Z" }
+      ],
+      enteredQuarantineAt: "2026-05-08T10:00:00.000Z",
+      quarantineReleasedAt: "2026-05-18T10:00:00.000Z",
+      quarantineApproval: { id: "qa-6", approvedAt: "2026-05-18T10:00:00.000Z", approver: "周遥", targetCageId: "B-04", notes: "检疫合格" }
+    }
+  ],
+  breedingPairs: [
+    {
+      id: "pair-demo-1",
+      cageId: "A-02",
+      maleId: "ani-2001",
+      femaleId: "ani-2002",
+      pairDate: "2026-05-20",
+      expectedDeliveryDate: "2026-06-10",
+      observationNodes: ["2026-05-27", "2026-06-03", "2026-06-08", "2026-06-10", "2026-06-13"],
+      status: PAIRING_STATUS.DELIVERED,
+      strain: "C57BL/6J",
+      keeper: "林青",
+      notes: "C57BL/6J 首对繁育，重点观察产仔情况",
+      createdAt: "2026-05-20T09:00:00.000Z",
+      statusUpdatedAt: "2026-06-10T08:30:00.000Z",
+      deliveredAt: "2026-06-10T08:30:00.000Z"
+    },
+    {
+      id: "pair-demo-2",
+      cageId: "B-04",
+      maleId: "ani-2003",
+      femaleId: "ani-2004",
+      pairDate: "2026-06-01",
+      expectedDeliveryDate: "2026-06-22",
+      observationNodes: ["2026-06-08", "2026-06-15", "2026-06-20", "2026-06-22", "2026-06-25"],
+      status: PAIRING_STATUS.PREGNANT,
+      strain: "BALB/c",
+      keeper: "周遥",
+      notes: "BALB/c 第二对繁育，合笼后观察到见栓",
+      createdAt: "2026-06-01T10:00:00.000Z",
+      statusUpdatedAt: "2026-06-08T14:00:00.000Z"
+    }
+  ],
+  breedingLitters: [
+    {
+      id: "litter-demo-1",
+      pairId: "pair-demo-1",
+      birthDate: "2026-06-10",
+      totalPups: 8,
+      malePups: 4,
+      femalePups: 3,
+      unknownSexPups: 1,
+      status: LITTER_STATUS.BORN,
+      cageId: "A-02",
+      keeper: "林青",
+      notes: "出生8只，状态良好，母性正常",
+      createdAt: "2026-06-10T08:30:00.000Z"
     }
   ],
   feedingPlans: [
@@ -255,6 +386,30 @@ function migrateDb(db) {
       animal.enteredQuarantineAt = null;
       migrated = true;
     }
+    if (!("fatherId" in animal)) {
+      animal.fatherId = null;
+      migrated = true;
+    }
+    if (!("motherId" in animal)) {
+      animal.motherId = null;
+      migrated = true;
+    }
+    if (!("litterId" in animal)) {
+      animal.litterId = null;
+      migrated = true;
+    }
+    if (!("breedingInfo" in animal)) {
+      animal.breedingInfo = null;
+      migrated = true;
+    }
+  }
+  if (!db.breedingPairs) {
+    db.breedingPairs = [];
+    migrated = true;
+  }
+  if (!db.breedingLitters) {
+    db.breedingLitters = [];
+    migrated = true;
   }
   if (migrated) {
     saveDb(db).catch(() => {});
@@ -305,7 +460,20 @@ const server = http.createServer(async (req, res) => {
           "POST /feeding/checkin",
           "GET /feeding/records?planId=&targetType=&targetId=&date=&keeper=&status=",
           "GET /feeding/records/:id",
-          "GET /feeding/history?days=&targetType=&targetId=&keeper="
+          "GET /feeding/history?days=&targetType=&targetId=&keeper=",
+          "GET /breeding/pairs?cageId=&maleId=&femaleId=&status=&strain=",
+          "POST /breeding/pairs",
+          "GET /breeding/pairs/:id",
+          "POST /breeding/pairs/:id/status",
+          "POST /breeding/pairs/:id/cancel",
+          "GET /breeding/litters?pairId=&status=",
+          "POST /breeding/litters",
+          "GET /breeding/litters/:id",
+          "POST /breeding/litters/:id/update",
+          "POST /breeding/litters/:id/wean",
+          "GET /breeding/stats",
+          "GET /breeding/genealogy/:animalId",
+          "GET /breeding/offspring/:parentId"
         ]
       });
     }
@@ -318,6 +486,9 @@ const server = http.createServer(async (req, res) => {
 
     const animalHandled = await handleAnimalRoutes(req, res, url, db);
     if (animalHandled) return;
+
+    const breedingHandled = await handleBreedingRoutes(req, res, url, db);
+    if (breedingHandled) return;
 
     if (req.method === "GET" && url.pathname === "/reports/stock") {
       const active = db.animals.filter((a) => ACTIVE_STOCK_STATUSES.includes(a.status));

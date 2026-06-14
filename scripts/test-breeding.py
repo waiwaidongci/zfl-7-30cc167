@@ -1,8 +1,18 @@
 #!/usr/bin/env python3
-import subprocess, json, sys
+import subprocess, json, sys, atexit
+from pathlib import Path
 
 passed = 0
 failed = 0
+
+db_path = Path(__file__).resolve().parents[1] / "data" / "lab.json"
+db_snapshot = db_path.read_bytes() if db_path.exists() else None
+
+def restore_db():
+    if db_snapshot is not None:
+        db_path.write_bytes(db_snapshot)
+
+atexit.register(restore_db)
 
 def curl_get(path):
     r = subprocess.run(["curl", "-s", f"http://localhost:3007{path}"], capture_output=True, text=True)

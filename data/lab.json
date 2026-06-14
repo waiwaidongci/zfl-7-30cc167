@@ -94,13 +94,6 @@
           "weight": 21.4,
           "condition": "正常进食",
           "keeper": "林青"
-        },
-        {
-          "id": "note-1781402020109-3ycxw",
-          "date": "2026-06-14",
-          "weight": 21.5,
-          "condition": "正常",
-          "keeper": "林青"
         }
       ],
       "moves": [
@@ -110,13 +103,6 @@
           "to": "A-01",
           "movedAt": "2026-05-01T09:30:00.000Z",
           "reason": "检疫结束"
-        },
-        {
-          "id": "move-1781402019976-dhupu",
-          "from": "A-01",
-          "to": "A-01",
-          "movedAt": "2026-06-14T01:53:39.976Z",
-          "reason": "繁育模块集成后移动测试"
         }
       ],
       "quarantineRecords": [
@@ -898,211 +884,6 @@
         "weanDate": "2026-06-10",
         "weaningWeight": 8.9
       }
-    },
-    {
-      "id": "ani-1781402018025-5h1ef",
-      "strain": "BALB/c",
-      "cageId": "D-03",
-      "sex": "male",
-      "birthDate": "2026-06-10",
-      "project": "BALB/c子代群",
-      "keeper": "周遥",
-      "status": "quarantine",
-      "observationNodes": [
-        "2026-07-08",
-        "2026-07-15",
-        "2026-07-22"
-      ],
-      "notes": [
-        {
-          "id": "note-1781402018025-6jvvq",
-          "date": "2026-07-01",
-          "weight": 9.5,
-          "condition": "断奶体重达标",
-          "keeper": "周遥",
-          "type": "weaning"
-        }
-      ],
-      "moves": [],
-      "quarantineRecords": [],
-      "enteredQuarantineAt": "2026-06-14T01:53:38.025Z",
-      "fatherId": "ani-2003",
-      "motherId": "ani-2004",
-      "litterId": "litter-demo-2",
-      "breedingInfo": {
-        "fatherId": "ani-2003",
-        "motherId": "ani-2004",
-        "litterId": "litter-demo-2",
-        "pairingId": "pair-demo-2",
-        "weanDate": "2026-07-01",
-        "weaningWeight": 9.5
-      },
-      "weanedAt": "2026-06-14T01:53:38.025Z",
-      "weaningWeight": 9.5
-    },
-    {
-      "id": "ani-1781402018025-2njtw",
-      "strain": "BALB/c",
-      "cageId": "D-03",
-      "sex": "male",
-      "birthDate": "2026-06-10",
-      "project": "BALB/c子代群",
-      "keeper": "周遥",
-      "status": "quarantine",
-      "observationNodes": [
-        "2026-07-08",
-        "2026-07-15",
-        "2026-07-22"
-      ],
-      "notes": [
-        {
-          "id": "note-1781402018025-ydwft",
-          "date": "2026-07-01",
-          "weight": 10.2,
-          "condition": "断奶体重达标",
-          "keeper": "周遥",
-          "type": "weaning"
-        }
-      ],
-      "moves": [],
-      "quarantineRecords": [],
-      "enteredQuarantineAt": "2026-06-14T01:53:38.025Z",
-      "fatherId": "ani-2003",
-      "motherId": "ani-2004",
-      "litterId": "litter-demo-2",
-      "breedingInfo": {
-        "fatherId": "ani-2003",
-        "motherId": "ani-2004",
-        "litterId": "litter-demo-2",
-        "pairingId": "pair-demo-2",
-        "weanDate": "2026-07-01",
-        "weaningWeight": 10.2
-      },
-      "weanedAt": "2026-06-14T01:53:38.025Z",
-      "weaningWeight": 10.2
-    },
-    {
-      "id": "ani-1781402018025-8imgk",
-      "strain": "BALB/c",
-      "cageId": "D-03",
-      "sex": "male",
-      "birthDate": "2026-06-10",
-      "project": "BALB/c子代群",
-      "keeper": "周遥",
-      "status": "quarantine",
-      "observationNodes": [
-        "2026-07-08",
-        "2026-07-15",
-        "2026-07-22"
-      ],
-      "notes": [
-        {
-          "id": "note-1781402018025-2ox5u",
-          "date": "2026-07-01",
-          "weight": 8.8,
-          "condition": "断奶体重达标",
-          "keeper": "周遥",
-          "type": "weaning"
-        }
-      ],
-      "moves": [],
-      "quarantineRecords": [],
-      "enteredQuarantineAt": "2026-06-14T01:53:38.025Z",
-      "fatherId": "ani-2003",
-      "motherId": "ani-2004",
-      "litterId": "litter-demo-2",
-      "breedingInfo": {
-        "fatherId": "ani-2003",
-        "motherId": "ani-2004",
-        "litterId": "litter-demo-2",
-        "pairingId": "pair-demo-2",
-        "weanDate": "2026-07-01",
-        "weaningWeight": 8.8
-      },
-      "weanedAt": "2026-06-14T01:53:38.025Z",
-      "weaningWeight": 8.8
-    },
-    {
-      "id": "ani-1781402018025-p6tqg",
-      "strain": "BALB/c",
-      "cageId": "D-04",
-      "sex": "female",
-      "birthDate": "2026-06-10",
-      "project": "BALB/c子代群",
-      "keeper": "周遥",
-      "status": "quarantine",
-      "observationNodes": [
-        "2026-07-08",
-        "2026-07-15",
-        "2026-07-22"
-      ],
-      "notes": [
-        {
-          "id": "note-1781402018025-za9i1",
-          "date": "2026-07-01",
-          "weight": null,
-          "condition": "状态良好",
-          "keeper": "周遥",
-          "type": "weaning"
-        }
-      ],
-      "moves": [],
-      "quarantineRecords": [],
-      "enteredQuarantineAt": "2026-06-14T01:53:38.025Z",
-      "fatherId": "ani-2003",
-      "motherId": "ani-2004",
-      "litterId": "litter-demo-2",
-      "breedingInfo": {
-        "fatherId": "ani-2003",
-        "motherId": "ani-2004",
-        "litterId": "litter-demo-2",
-        "pairingId": "pair-demo-2",
-        "weanDate": "2026-07-01",
-        "weaningWeight": null
-      },
-      "weanedAt": "2026-06-14T01:53:38.025Z",
-      "weaningWeight": null
-    },
-    {
-      "id": "ani-1781402018025-7sbdn",
-      "strain": "BALB/c",
-      "cageId": "D-04",
-      "sex": "female",
-      "birthDate": "2026-06-10",
-      "project": "BALB/c子代群",
-      "keeper": "周遥",
-      "status": "quarantine",
-      "observationNodes": [
-        "2026-07-08",
-        "2026-07-15",
-        "2026-07-22"
-      ],
-      "notes": [
-        {
-          "id": "note-1781402018025-c4x4z",
-          "date": "2026-07-01",
-          "weight": null,
-          "condition": "状态良好",
-          "keeper": "周遥",
-          "type": "weaning"
-        }
-      ],
-      "moves": [],
-      "quarantineRecords": [],
-      "enteredQuarantineAt": "2026-06-14T01:53:38.025Z",
-      "fatherId": "ani-2003",
-      "motherId": "ani-2004",
-      "litterId": "litter-demo-2",
-      "breedingInfo": {
-        "fatherId": "ani-2003",
-        "motherId": "ani-2004",
-        "litterId": "litter-demo-2",
-        "pairingId": "pair-demo-2",
-        "weanDate": "2026-07-01",
-        "weaningWeight": null
-      },
-      "weanedAt": "2026-06-14T01:53:38.025Z",
-      "weaningWeight": null
     }
   ],
   "breedingPairs": [
@@ -1143,14 +924,13 @@
         "2026-06-10",
         "2026-06-13"
       ],
-      "status": "weaned",
+      "status": "delivered",
       "strain": "BALB/c",
       "keeper": "周遥",
       "notes": "BALB/c 繁育，已产仔待断奶",
       "createdAt": "2026-05-20T10:00:00.000Z",
       "statusUpdatedAt": "2026-06-10T08:00:00.000Z",
-      "deliveredAt": "2026-06-10T08:00:00.000Z",
-      "weanedAt": "2026-06-14T01:53:38.025Z"
+      "deliveredAt": "2026-06-10T08:00:00.000Z"
     },
     {
       "id": "pair-demo-3",
@@ -1172,8 +952,8 @@
       "notes": "合笼后未见栓，取消配对",
       "createdAt": "2026-06-01T09:00:00.000Z",
       "statusUpdatedAt": "2026-06-08T14:00:00.000Z",
-      "cancelledAt": "2026-06-14T01:58:23.730Z",
-      "cancelReason": "再次确认取消"
+      "cancelledAt": "2026-06-08T14:00:00.000Z",
+      "cancelReason": "合笼7天未见阴道栓，判断未受孕，取消配对"
     }
   ],
   "breedingLitters": [
@@ -1218,30 +998,11 @@
       "malePups": 3,
       "femalePups": 2,
       "unknownSexPups": 1,
-      "status": "weaned",
+      "status": "born",
       "cageId": "B-04",
       "keeper": "周遥",
       "notes": "出生6只，母性良好，待21天后断奶",
-      "createdAt": "2026-06-10T08:00:00.000Z",
-      "weanDate": "2026-07-01",
-      "weanedAt": "2026-06-14T01:53:38.025Z",
-      "weanedCount": 5,
-      "weaningPlan": [
-        {
-          "sex": "male",
-          "count": 3,
-          "cageId": "D-03",
-          "project": "BALB/c子代群",
-          "keeper": "周遥"
-        },
-        {
-          "sex": "female",
-          "count": 2,
-          "cageId": "D-04",
-          "project": "BALB/c子代群",
-          "keeper": "周遥"
-        }
-      ]
+      "createdAt": "2026-06-10T08:00:00.000Z"
     }
   ],
   "feedingPlans": [

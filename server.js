@@ -13,7 +13,11 @@ const seed = {
     { id: "A-02", area: "SPF区", rack: "A", capacity: 5, status: "active", createdAt: "2026-05-01T00:00:00.000Z" },
     { id: "B-03", area: "普通区", rack: "B", capacity: 5, status: "active", createdAt: "2026-05-01T00:00:00.000Z" },
     { id: "B-04", area: "普通区", rack: "B", capacity: 5, status: "active", createdAt: "2026-05-01T00:00:00.000Z" },
-    { id: "C-01", area: "检疫区", rack: "C", capacity: 3, status: "active", createdAt: "2026-05-01T00:00:00.000Z" }
+    { id: "C-01", area: "检疫区", rack: "C", capacity: 3, status: "active", createdAt: "2026-05-01T00:00:00.000Z" },
+    { id: "D-01", area: "繁育区", rack: "D", capacity: 5, status: "active", createdAt: "2026-05-01T00:00:00.000Z" },
+    { id: "D-02", area: "繁育区", rack: "D", capacity: 5, status: "active", createdAt: "2026-05-01T00:00:00.000Z" },
+    { id: "D-03", area: "繁育区", rack: "D", capacity: 5, status: "active", createdAt: "2026-05-01T00:00:00.000Z" },
+    { id: "D-04", area: "繁育区", rack: "D", capacity: 5, status: "active", createdAt: "2026-05-01T00:00:00.000Z" }
   ],
   animals: [
     {
@@ -38,7 +42,11 @@ const seed = {
       ],
       enteredQuarantineAt: "2026-04-20T09:00:00.000Z",
       quarantineReleasedAt: "2026-05-01T09:30:00.000Z",
-      quarantineApproval: { id: "qa-1", approvedAt: "2026-05-01T09:30:00.000Z", approver: "林青", targetCageId: "A-01", notes: "检疫合格放行" }
+      quarantineApproval: { id: "qa-1", approvedAt: "2026-05-01T09:30:00.000Z", approver: "林青", targetCageId: "A-01", notes: "检疫合格放行" },
+      fatherId: null,
+      motherId: null,
+      litterId: null,
+      breedingInfo: null
     },
     {
       id: "ani-1002",
@@ -57,7 +65,11 @@ const seed = {
       ],
       enteredQuarantineAt: "2026-05-10T10:00:00.000Z",
       quarantineReleasedAt: "2026-05-17T10:00:00.000Z",
-      quarantineApproval: { id: "qa-2", approvedAt: "2026-05-17T10:00:00.000Z", approver: "周遥", targetCageId: "B-03", notes: "检疫合格" }
+      quarantineApproval: { id: "qa-2", approvedAt: "2026-05-17T10:00:00.000Z", approver: "周遥", targetCageId: "B-03", notes: "检疫合格" },
+      fatherId: null,
+      motherId: null,
+      litterId: null,
+      breedingInfo: null
     },
     {
       id: "ani-1003",
@@ -74,7 +86,11 @@ const seed = {
       quarantineRecords: [
         { id: "qr-4", date: "2026-06-10", temperature: 36.7, weight: 16.5, condition: "正常", symptoms: [], isAbnormal: false, notes: "入检初查，状态良好", examiner: "林青", createdAt: "2026-06-10T14:00:00.000Z" }
       ],
-      enteredQuarantineAt: "2026-06-10T14:00:00.000Z"
+      enteredQuarantineAt: "2026-06-10T14:00:00.000Z",
+      fatherId: null,
+      motherId: null,
+      litterId: null,
+      breedingInfo: null
     },
     {
       id: "ani-1004",
@@ -96,7 +112,11 @@ const seed = {
       abnormalMarkedAt: "2026-06-13T09:00:00.000Z",
       abnormalReason: "发热，食欲下降",
       abnormalHandler: "周遥",
-      abnormalNotes: "疑似感染，待进一步检测"
+      abnormalNotes: "疑似感染，待进一步检测",
+      fatherId: null,
+      motherId: null,
+      litterId: null,
+      breedingInfo: null
     },
     {
       id: "ani-2001",
@@ -117,7 +137,11 @@ const seed = {
       ],
       enteredQuarantineAt: "2026-04-10T09:00:00.000Z",
       quarantineReleasedAt: "2026-04-20T09:30:00.000Z",
-      quarantineApproval: { id: "qa-3", approvedAt: "2026-04-20T09:30:00.000Z", approver: "林青", targetCageId: "A-02", notes: "检疫合格，种鼠备用" }
+      quarantineApproval: { id: "qa-3", approvedAt: "2026-04-20T09:30:00.000Z", approver: "林青", targetCageId: "A-02", notes: "检疫合格，种鼠备用" },
+      fatherId: null,
+      motherId: null,
+      litterId: null,
+      breedingInfo: null
     },
     {
       id: "ani-2002",
@@ -138,7 +162,11 @@ const seed = {
       ],
       enteredQuarantineAt: "2026-04-12T09:00:00.000Z",
       quarantineReleasedAt: "2026-04-22T10:00:00.000Z",
-      quarantineApproval: { id: "qa-4", approvedAt: "2026-04-22T10:00:00.000Z", approver: "林青", targetCageId: "A-02", notes: "检疫合格，种鼠备用" }
+      quarantineApproval: { id: "qa-4", approvedAt: "2026-04-22T10:00:00.000Z", approver: "林青", targetCageId: "A-02", notes: "检疫合格，种鼠备用" },
+      fatherId: null,
+      motherId: null,
+      litterId: null,
+      breedingInfo: null
     },
     {
       id: "ani-2003",
@@ -157,7 +185,11 @@ const seed = {
       ],
       enteredQuarantineAt: "2026-05-05T10:00:00.000Z",
       quarantineReleasedAt: "2026-05-15T10:00:00.000Z",
-      quarantineApproval: { id: "qa-5", approvedAt: "2026-05-15T10:00:00.000Z", approver: "周遥", targetCageId: "B-04", notes: "检疫合格" }
+      quarantineApproval: { id: "qa-5", approvedAt: "2026-05-15T10:00:00.000Z", approver: "周遥", targetCageId: "B-04", notes: "检疫合格" },
+      fatherId: null,
+      motherId: null,
+      litterId: null,
+      breedingInfo: null
     },
     {
       id: "ani-2004",
@@ -176,7 +208,285 @@ const seed = {
       ],
       enteredQuarantineAt: "2026-05-08T10:00:00.000Z",
       quarantineReleasedAt: "2026-05-18T10:00:00.000Z",
-      quarantineApproval: { id: "qa-6", approvedAt: "2026-05-18T10:00:00.000Z", approver: "周遥", targetCageId: "B-04", notes: "检疫合格" }
+      quarantineApproval: { id: "qa-6", approvedAt: "2026-05-18T10:00:00.000Z", approver: "周遥", targetCageId: "B-04", notes: "检疫合格" },
+      fatherId: null,
+      motherId: null,
+      litterId: null,
+      breedingInfo: null
+    },
+    {
+      id: "ani-2005",
+      strain: "C57BL/6J",
+      cageId: "A-02",
+      sex: "male",
+      birthDate: "2026-03-01",
+      project: "繁育种鼠",
+      keeper: "林青",
+      status: ANIMAL_STATUS.RELEASED,
+      observationNodes: [],
+      notes: [],
+      moves: [
+        { id: "move-4", from: "检疫区", to: "A-02", movedAt: "2026-05-25T09:00:00.000Z", reason: "检疫合格，种鼠备用" }
+      ],
+      quarantineRecords: [
+        { id: "qr-11", date: "2026-05-15", temperature: 36.8, weight: 22.0, condition: "正常", symptoms: [], isAbnormal: false, notes: "入检初查", examiner: "林青", createdAt: "2026-05-15T09:00:00.000Z" }
+      ],
+      enteredQuarantineAt: "2026-05-15T09:00:00.000Z",
+      quarantineReleasedAt: "2026-05-25T09:00:00.000Z",
+      quarantineApproval: { id: "qa-7", approvedAt: "2026-05-25T09:00:00.000Z", approver: "林青", targetCageId: "A-02", notes: "检疫合格" },
+      fatherId: null,
+      motherId: null,
+      litterId: null,
+      breedingInfo: null
+    },
+    {
+      id: "ani-2006",
+      strain: "C57BL/6J",
+      cageId: "A-02",
+      sex: "female",
+      birthDate: "2026-03-05",
+      project: "繁育种鼠",
+      keeper: "林青",
+      status: ANIMAL_STATUS.RELEASED,
+      observationNodes: [],
+      notes: [],
+      moves: [
+        { id: "move-5", from: "检疫区", to: "A-02", movedAt: "2026-05-28T09:00:00.000Z", reason: "检疫合格，种鼠备用" }
+      ],
+      quarantineRecords: [
+        { id: "qr-12", date: "2026-05-18", temperature: 36.9, weight: 18.8, condition: "正常", symptoms: [], isAbnormal: false, notes: "入检初查", examiner: "林青", createdAt: "2026-05-18T09:00:00.000Z" }
+      ],
+      enteredQuarantineAt: "2026-05-18T09:00:00.000Z",
+      quarantineReleasedAt: "2026-05-28T09:00:00.000Z",
+      quarantineApproval: { id: "qa-8", approvedAt: "2026-05-28T09:00:00.000Z", approver: "林青", targetCageId: "A-02", notes: "检疫合格" },
+      fatherId: null,
+      motherId: null,
+      litterId: null,
+      breedingInfo: null
+    },
+    {
+      id: "ani-3001",
+      strain: "C57BL/6J",
+      cageId: "D-01",
+      sex: "male",
+      birthDate: "2026-05-20",
+      project: "子代繁育群",
+      keeper: "林青",
+      status: ANIMAL_STATUS.QUARANTINE,
+      observationNodes: ["2026-07-08", "2026-07-15", "2026-07-22"],
+      notes: [
+        { id: "note-w1", date: "2026-06-10", weight: 9.2, condition: "断奶分笼", keeper: "林青", type: "weaning" }
+      ],
+      moves: [
+        { id: "move-w1", from: "A-02", to: "D-01", movedAt: "2026-06-10T10:00:00.000Z", reason: "断奶分笼" }
+      ],
+      quarantineRecords: [],
+      enteredQuarantineAt: "2026-06-10T10:00:00.000Z",
+      weanedAt: "2026-06-10T10:00:00.000Z",
+      weaningWeight: 9.2,
+      fatherId: "ani-2001",
+      motherId: "ani-2002",
+      litterId: "litter-demo-1",
+      breedingInfo: {
+        fatherId: "ani-2001",
+        motherId: "ani-2002",
+        litterId: "litter-demo-1",
+        pairingId: "pair-demo-1",
+        weanDate: "2026-06-10",
+        weaningWeight: 9.2
+      }
+    },
+    {
+      id: "ani-3002",
+      strain: "C57BL/6J",
+      cageId: "D-01",
+      sex: "male",
+      birthDate: "2026-05-20",
+      project: "子代繁育群",
+      keeper: "林青",
+      status: ANIMAL_STATUS.QUARANTINE,
+      observationNodes: ["2026-07-08", "2026-07-15", "2026-07-22"],
+      notes: [
+        { id: "note-w2", date: "2026-06-10", weight: 9.8, condition: "断奶分笼", keeper: "林青", type: "weaning" }
+      ],
+      moves: [
+        { id: "move-w2", from: "A-02", to: "D-01", movedAt: "2026-06-10T10:00:00.000Z", reason: "断奶分笼" }
+      ],
+      quarantineRecords: [],
+      enteredQuarantineAt: "2026-06-10T10:00:00.000Z",
+      weanedAt: "2026-06-10T10:00:00.000Z",
+      weaningWeight: 9.8,
+      fatherId: "ani-2001",
+      motherId: "ani-2002",
+      litterId: "litter-demo-1",
+      breedingInfo: {
+        fatherId: "ani-2001",
+        motherId: "ani-2002",
+        litterId: "litter-demo-1",
+        pairingId: "pair-demo-1",
+        weanDate: "2026-06-10",
+        weaningWeight: 9.8
+      }
+    },
+    {
+      id: "ani-3003",
+      strain: "C57BL/6J",
+      cageId: "D-01",
+      sex: "male",
+      birthDate: "2026-05-20",
+      project: "子代繁育群",
+      keeper: "林青",
+      status: ANIMAL_STATUS.QUARANTINE,
+      observationNodes: ["2026-07-08", "2026-07-15", "2026-07-22"],
+      notes: [
+        { id: "note-w3", date: "2026-06-10", weight: 8.7, condition: "断奶分笼", keeper: "林青", type: "weaning" }
+      ],
+      moves: [
+        { id: "move-w3", from: "A-02", to: "D-01", movedAt: "2026-06-10T10:00:00.000Z", reason: "断奶分笼" }
+      ],
+      quarantineRecords: [],
+      enteredQuarantineAt: "2026-06-10T10:00:00.000Z",
+      weanedAt: "2026-06-10T10:00:00.000Z",
+      weaningWeight: 8.7,
+      fatherId: "ani-2001",
+      motherId: "ani-2002",
+      litterId: "litter-demo-1",
+      breedingInfo: {
+        fatherId: "ani-2001",
+        motherId: "ani-2002",
+        litterId: "litter-demo-1",
+        pairingId: "pair-demo-1",
+        weanDate: "2026-06-10",
+        weaningWeight: 8.7
+      }
+    },
+    {
+      id: "ani-3004",
+      strain: "C57BL/6J",
+      cageId: "D-01",
+      sex: "male",
+      birthDate: "2026-05-20",
+      project: "子代繁育群",
+      keeper: "林青",
+      status: ANIMAL_STATUS.QUARANTINE,
+      observationNodes: ["2026-07-08", "2026-07-15", "2026-07-22"],
+      notes: [
+        { id: "note-w4", date: "2026-06-10", weight: 10.1, condition: "断奶分笼", keeper: "林青", type: "weaning" }
+      ],
+      moves: [
+        { id: "move-w4", from: "A-02", to: "D-01", movedAt: "2026-06-10T10:00:00.000Z", reason: "断奶分笼" }
+      ],
+      quarantineRecords: [],
+      enteredQuarantineAt: "2026-06-10T10:00:00.000Z",
+      weanedAt: "2026-06-10T10:00:00.000Z",
+      weaningWeight: 10.1,
+      fatherId: "ani-2001",
+      motherId: "ani-2002",
+      litterId: "litter-demo-1",
+      breedingInfo: {
+        fatherId: "ani-2001",
+        motherId: "ani-2002",
+        litterId: "litter-demo-1",
+        pairingId: "pair-demo-1",
+        weanDate: "2026-06-10",
+        weaningWeight: 10.1
+      }
+    },
+    {
+      id: "ani-3005",
+      strain: "C57BL/6J",
+      cageId: "D-02",
+      sex: "female",
+      birthDate: "2026-05-20",
+      project: "子代繁育群",
+      keeper: "林青",
+      status: ANIMAL_STATUS.QUARANTINE,
+      observationNodes: ["2026-07-08", "2026-07-15", "2026-07-22"],
+      notes: [
+        { id: "note-w5", date: "2026-06-10", weight: 8.5, condition: "断奶分笼", keeper: "林青", type: "weaning" }
+      ],
+      moves: [
+        { id: "move-w5", from: "A-02", to: "D-02", movedAt: "2026-06-10T10:00:00.000Z", reason: "断奶分笼" }
+      ],
+      quarantineRecords: [],
+      enteredQuarantineAt: "2026-06-10T10:00:00.000Z",
+      weanedAt: "2026-06-10T10:00:00.000Z",
+      weaningWeight: 8.5,
+      fatherId: "ani-2001",
+      motherId: "ani-2002",
+      litterId: "litter-demo-1",
+      breedingInfo: {
+        fatherId: "ani-2001",
+        motherId: "ani-2002",
+        litterId: "litter-demo-1",
+        pairingId: "pair-demo-1",
+        weanDate: "2026-06-10",
+        weaningWeight: 8.5
+      }
+    },
+    {
+      id: "ani-3006",
+      strain: "C57BL/6J",
+      cageId: "D-02",
+      sex: "female",
+      birthDate: "2026-05-20",
+      project: "子代繁育群",
+      keeper: "林青",
+      status: ANIMAL_STATUS.QUARANTINE,
+      observationNodes: ["2026-07-08", "2026-07-15", "2026-07-22"],
+      notes: [
+        { id: "note-w6", date: "2026-06-10", weight: 9.0, condition: "断奶分笼", keeper: "林青", type: "weaning" }
+      ],
+      moves: [
+        { id: "move-w6", from: "A-02", to: "D-02", movedAt: "2026-06-10T10:00:00.000Z", reason: "断奶分笼" }
+      ],
+      quarantineRecords: [],
+      enteredQuarantineAt: "2026-06-10T10:00:00.000Z",
+      weanedAt: "2026-06-10T10:00:00.000Z",
+      weaningWeight: 9.0,
+      fatherId: "ani-2001",
+      motherId: "ani-2002",
+      litterId: "litter-demo-1",
+      breedingInfo: {
+        fatherId: "ani-2001",
+        motherId: "ani-2002",
+        litterId: "litter-demo-1",
+        pairingId: "pair-demo-1",
+        weanDate: "2026-06-10",
+        weaningWeight: 9.0
+      }
+    },
+    {
+      id: "ani-3007",
+      strain: "C57BL/6J",
+      cageId: "D-02",
+      sex: "female",
+      birthDate: "2026-05-20",
+      project: "子代繁育群",
+      keeper: "林青",
+      status: ANIMAL_STATUS.QUARANTINE,
+      observationNodes: ["2026-07-08", "2026-07-15", "2026-07-22"],
+      notes: [
+        { id: "note-w7", date: "2026-06-10", weight: 8.9, condition: "断奶分笼", keeper: "林青", type: "weaning" }
+      ],
+      moves: [
+        { id: "move-w7", from: "A-02", to: "D-02", movedAt: "2026-06-10T10:00:00.000Z", reason: "断奶分笼" }
+      ],
+      quarantineRecords: [],
+      enteredQuarantineAt: "2026-06-10T10:00:00.000Z",
+      weanedAt: "2026-06-10T10:00:00.000Z",
+      weaningWeight: 8.9,
+      fatherId: "ani-2001",
+      motherId: "ani-2002",
+      litterId: "litter-demo-1",
+      breedingInfo: {
+        fatherId: "ani-2001",
+        motherId: "ani-2002",
+        litterId: "litter-demo-1",
+        pairingId: "pair-demo-1",
+        weanDate: "2026-06-10",
+        weaningWeight: 8.9
+      }
     }
   ],
   breedingPairs: [
@@ -185,47 +495,87 @@ const seed = {
       cageId: "A-02",
       maleId: "ani-2001",
       femaleId: "ani-2002",
-      pairDate: "2026-05-20",
-      expectedDeliveryDate: "2026-06-10",
-      observationNodes: ["2026-05-27", "2026-06-03", "2026-06-08", "2026-06-10", "2026-06-13"],
-      status: PAIRING_STATUS.DELIVERED,
+      pairDate: "2026-04-28",
+      expectedDeliveryDate: "2026-05-19",
+      observationNodes: ["2026-05-05", "2026-05-12", "2026-05-17", "2026-05-19", "2026-05-22"],
+      status: PAIRING_STATUS.WEANED,
       strain: "C57BL/6J",
       keeper: "林青",
-      notes: "C57BL/6J 首对繁育，重点观察产仔情况",
-      createdAt: "2026-05-20T09:00:00.000Z",
-      statusUpdatedAt: "2026-06-10T08:30:00.000Z",
-      deliveredAt: "2026-06-10T08:30:00.000Z"
+      notes: "C57BL/6J 首对繁育，已断奶完成，7/8存活",
+      createdAt: "2026-04-28T09:00:00.000Z",
+      statusUpdatedAt: "2026-06-10T10:00:00.000Z",
+      deliveredAt: "2026-05-20T08:30:00.000Z",
+      weanedAt: "2026-06-10T10:00:00.000Z"
     },
     {
       id: "pair-demo-2",
       cageId: "B-04",
       maleId: "ani-2003",
       femaleId: "ani-2004",
+      pairDate: "2026-05-20",
+      expectedDeliveryDate: "2026-06-10",
+      observationNodes: ["2026-05-27", "2026-06-03", "2026-06-08", "2026-06-10", "2026-06-13"],
+      status: PAIRING_STATUS.DELIVERED,
+      strain: "BALB/c",
+      keeper: "周遥",
+      notes: "BALB/c 繁育，已产仔待断奶",
+      createdAt: "2026-05-20T10:00:00.000Z",
+      statusUpdatedAt: "2026-06-10T08:00:00.000Z",
+      deliveredAt: "2026-06-10T08:00:00.000Z"
+    },
+    {
+      id: "pair-demo-3",
+      cageId: "A-02",
+      maleId: "ani-2005",
+      femaleId: "ani-2006",
       pairDate: "2026-06-01",
       expectedDeliveryDate: "2026-06-22",
       observationNodes: ["2026-06-08", "2026-06-15", "2026-06-20", "2026-06-22", "2026-06-25"],
-      status: PAIRING_STATUS.PREGNANT,
-      strain: "BALB/c",
-      keeper: "周遥",
-      notes: "BALB/c 第二对繁育，合笼后观察到见栓",
-      createdAt: "2026-06-01T10:00:00.000Z",
-      statusUpdatedAt: "2026-06-08T14:00:00.000Z"
+      status: PAIRING_STATUS.CANCELLED,
+      strain: "C57BL/6J",
+      keeper: "林青",
+      notes: "合笼后未见栓，取消配对",
+      createdAt: "2026-06-01T09:00:00.000Z",
+      statusUpdatedAt: "2026-06-08T14:00:00.000Z",
+      cancelledAt: "2026-06-08T14:00:00.000Z",
+      cancelReason: "合笼7天未见阴道栓，判断未受孕，取消配对"
     }
   ],
   breedingLitters: [
     {
       id: "litter-demo-1",
       pairId: "pair-demo-1",
-      birthDate: "2026-06-10",
+      birthDate: "2026-05-20",
       totalPups: 8,
       malePups: 4,
-      femalePups: 3,
-      unknownSexPups: 1,
-      status: LITTER_STATUS.BORN,
+      femalePups: 4,
+      unknownSexPups: 0,
+      status: LITTER_STATUS.WEANED,
       cageId: "A-02",
       keeper: "林青",
-      notes: "出生8只，状态良好，母性正常",
-      createdAt: "2026-06-10T08:30:00.000Z"
+      notes: "出生8只全部存活，21天断奶7只（1只弱仔淘汰）",
+      weanDate: "2026-06-10",
+      weanedAt: "2026-06-10T10:00:00.000Z",
+      weanedCount: 7,
+      weaningPlan: [
+        { sex: "male", count: 4, cageId: "D-01", project: "子代繁育群", keeper: "林青" },
+        { sex: "female", count: 3, cageId: "D-02", project: "子代繁育群", keeper: "林青" }
+      ],
+      createdAt: "2026-05-20T08:30:00.000Z"
+    },
+    {
+      id: "litter-demo-2",
+      pairId: "pair-demo-2",
+      birthDate: "2026-06-10",
+      totalPups: 6,
+      malePups: 3,
+      femalePups: 2,
+      unknownSexPups: 1,
+      status: LITTER_STATUS.BORN,
+      cageId: "B-04",
+      keeper: "周遥",
+      notes: "出生6只，母性良好，待21天后断奶",
+      createdAt: "2026-06-10T08:00:00.000Z"
     }
   ],
   feedingPlans: [

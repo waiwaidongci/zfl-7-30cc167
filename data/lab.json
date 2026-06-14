@@ -78,7 +78,7 @@
       "rack": "T",
       "capacity": 5,
       "status": "active",
-      "createdAt": "2026-06-14T05:55:20.021Z"
+      "createdAt": "2026-06-14T07:20:56.782Z"
     }
   ],
   "animals": [
@@ -1012,7 +1012,7 @@
       }
     },
     {
-      "id": "ani-1781416520023-xf7ac",
+      "id": "ani-1781421656784-93drv",
       "strain": "C57BL/6J",
       "cageId": "C-01",
       "sex": "female",
@@ -1024,7 +1024,7 @@
       "notes": [],
       "moves": [],
       "quarantineRecords": [],
-      "enteredQuarantineAt": "2026-06-14T05:55:20.023Z",
+      "enteredQuarantineAt": "2026-06-14T07:20:56.784Z",
       "fatherId": null,
       "motherId": null,
       "litterId": null,
@@ -1560,7 +1560,7 @@
       ]
     },
     {
-      "id": "hev-1781416520014-ogpcv",
+      "id": "hev-1781421656775-tw7ht",
       "animalId": "ani-1001",
       "project": "代谢观察",
       "keeper": "林青",
@@ -1584,8 +1584,8 @@
       "assignee": null,
       "status": "pending",
       "notes": [],
-      "createdAt": "2026-06-14T05:55:20.014Z",
-      "updatedAt": "2026-06-14T05:55:20.014Z",
+      "createdAt": "2026-06-14T07:20:56.775Z",
+      "updatedAt": "2026-06-14T07:20:56.775Z",
       "assignedAt": null,
       "inProgressAt": null,
       "closedAt": null,

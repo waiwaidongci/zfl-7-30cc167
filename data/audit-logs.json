@@ -2,7 +2,7 @@
   "logs": [
     {
       "id": "audit-1",
-      "timestamp": "2026-06-14T05:55:20.019Z",
+      "timestamp": "2026-06-14T07:20:56.780Z",
       "operation": "animal.create",
       "operator": {
         "key": "readonly-key-demo-001",
@@ -29,7 +29,7 @@
     },
     {
       "id": "audit-2",
-      "timestamp": "2026-06-14T05:55:20.020Z",
+      "timestamp": "2026-06-14T07:20:56.781Z",
       "operation": "cage.create",
       "operator": {
         "key": "keeper-key-demo-001",
@@ -56,7 +56,7 @@
     },
     {
       "id": "audit-3",
-      "timestamp": "2026-06-14T05:55:20.022Z",
+      "timestamp": "2026-06-14T07:20:56.783Z",
       "operation": "cage.create",
       "operator": {
         "key": "admin-key-demo-001",
@@ -84,14 +84,14 @@
           "rack": "T",
           "capacity": 5,
           "status": "active",
-          "createdAt": "2026-06-14T05:55:20.021Z"
+          "createdAt": "2026-06-14T07:20:56.782Z"
         }
       },
       "animalIds": []
     },
     {
       "id": "audit-4",
-      "timestamp": "2026-06-14T05:55:20.024Z",
+      "timestamp": "2026-06-14T07:20:56.785Z",
       "operation": "animal.create",
       "operator": {
         "key": "keeper-key-demo-001",
@@ -116,7 +116,7 @@
       "response": {
         "status": 201,
         "body": {
-          "id": "ani-1781416520023-xf7ac",
+          "id": "ani-1781421656784-93drv",
           "strain": "C57BL/6J",
           "cageId": "C-01",
           "sex": "female",
@@ -128,7 +128,7 @@
           "notes": [],
           "moves": [],
           "quarantineRecords": [],
-          "enteredQuarantineAt": "2026-06-14T05:55:20.023Z",
+          "enteredQuarantineAt": "2026-06-14T07:20:56.784Z",
           "fatherId": null,
           "motherId": null,
           "litterId": null,
@@ -136,63 +136,9 @@
         }
       },
       "animalIds": [
-        "ani-1781416520023-xf7ac"
+        "ani-1781421656784-93drv"
       ]
-    },
-    {
-      "id": "audit-5",
-      "timestamp": "2026-06-14T06:22:08.986Z",
-      "operation": "animal.create",
-      "operator": {
-        "key": "readonly-key-demo-001",
-        "role": "readonly",
-        "name": "只读用户-审计员"
-      },
-      "request": {
-        "method": "POST",
-        "pathname": "/animals",
-        "query": {},
-        "body": {},
-        "ip": "::1",
-        "userAgent": "node"
-      },
-      "response": {
-        "status": 403,
-        "body": {
-          "error": "insufficient_permission",
-          "message": "角色 readonly 无权执行 write 操作 POST /animals",
-          "requiredRole": "keeper"
-        }
-      },
-      "animalIds": []
-    },
-    {
-      "id": "audit-6",
-      "timestamp": "2026-06-14T06:22:08.989Z",
-      "operation": "cage.create",
-      "operator": {
-        "key": "keeper-key-demo-001",
-        "role": "keeper",
-        "name": "饲养员-林青"
-      },
-      "request": {
-        "method": "POST",
-        "pathname": "/cages",
-        "query": {},
-        "body": {},
-        "ip": "::1",
-        "userAgent": "node"
-      },
-      "response": {
-        "status": 403,
-        "body": {
-          "error": "insufficient_permission",
-          "message": "角色 keeper 无权执行 admin 操作 POST /cages",
-          "requiredRole": "admin"
-        }
-      },
-      "animalIds": []
     }
   ],
-  "nextId": 7
+  "nextId": 5
 }

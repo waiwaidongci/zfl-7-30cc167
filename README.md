@@ -1087,7 +1087,7 @@ Request → 数据库初始化
 node scripts/test-auth-audit.js
 ```
 
-覆盖 8 项最小验证：
+覆盖 12 项最小验证：
 1. 无 Key → 401
 2. 无效 Key → 401
 3. readonly 写动物 → 403
@@ -1096,6 +1096,10 @@ node scripts/test-auth-audit.js
 6. keeper 动物建档 → 201 + 自动关联 animalId
 7. 按动物 ID 查询审计日志 → 命中
 8. 按操作者 Key 查询审计日志 → 命中
+9. readonly 访问 /audit/stats → 403
+10. keeper 访问 /audit/stats → 403
+11. admin 访问 /audit/stats → 200（含 total 字段）
+12. keeper 访问 /audit/operations → 403；admin 访问 /audit/operations → 200（含 operations 枚举）
 
 启动时自动清理 `data/lab.json` 和 `data/audit-logs.json`，使用独立端口 3099 不影响开发环境。
 

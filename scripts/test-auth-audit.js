@@ -110,19 +110,19 @@ function stopServer() {
 async function runTests() {
   console.log("=== API权限与审计模块最小验证 ===\n");
 
-  console.log("[1/8] 无Key访问 → 401");
+  console.log("[1/12] 无Key访问 → 401");
   {
     const r = await request("GET", "/animals");
     logResult("缺少Key返回401", r.status === 401, `status=${r.status}`);
   }
 
-  console.log("\n[2/8] 无效Key → 401");
+  console.log("\n[2/12] 无效Key → 401");
   {
     const r = await request("GET", "/animals", { apiKey: KEYS.INVALID });
     logResult("无效Key返回401", r.status === 401, `status=${r.status}`);
   }
 
-  console.log("\n[3/8] readonly写操作 → 403");
+  console.log("\n[3/12] readonly写操作 → 403");
   {
     const r = await request("POST", "/animals", {
       apiKey: KEYS.READONLY,
@@ -131,7 +131,7 @@ async function runTests() {
     logResult("readonly写动物返回403", r.status === 403, `status=${r.status}`);
   }
 
-  console.log("\n[4/8] keeper操作cage(admin) → 403");
+  console.log("\n[4/12] keeper操作cage(admin) → 403");
   {
     const r = await request("POST", "/cages", {
       apiKey: KEYS.KEEPER,
@@ -140,7 +140,7 @@ async function runTests() {
     logResult("keeper新增笼位返回403", r.status === 403, `status=${r.status}`);
   }
 
-  console.log("\n[5/8] admin操作cage → 200/201");
+  console.log("\n[5/12] admin操作cage → 200/201");
   {
     const r = await request("POST", "/cages", {
       apiKey: KEYS.ADMIN,
@@ -150,7 +150,7 @@ async function runTests() {
     logResult("admin新增笼位成功", ok, `status=${r.status}`);
   }
 
-  console.log("\n[6/8] keeper写动物(建档) → 201 + 审计");
+  console.log("\n[6/12] keeper写动物(建档) → 201 + 审计");
   let newAnimalId = null;
   {
     const r = await request("POST", "/animals", {
@@ -167,7 +167,7 @@ async function runTests() {
 
   await sleep(500);
 
-  console.log("\n[7/8] 按动物ID查询审计日志");
+  console.log("\n[7/12] 按动物ID查询审计日志");
   {
     const r = await request("GET", `/audit/logs?animalId=${encodeURIComponent(newAnimalId || "")}`, {
       apiKey: KEYS.ADMIN
@@ -185,7 +185,7 @@ async function runTests() {
     }
   }
 
-  console.log("\n[8/8] 按操作者Key查询审计日志");
+  console.log("\n[8/12] 按操作者Key查询审计日志");
   {
     const r = await request("GET", `/audit/logs?operatorKey=${encodeURIComponent(KEYS.KEEPER)}`, {
       apiKey: KEYS.ADMIN
@@ -197,6 +197,36 @@ async function runTests() {
     );
     logResult("按操作者Key找到审计记录", r.status === 200 && found,
       `status=${r.status} count=${logs.length}`);
+  }
+
+  console.log("\n[9/12] readonly访问audit/stats → 403");
+  {
+    const r = await request("GET", "/audit/stats", { apiKey: KEYS.READONLY });
+    logResult("readonly访问audit/stats返回403", r.status === 403, `status=${r.status}`);
+  }
+
+  console.log("\n[10/12] keeper访问audit/stats → 403");
+  {
+    const r = await request("GET", "/audit/stats", { apiKey: KEYS.KEEPER });
+    logResult("keeper访问audit/stats返回403", r.status === 403, `status=${r.status}`);
+  }
+
+  console.log("\n[11/12] admin访问audit/stats → 200");
+  {
+    const r = await request("GET", "/audit/stats", { apiKey: KEYS.ADMIN });
+    const hasTotal = typeof r.body?.total === "number";
+    logResult("admin访问audit/stats成功", r.status === 200 && hasTotal,
+      `status=${r.status} total=${r.body?.total ?? "N/A"}`);
+  }
+
+  console.log("\n[12/12] admin访问audit/operations → 200（keeper/readonly已被stats验证覆盖）");
+  {
+    const rStatsKeeper = await request("GET", "/audit/operations", { apiKey: KEYS.KEEPER });
+    const rOpsAdmin = await request("GET", "/audit/operations", { apiKey: KEYS.ADMIN });
+    const hasOps = rOpsAdmin.body && typeof rOpsAdmin.body === "object" && (rOpsAdmin.body.operations || Object.keys(rOpsAdmin.body).length > 0);
+    logResult("keeper访问audit/operations返回403", rStatsKeeper.status === 403, `status=${rStatsKeeper.status}`);
+    logResult("admin访问audit/operations成功", rOpsAdmin.status === 200 && hasOps,
+      `status=${rOpsAdmin.status} keys=${Object.keys(rOpsAdmin.body || {}).join(",") || "empty"}`);
   }
 
   console.log("\n=== 汇总 ===");

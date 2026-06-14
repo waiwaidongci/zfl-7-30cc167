@@ -22,7 +22,7 @@ import {
   resolveRoomIdByCage
 } from "../lib/facilityData.js";
 import { validateRoomAccess, validateProjectAccess } from "../lib/permissions.js";
-import { requireRole } from "../lib/auth.js";
+import { assertRole } from "../lib/auth.js";
 import { ROLES } from "../lib/apiKeys.js";
 
 export async function facilityRoutes(req, res, url, db) {
@@ -81,7 +81,7 @@ export async function facilityRoutes(req, res, url, db) {
   }
 
   if (url.pathname === "/rooms" && method === "POST") {
-    requireRole(principal, ROLES.ADMIN);
+    assertRole(principal, ROLES.ADMIN);
     const body = req._auditBody || {};
     const errors = [];
     if (!body.name) errors.push({ field: "name", message: "房间名称必填" });
@@ -91,7 +91,7 @@ export async function facilityRoutes(req, res, url, db) {
   }
 
   if (url.pathname.startsWith("/rooms/") && method === "PATCH") {
-    requireRole(principal, ROLES.ADMIN);
+    assertRole(principal, ROLES.ADMIN);
     const id = url.pathname.split("/")[2];
     const body = req._auditBody || {};
     const room = updateRoom(db, id, body);
@@ -123,7 +123,7 @@ export async function facilityRoutes(req, res, url, db) {
   }
 
   if (url.pathname === "/zones" && method === "POST") {
-    requireRole(principal, ROLES.ADMIN);
+    assertRole(principal, ROLES.ADMIN);
     const body = req._auditBody || {};
     const errors = [];
     if (!body.name) errors.push({ field: "name", message: "区域名称必填" });
@@ -164,7 +164,7 @@ export async function facilityRoutes(req, res, url, db) {
   }
 
   if (url.pathname === "/projects" && method === "POST") {
-    requireRole(principal, ROLES.ADMIN);
+    assertRole(principal, ROLES.ADMIN);
     const body = req._auditBody || {};
     const errors = [];
     if (!body.name) errors.push({ field: "name", message: "项目名称必填" });
@@ -178,7 +178,7 @@ export async function facilityRoutes(req, res, url, db) {
   }
 
   if (url.pathname.startsWith("/projects/") && method === "PATCH") {
-    requireRole(principal, ROLES.ADMIN);
+    assertRole(principal, ROLES.ADMIN);
     const id = url.pathname.split("/")[2];
     const body = req._auditBody || {};
     const project = updateProject(db, id, body);
@@ -206,7 +206,7 @@ export async function facilityRoutes(req, res, url, db) {
   }
 
   if (url.pathname === "/keepers" && method === "POST") {
-    requireRole(principal, ROLES.ADMIN);
+    assertRole(principal, ROLES.ADMIN);
     const body = req._auditBody || {};
     const errors = [];
     if (!body.name) errors.push({ field: "name", message: "饲养员姓名必填" });
@@ -216,7 +216,7 @@ export async function facilityRoutes(req, res, url, db) {
   }
 
   if (url.pathname.startsWith("/keepers/") && method === "PATCH") {
-    requireRole(principal, ROLES.ADMIN);
+    assertRole(principal, ROLES.ADMIN);
     const id = url.pathname.split("/")[2];
     const body = req._auditBody || {};
     const keeper = updateKeeper(db, id, body);

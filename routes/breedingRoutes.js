@@ -1,4 +1,6 @@
 import { send, body, saveDb } from "../lib/helpers.js";
+import { validateCageForAnimal } from "../lib/cageValidator.js";
+import { checkRoomWriteAccess } from "../lib/permissions.js";
 import {
   listBreedingPairs,
   getBreedingPair,
@@ -22,6 +24,7 @@ import {
   LITTER_STATUS
 } from "../lib/breedingValidator.js";
 import { getAnimal } from "../lib/animalData.js";
+import { getCage } from "../lib/cageData.js";
 
 export async function handleBreedingRoutes(req, res, url, db) {
   if (req.method === "GET" && url.pathname === "/breeding/pairs") {
@@ -152,6 +155,12 @@ async function handleCreatePair(req, res, db) {
     return send(res, 409, { error: "pairing_id_exists" });
   }
 
+  const cage = getCage(db, input.cageId);
+  const roomCheck = checkRoomWriteAccess(req._principal, cage?.roomId);
+  if (!roomCheck.authorized) {
+    return send(res, 403, { error: roomCheck.error, message: roomCheck.message });
+  }
+
   const pair = await createBreedingPair(db, input, { operator: req._principal });
   send(res, 201, pair);
 }
@@ -159,6 +168,11 @@ async function handleCreatePair(req, res, db) {
 async function handleUpdatePairStatus(req, res, db, id) {
   const pair = getBreedingPair(db, id);
   if (!pair) { send(res, 404, { error: "pairing_not_found" }); return; }
+
+  const roomCheck = checkRoomWriteAccess(req._principal, pair.roomId);
+  if (!roomCheck.authorized) {
+    return send(res, 403, { error: roomCheck.error, message: roomCheck.message });
+  }
 
   const input = await body(req);
   const newStatus = input.status;
@@ -177,6 +191,11 @@ async function handleUpdatePairStatus(req, res, db, id) {
 async function handleCancelPair(req, res, db, id) {
   const pair = getBreedingPair(db, id);
   if (!pair) { send(res, 404, { error: "pairing_not_found" }); return; }
+
+  const roomCheck = checkRoomWriteAccess(req._principal, pair.roomId);
+  if (!roomCheck.authorized) {
+    return send(res, 403, { error: roomCheck.error, message: roomCheck.message });
+  }
 
   const input = await body(req);
   const updated = cancelBreedingPair(db, id, input?.reason);
@@ -206,6 +225,13 @@ async function handleCreateLitter(req, res, db) {
     return send(res, 409, { error: "litter_id_exists" });
   }
 
+  if (validation.pairing?.roomId) {
+    const roomCheck = checkRoomWriteAccess(req._principal, validation.pairing.roomId);
+    if (!roomCheck.authorized) {
+      return send(res, 403, { error: roomCheck.error, message: roomCheck.message });
+    }
+  }
+
   const litter = createBreedingLitter(db, input, validation.pairing);
   send(res, 201, litter);
 }
@@ -213,6 +239,11 @@ async function handleCreateLitter(req, res, db) {
 async function handleUpdateLitter(req, res, db, id) {
   const litter = getBreedingLitter(db, id);
   if (!litter) { send(res, 404, { error: "litter_not_found" }); return; }
+
+  const roomCheck = checkRoomWriteAccess(req._principal, litter.roomId);
+  if (!roomCheck.authorized) {
+    return send(res, 403, { error: roomCheck.error, message: roomCheck.message });
+  }
 
   const input = await body(req);
   const updated = updateBreedingLitter(db, id, input);
@@ -238,16 +269,22 @@ async function handleWeanLitter(req, res, db, id) {
   if (input.offspring && Array.isArray(input.offspring)) {
     for (let i = 0; i < input.offspring.length; i++) {
       const group = input.offspring[i];
-      const cageOccupancy = (db.animals || []).filter(
-        (a) => a.cageId === group.cageId && ["quarantine", "released", "quarantine_abnormal"].includes(a.status)
-      ).length;
-      const cage = (db.cages || []).find((c) => c.id === group.cageId);
-      const expectedAfter = cageOccupancy + group.count;
-      if (cage && expectedAfter > cage.capacity) {
-        return send(res, 422, {
-          error: "offspring_cage_full",
-          message: `子代数组第${i + 1}项笼位 ${group.cageId} 容量不足（现有${cageOccupancy}，需放入${group.count}，容量${cage.capacity}）`
-        });
+      for (let slot = 0; slot < group.count; slot++) {
+        const cageValidation = validateCageForAnimal(db, group.cageId, null, req._principal);
+        if (!cageValidation.valid) {
+          const firstErr = cageValidation.errors[0];
+          const codeMap = {
+            cage_not_found: "offspring_cage_not_found",
+            cage_disabled: "offspring_cage_disabled",
+            cage_full: "offspring_cage_full",
+            cage_room_no_permission: "offspring_cage_room_no_permission",
+            target_room_access_denied: "offspring_cage_room_no_permission"
+          };
+          return send(res, 422, {
+            error: codeMap[firstErr?.code] || "weaning_cage_invalid",
+            message: `子代数组第${i + 1}项笼位：${firstErr?.message || firstErr}`
+          });
+        }
       }
     }
   }

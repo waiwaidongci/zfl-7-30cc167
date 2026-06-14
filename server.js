@@ -13,7 +13,7 @@ import { ledgerExists, getLedgerInfo } from "./lib/eventLedger.js";
 import { migrateFromSnapshot } from "./scripts/migrate-events.js";
 import { PAIRING_STATUS, LITTER_STATUS } from "./lib/breedingValidator.js";
 import { ensureHealthCollections, getHealthEventStats, migrateHistoricalNotes } from "./lib/healthEventData.js";
-import { authenticate } from "./lib/auth.js";
+import { authenticate, AuthorizationError } from "./lib/auth.js";
 import { authorize, getRolePermissionsMap, ACTIONS, getPrincipalAllowedScope } from "./lib/permissions.js";
 import { resolveAuditOperation, writeAuditLog } from "./lib/audit.js";
 import { getApiKeySource, ROLES } from "./lib/apiKeys.js";
@@ -190,12 +190,12 @@ function makeAnimal(db, id, strain, cageId, sex, birthDate, project, keeper, sta
 function buildBreedingAnimals(db) {
   const list = [];
   const base = [
-    ["ani-2001", "C57BL/6J", "A-02", "male", "2026-01-15", "繁育种鼠", "林青"],
-    ["ani-2002", "C57BL/6J", "A-02", "female", "2026-01-18", "繁育种鼠", "林青"],
-    ["ani-2003", "BALB/c", "B-04", "male", "2026-02-10", "繁育种鼠", "周遥"],
-    ["ani-2004", "BALB/c", "B-04", "female", "2026-02-15", "繁育种鼠", "周遥"],
-    ["ani-2005", "C57BL/6J", "A-02", "male", "2026-03-01", "繁育种鼠", "林青"],
-    ["ani-2006", "C57BL/6J", "A-02", "female", "2026-03-05", "繁育种鼠", "林青"]
+    ["ani-2001", "C57BL/6J", "A-02", "male", "2026-01-15", "子代繁育群", "林青"],
+    ["ani-2002", "C57BL/6J", "A-02", "female", "2026-01-18", "子代繁育群", "林青"],
+    ["ani-2003", "BALB/c", "B-04", "male", "2026-02-10", "子代繁育群", "周遥"],
+    ["ani-2004", "BALB/c", "B-04", "female", "2026-02-15", "子代繁育群", "周遥"],
+    ["ani-2005", "C57BL/6J", "A-02", "male", "2026-03-01", "子代繁育群", "林青"],
+    ["ani-2006", "C57BL/6J", "A-02", "female", "2026-03-05", "子代繁育群", "林青"]
   ];
   for (let i = 0; i < base.length; i++) {
     const [id, strain, cageId, sex, birth, project, keeper] = base[i];
@@ -243,7 +243,7 @@ function buildSeedBreedingPairs(db) {
       observationNodes: ["2026-05-05", "2026-05-12", "2026-05-17", "2026-05-19", "2026-05-22"],
       status: PAIRING_STATUS.WEANED, strain: "C57BL/6J", keeper: "林青", notes: "C57BL/6J 首对繁育，已断奶完成，7/8存活",
       createdAt: "2026-04-28T09:00:00.000Z", statusUpdatedAt: "2026-06-10T10:00:00.000Z", deliveredAt: "2026-05-20T08:30:00.000Z", weanedAt: "2026-06-10T10:00:00.000Z" },
-    { id: "pair-demo-2", cageId: "B-04", roomId: getCage(db, "B-04")?.roomId, zoneId: getCage(db, "B-04")?.zoneId, projectId: DEFAULT_PROJECT_ID, project: "默认项目",
+    { id: "pair-demo-2", cageId: "B-04", roomId: getCage(db, "B-04")?.roomId, zoneId: getCage(db, "B-04")?.zoneId, projectId: "proj-breeding", project: "子代繁育群",
       maleId: "ani-2003", femaleId: "ani-2004", pairDate: "2026-05-20", expectedDeliveryDate: "2026-06-10",
       observationNodes: ["2026-05-27", "2026-06-03", "2026-06-08", "2026-06-10", "2026-06-13"],
       status: PAIRING_STATUS.DELIVERED, strain: "BALB/c", keeper: "周遥", notes: "BALB/c 繁育，已产仔待断奶",
@@ -266,41 +266,77 @@ function buildSeedBreedingLitters(db) {
         { sex: "male", count: 4, cageId: "D-01", project: "子代繁育群", keeper: "林青" },
         { sex: "female", count: 3, cageId: "D-02", project: "子代繁育群", keeper: "林青" }
       ], createdAt: "2026-05-20T08:30:00.000Z" },
-    { id: "litter-demo-2", pairId: "pair-demo-2", roomId: getCage(db, "B-04")?.roomId, zoneId: getCage(db, "B-04")?.zoneId, projectId: DEFAULT_PROJECT_ID, project: "默认项目",
+    { id: "litter-demo-2", pairId: "pair-demo-2", roomId: getCage(db, "B-04")?.roomId, zoneId: getCage(db, "B-04")?.zoneId, projectId: "proj-breeding", project: "子代繁育群",
       birthDate: "2026-06-10", totalPups: 6, malePups: 3, femalePups: 2, unknownSexPups: 1,
       status: LITTER_STATUS.BORN, cageId: "B-04", keeper: "周遥", notes: "出生6只，母性良好，待21天后断奶", createdAt: "2026-06-10T08:00:00.000Z" }
   ];
 }
 
 function buildSeedFeedingPlans(db) {
-  const addRoom = (plan) => {
-    const cage = plan.targetType === "cage" && plan.targetId ? getCage(db, plan.targetId) : null;
-    plan.roomId = cage?.roomId || DEFAULT_ROOM_ID;
-    plan.zoneId = cage?.zoneId || null;
+  const resolveFacility = (plan) => {
+    if (plan.targetType === "cage" && plan.targetId) {
+      const cage = getCage(db, plan.targetId);
+      plan.roomId = cage?.roomId || DEFAULT_ROOM_ID;
+      plan.zoneId = cage?.zoneId || null;
+    } else if (plan.targetType === "animal" && plan.targetId) {
+      const animal = (db.animals || []).find(a => a.id === plan.targetId);
+      if (animal?.roomId) {
+        plan.roomId = animal.roomId;
+        plan.zoneId = animal.zoneId || null;
+      } else if (animal?.cageId) {
+        const cage = getCage(db, animal.cageId);
+        plan.roomId = cage?.roomId || DEFAULT_ROOM_ID;
+        plan.zoneId = cage?.zoneId || null;
+      } else {
+        plan.roomId = DEFAULT_ROOM_ID;
+        plan.zoneId = null;
+      }
+    } else {
+      plan.roomId = DEFAULT_ROOM_ID;
+      plan.zoneId = null;
+    }
     return plan;
   };
   return [
-    addRoom({ id: "plan-1", targetType: "animal", targetId: "ani-1001", feedType: "标准颗粒饲料", feedTimes: ["08:00", "18:00"], dailyAmount: 5.0, keeper: "林青", status: "active", startDate: "2026-06-01", endDate: null, createdAt: "2026-06-01T00:00:00.000Z", notes: "代谢观察组，每日定量饲喂" }),
-    addRoom({ id: "plan-2", targetType: "animal", targetId: "ani-1002", feedType: "高蛋白饲料", feedTimes: ["09:00"], dailyAmount: 4.5, keeper: "周遥", status: "active", startDate: "2026-06-05", endDate: null, createdAt: "2026-06-05T00:00:00.000Z", notes: "免疫实验组，每日一次" }),
-    addRoom({ id: "plan-3", targetType: "cage", targetId: "A-01", feedType: "SPF级饲料", feedTimes: ["07:30", "19:30"], dailyAmount: 15.0, keeper: "林青", status: "active", startDate: "2026-05-15", endDate: null, createdAt: "2026-05-15T00:00:00.000Z", notes: "SPF区A架笼位统一饲喂" }),
-    addRoom({ id: "plan-4", targetType: "cage", targetId: "B-03", feedType: "普通维持饲料", feedTimes: ["08:30"], dailyAmount: 10.0, keeper: "周遥", status: "active", startDate: "2026-05-20", endDate: null, createdAt: "2026-05-20T00:00:00.000Z", notes: "普通区B架笼位每日一次" })
+    resolveFacility({ id: "plan-1", targetType: "animal", targetId: "ani-1001", feedType: "标准颗粒饲料", feedTimes: ["08:00", "18:00"], dailyAmount: 5.0, keeper: "林青", status: "active", startDate: "2026-06-01", endDate: null, createdAt: "2026-06-01T00:00:00.000Z", notes: "代谢观察组，每日定量饲喂" }),
+    resolveFacility({ id: "plan-2", targetType: "animal", targetId: "ani-1002", feedType: "高蛋白饲料", feedTimes: ["09:00"], dailyAmount: 4.5, keeper: "周遥", status: "active", startDate: "2026-06-05", endDate: null, createdAt: "2026-06-05T00:00:00.000Z", notes: "免疫实验组，每日一次" }),
+    resolveFacility({ id: "plan-3", targetType: "cage", targetId: "A-01", feedType: "SPF级饲料", feedTimes: ["07:30", "19:30"], dailyAmount: 15.0, keeper: "林青", status: "active", startDate: "2026-05-15", endDate: null, createdAt: "2026-05-15T00:00:00.000Z", notes: "SPF区A架笼位统一饲喂" }),
+    resolveFacility({ id: "plan-4", targetType: "cage", targetId: "B-03", feedType: "普通维持饲料", feedTimes: ["08:30"], dailyAmount: 10.0, keeper: "周遥", status: "active", startDate: "2026-05-20", endDate: null, createdAt: "2026-05-20T00:00:00.000Z", notes: "普通区B架笼位每日一次" })
   ];
 }
 
 function buildSeedFeedingRecords(db) {
-  const addRoom = (rec) => {
-    const cage = rec.targetType === "cage" && rec.targetId ? getCage(db, rec.targetId) : null;
-    rec.roomId = cage?.roomId || DEFAULT_ROOM_ID;
-    rec.zoneId = cage?.zoneId || null;
+  const resolveFacility = (rec) => {
+    if (rec.targetType === "cage" && rec.targetId) {
+      const cage = getCage(db, rec.targetId);
+      rec.roomId = cage?.roomId || DEFAULT_ROOM_ID;
+      rec.zoneId = cage?.zoneId || null;
+    } else if (rec.targetType === "animal" && rec.targetId) {
+      const animal = (db.animals || []).find(a => a.id === rec.targetId);
+      if (animal?.roomId) {
+        rec.roomId = animal.roomId;
+        rec.zoneId = animal.zoneId || null;
+      } else if (animal?.cageId) {
+        const cage = getCage(db, animal.cageId);
+        rec.roomId = cage?.roomId || DEFAULT_ROOM_ID;
+        rec.zoneId = cage?.zoneId || null;
+      } else {
+        rec.roomId = DEFAULT_ROOM_ID;
+        rec.zoneId = null;
+      }
+    } else {
+      rec.roomId = DEFAULT_ROOM_ID;
+      rec.zoneId = null;
+    }
     return rec;
   };
   return [
-    addRoom({ id: "record-1", planId: "plan-1", targetType: "animal", targetId: "ani-1001", date: "2026-06-13", scheduledTime: "08:00", actualTime: "2026-06-13T08:05:00.000Z", feedType: "标准颗粒饲料", amount: 2.5, keeper: "林青", status: "completed", notes: "食欲良好，全部吃完" }),
-    addRoom({ id: "record-2", planId: "plan-1", targetType: "animal", targetId: "ani-1001", date: "2026-06-13", scheduledTime: "18:00", actualTime: "2026-06-13T18:10:00.000Z", feedType: "标准颗粒饲料", amount: 2.5, keeper: "林青", status: "completed", notes: "" }),
-    addRoom({ id: "record-3", planId: "plan-2", targetType: "animal", targetId: "ani-1002", date: "2026-06-13", scheduledTime: "09:00", actualTime: "2026-06-13T09:15:00.000Z", feedType: "高蛋白饲料", amount: 4.5, keeper: "周遥", status: "completed", notes: "进食正常" }),
-    addRoom({ id: "record-4", planId: "plan-3", targetType: "cage", targetId: "A-01", date: "2026-06-12", scheduledTime: "07:30", actualTime: "2026-06-12T07:35:00.000Z", feedType: "SPF级饲料", amount: 7.5, keeper: "林青", status: "completed", notes: "" }),
-    addRoom({ id: "record-5", planId: "plan-3", targetType: "cage", targetId: "A-01", date: "2026-06-12", scheduledTime: "19:30", actualTime: "2026-06-12T19:40:00.000Z", feedType: "SPF级饲料", amount: 7.5, keeper: "林青", status: "completed", notes: "" }),
-    addRoom({ id: "record-6", planId: null, targetType: "animal", targetId: "ani-3003", date: "2026-06-11", scheduledTime: "08:30", actualTime: "2026-06-11T08:35:00.000Z", feedType: "高蛋白饲料", amount: 1.5, keeper: "林青", status: "completed", condition: "断奶后食欲不振，体型偏小", weight: 8.7, notes: "与同窝相比明显偏小，需加强营养" })
+    resolveFacility({ id: "record-1", planId: "plan-1", targetType: "animal", targetId: "ani-1001", date: "2026-06-13", scheduledTime: "08:00", actualTime: "2026-06-13T08:05:00.000Z", feedType: "标准颗粒饲料", amount: 2.5, keeper: "林青", status: "completed", notes: "食欲良好，全部吃完" }),
+    resolveFacility({ id: "record-2", planId: "plan-1", targetType: "animal", targetId: "ani-1001", date: "2026-06-13", scheduledTime: "18:00", actualTime: "2026-06-13T18:10:00.000Z", feedType: "标准颗粒饲料", amount: 2.5, keeper: "林青", status: "completed", notes: "" }),
+    resolveFacility({ id: "record-3", planId: "plan-2", targetType: "animal", targetId: "ani-1002", date: "2026-06-13", scheduledTime: "09:00", actualTime: "2026-06-13T09:15:00.000Z", feedType: "高蛋白饲料", amount: 4.5, keeper: "周遥", status: "completed", notes: "进食正常" }),
+    resolveFacility({ id: "record-4", planId: "plan-3", targetType: "cage", targetId: "A-01", date: "2026-06-12", scheduledTime: "07:30", actualTime: "2026-06-12T07:35:00.000Z", feedType: "SPF级饲料", amount: 7.5, keeper: "林青", status: "completed", notes: "" }),
+    resolveFacility({ id: "record-5", planId: "plan-3", targetType: "cage", targetId: "A-01", date: "2026-06-12", scheduledTime: "19:30", actualTime: "2026-06-12T19:40:00.000Z", feedType: "SPF级饲料", amount: 7.5, keeper: "林青", status: "completed", notes: "" }),
+    resolveFacility({ id: "record-6", planId: null, targetType: "animal", targetId: "ani-3003", date: "2026-06-11", scheduledTime: "08:30", actualTime: "2026-06-11T08:35:00.000Z", feedType: "高蛋白饲料", amount: 1.5, keeper: "林青", status: "completed", condition: "断奶后食欲不振，体型偏小", weight: 8.7, notes: "与同窝相比明显偏小，需加强营养" })
   ];
 }
 
@@ -640,7 +676,11 @@ const server = http.createServer(async (req, res) => {
       send(res, 404, { error: "not_found" });
     }
   } catch (error) {
-    send(res, 500, { error: error.message });
+    if (error instanceof AuthorizationError) {
+      send(res, 403, { error: "insufficient_permission", message: error.message, requiredRole: error.requiredRole });
+    } else {
+      send(res, 500, { error: error.message });
+    }
   } finally {
     try {
       const resolved = resolveAuditOperation(method, pathname, req, auditCtx.body, db);

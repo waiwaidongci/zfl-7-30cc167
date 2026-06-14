@@ -4,6 +4,7 @@ import { validateAnimalFull, validateAnimalFields, ANIMAL_STATUS } from "../lib/
 import { validateCageForAnimal } from "../lib/cageValidator.js";
 import { validateBatchImport, getValidImportItems } from "../lib/batchImportValidator.js";
 import { detectAndCreateEvent, detectAbnormalKeywords, calculateWeightChange, findMergeableEvent, mergeToExistingEvent, createHealthEvent } from "../lib/healthEventData.js";
+import { checkRoomWriteAccess } from "../lib/permissions.js";
 
 export async function handleAnimalRoutes(req, res, url, db) {
   if (req.method === "GET" && url.pathname === "/animals") {
@@ -96,7 +97,7 @@ async function handleAddAnimal(req, res, db) {
     return send(res, 409, { error: "animal_id_exists" });
   }
 
-  const cageValidation = validateCageForAnimal(db, input.cageId);
+  const cageValidation = validateCageForAnimal(db, input.cageId, null, req._principal);
   if (!cageValidation.valid) {
     return send(res, 422, { error: "cage_validation_failed", details: cageValidation.errors });
   }
@@ -108,6 +109,11 @@ async function handleAddAnimal(req, res, db) {
 async function handleAddNote(req, res, db, animalId) {
   const animal = getAnimal(db, animalId);
   if (!animal) { send(res, 404, { error: "animal_not_found" }); return; }
+
+  const roomCheck = checkRoomWriteAccess(req._principal, animal.roomId);
+  if (!roomCheck.authorized) {
+    return send(res, 403, { error: roomCheck.error, message: roomCheck.message });
+  }
 
   const input = await body(req);
   const note = await addNote(db, animalId, input, { operator: req._principal });
@@ -152,7 +158,7 @@ async function handleMoveAnimal(req, res, db, animalId) {
     return send(res, 400, { error: "cageId_required" });
   }
 
-  const validation = validateCageForAnimal(db, input.cageId, animal.cageId);
+  const validation = validateCageForAnimal(db, input.cageId, animal.cageId, req._principal);
   if (!validation.valid) {
     return send(res, 422, { error: "cage_validation_failed", details: validation.errors });
   }
@@ -164,6 +170,11 @@ async function handleMoveAnimal(req, res, db, animalId) {
 async function handleRemoveAnimal(req, res, db, animalId) {
   const animal = getAnimal(db, animalId);
   if (!animal) { send(res, 404, { error: "animal_not_found" }); return; }
+
+  const roomCheck = checkRoomWriteAccess(req._principal, animal.roomId);
+  if (!roomCheck.authorized) {
+    return send(res, 403, { error: roomCheck.error, message: roomCheck.message });
+  }
 
   const input = await body(req);
   const updated = await removeAnimal(db, animalId, input.reason, { operator: req._principal });
@@ -187,7 +198,7 @@ async function handleImportPreview(req, res, db) {
     });
   }
 
-  const preview = validateBatchImport(db, input);
+  const preview = validateBatchImport(db, input, req._principal);
   send(res, 200, {
     total: preview.total,
     importable: preview.importable,
@@ -195,6 +206,7 @@ async function handleImportPreview(req, res, db) {
     duplicateIds: preview.duplicateIds,
     missingCages: preview.missingCages,
     capacityConflicts: preview.capacityConflicts,
+    roomPermissionErrors: preview.roomPermissionErrors,
     validItems: preview.validItems
   });
 }
@@ -216,7 +228,7 @@ async function handleImportConfirm(req, res, db) {
     });
   }
 
-  const validation = validateBatchImport(db, input);
+  const validation = validateBatchImport(db, input, req._principal);
 
   if (validation.importable === 0) {
     return send(res, 422, {
@@ -226,12 +238,13 @@ async function handleImportConfirm(req, res, db) {
         fieldErrors: validation.fieldErrors,
         duplicateIds: validation.duplicateIds,
         missingCages: validation.missingCages,
-        capacityConflicts: validation.capacityConflicts
+        capacityConflicts: validation.capacityConflicts,
+        roomPermissionErrors: validation.roomPermissionErrors
       }
     });
   }
 
-  const validItems = getValidImportItems(db, input);
+  const validItems = getValidImportItems(db, input, req._principal);
   const imported = await batchAddAnimals(db, validItems, { operator: req._principal });
   await saveDb(db);
 
@@ -327,7 +340,7 @@ async function handleQuarantineRelease(req, res, db, animalId) {
 
   const input = await body(req);
   if (input.targetCageId) {
-    const validation = validateCageForAnimal(db, input.targetCageId, animal.cageId);
+    const validation = validateCageForAnimal(db, input.targetCageId, animal.cageId, req._principal);
     if (!validation.valid) {
       return send(res, 422, { error: "cage_validation_failed", details: validation.errors });
     }

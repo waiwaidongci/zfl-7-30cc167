@@ -8,7 +8,7 @@
       "status": "active",
       "address": "",
       "manager": "",
-      "createdAt": "2026-06-14T10:31:55.060Z"
+      "createdAt": "2026-06-14T15:02:20.722Z"
     },
     {
       "id": "room-secondary",
@@ -18,7 +18,7 @@
       "status": "active",
       "address": "",
       "manager": "",
-      "createdAt": "2026-06-14T10:31:55.061Z"
+      "createdAt": "2026-06-14T15:02:20.722Z"
     },
     {
       "id": "room-quarantine",
@@ -28,7 +28,7 @@
       "status": "maintenance",
       "address": "",
       "manager": "",
-      "createdAt": "2026-06-14T10:31:55.061Z"
+      "createdAt": "2026-06-14T15:02:20.722Z"
     }
   ],
   "zones": [
@@ -38,7 +38,7 @@
       "name": "SPF区",
       "code": "Z1",
       "description": "无特定病原体区",
-      "createdAt": "2026-06-14T10:31:55.061Z"
+      "createdAt": "2026-06-14T15:02:20.722Z"
     },
     {
       "id": "zone-conventional",
@@ -46,7 +46,7 @@
       "name": "普通区",
       "code": "Z2",
       "description": "常规饲养区",
-      "createdAt": "2026-06-14T10:31:55.061Z"
+      "createdAt": "2026-06-14T15:02:20.722Z"
     },
     {
       "id": "zone-quarantine",
@@ -54,7 +54,7 @@
       "name": "检疫区",
       "code": "Z3",
       "description": "入房检疫区",
-      "createdAt": "2026-06-14T10:31:55.061Z"
+      "createdAt": "2026-06-14T15:02:20.722Z"
     },
     {
       "id": "zone-breeding",
@@ -62,7 +62,7 @@
       "name": "繁育区",
       "code": "Z4",
       "description": "繁育配对区",
-      "createdAt": "2026-06-14T10:31:55.061Z"
+      "createdAt": "2026-06-14T15:02:20.722Z"
     },
     {
       "id": "zone-transgenic",
@@ -70,7 +70,7 @@
       "name": "转基因区",
       "code": "Z5",
       "description": "基因工程动物专用",
-      "createdAt": "2026-06-14T10:31:55.061Z"
+      "createdAt": "2026-06-14T15:02:20.722Z"
     },
     {
       "id": "zone-special",
@@ -78,7 +78,7 @@
       "name": "特殊项目区",
       "code": "Z6",
       "description": "行为学、影像学等特殊研究",
-      "createdAt": "2026-06-14T10:31:55.061Z"
+      "createdAt": "2026-06-14T15:02:20.722Z"
     }
   ],
   "projects": [
@@ -92,7 +92,7 @@
       "manager": "",
       "startDate": "",
       "endDate": "",
-      "createdAt": "2026-06-14T10:31:55.061Z"
+      "createdAt": "2026-06-14T15:02:20.722Z"
     },
     {
       "id": "proj-metabolism",
@@ -104,7 +104,7 @@
       "manager": "",
       "startDate": "",
       "endDate": "",
-      "createdAt": "2026-06-14T10:31:55.061Z"
+      "createdAt": "2026-06-14T15:02:20.722Z"
     },
     {
       "id": "proj-immunology",
@@ -116,7 +116,7 @@
       "manager": "",
       "startDate": "",
       "endDate": "",
-      "createdAt": "2026-06-14T10:31:55.061Z"
+      "createdAt": "2026-06-14T15:02:20.722Z"
     },
     {
       "id": "proj-oncology",
@@ -128,7 +128,7 @@
       "manager": "",
       "startDate": "",
       "endDate": "",
-      "createdAt": "2026-06-14T10:31:55.061Z"
+      "createdAt": "2026-06-14T15:02:20.722Z"
     },
     {
       "id": "proj-vaccine",
@@ -140,7 +140,7 @@
       "manager": "",
       "startDate": "",
       "endDate": "",
-      "createdAt": "2026-06-14T10:31:55.061Z"
+      "createdAt": "2026-06-14T15:02:20.722Z"
     },
     {
       "id": "proj-breeding",
@@ -152,7 +152,7 @@
       "manager": "",
       "startDate": "",
       "endDate": "",
-      "createdAt": "2026-06-14T10:31:55.061Z"
+      "createdAt": "2026-06-14T15:02:20.722Z"
     },
     {
       "id": "proj-transgenic-core",
@@ -164,20 +164,7 @@
       "manager": "",
       "startDate": "",
       "endDate": "",
-      "createdAt": "2026-06-14T10:31:55.061Z"
-    },
-    {
-      "id": "proj-1781433220051-98s",
-      "name": "繁育种鼠",
-      "code": "PRJ8",
-      "roomId": "room-default",
-      "description": "从旧数据项目字段自动创建：繁育种鼠",
-      "status": "active",
-      "manager": "",
-      "startDate": "",
-      "endDate": "",
-      "createdAt": "2026-06-14T10:33:40.051Z",
-      "migratedFromAnimal": true
+      "createdAt": "2026-06-14T15:02:20.722Z"
     }
   ],
   "keepers": [
@@ -193,7 +180,7 @@
       "phone": "",
       "email": "",
       "description": "",
-      "createdAt": "2026-06-14T10:31:55.061Z"
+      "createdAt": "2026-06-14T15:02:20.722Z"
     },
     {
       "id": "keeper-zy",
@@ -208,7 +195,7 @@
       "phone": "",
       "email": "",
       "description": "",
-      "createdAt": "2026-06-14T10:31:55.062Z"
+      "createdAt": "2026-06-14T15:02:20.722Z"
     },
     {
       "id": "keeper-gz",
@@ -222,7 +209,7 @@
       "phone": "",
       "email": "",
       "description": "",
-      "createdAt": "2026-06-14T10:31:55.062Z"
+      "createdAt": "2026-06-14T15:02:20.722Z"
     }
   ],
   "cages": [
@@ -315,6 +302,16 @@
       "createdAt": "2026-05-01T00:00:00.000Z",
       "roomId": "room-default",
       "zoneId": "zone-breeding"
+    },
+    {
+      "id": "T-01",
+      "roomId": "room-secondary",
+      "zoneId": "zone-transgenic",
+      "area": "转基因区",
+      "rack": "T",
+      "capacity": 5,
+      "status": "active",
+      "createdAt": "2026-06-14T15:03:08.757Z"
     }
   ],
   "animals": [
@@ -340,6 +337,12 @@
           "date": "2026-06-10",
           "weight": 21.4,
           "condition": "正常进食",
+          "keeper": "林青"
+        },
+        {
+          "id": "note-1781449416396-vp35c",
+          "date": "2026-06-14",
+          "condition": "test note",
           "keeper": "林青"
         }
       ],
@@ -556,10 +559,10 @@
       "cageId": "A-02",
       "roomId": "room-default",
       "zoneId": "zone-default",
-      "projectId": null,
+      "projectId": "proj-breeding",
       "sex": "male",
       "birthDate": "2026-01-15",
-      "project": "繁育种鼠",
+      "project": "子代繁育群",
       "keeper": "林青",
       "status": "released",
       "observationNodes": [],
@@ -613,10 +616,10 @@
       "cageId": "A-02",
       "roomId": "room-default",
       "zoneId": "zone-default",
-      "projectId": null,
+      "projectId": "proj-breeding",
       "sex": "female",
       "birthDate": "2026-01-18",
-      "project": "繁育种鼠",
+      "project": "子代繁育群",
       "keeper": "林青",
       "status": "released",
       "observationNodes": [],
@@ -670,10 +673,10 @@
       "cageId": "B-04",
       "roomId": "room-default",
       "zoneId": "zone-conventional",
-      "projectId": null,
+      "projectId": "proj-breeding",
       "sex": "male",
       "birthDate": "2026-02-10",
-      "project": "繁育种鼠",
+      "project": "子代繁育群",
       "keeper": "周遥",
       "status": "released",
       "observationNodes": [],
@@ -727,10 +730,10 @@
       "cageId": "B-04",
       "roomId": "room-default",
       "zoneId": "zone-conventional",
-      "projectId": null,
+      "projectId": "proj-breeding",
       "sex": "female",
       "birthDate": "2026-02-15",
-      "project": "繁育种鼠",
+      "project": "子代繁育群",
       "keeper": "周遥",
       "status": "released",
       "observationNodes": [],
@@ -784,10 +787,10 @@
       "cageId": "A-02",
       "roomId": "room-default",
       "zoneId": "zone-default",
-      "projectId": null,
+      "projectId": "proj-breeding",
       "sex": "male",
       "birthDate": "2026-03-01",
-      "project": "繁育种鼠",
+      "project": "子代繁育群",
       "keeper": "林青",
       "status": "released",
       "observationNodes": [],
@@ -841,10 +844,10 @@
       "cageId": "A-02",
       "roomId": "room-default",
       "zoneId": "zone-default",
-      "projectId": null,
+      "projectId": "proj-breeding",
       "sex": "female",
       "birthDate": "2026-03-05",
-      "project": "繁育种鼠",
+      "project": "子代繁育群",
       "keeper": "林青",
       "status": "released",
       "observationNodes": [],
@@ -1332,8 +1335,8 @@
       "cageId": "B-04",
       "roomId": "room-default",
       "zoneId": "zone-conventional",
-      "projectId": "project-default",
-      "project": "默认项目",
+      "projectId": "proj-breeding",
+      "project": "子代繁育群",
       "maleId": "ani-2003",
       "femaleId": "ani-2004",
       "pairDate": "2026-05-20",
@@ -1424,8 +1427,8 @@
       "pairId": "pair-demo-2",
       "roomId": "room-default",
       "zoneId": "zone-conventional",
-      "projectId": "project-default",
-      "project": "默认项目",
+      "projectId": "proj-breeding",
+      "project": "子代繁育群",
       "birthDate": "2026-06-10",
       "totalPups": 6,
       "malePups": 3,
@@ -1456,7 +1459,7 @@
       "createdAt": "2026-06-01T00:00:00.000Z",
       "notes": "代谢观察组，每日定量饲喂",
       "roomId": "room-default",
-      "zoneId": null
+      "zoneId": "zone-default"
     },
     {
       "id": "plan-2",
@@ -1474,7 +1477,7 @@
       "createdAt": "2026-06-05T00:00:00.000Z",
       "notes": "免疫实验组，每日一次",
       "roomId": "room-default",
-      "zoneId": null
+      "zoneId": "zone-conventional"
     },
     {
       "id": "plan-3",
@@ -1512,6 +1515,60 @@
       "notes": "普通区B架笼位每日一次",
       "roomId": "room-default",
       "zoneId": "zone-conventional"
+    },
+    {
+      "id": "plan-1781449369484",
+      "targetType": "animal",
+      "targetId": "ani-1001",
+      "roomId": "room-default",
+      "zoneId": "zone-default",
+      "project": null,
+      "projectId": null,
+      "feedType": "test",
+      "feedTimes": [],
+      "dailyAmount": 0,
+      "keeper": "林青",
+      "status": "active",
+      "startDate": "2026-06-14",
+      "endDate": null,
+      "createdAt": "2026-06-14T15:02:49.484Z",
+      "notes": ""
+    },
+    {
+      "id": "plan-1781449377433",
+      "targetType": "cage",
+      "targetId": "T-01",
+      "roomId": "room-default",
+      "zoneId": null,
+      "project": null,
+      "projectId": null,
+      "feedType": "test",
+      "feedTimes": [],
+      "dailyAmount": 0,
+      "keeper": "林青",
+      "status": "active",
+      "startDate": "2026-06-14",
+      "endDate": null,
+      "createdAt": "2026-06-14T15:02:57.433Z",
+      "notes": ""
+    },
+    {
+      "id": "plan-1781449408239",
+      "targetType": "cage",
+      "targetId": "T-01",
+      "roomId": "room-secondary",
+      "zoneId": "zone-transgenic",
+      "project": null,
+      "projectId": null,
+      "feedType": "test",
+      "feedTimes": [],
+      "dailyAmount": 0,
+      "keeper": "周遥",
+      "status": "active",
+      "startDate": "2026-06-14",
+      "endDate": null,
+      "createdAt": "2026-06-14T15:03:28.239Z",
+      "notes": ""
     }
   ],
   "feedingRecords": [
@@ -1529,7 +1586,7 @@
       "status": "completed",
       "notes": "食欲良好，全部吃完",
       "roomId": "room-default",
-      "zoneId": null
+      "zoneId": "zone-default"
     },
     {
       "id": "record-2",
@@ -1545,7 +1602,7 @@
       "status": "completed",
       "notes": "",
       "roomId": "room-default",
-      "zoneId": null
+      "zoneId": "zone-default"
     },
     {
       "id": "record-3",
@@ -1561,7 +1618,7 @@
       "status": "completed",
       "notes": "进食正常",
       "roomId": "room-default",
-      "zoneId": null
+      "zoneId": "zone-conventional"
     },
     {
       "id": "record-4",
@@ -1611,7 +1668,7 @@
       "weight": 8.7,
       "notes": "与同窝相比明显偏小，需加强营养",
       "roomId": "room-default",
-      "zoneId": null
+      "zoneId": "zone-breeding"
     }
   ],
   "healthEvents": [
@@ -1665,10 +1722,10 @@
           }
         },
         {
-          "id": "hn-1781433220050-zt2fj",
+          "id": "hn-1781449362972-e8h8q",
           "type": "auto_merge",
           "content": "食欲下降 发热 毛发杂乱 发现异常，需密切观察",
-          "createdAt": "2026-06-14T10:33:40.050Z",
+          "createdAt": "2026-06-14T15:02:42.972Z",
           "author": "system",
           "keywords": [
             "食欲下降",
@@ -1678,10 +1735,10 @@
           ]
         },
         {
-          "id": "hn-1781433220050-3cxcx",
+          "id": "hn-1781449362972-u79eh",
           "type": "auto_merge",
           "content": "发热，食欲下降：疑似感染，待进一步检测",
-          "createdAt": "2026-06-14T10:33:40.050Z",
+          "createdAt": "2026-06-14T15:02:42.972Z",
           "author": "system",
           "keywords": [
             "检疫标记异常",
@@ -1691,10 +1748,10 @@
           ]
         },
         {
-          "id": "hn-1781433345905-63fk6",
+          "id": "hn-1781449369482-hy1sp",
           "type": "auto_merge",
           "content": "食欲下降 发热 毛发杂乱 发现异常，需密切观察",
-          "createdAt": "2026-06-14T10:35:45.905Z",
+          "createdAt": "2026-06-14T15:02:49.482Z",
           "author": "system",
           "keywords": [
             "食欲下降",
@@ -1704,10 +1761,10 @@
           ]
         },
         {
-          "id": "hn-1781433345909-cje6o",
+          "id": "hn-1781449369482-nse9m",
           "type": "auto_merge",
           "content": "发热，食欲下降：疑似感染，待进一步检测",
-          "createdAt": "2026-06-14T10:35:45.909Z",
+          "createdAt": "2026-06-14T15:02:49.482Z",
           "author": "system",
           "keywords": [
             "检疫标记异常",
@@ -1717,10 +1774,10 @@
           ]
         },
         {
-          "id": "hn-1781433349718-jo9qw",
+          "id": "hn-1781449377431-mt8dw",
           "type": "auto_merge",
           "content": "食欲下降 发热 毛发杂乱 发现异常，需密切观察",
-          "createdAt": "2026-06-14T10:35:49.718Z",
+          "createdAt": "2026-06-14T15:02:57.431Z",
           "author": "system",
           "keywords": [
             "食欲下降",
@@ -1730,10 +1787,10 @@
           ]
         },
         {
-          "id": "hn-1781433349718-18lwd",
+          "id": "hn-1781449377431-a8m9v",
           "type": "auto_merge",
           "content": "发热，食欲下降：疑似感染，待进一步检测",
-          "createdAt": "2026-06-14T10:35:49.718Z",
+          "createdAt": "2026-06-14T15:02:57.431Z",
           "author": "system",
           "keywords": [
             "检疫标记异常",
@@ -1743,10 +1800,10 @@
           ]
         },
         {
-          "id": "hn-1781433372104-g8t0t",
+          "id": "hn-1781449388755-yugrp",
           "type": "auto_merge",
           "content": "食欲下降 发热 毛发杂乱 发现异常，需密切观察",
-          "createdAt": "2026-06-14T10:36:12.104Z",
+          "createdAt": "2026-06-14T15:03:08.755Z",
           "author": "system",
           "keywords": [
             "食欲下降",
@@ -1756,10 +1813,10 @@
           ]
         },
         {
-          "id": "hn-1781433372105-dmfow",
+          "id": "hn-1781449388755-pwgut",
           "type": "auto_merge",
           "content": "发热，食欲下降：疑似感染，待进一步检测",
-          "createdAt": "2026-06-14T10:36:12.105Z",
+          "createdAt": "2026-06-14T15:03:08.755Z",
           "author": "system",
           "keywords": [
             "检疫标记异常",
@@ -1769,10 +1826,10 @@
           ]
         },
         {
-          "id": "hn-1781433405439-daaqe",
+          "id": "hn-1781449397081-6yqym",
           "type": "auto_merge",
           "content": "食欲下降 发热 毛发杂乱 发现异常，需密切观察",
-          "createdAt": "2026-06-14T10:36:45.439Z",
+          "createdAt": "2026-06-14T15:03:17.081Z",
           "author": "system",
           "keywords": [
             "食欲下降",
@@ -1782,10 +1839,10 @@
           ]
         },
         {
-          "id": "hn-1781433405439-4l5nu",
+          "id": "hn-1781449397081-pumo6",
           "type": "auto_merge",
           "content": "发热，食欲下降：疑似感染，待进一步检测",
-          "createdAt": "2026-06-14T10:36:45.439Z",
+          "createdAt": "2026-06-14T15:03:17.081Z",
           "author": "system",
           "keywords": [
             "检疫标记异常",
@@ -1795,10 +1852,10 @@
           ]
         },
         {
-          "id": "hn-1781433420705-354j1",
+          "id": "hn-1781449408237-zp5x9",
           "type": "auto_merge",
           "content": "食欲下降 发热 毛发杂乱 发现异常，需密切观察",
-          "createdAt": "2026-06-14T10:37:00.705Z",
+          "createdAt": "2026-06-14T15:03:28.237Z",
           "author": "system",
           "keywords": [
             "食欲下降",
@@ -1808,10 +1865,10 @@
           ]
         },
         {
-          "id": "hn-1781433420705-g1ip1",
+          "id": "hn-1781449408237-962e2",
           "type": "auto_merge",
           "content": "发热，食欲下降：疑似感染，待进一步检测",
-          "createdAt": "2026-06-14T10:37:00.705Z",
+          "createdAt": "2026-06-14T15:03:28.237Z",
           "author": "system",
           "keywords": [
             "检疫标记异常",
@@ -1821,10 +1878,10 @@
           ]
         },
         {
-          "id": "hn-1781433432736-ebow7",
+          "id": "hn-1781449416394-3dvww",
           "type": "auto_merge",
           "content": "食欲下降 发热 毛发杂乱 发现异常，需密切观察",
-          "createdAt": "2026-06-14T10:37:12.736Z",
+          "createdAt": "2026-06-14T15:03:36.394Z",
           "author": "system",
           "keywords": [
             "食欲下降",
@@ -1834,10 +1891,10 @@
           ]
         },
         {
-          "id": "hn-1781433432736-jkz1s",
+          "id": "hn-1781449416394-3rsuc",
           "type": "auto_merge",
           "content": "发热，食欲下降：疑似感染，待进一步检测",
-          "createdAt": "2026-06-14T10:37:12.736Z",
+          "createdAt": "2026-06-14T15:03:36.394Z",
           "author": "system",
           "keywords": [
             "检疫标记异常",
@@ -1847,10 +1904,10 @@
           ]
         },
         {
-          "id": "hn-1781433445654-m47zc",
+          "id": "hn-1781449425323-o2vjs",
           "type": "auto_merge",
           "content": "食欲下降 发热 毛发杂乱 发现异常，需密切观察",
-          "createdAt": "2026-06-14T10:37:25.654Z",
+          "createdAt": "2026-06-14T15:03:45.323Z",
           "author": "system",
           "keywords": [
             "食欲下降",
@@ -1860,10 +1917,10 @@
           ]
         },
         {
-          "id": "hn-1781433445654-dk3pk",
+          "id": "hn-1781449425323-2ecca",
           "type": "auto_merge",
           "content": "发热，食欲下降：疑似感染，待进一步检测",
-          "createdAt": "2026-06-14T10:37:25.654Z",
+          "createdAt": "2026-06-14T15:03:45.323Z",
           "author": "system",
           "keywords": [
             "检疫标记异常",
@@ -1873,10 +1930,10 @@
           ]
         },
         {
-          "id": "hn-1781433462027-upmh5",
+          "id": "hn-1781449425335-s3v05",
           "type": "auto_merge",
           "content": "食欲下降 发热 毛发杂乱 发现异常，需密切观察",
-          "createdAt": "2026-06-14T10:37:42.027Z",
+          "createdAt": "2026-06-14T15:03:45.335Z",
           "author": "system",
           "keywords": [
             "食欲下降",
@@ -1886,10 +1943,10 @@
           ]
         },
         {
-          "id": "hn-1781433462027-tjykp",
+          "id": "hn-1781449425335-fow49",
           "type": "auto_merge",
           "content": "发热，食欲下降：疑似感染，待进一步检测",
-          "createdAt": "2026-06-14T10:37:42.027Z",
+          "createdAt": "2026-06-14T15:03:45.335Z",
           "author": "system",
           "keywords": [
             "检疫标记异常",
@@ -1899,10 +1956,10 @@
           ]
         },
         {
-          "id": "hn-1781433788183-f89wm",
+          "id": "hn-1781449425343-tg6n7",
           "type": "auto_merge",
           "content": "食欲下降 发热 毛发杂乱 发现异常，需密切观察",
-          "createdAt": "2026-06-14T10:43:08.183Z",
+          "createdAt": "2026-06-14T15:03:45.343Z",
           "author": "system",
           "keywords": [
             "食欲下降",
@@ -1912,10 +1969,10 @@
           ]
         },
         {
-          "id": "hn-1781433788183-bkzay",
+          "id": "hn-1781449425343-t9xzo",
           "type": "auto_merge",
           "content": "发热，食欲下降：疑似感染，待进一步检测",
-          "createdAt": "2026-06-14T10:43:08.183Z",
+          "createdAt": "2026-06-14T15:03:45.343Z",
           "author": "system",
           "keywords": [
             "检疫标记异常",
@@ -2145,7 +2202,7 @@
       "projectId": "proj-oncology"
     },
     {
-      "id": "hev-1781433220050-8kdkx",
+      "id": "hev-1781449362972-mxpe0",
       "animalId": "ani-1001",
       "project": "代谢观察",
       "projectId": "proj-metabolism",
@@ -2171,8 +2228,8 @@
       "assignee": null,
       "status": "pending",
       "notes": [],
-      "createdAt": "2026-06-14T10:33:40.050Z",
-      "updatedAt": "2026-06-14T10:33:40.050Z",
+      "createdAt": "2026-06-14T15:02:42.972Z",
+      "updatedAt": "2026-06-14T15:02:42.972Z",
       "assignedAt": null,
       "inProgressAt": null,
       "closedAt": null,

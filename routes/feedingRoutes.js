@@ -15,6 +15,8 @@ import {
 } from "../lib/feedingScheduler.js";
 import { detectAndCreateEvent } from "../lib/healthEventData.js";
 import { getAnimal } from "../lib/animalData.js";
+import { getCage } from "../lib/cageData.js";
+import { checkRoomWriteAccess } from "../lib/permissions.js";
 
 export async function handleFeedingRoutes(req, res, url, db) {
   if (handlePlans(req, res, url, db)) return true;
@@ -74,9 +76,30 @@ async function handleAddPlan(req, res, db) {
   if (input.feedTimes && !Array.isArray(input.feedTimes)) {
     return send(res, 400, { error: "feedTimes_must_be_array" });
   }
+  const targetRoomId = resolveTargetRoomId(db, input.targetType, input.targetId);
+  const roomCheck = checkRoomWriteAccess(req._principal, targetRoomId);
+  if (!roomCheck.authorized) {
+    return send(res, 403, { error: roomCheck.error, message: roomCheck.message });
+  }
   const plan = addFeedingPlan(db, input);
   await saveDb(db);
   send(res, 201, plan);
+}
+
+function resolveTargetRoomId(db, targetType, targetId) {
+  if (targetType === "cage") {
+    const cage = getCage(db, targetId);
+    return cage?.roomId || null;
+  }
+  if (targetType === "animal") {
+    const animal = getAnimal(db, targetId);
+    if (animal?.roomId) return animal.roomId;
+    if (animal?.cageId) {
+      const cage = getCage(db, animal.cageId);
+      return cage?.roomId || null;
+    }
+  }
+  return null;
 }
 
 function handleToday(req, res, url, db) {
@@ -155,6 +178,12 @@ async function handleCheckin(req, res, db) {
     if (!input.targetType) input.targetType = plan.targetType;
     if (!input.targetId) input.targetId = plan.targetId;
     if (!input.feedType) input.feedType = plan.feedType;
+  }
+
+  const targetRoomId = resolveTargetRoomId(db, input.targetType, input.targetId);
+  const roomCheck = checkRoomWriteAccess(req._principal, targetRoomId);
+  if (!roomCheck.authorized) {
+    return send(res, 403, { error: roomCheck.error, message: roomCheck.message });
   }
 
   const record = await addFeedingRecord(db, input, { operator: req._principal });

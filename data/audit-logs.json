@@ -1,0 +1,190 @@
+{
+  "logs": [
+    {
+      "id": "audit-1",
+      "timestamp": "2026-06-14T15:02:49.484Z",
+      "operation": "feeding.plan_create",
+      "operator": {
+        "key": "keeper-key-demo-001",
+        "role": "keeper",
+        "name": "饲养员-林青"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/feeding/plans",
+        "query": {},
+        "body": {
+          "targetType": "animal",
+          "targetId": "ani-1001",
+          "feedType": "test",
+          "keeper": "林青"
+        },
+        "ip": "::1",
+        "userAgent": "curl/8.7.1"
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-2",
+      "timestamp": "2026-06-14T15:02:57.434Z",
+      "operation": "feeding.plan_create",
+      "operator": {
+        "key": "keeper-key-demo-001",
+        "role": "keeper",
+        "name": "饲养员-林青"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/feeding/plans",
+        "query": {},
+        "body": {
+          "targetType": "cage",
+          "targetId": "T-01",
+          "feedType": "test",
+          "keeper": "林青"
+        },
+        "ip": "::1",
+        "userAgent": "curl/8.7.1"
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-3",
+      "timestamp": "2026-06-14T15:03:08.761Z",
+      "operation": "cage.create",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/cages",
+        "query": {},
+        "body": {
+          "id": "T-01",
+          "area": "转基因区",
+          "rack": "T",
+          "capacity": 5,
+          "roomId": "room-secondary",
+          "zoneId": "zone-transgenic"
+        },
+        "ip": null,
+        "userAgent": "curl/8.7.1"
+      },
+      "response": {
+        "status": 201,
+        "body": {
+          "id": "T-01",
+          "roomId": "room-secondary",
+          "zoneId": "zone-transgenic",
+          "area": "转基因区",
+          "rack": "T",
+          "capacity": 5,
+          "status": "active",
+          "createdAt": "2026-06-14T15:03:08.757Z"
+        }
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-4",
+      "timestamp": "2026-06-14T15:03:17.083Z",
+      "operation": "feeding.plan_create",
+      "operator": {
+        "key": "keeper-key-demo-001",
+        "role": "keeper",
+        "name": "饲养员-林青"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/feeding/plans",
+        "query": {},
+        "body": {
+          "targetType": "cage",
+          "targetId": "T-01",
+          "feedType": "test",
+          "keeper": "林青"
+        },
+        "ip": "::1",
+        "userAgent": "curl/8.7.1"
+      },
+      "response": {
+        "status": 403,
+        "body": {
+          "error": "room_write_access_denied",
+          "message": "无权在房间 room-secondary 执行写操作，当前用户允许的房间：room-default"
+        }
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-5",
+      "timestamp": "2026-06-14T15:03:28.240Z",
+      "operation": "feeding.plan_create",
+      "operator": {
+        "key": "keeper-key-demo-002",
+        "role": "keeper",
+        "name": "饲养员-周遥"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/feeding/plans",
+        "query": {},
+        "body": {
+          "targetType": "cage",
+          "targetId": "T-01",
+          "feedType": "test",
+          "keeper": "周遥"
+        },
+        "ip": "::1",
+        "userAgent": "curl/8.7.1"
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-6",
+      "timestamp": "2026-06-14T15:03:36.398Z",
+      "operation": "animal.add_note",
+      "operator": {
+        "key": "keeper-key-demo-001",
+        "role": "keeper",
+        "name": "饲养员-林青"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/animals/ani-1001/notes",
+        "query": {},
+        "body": {
+          "condition": "test note",
+          "keeper": "林青"
+        },
+        "ip": null,
+        "userAgent": "curl/8.7.1"
+      },
+      "response": {
+        "status": 201,
+        "body": {
+          "id": "note-1781449416396-vp35c",
+          "date": "2026-06-14",
+          "condition": "test note",
+          "keeper": "林青"
+        }
+      },
+      "animalIds": []
+    }
+  ],
+  "nextId": 7
+}

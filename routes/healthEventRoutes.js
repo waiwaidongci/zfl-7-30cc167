@@ -15,6 +15,7 @@ import {
   calculateWeightChange
 } from "../lib/healthEventData.js";
 import { getAnimal } from "../lib/animalData.js";
+import { checkRoomWriteAccess } from "../lib/permissions.js";
 
 export async function handleHealthEventRoutes(req, res, url, db) {
   if (handleMeta(req, res, url, db)) return true;
@@ -142,6 +143,10 @@ async function handleCreateEvent(req, res, db) {
   if (!input.condition && !input.abnormalKeywords?.length) {
     return send(res, 400, { error: "condition_or_keywords_required" });
   }
+  const roomCheck = checkRoomWriteAccess(req._principal, animal.roomId);
+  if (!roomCheck.authorized) {
+    return send(res, 403, { error: roomCheck.error, message: roomCheck.message });
+  }
   const event = createHealthEvent(db, input);
   await saveDb(db);
   send(res, 201, event);
@@ -185,6 +190,10 @@ async function handleAssign(req, res, db, id) {
   if (!event) {
     return send(res, 404, { error: "event_not_found" });
   }
+  const roomCheck = checkRoomWriteAccess(req._principal, event.roomId);
+  if (!roomCheck.authorized) {
+    return send(res, 403, { error: roomCheck.error, message: roomCheck.message });
+  }
   const input = await body(req);
   if (!input.assignee) {
     return send(res, 400, { error: "assignee_required" });
@@ -202,6 +211,10 @@ async function handleAddNote(req, res, db, id) {
   if (!event) {
     return send(res, 404, { error: "event_not_found" });
   }
+  const roomCheck = checkRoomWriteAccess(req._principal, event.roomId);
+  if (!roomCheck.authorized) {
+    return send(res, 403, { error: roomCheck.error, message: roomCheck.message });
+  }
   const input = await body(req);
   if (!input.content) {
     return send(res, 400, { error: "content_required" });
@@ -215,6 +228,10 @@ async function handleClose(req, res, db, id) {
   const event = getHealthEvent(db, id);
   if (!event) {
     return send(res, 404, { error: "event_not_found" });
+  }
+  const roomCheck = checkRoomWriteAccess(req._principal, event.roomId);
+  if (!roomCheck.authorized) {
+    return send(res, 403, { error: roomCheck.error, message: roomCheck.message });
   }
   const input = await body(req);
   const result = closeHealthEvent(db, id, input || {});

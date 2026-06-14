@@ -13,6 +13,8 @@ import {
   getTodaySummary,
   getFeedingHistory
 } from "../lib/feedingScheduler.js";
+import { detectAndCreateEvent } from "../lib/healthEventData.js";
+import { getAnimal } from "../lib/animalData.js";
 
 export async function handleFeedingRoutes(req, res, url, db) {
   if (handlePlans(req, res, url, db)) return true;
@@ -152,8 +154,56 @@ async function handleCheckin(req, res, db) {
   }
 
   const record = addFeedingRecord(db, input);
+
+  const healthResults = [];
+  if (input.targetType === "animal") {
+    const condition = input.condition || input.notes || "";
+    const weight = input.weight;
+    if (condition || weight != null) {
+      const result = detectAndCreateEvent(db, {
+        animalId: input.targetId,
+        condition,
+        weight,
+        source: "feeding_checkin",
+        sourceRecordId: record.id,
+        keeper: input.keeper
+      });
+      if (result.created) {
+        healthResults.push(result);
+      }
+    }
+  } else if (input.targetType === "cage") {
+    const animalsInCage = (db.animals || []).filter(a => a.cageId === input.targetId);
+    const condition = input.condition || input.notes || "";
+    if (condition) {
+      for (const animal of animalsInCage) {
+        const result = detectAndCreateEvent(db, {
+          animalId: animal.id,
+          condition,
+          weight: input.weight,
+          source: "feeding_checkin_cage",
+          sourceRecordId: record.id,
+          keeper: input.keeper
+        });
+        if (result.created) {
+          healthResults.push({ animalId: animal.id, ...result });
+        }
+      }
+    }
+  }
+
   await saveDb(db);
-  send(res, 201, record);
+
+  const responseData = healthResults.length > 0
+    ? { ...record, healthEvents: healthResults.map(r => ({
+        created: r.created,
+        merged: r.merged || false,
+        eventId: r.event ? r.event.id : null,
+        event: r.event || null
+      })) }
+    : record;
+
+  send(res, 201, responseData);
 }
 
 function handleHistory(req, res, url, db) {

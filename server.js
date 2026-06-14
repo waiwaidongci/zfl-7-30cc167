@@ -4,8 +4,10 @@ import { handleCageRoutes } from "./routes/cageRoutes.js";
 import { handleFeedingRoutes } from "./routes/feedingRoutes.js";
 import { handleAnimalRoutes } from "./routes/animalRoutes.js";
 import { handleBreedingRoutes } from "./routes/breedingRoutes.js";
+import { handleHealthEventRoutes } from "./routes/healthEventRoutes.js";
 import { ANIMAL_STATUS, ACTIVE_STOCK_STATUSES } from "./lib/animalValidator.js";
 import { PAIRING_STATUS, LITTER_STATUS } from "./lib/breedingValidator.js";
+import { ensureHealthCollections, getHealthEventStats, migrateHistoricalNotes } from "./lib/healthEventData.js";
 
 const seed = {
   cages: [
@@ -706,6 +708,239 @@ const seed = {
       keeper: "林青",
       status: "completed",
       notes: ""
+    },
+    {
+      id: "record-6",
+      planId: null,
+      targetType: "animal",
+      targetId: "ani-3003",
+      date: "2026-06-11",
+      scheduledTime: "08:30",
+      actualTime: "2026-06-11T08:35:00.000Z",
+      feedType: "高蛋白饲料",
+      amount: 1.5,
+      keeper: "林青",
+      status: "completed",
+      condition: "断奶后食欲不振，体型偏小",
+      weight: 8.7,
+      notes: "与同窝相比明显偏小，需加强营养"
+    }
+  ],
+  healthEvents: [
+    {
+      id: "hev-demo-1",
+      animalId: "ani-1004",
+      project: "疫苗测试",
+      keeper: "周遥",
+      source: "historical_quarantine_abnormal",
+      sourceRecordId: "qr-6",
+      condition: "食欲下降 发热 毛发杂乱 发现异常，需密切观察",
+      abnormalKeywords: ["食欲下降", "发热", "毛发杂乱", "检疫标记异常"],
+      weightChange: {
+        previousWeight: 15.2,
+        previousDate: "2026-06-12",
+        currentWeight: 14.8,
+        diff: -0.4,
+        percent: -2.63,
+        daysDiff: 1,
+        threshold: 5,
+        isAbnormal: false
+      },
+      handler: null,
+      assignee: "周遥",
+      status: "in_progress",
+      notes: [
+        {
+          id: "hn-demo-1",
+          type: "assign",
+          content: "分派负责人：周遥",
+          createdAt: "2026-06-13T09:05:00.000Z",
+          author: "system"
+        },
+        {
+          id: "hn-demo-2",
+          type: "processing",
+          content: "已送样检测血常规，体温 38.5℃，持续观察中",
+          createdAt: "2026-06-13T14:30:00.000Z",
+          author: "周遥"
+        }
+      ],
+      createdAt: "2026-06-13T09:00:00.000Z",
+      updatedAt: "2026-06-13T14:30:00.000Z",
+      assignedAt: "2026-06-13T09:05:00.000Z",
+      inProgressAt: "2026-06-13T14:30:00.000Z",
+      closedAt: null,
+      closeReason: null,
+      relatedRecordIds: ["qr-6", "abnormal-mark-ani-1004"]
+    },
+    {
+      id: "hev-demo-2",
+      animalId: "ani-1001",
+      project: "代谢观察",
+      keeper: "林青",
+      source: "animal_note",
+      sourceRecordId: "note-1",
+      condition: "体重下降明显，1周内减轻2.5g",
+      abnormalKeywords: ["体重下降", "体重异常变化"],
+      weightChange: {
+        previousWeight: 23.9,
+        previousDate: "2026-06-03",
+        currentWeight: 21.4,
+        diff: -2.5,
+        percent: -10.46,
+        daysDiff: 7,
+        threshold: 10,
+        isAbnormal: true
+      },
+      handler: null,
+      assignee: null,
+      status: "pending",
+      notes: [],
+      createdAt: "2026-06-10T16:20:00.000Z",
+      updatedAt: "2026-06-10T16:20:00.000Z",
+      assignedAt: null,
+      inProgressAt: null,
+      closedAt: null,
+      closeReason: null,
+      relatedRecordIds: ["note-1"]
+    },
+    {
+      id: "hev-demo-3",
+      animalId: "ani-1002",
+      project: "免疫反应",
+      keeper: "周遥",
+      source: "feeding_checkin",
+      sourceRecordId: "record-3",
+      condition: "腹泻，粪便稀软，精神差",
+      abnormalKeywords: ["腹泻", "粪便异常", "精神差"],
+      weightChange: null,
+      handler: null,
+      assignee: "周遥",
+      status: "assigned",
+      notes: [
+        {
+          id: "hn-demo-3",
+          type: "assign",
+          content: "分派负责人：周遥",
+          createdAt: "2026-06-13T10:00:00.000Z",
+          author: "system"
+        }
+      ],
+      createdAt: "2026-06-13T09:20:00.000Z",
+      updatedAt: "2026-06-13T10:00:00.000Z",
+      assignedAt: "2026-06-13T10:00:00.000Z",
+      inProgressAt: null,
+      closedAt: null,
+      closeReason: null,
+      relatedRecordIds: ["record-3"]
+    },
+    {
+      id: "hev-demo-4",
+      animalId: "ani-3003",
+      project: "子代繁育群",
+      keeper: "林青",
+      source: "feeding_checkin",
+      sourceRecordId: "record-6",
+      condition: "断奶后食欲不振，体型偏小",
+      abnormalKeywords: ["食欲下降", "消瘦", "待观察"],
+      weightChange: {
+        previousWeight: 9.5,
+        previousDate: "2026-06-10",
+        currentWeight: 8.7,
+        diff: -0.8,
+        percent: -8.42,
+        daysDiff: 3,
+        threshold: 10,
+        isAbnormal: false
+      },
+      handler: "林青",
+      assignee: "林青",
+      status: "closed",
+      notes: [
+        {
+          id: "hn-demo-4",
+          type: "assign",
+          content: "分派负责人：林青",
+          createdAt: "2026-06-11T09:00:00.000Z",
+          author: "system"
+        },
+        {
+          id: "hn-demo-5",
+          type: "processing",
+          content: "给予营养补充剂，调整饲料配方为高蛋白",
+          createdAt: "2026-06-11T14:00:00.000Z",
+          author: "林青",
+          metadata: {"treatment": "营养补充剂", "dosage": "0.5g/天"}
+        },
+        {
+          id: "hn-demo-6",
+          type: "processing",
+          content: "连续观察3天，食欲恢复，体重回升至9.0g",
+          createdAt: "2026-06-13T10:00:00.000Z",
+          author: "林青"
+        },
+        {
+          id: "hn-demo-7",
+          type: "close",
+          content: "处理完成，已恢复正常",
+          createdAt: "2026-06-13T16:00:00.000Z",
+          author: "林青",
+          resolution: "营养干预后恢复良好"
+        }
+      ],
+      createdAt: "2026-06-11T08:30:00.000Z",
+      updatedAt: "2026-06-13T16:00:00.000Z",
+      assignedAt: "2026-06-11T09:00:00.000Z",
+      inProgressAt: "2026-06-11T14:00:00.000Z",
+      closedAt: "2026-06-13T16:00:00.000Z",
+      closeReason: "处理完成，已恢复正常",
+      relatedRecordIds: ["record-6", "note-w3"]
+    },
+    {
+      id: "hev-demo-5",
+      animalId: "ani-1003",
+      project: "肿瘤研究",
+      keeper: "林青",
+      source: "quarantine_record",
+      sourceRecordId: "qr-4",
+      condition: "入检时发现轻微脱毛，需观察",
+      abnormalKeywords: ["脱毛", "待观察"],
+      weightChange: null,
+      handler: "林青",
+      assignee: "林青",
+      status: "closed",
+      notes: [
+        {
+          id: "hn-demo-8",
+          type: "assign",
+          content: "分派负责人：林青",
+          createdAt: "2026-06-10T15:00:00.000Z",
+          author: "system"
+        },
+        {
+          id: "hn-demo-9",
+          type: "processing",
+          content: "皮肤镜检，排除真菌感染，判定为应激性脱毛",
+          createdAt: "2026-06-11T10:00:00.000Z",
+          author: "林青",
+          metadata: {"exam": "皮肤镜检", "result": "阴性"}
+        },
+        {
+          id: "hn-demo-10",
+          type: "close",
+          content: "处理完成，排除病理因素",
+          createdAt: "2026-06-12T09:00:00.000Z",
+          author: "林青",
+          resolution: "应激性脱毛，无需特殊处理"
+        }
+      ],
+      createdAt: "2026-06-10T14:10:00.000Z",
+      updatedAt: "2026-06-12T09:00:00.000Z",
+      assignedAt: "2026-06-10T15:00:00.000Z",
+      inProgressAt: "2026-06-11T10:00:00.000Z",
+      closedAt: "2026-06-12T09:00:00.000Z",
+      closeReason: "处理完成，排除病理因素",
+      relatedRecordIds: ["qr-4"]
     }
   ]
 };
@@ -761,6 +996,15 @@ function migrateDb(db) {
     db.breedingLitters = [];
     migrated = true;
   }
+  const prevHealthLen = db.healthEvents ? db.healthEvents.length : 0;
+  ensureHealthCollections(db);
+  if (db.healthEvents.length !== prevHealthLen) {
+    migrated = true;
+  }
+  const migration = migrateHistoricalNotes(db);
+  if (migration.createdCount > 0 || migration.mergedCount > 0) {
+    migrated = true;
+  }
   if (migrated) {
     saveDb(db).catch(() => {});
   }
@@ -801,6 +1045,7 @@ const server = http.createServer(async (req, res) => {
           "POST /animals/import",
           "GET /reports/stock",
           "GET /reports/upcoming?days=7",
+          "GET /reports/health-events?project=&keeper=&fromDate=&toDate=",
           "GET /feeding/plans?targetType=&targetId=&status=&keeper=",
           "POST /feeding/plans",
           "GET /feeding/plans/:id",
@@ -823,7 +1068,17 @@ const server = http.createServer(async (req, res) => {
           "POST /breeding/litters/:id/wean",
           "GET /breeding/stats",
           "GET /breeding/genealogy/:animalId",
-          "GET /breeding/offspring/:parentId"
+          "GET /breeding/offspring/:parentId",
+          "GET /health-events/meta",
+          "GET /health-events?status=&project=&keeper=&animalId=&source=&fromDate=&toDate=",
+          "POST /health-events",
+          "GET /health-events/:id",
+          "POST /health-events/:id/assign",
+          "POST /health-events/:id/notes",
+          "POST /health-events/:id/close",
+          "GET /health-events/stats?project=&keeper=&assignee=&fromDate=&toDate=",
+          "POST /health-events/detect",
+          "POST /health-events/migrate-historical"
         ]
       });
     }
@@ -839,6 +1094,9 @@ const server = http.createServer(async (req, res) => {
 
     const breedingHandled = await handleBreedingRoutes(req, res, url, db);
     if (breedingHandled) return;
+
+    const healthHandled = await handleHealthEventRoutes(req, res, url, db);
+    if (healthHandled) return;
 
     if (req.method === "GET" && url.pathname === "/reports/stock") {
       const active = db.animals.filter((a) => ACTIVE_STOCK_STATUSES.includes(a.status));
@@ -865,6 +1123,17 @@ const server = http.createServer(async (req, res) => {
             .map((node) => ({ animalId: animal.id, cageId: animal.cageId, project: animal.project, keeper: animal.keeper, date: node }))
         );
       return send(res, 200, upcoming.sort((a, b) => a.date.localeCompare(b.date)));
+    }
+
+    if (req.method === "GET" && url.pathname === "/reports/health-events") {
+      const filters = {
+        project: url.searchParams.get("project"),
+        keeper: url.searchParams.get("keeper"),
+        fromDate: url.searchParams.get("fromDate"),
+        toDate: url.searchParams.get("toDate")
+      };
+      const stats = getHealthEventStats(db, filters);
+      return send(res, 200, stats);
     }
 
     send(res, 404, { error: "not_found" });

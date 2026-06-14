@@ -3,6 +3,7 @@ import { listAnimals, getAnimal, addAnimal, addNote, moveAnimal, removeAnimal, b
 import { validateAnimalFull, validateAnimalFields, ANIMAL_STATUS } from "../lib/animalValidator.js";
 import { validateCageForAnimal } from "../lib/cageValidator.js";
 import { validateBatchImport, getValidImportItems } from "../lib/batchImportValidator.js";
+import { detectAndCreateEvent, detectAbnormalKeywords, calculateWeightChange, findMergeableEvent, mergeToExistingEvent, createHealthEvent } from "../lib/healthEventData.js";
 
 export async function handleAnimalRoutes(req, res, url, db) {
   if (req.method === "GET" && url.pathname === "/animals") {
@@ -106,7 +107,36 @@ async function handleAddNote(req, res, db, animalId) {
 
   const input = await body(req);
   const note = addNote(db, animalId, input);
-  send(res, 201, note);
+
+  let healthResult = null;
+  const condition = input.condition || "";
+  const weight = input.weight;
+  if (condition || weight != null) {
+    healthResult = detectAndCreateEvent(db, {
+      animalId,
+      condition,
+      weight,
+      source: "animal_note",
+      sourceRecordId: note.id,
+      keeper: input.keeper || animal.keeper
+    });
+  }
+
+  await saveDb(db);
+
+  if (healthResult && healthResult.created) {
+    send(res, 201, {
+      ...note,
+      healthEvent: {
+        created: healthResult.created,
+        merged: healthResult.merged || false,
+        eventId: healthResult.event ? healthResult.event.id : null,
+        event: healthResult.event || null
+      }
+    });
+  } else {
+    send(res, 201, note);
+  }
 }
 
 async function handleMoveAnimal(req, res, db, animalId) {
@@ -228,7 +258,56 @@ async function handleQuarantineRecord(req, res, db, animalId) {
 
   const input = await body(req);
   const record = addQuarantineRecord(db, animalId, input);
-  send(res, 201, record);
+
+  let healthResult = null;
+  const conditionText = [input.condition || "", ...(input.symptoms || []), input.notes || ""].join(" ");
+  const weight = input.weight;
+  if (conditionText || weight != null || input.isAbnormal) {
+    healthResult = detectAndCreateEvent(db, {
+      animalId,
+      condition: conditionText,
+      weight,
+      source: input.isAbnormal ? "quarantine_record_abnormal" : "quarantine_record",
+      sourceRecordId: record.id,
+      keeper: input.examiner || animal.keeper
+    });
+    if (!healthResult.created && input.isAbnormal) {
+      const allKeywords = ["检疫标记异常", ...detectAbnormalKeywords(conditionText)];
+      const existing = findMergeableEvent(db, animalId, allKeywords);
+      const eventParams = {
+        animalId,
+        condition: conditionText || "检疫记录标记异常",
+        abnormalKeywords: allKeywords,
+        weightChange: weight != null ? calculateWeightChange(animal, weight) : null,
+        source: "quarantine_record_abnormal",
+        sourceRecordId: record.id,
+        keeper: input.examiner || animal.keeper
+      };
+      if (existing) {
+        const merged = mergeToExistingEvent(db, existing, eventParams);
+        healthResult = { created: true, merged: true, event: merged };
+      } else {
+        const event = createHealthEvent(db, eventParams);
+        healthResult = { created: true, merged: false, event };
+      }
+    }
+  }
+
+  await saveDb(db);
+
+  if (healthResult && healthResult.created) {
+    send(res, 201, {
+      ...record,
+      healthEvent: {
+        created: healthResult.created,
+        merged: healthResult.merged || false,
+        eventId: healthResult.event ? healthResult.event.id : null,
+        event: healthResult.event || null
+      }
+    });
+  } else {
+    send(res, 201, record);
+  }
 }
 
 async function handleQuarantineRelease(req, res, db, animalId) {
@@ -273,7 +352,40 @@ async function handleQuarantineAbnormal(req, res, db, animalId) {
   if (result.error) {
     return send(res, 422, { error: result.error, message: result.message });
   }
-  send(res, 200, result);
+
+  const markerId = `abnormal-mark-${animalId}-${Date.now()}`;
+  const conditionText = (input.reason || "检疫异常") + (input.notes ? `：${input.notes}` : "");
+  const allKeywords = ["检疫标记异常", ...detectAbnormalKeywords(conditionText)];
+  const existing = findMergeableEvent(db, animalId, allKeywords);
+  const eventParams = {
+    animalId,
+    condition: conditionText,
+    abnormalKeywords: allKeywords,
+    source: "quarantine_abnormal_mark",
+    sourceRecordId: markerId,
+    keeper: input.handler || animal.keeper
+  };
+
+  let healthResult;
+  if (existing) {
+    const merged = mergeToExistingEvent(db, existing, eventParams);
+    healthResult = { created: true, merged: true, event: merged };
+  } else {
+    const event = createHealthEvent(db, eventParams);
+    healthResult = { created: true, merged: false, event };
+  }
+
+  await saveDb(db);
+
+  send(res, 200, {
+    ...result,
+    healthEvent: {
+      created: healthResult.created,
+      merged: healthResult.merged,
+      eventId: healthResult.event.id,
+      event: healthResult.event
+    }
+  });
 }
 
 async function handleQuarantineResolve(req, res, db, animalId) {

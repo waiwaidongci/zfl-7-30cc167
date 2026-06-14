@@ -18,11 +18,15 @@ npm start
 │   ├── cageValidator.js   # 笼位校验：存在性 / 停用 / 容量
 │   ├── animalData.js      # 动物数据操作：listAnimals / getAnimal / addAnimal / batchAddAnimals
 │   ├── animalValidator.js # 动物字段校验：必填字段 / 性别 / 出生日期格式
-│   └── batchImportValidator.js # 批量导入校验：重复ID / 缺失笼位 / 容量冲突 / 预览
+│   ├── batchImportValidator.js # 批量导入校验：重复ID / 缺失笼位 / 容量冲突 / 预览
+│   ├── healthEventData.js # 健康异常事件：事件存储、状态流转、异常检测、重复合并、统计
+│   └── feedingScheduler.js
 ├── routes/
 │   ├── cageRoutes.js      # 笼位路由处理
 │   ├── animalRoutes.js    # 动物路由处理（含批量导入预览/确认）
-│   └── feedingRoutes.js   # 饲喂路由处理
+│   ├── feedingRoutes.js   # 饲喂路由处理（含健康异常自动检测）
+│   ├── healthEventRoutes.js # 健康异常事件路由处理
+│   └── breedingRoutes.js
 ├── data/
 │   ├── lab.json           # JSON 持久化存储
 │   └── sample-import.json # 批量导入示例数据
@@ -414,5 +418,376 @@ npm start
 - 旧状态 `removed` → 新状态 `removed`（已移出）
 - 自动为动物补充缺失的 `quarantineRecords` 字段（空数组）
 - 自动为已放行动物补充缺失的 `enteredQuarantineAt` 字段（null）
+- 自动初始化 `healthEvents` 集合
+- 自动扫描历史 `notes` 和 `quarantineRecords`，为包含异常关键词的记录生成对应健康事件
+- 自动扫描 `quarantine_abnormal` 状态动物，生成健康事件
 
 迁移完成后会自动保存到 `data/lab.json`。
+
+## 健康异常事件模块
+
+### 模块概述
+
+将饲养记录中的异常体况升级为可跟踪的健康事件系统。提交饲养记录时，如果 `condition`（体况描述）包含异常关键词或体重变化超过阈值，系统自动生成待处理健康事件。事件支持分派负责人、追加处理记录、关闭，并提供按项目/饲养员维度的统计报表。
+
+### 事件状态流转
+
+| 状态值       | 状态标签 | 说明                 | 可流转至                     |
+| ------------ | -------- | -------------------- | ---------------------------- |
+| `pending`    | 待处理   | 自动生成后初始状态   | assigned, in_progress, closed |
+| `assigned`   | 已分派   | 已指定负责人         | in_progress, closed          |
+| `in_progress`| 处理中   | 追加处理记录时自动进入 | closed                       |
+| `closed`     | 已关闭   | 处理完成             | —（终态）                    |
+
+### 自动异常检测规则
+
+#### 1. 异常关键词检测（40+关键词）
+
+**食欲类**：食欲下降、食欲差、食欲减退、食欲不振、不吃、拒食
+
+**体重类**：消瘦、体重下降、体重减轻、掉膘
+
+**消化类**：腹泻、拉稀、软便、粪便异常
+
+**体温类**：发热、发烧、体温高
+
+**精神类**：精神差、萎靡、呆滞、活动减少、嗜睡
+
+**皮毛类**：毛发杂乱、毛发粗糙、脱毛、掉毛
+
+**呼吸类**：咳嗽、打喷嚏、呼吸急促、气喘、呼吸困难
+
+**外伤炎症类**：伤口、溃疡、出血、红肿、发炎
+
+**行动神经类**：跛行、行动异常、抽搐、痉挛
+
+**其他类**：呕吐、反胃、眼睛异常、眼屎、流泪、鼻子异常、流涕、异常、待观察、疑似
+
+#### 2. 体重变化阈值检测
+
+| 时间间隔 | 下降百分比阈值 | 说明 |
+| -------- | -------------- | ---- |
+| 0-2天    | ≥ 5%           | 日监测阈值 |
+| 3天以上  | ≥ 10%          | 周监测阈值 |
+
+当体重下降幅度超过对应阈值时，自动标记为「体重异常变化」。
+
+### 重复异常合并规则
+
+同一动物在 **3天窗口内** 存在未关闭的活动事件时，满足以下条件之一自动合并：
+- 新异常与现有事件的关键词存在交集
+- 无关键词交集时合并到最新的活动事件
+
+合并操作会追加新关键词、更新体况描述、关联来源记录ID，并在事件 notes 中追加一条 `auto_merge` 类型的自动记录。
+
+### 自动触发入口
+
+以下接口提交数据时会自动触发异常检测：
+
+1. **POST /feeding/checkin**（饲养打卡）
+   - 读取 `condition` 或 `notes` 字段作为体况描述
+   - 读取 `weight` 字段作为当前体重
+   - `targetType=animal`：对单个动物检测
+   - `targetType=cage`：遍历笼位内所有动物分别检测
+   - 返回值中包含 `healthEvents` 数组，每个元素标明是否新建/合并及对应事件ID
+
+2. **POST /animals/:id/notes**（添加饲养记录）
+   - 读取 `condition` 字段作为体况描述
+   - 读取 `weight` 字段作为当前体重
+   - 返回值中包含 `healthEvent` 对象
+
+3. **POST /animals/:id/quarantine/record**（添加检疫记录）
+   - 组合 `condition` + `symptoms` + `notes` 作为体况描述
+   - 读取 `weight` 字段作为当前体重
+   - 当 `isAbnormal=true` 时强制创建事件（即使未匹配到关键词）
+   - 返回值中包含 `healthEvent` 对象
+
+4. **POST /animals/:id/quarantine/abnormal**（手动标记检疫异常）
+   - 组合 `reason` + `notes` 作为体况描述
+   - 自动添加「检疫标记异常」关键词
+   - 返回值中包含 `healthEvent` 对象
+
+### GET /health-events/meta
+
+获取模块元数据：状态枚举、异常关键词列表、体重阈值。
+
+响应示例：
+```json
+{
+  "statuses": {
+    "PENDING": "pending",
+    "ASSIGNED": "assigned",
+    "IN_PROGRESS": "in_progress",
+    "CLOSED": "closed"
+  },
+  "abnormalKeywords": ["食欲下降", "食欲差", ...],
+  "weightThreshold": {
+    "WEEKLY_LOSS_PERCENT": 10,
+    "DAILY_LOSS_PERCENT": 5
+  }
+}
+```
+
+### GET /health-events
+
+查询健康事件列表。
+
+查询参数：
+
+| 参数       | 说明                                 |
+| ---------- | ------------------------------------ |
+| status     | 按状态筛选（pending/assigned/in_progress/closed） |
+| project    | 按项目筛选                           |
+| keeper     | 按饲养员筛选（事件所属动物的饲养员） |
+| handler    | 按处理人筛选                         |
+| animalId   | 按动物ID筛选                         |
+| source     | 按事件来源筛选                       |
+| fromDate   | 创建日期下限（YYYY-MM-DD）           |
+| toDate     | 创建日期上限（YYYY-MM-DD）           |
+
+事件 `source` 来源枚举：
+
+| 来源值                         | 说明                               |
+| ------------------------------ | ---------------------------------- |
+| `feeding_checkin`              | 动物级饲养打卡自动生成             |
+| `feeding_checkin_cage`         | 笼位级饲养打卡自动生成             |
+| `animal_note`                  | 饲养 notes 自动生成                |
+| `quarantine_record`            | 检疫记录自动生成（含关键词）       |
+| `quarantine_record_abnormal`   | 检疫记录标记异常自动生成           |
+| `quarantine_abnormal_mark`     | 手动标记检疫异常自动生成           |
+| `historical_note`              | 历史 notes 迁移生成                |
+| `historical_quarantine`        | 历史检疫记录迁移生成               |
+| `historical_quarantine_abnormal`| 历史检疫异常标记迁移生成          |
+| `historical_abnormal_mark`     | 历史 quarantine_abnormal 状态迁移生成 |
+| `manual`                       | 手动创建                           |
+
+### POST /health-events
+
+手动创建健康事件。
+
+请求体字段：
+
+| 字段             | 必填 | 说明                                   |
+| ---------------- | ---- | -------------------------------------- |
+| animalId         | 是   | 动物ID                                 |
+| condition        | 条件 | 体况描述（与 abnormalKeywords 二选一） |
+| abnormalKeywords | 条件 | 异常关键词数组（与 condition 二选一）  |
+| weight           | 否   | 当前体重（g）                          |
+| assignee         | 否   | 指定负责人，提供时状态自动设为 assigned |
+| notes            | 否   | 初始备注数组                           |
+| source           | 否   | 来源标识，默认 manual                  |
+
+错误响应：
+
+| 状态码 | 错误码                        | 说明                   |
+| ------ | ----------------------------- | ---------------------- |
+| 400    | animalId_required             | 缺少 animalId          |
+| 404    | animal_not_found              | 动物不存在             |
+| 400    | condition_or_keywords_required | 缺少 condition 或关键词 |
+
+### GET /health-events/:id
+
+获取单个事件详情。不存在返回 `404`。
+
+响应字段说明：
+
+| 字段               | 类型    | 说明                                      |
+| ------------------ | ------- | ----------------------------------------- |
+| id                 | string  | 事件ID                                    |
+| animalId           | string  | 关联动物ID                                |
+| project            | string  | 所属项目（自动取自动物）                  |
+| keeper             | string  | 饲养员（自动取自动物）                    |
+| source             | string  | 事件来源                                  |
+| sourceRecordId     | string  | 触发来源的记录ID                          |
+| condition          | string  | 体况描述                                  |
+| abnormalKeywords   | array   | 检测到的异常关键词数组                    |
+| weightChange       | object  | 体重变化详情（见下表）                    |
+| assignee           | string  | 分派负责人                                |
+| status             | string  | 当前状态                                  |
+| notes              | array   | 处理记录数组（每条含 type/content/createdAt/author） |
+| createdAt          | string  | 创建时间 ISO                              |
+| updatedAt          | string  | 更新时间 ISO                              |
+| assignedAt         | string  | 分派时间 ISO                              |
+| inProgressAt       | string  | 进入处理中时间 ISO                        |
+| closedAt           | string  | 关闭时间 ISO                              |
+| closeReason        | string  | 关闭原因                                  |
+| relatedRecordIds   | array   | 所有关联来源记录ID（含合并的）            |
+
+`weightChange` 对象结构：
+
+| 字段           | 类型    | 说明              |
+| -------------- | ------- | ----------------- |
+| previousWeight | number  | 上次记录体重（g） |
+| previousDate   | string  | 上次记录日期      |
+| currentWeight  | number  | 当前体重（g）     |
+| diff           | number  | 体重差值（g）     |
+| percent        | number  | 变化百分比        |
+| daysDiff       | number  | 间隔天数          |
+| threshold      | number  | 应用阈值百分比    |
+| isAbnormal     | boolean | 是否异常          |
+
+### POST /health-events/:id/assign
+
+分派事件负责人。仅未关闭事件可分派。`pending` 状态分派后自动进入 `assigned`。
+
+请求体：
+
+| 字段     | 必填 | 说明     |
+| -------- | ---- | -------- |
+| assignee | 是   | 负责人姓名 |
+
+错误响应：
+
+| 状态码 | 错误码       | 说明               |
+| ------ | ------------ | ------------------ |
+| 404    | event_not_found | 事件不存在      |
+| 400    | assignee_required | 缺少负责人      |
+| 422    | event_closed | 已关闭事件无法分派 |
+
+### POST /health-events/:id/notes
+
+追加处理记录。`pending` 或 `assigned` 状态追加后自动进入 `in_progress`。
+
+请求体：
+
+| 字段     | 必填 | 说明                                      |
+| -------- | ---- | ----------------------------------------- |
+| content  | 是   | 处理记录内容                              |
+| type     | 否   | 记录类型（processing/medication/exam等），默认 processing |
+| author   | 否   | 记录人，默认取 assignee 或 handler         |
+| metadata | 否   | 附加元数据（如用药剂量、检查项目等）      |
+
+### POST /health-events/:id/close
+
+关闭事件。将状态设为 `closed`，记录关闭时间和原因。
+
+请求体：
+
+| 字段       | 必填 | 说明                       |
+| ---------- | ---- | -------------------------- |
+| reason     | 否   | 关闭原因，默认「处理完成」 |
+| closer     | 否   | 关闭人                     |
+| resolution | 否   | 处理结果摘要               |
+
+错误响应：
+
+| 状态码 | 错误码         | 说明           |
+| ------ | -------------- | -------------- |
+| 422    | already_closed | 事件已关闭     |
+
+### POST /health-events/detect
+
+异常检测预演接口，不创建事件，仅返回检测结果。用于前端在提交前提示用户。
+
+请求体：
+
+| 字段      | 必填 | 说明           |
+| --------- | ---- | -------------- |
+| animalId  | 是   | 动物ID         |
+| condition | 否   | 体况描述       |
+| weight    | 否   | 当前体重（g）  |
+
+响应示例：
+```json
+{
+  "animalId": "ani-1001",
+  "condition": "食欲下降，精神差",
+  "detectedKeywords": ["食欲下降", "精神差"],
+  "weightChange": null,
+  "wouldTriggerEvent": true,
+  "reason": "检测到异常关键词：食欲下降、精神差"
+}
+```
+
+### POST /health-events/migrate-historical
+
+手动触发历史数据扫描迁移（系统启动时已自动执行，一般无需手动调用）。
+
+响应：
+```json
+{
+  "createdCount": 3,
+  "mergedCount": 1,
+  "total": 4
+}
+```
+
+## 健康异常事件统计报表
+
+### GET /health-events/stats
+
+健康事件统计接口。
+
+查询参数（均可组合使用）：
+
+| 参数     | 说明                     |
+| -------- | ------------------------ |
+| project  | 按项目筛选               |
+| keeper   | 按饲养员筛选             |
+| handler  | 按处理人筛选             |
+| assignee | 按分派负责人筛选         |
+| fromDate | 统计区间起始（YYYY-MM-DD）|
+| toDate   | 统计区间结束（YYYY-MM-DD）|
+
+响应字段：
+
+| 字段               | 类型    | 说明                                   |
+| ------------------ | ------- | -------------------------------------- |
+| total              | number  | 事件总数                               |
+| byStatus           | object  | 按状态分组计数：{pending, assigned, in_progress, closed} |
+| byStatusLabels     | object  | 状态中文标签映射                       |
+| byProject          | object  | 按项目分组计数：{项目名: 数量, ...}    |
+| byKeeper           | object  | 按饲养员分组计数：{饲养员: 数量, ...}  |
+| topKeywords        | array   | 异常关键词 Top10，每项 {keyword, count} |
+| avgProcessingHours | number  | 已关闭事件平均处理时长（小时）         |
+| closeRate          | number  | 关闭率（百分比，两位小数）             |
+| closedCount        | number  | 已关闭事件数量                         |
+| filtersApplied     | object  | 本次统计应用的筛选条件                 |
+
+### GET /reports/health-events
+
+与 `/health-events/stats` 功能相同，作为报表入口，支持相同的筛选参数。归类于 `/reports` 命名空间下，便于报表系统统一调用。
+
+响应示例：
+```json
+{
+  "total": 12,
+  "byStatus": {
+    "pending": 2,
+    "assigned": 1,
+    "in_progress": 3,
+    "closed": 6
+  },
+  "byStatusLabels": {
+    "pending": "待处理",
+    "assigned": "已分派",
+    "in_progress": "处理中",
+    "closed": "已关闭"
+  },
+  "byProject": {
+    "疫苗测试": 4,
+    "代谢观察": 3,
+    "肿瘤研究": 2,
+    "免疫反应": 3
+  },
+  "byKeeper": {
+    "周遥": 7,
+    "林青": 5
+  },
+  "topKeywords": [
+    { "keyword": "食欲下降", "count": 5 },
+    { "keyword": "发热", "count": 3 },
+    { "keyword": "体重异常变化", "count": 2 }
+  ],
+  "avgProcessingHours": 18.45,
+  "closeRate": 50.00,
+  "closedCount": 6,
+  "filtersApplied": {
+    "project": null,
+    "keeper": null,
+    "fromDate": null,
+    "toDate": null
+  }
+}
+```
+

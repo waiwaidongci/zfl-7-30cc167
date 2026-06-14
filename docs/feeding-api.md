@@ -38,6 +38,8 @@
 | amount | number | 实际饲喂量 |
 | keeper | string | 实际操作饲养员 |
 | status | string | 状态：completed / missed |
+| condition | string | 体况描述（用于健康异常检测） |
+| weight | number \| null | 当前体重（g，用于体重变化检测） |
 | notes | string | 备注 |
 
 ---
@@ -167,7 +169,9 @@
   "scheduledTime": "08:00",
   "amount": 2.5,
   "keeper": "林青",
-  "notes": "食欲良好"
+  "condition": "食欲良好，活动正常",
+  "weight": 21.4,
+  "notes": "状态稳定"
 }
 ```
 
@@ -179,11 +183,55 @@
   "feedType": "标准颗粒饲料",
   "amount": 2.5,
   "keeper": "林青",
-  "notes": "临时饲喂"
+  "condition": "临时饲喂观察",
+  "notes": "补充饲喂"
 }
 ```
 
-**响应 201：** 饲喂记录对象
+**请求体字段说明：**
+
+| 字段 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| planId | string | 条件 | 关联计划ID（与 targetType/targetId 二选一） |
+| targetType | string | 条件 | 目标类型：animal / cage（与 planId 二选一） |
+| targetId | string | 条件 | 目标ID（与 planId 二选一） |
+| feedType | string | 否 | 饲料类型（未指定 planId 时必填） |
+| amount | number | 否 | 实际饲喂量（g），默认 0 |
+| keeper | string | 是 | 操作饲养员 |
+| scheduledTime | string | 否 | 计划饲喂时间 |
+| status | string | 否 | 状态：completed / missed，默认 completed |
+| **condition** | string | 否 | **体况描述，用于健康异常自动检测** |
+| **weight** | number | 否 | **当前体重（g），用于体重变化阈值检测** |
+| notes | string | 否 | 备注 |
+
+**响应 201：** 饲喂记录对象。当检测到健康异常时，返回值中会附加 `healthEvents` 数组，包含触发的事件信息。
+
+**异常检测响应示例：**
+```json
+{
+  "id": "record-xxx",
+  "planId": "plan-1",
+  "targetType": "animal",
+  "targetId": "ani-1001",
+  "date": "2026-06-14",
+  "condition": "食欲下降，精神差",
+  "weight": 20.2,
+  "notes": "状态不佳",
+  "healthEvents": [
+    {
+      "created": true,
+      "merged": false,
+      "eventId": "hev-xxx",
+      "event": {
+        "id": "hev-xxx",
+        "animalId": "ani-1001",
+        "status": "pending",
+        "abnormalKeywords": ["食欲下降", "精神差", "体重异常变化"]
+      }
+    }
+  ]
+}
+```
 
 ### 8. 查询饲喂记录
 

@@ -153,7 +153,7 @@ async function handleCheckin(req, res, db) {
     if (!input.feedType) input.feedType = plan.feedType;
   }
 
-  const record = addFeedingRecord(db, input);
+  const record = await addFeedingRecord(db, input, { operator: req._principal });
 
   const healthResults = [];
   if (input.targetType === "animal") {

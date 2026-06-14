@@ -1,0 +1,3348 @@
+{
+  "events": [
+    {
+      "id": "evt-1",
+      "eventType": "ledger.initialized",
+      "animalId": null,
+      "timestamp": "2026-06-14T09:07:55.446Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "totalAnimals": 18,
+        "migratedAt": "2026-06-14T09:07:55.445Z"
+      },
+      "snapshotAfter": null,
+      "previousChecksum": null,
+      "metadata": {
+        "source": "snapshot_migration"
+      },
+      "checksum": "2c53c73df1fcad1c8f0e28535c0fb02888604ee9af0324bc8e0569d7ee3f246c"
+    },
+    {
+      "id": "evt-2",
+      "eventType": "animal.created",
+      "animalId": "ani-2001",
+      "timestamp": "2026-04-10T00:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "id": "ani-2001",
+        "strain": "C57BL/6J",
+        "cageId": "A-02",
+        "sex": "male",
+        "birthDate": "2026-01-15",
+        "project": "繁育种鼠",
+        "keeper": "林青",
+        "initialStatus": "released",
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "breedingInfo": null,
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2001",
+        "strain": "C57BL/6J",
+        "cageId": "A-02",
+        "sex": "male",
+        "birthDate": "2026-01-15",
+        "project": "繁育种鼠",
+        "keeper": "林青",
+        "status": "released",
+        "enteredQuarantineAt": "2026-04-10T09:00:00.000Z",
+        "quarantineReleasedAt": "2026-04-20T09:30:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 1,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "2c53c73df1fcad1c8f0e28535c0fb02888604ee9af0324bc8e0569d7ee3f246c",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "animal_created"
+      },
+      "checksum": "073954a942e25a437bd1c9409811f94e36bd78ef536797ce55f3d1f067ca59df"
+    },
+    {
+      "id": "evt-3",
+      "eventType": "animal.created",
+      "animalId": "ani-2002",
+      "timestamp": "2026-04-10T00:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "id": "ani-2002",
+        "strain": "C57BL/6J",
+        "cageId": "A-02",
+        "sex": "female",
+        "birthDate": "2026-01-18",
+        "project": "繁育种鼠",
+        "keeper": "林青",
+        "initialStatus": "released",
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "breedingInfo": null,
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2002",
+        "strain": "C57BL/6J",
+        "cageId": "A-02",
+        "sex": "female",
+        "birthDate": "2026-01-18",
+        "project": "繁育种鼠",
+        "keeper": "林青",
+        "status": "released",
+        "enteredQuarantineAt": "2026-04-10T09:00:00.000Z",
+        "quarantineReleasedAt": "2026-04-20T010:40:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 1,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "073954a942e25a437bd1c9409811f94e36bd78ef536797ce55f3d1f067ca59df",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "animal_created"
+      },
+      "checksum": "5451865018020c5d3cb4edebb47ad5e104d03ff4b438fdfaace3b0f61a7a4274"
+    },
+    {
+      "id": "evt-4",
+      "eventType": "animal.quarantine_record",
+      "animalId": "ani-2001",
+      "timestamp": "2026-04-10T09:00:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "林青",
+        "key": "migrated"
+      },
+      "payload": {
+        "recordId": "qr-7",
+        "date": "2026-04-10",
+        "temperature": 36.8,
+        "weight": 18.5,
+        "condition": "正常",
+        "symptoms": [],
+        "isAbnormal": false,
+        "notes": "入检初查",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2001",
+        "strain": "C57BL/6J",
+        "cageId": "A-02",
+        "sex": "male",
+        "birthDate": "2026-01-15",
+        "project": "繁育种鼠",
+        "keeper": "林青",
+        "status": "released",
+        "enteredQuarantineAt": "2026-04-10T09:00:00.000Z",
+        "quarantineReleasedAt": "2026-04-20T09:30:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 1,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "5451865018020c5d3cb4edebb47ad5e104d03ff4b438fdfaace3b0f61a7a4274",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "quarantine_record",
+        "recordId": "qr-7"
+      },
+      "checksum": "c7f9bee675a7f6d32949c0c387c341b515686b222d2c1ce7c6651ff2a2a6f769"
+    },
+    {
+      "id": "evt-5",
+      "eventType": "animal.quarantine_record",
+      "animalId": "ani-2002",
+      "timestamp": "2026-04-10T09:00:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "林青",
+        "key": "migrated"
+      },
+      "payload": {
+        "recordId": "qr-8",
+        "date": "2026-04-10",
+        "temperature": 36.849999999999994,
+        "weight": 19.7,
+        "condition": "正常",
+        "symptoms": [],
+        "isAbnormal": false,
+        "notes": "入检初查",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2002",
+        "strain": "C57BL/6J",
+        "cageId": "A-02",
+        "sex": "female",
+        "birthDate": "2026-01-18",
+        "project": "繁育种鼠",
+        "keeper": "林青",
+        "status": "released",
+        "enteredQuarantineAt": "2026-04-10T09:00:00.000Z",
+        "quarantineReleasedAt": "2026-04-20T010:40:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 1,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "c7f9bee675a7f6d32949c0c387c341b515686b222d2c1ce7c6651ff2a2a6f769",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "quarantine_record",
+        "recordId": "qr-8"
+      },
+      "checksum": "0d5a07e1fe865664a22cd8f710fd50835085d86504fbe17d20bf0a3b7fcb2ad2"
+    },
+    {
+      "id": "evt-6",
+      "eventType": "animal.created",
+      "animalId": "ani-2005",
+      "timestamp": "2026-04-15T00:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "id": "ani-2005",
+        "strain": "C57BL/6J",
+        "cageId": "A-02",
+        "sex": "male",
+        "birthDate": "2026-03-01",
+        "project": "繁育种鼠",
+        "keeper": "林青",
+        "initialStatus": "released",
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "breedingInfo": null,
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2005",
+        "strain": "C57BL/6J",
+        "cageId": "A-02",
+        "sex": "male",
+        "birthDate": "2026-03-01",
+        "project": "繁育种鼠",
+        "keeper": "林青",
+        "status": "released",
+        "enteredQuarantineAt": "2026-04-15T09:00:00.000Z",
+        "quarantineReleasedAt": "2026-04-25T09:70:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 1,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "0d5a07e1fe865664a22cd8f710fd50835085d86504fbe17d20bf0a3b7fcb2ad2",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "animal_created"
+      },
+      "checksum": "707597cc6718608487fb0d5a952864581e49825f0134681dcffcc22f0d6b1ed4"
+    },
+    {
+      "id": "evt-7",
+      "eventType": "animal.created",
+      "animalId": "ani-2004",
+      "timestamp": "2026-04-15T010:60:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "id": "ani-2004",
+        "strain": "BALB/c",
+        "cageId": "B-04",
+        "sex": "female",
+        "birthDate": "2026-02-15",
+        "project": "繁育种鼠",
+        "keeper": "周遥",
+        "initialStatus": "released",
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "breedingInfo": null,
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2004",
+        "strain": "BALB/c",
+        "cageId": "B-04",
+        "sex": "female",
+        "birthDate": "2026-02-15",
+        "project": "繁育种鼠",
+        "keeper": "周遥",
+        "status": "released",
+        "enteredQuarantineAt": "2026-04-8T09:00:00.000Z",
+        "quarantineReleasedAt": "2026-04-15T010:60:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 1,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "707597cc6718608487fb0d5a952864581e49825f0134681dcffcc22f0d6b1ed4",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "animal_created"
+      },
+      "checksum": "08955ef72e8321b4bd2a0c138b5f8fb0501e058f1424eb9158b18c273651bc9b"
+    },
+    {
+      "id": "evt-8",
+      "eventType": "animal.quarantine_record",
+      "animalId": "ani-2005",
+      "timestamp": "2026-04-15T09:00:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "林青",
+        "key": "migrated"
+      },
+      "payload": {
+        "recordId": "qr-11",
+        "date": "2026-04-15",
+        "temperature": 36.849999999999994,
+        "weight": 23.3,
+        "condition": "正常",
+        "symptoms": [],
+        "isAbnormal": false,
+        "notes": "入检初查",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2005",
+        "strain": "C57BL/6J",
+        "cageId": "A-02",
+        "sex": "male",
+        "birthDate": "2026-03-01",
+        "project": "繁育种鼠",
+        "keeper": "林青",
+        "status": "released",
+        "enteredQuarantineAt": "2026-04-15T09:00:00.000Z",
+        "quarantineReleasedAt": "2026-04-25T09:70:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 1,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "08955ef72e8321b4bd2a0c138b5f8fb0501e058f1424eb9158b18c273651bc9b",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "quarantine_record",
+        "recordId": "qr-11"
+      },
+      "checksum": "530e0fecd3c49e85d9e7d17cf5a37430984a48d4639704c6a45edfe83c526f7f"
+    },
+    {
+      "id": "evt-9",
+      "eventType": "animal.created",
+      "animalId": "ani-2003",
+      "timestamp": "2026-04-15T09:50:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "id": "ani-2003",
+        "strain": "BALB/c",
+        "cageId": "B-04",
+        "sex": "male",
+        "birthDate": "2026-02-10",
+        "project": "繁育种鼠",
+        "keeper": "周遥",
+        "initialStatus": "released",
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "breedingInfo": null,
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2003",
+        "strain": "BALB/c",
+        "cageId": "B-04",
+        "sex": "male",
+        "birthDate": "2026-02-10",
+        "project": "繁育种鼠",
+        "keeper": "周遥",
+        "status": "released",
+        "enteredQuarantineAt": "2026-04-5T09:00:00.000Z",
+        "quarantineReleasedAt": "2026-04-15T09:50:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 1,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "530e0fecd3c49e85d9e7d17cf5a37430984a48d4639704c6a45edfe83c526f7f",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "animal_created"
+      },
+      "checksum": "bf628d31949349531d83f15e8f315e2deacd15cdedf30ca99b955987b78daf29"
+    },
+    {
+      "id": "evt-10",
+      "eventType": "animal.created",
+      "animalId": "ani-2006",
+      "timestamp": "2026-04-18T00:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "id": "ani-2006",
+        "strain": "C57BL/6J",
+        "cageId": "A-02",
+        "sex": "female",
+        "birthDate": "2026-03-05",
+        "project": "繁育种鼠",
+        "keeper": "林青",
+        "initialStatus": "released",
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "breedingInfo": null,
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2006",
+        "strain": "C57BL/6J",
+        "cageId": "A-02",
+        "sex": "female",
+        "birthDate": "2026-03-05",
+        "project": "繁育种鼠",
+        "keeper": "林青",
+        "status": "released",
+        "enteredQuarantineAt": "2026-04-18T09:00:00.000Z",
+        "quarantineReleasedAt": "2026-04-28T010:80:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 1,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "bf628d31949349531d83f15e8f315e2deacd15cdedf30ca99b955987b78daf29",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "animal_created"
+      },
+      "checksum": "ae90011bd6929c33964dcc98043b7dfd25a15b5a0531f25488e5970cce0b34f4"
+    },
+    {
+      "id": "evt-11",
+      "eventType": "animal.quarantine_record",
+      "animalId": "ani-2006",
+      "timestamp": "2026-04-18T09:00:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "林青",
+        "key": "migrated"
+      },
+      "payload": {
+        "recordId": "qr-12",
+        "date": "2026-04-18",
+        "temperature": 36.9,
+        "weight": 24.5,
+        "condition": "正常",
+        "symptoms": [],
+        "isAbnormal": false,
+        "notes": "入检初查",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2006",
+        "strain": "C57BL/6J",
+        "cageId": "A-02",
+        "sex": "female",
+        "birthDate": "2026-03-05",
+        "project": "繁育种鼠",
+        "keeper": "林青",
+        "status": "released",
+        "enteredQuarantineAt": "2026-04-18T09:00:00.000Z",
+        "quarantineReleasedAt": "2026-04-28T010:80:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 1,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "ae90011bd6929c33964dcc98043b7dfd25a15b5a0531f25488e5970cce0b34f4",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "quarantine_record",
+        "recordId": "qr-12"
+      },
+      "checksum": "1924bdfed3dfc595c85bbbb86a0beec66331d3eeca551e54d9031418abdebdba"
+    },
+    {
+      "id": "evt-12",
+      "eventType": "animal.created",
+      "animalId": "ani-1001",
+      "timestamp": "2026-04-20T00:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "id": "ani-1001",
+        "strain": "C57BL/6J",
+        "cageId": "A-01",
+        "sex": "female",
+        "birthDate": "2026-01-20",
+        "project": "代谢观察",
+        "keeper": "林青",
+        "initialStatus": "released",
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "breedingInfo": null,
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-1001",
+        "strain": "C57BL/6J",
+        "cageId": "A-01",
+        "sex": "female",
+        "birthDate": "2026-01-20",
+        "project": "代谢观察",
+        "keeper": "林青",
+        "status": "released",
+        "enteredQuarantineAt": "2026-04-20T09:00:00.000Z",
+        "quarantineReleasedAt": "2026-05-01T09:30:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 2
+      },
+      "previousChecksum": "1924bdfed3dfc595c85bbbb86a0beec66331d3eeca551e54d9031418abdebdba",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "animal_created"
+      },
+      "checksum": "fcdd219d20d69af9c5352baaec9a67cf4971e7093569b370a421caed57414f24"
+    },
+    {
+      "id": "evt-13",
+      "eventType": "animal.quarantine_released",
+      "animalId": "ani-2002",
+      "timestamp": "2026-04-20T010:40:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "林青",
+        "key": "migrated"
+      },
+      "payload": {
+        "approvalId": "qa-4",
+        "targetCageId": "A-02",
+        "notes": "检疫合格，种鼠备用",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2002",
+        "strain": "C57BL/6J",
+        "cageId": "A-02",
+        "sex": "female",
+        "birthDate": "2026-01-18",
+        "project": "繁育种鼠",
+        "keeper": "林青",
+        "status": "released",
+        "enteredQuarantineAt": "2026-04-10T09:00:00.000Z",
+        "quarantineReleasedAt": "2026-04-20T010:40:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 1,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "fcdd219d20d69af9c5352baaec9a67cf4971e7093569b370a421caed57414f24",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "quarantine_release"
+      },
+      "checksum": "bb920fca1b50a556db06366263ea6bda022251fb6cd217c1b6c538469711d205"
+    },
+    {
+      "id": "evt-14",
+      "eventType": "animal.moved",
+      "animalId": "ani-2002",
+      "timestamp": "2026-04-20T010:40:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "moveId": "move-3",
+        "fromCage": "检疫区",
+        "toCage": "A-02",
+        "reason": "检疫结束，作为种鼠使用",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2002",
+        "strain": "C57BL/6J",
+        "cageId": "A-02",
+        "sex": "female",
+        "birthDate": "2026-01-18",
+        "project": "繁育种鼠",
+        "keeper": "林青",
+        "status": "released",
+        "enteredQuarantineAt": "2026-04-10T09:00:00.000Z",
+        "quarantineReleasedAt": "2026-04-20T010:40:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 1,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "bb920fca1b50a556db06366263ea6bda022251fb6cd217c1b6c538469711d205",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "move",
+        "moveId": "move-3"
+      },
+      "checksum": "a0e971cb02b706767bd743a52dba33f4705614418da79a78b6ce0432c40b590a"
+    },
+    {
+      "id": "evt-15",
+      "eventType": "animal.quarantine_record",
+      "animalId": "ani-1001",
+      "timestamp": "2026-04-20T09:00:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "林青",
+        "key": "migrated"
+      },
+      "payload": {
+        "recordId": "qr-1",
+        "date": "2026-04-20",
+        "temperature": 36.8,
+        "weight": 18.5,
+        "condition": "正常",
+        "symptoms": [],
+        "isAbnormal": false,
+        "notes": "入检初查",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-1001",
+        "strain": "C57BL/6J",
+        "cageId": "A-01",
+        "sex": "female",
+        "birthDate": "2026-01-20",
+        "project": "代谢观察",
+        "keeper": "林青",
+        "status": "released",
+        "enteredQuarantineAt": "2026-04-20T09:00:00.000Z",
+        "quarantineReleasedAt": "2026-05-01T09:30:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 2
+      },
+      "previousChecksum": "a0e971cb02b706767bd743a52dba33f4705614418da79a78b6ce0432c40b590a",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "quarantine_record",
+        "recordId": "qr-1"
+      },
+      "checksum": "ec594bb8cb0b7a33452129937b8578485ebd2c014d8d8b99d2807c5334bdac62"
+    },
+    {
+      "id": "evt-16",
+      "eventType": "animal.quarantine_released",
+      "animalId": "ani-2001",
+      "timestamp": "2026-04-20T09:30:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "林青",
+        "key": "migrated"
+      },
+      "payload": {
+        "approvalId": "qa-3",
+        "targetCageId": "A-02",
+        "notes": "检疫合格，种鼠备用",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2001",
+        "strain": "C57BL/6J",
+        "cageId": "A-02",
+        "sex": "male",
+        "birthDate": "2026-01-15",
+        "project": "繁育种鼠",
+        "keeper": "林青",
+        "status": "released",
+        "enteredQuarantineAt": "2026-04-10T09:00:00.000Z",
+        "quarantineReleasedAt": "2026-04-20T09:30:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 1,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "ec594bb8cb0b7a33452129937b8578485ebd2c014d8d8b99d2807c5334bdac62",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "quarantine_release"
+      },
+      "checksum": "e0590096e57255bf9af3b1dd155f54c88fd6b362e4a8816ac5271801e0779786"
+    },
+    {
+      "id": "evt-17",
+      "eventType": "animal.moved",
+      "animalId": "ani-2001",
+      "timestamp": "2026-04-20T09:30:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "moveId": "move-2",
+        "fromCage": "检疫区",
+        "toCage": "A-02",
+        "reason": "检疫结束，作为种鼠使用",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2001",
+        "strain": "C57BL/6J",
+        "cageId": "A-02",
+        "sex": "male",
+        "birthDate": "2026-01-15",
+        "project": "繁育种鼠",
+        "keeper": "林青",
+        "status": "released",
+        "enteredQuarantineAt": "2026-04-10T09:00:00.000Z",
+        "quarantineReleasedAt": "2026-04-20T09:30:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 1,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "e0590096e57255bf9af3b1dd155f54c88fd6b362e4a8816ac5271801e0779786",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "move",
+        "moveId": "move-2"
+      },
+      "checksum": "990190ebb7c622b589b9cbb6a5a3a202a1ba3c11dbd7c86591a98695e8312f18"
+    },
+    {
+      "id": "evt-18",
+      "eventType": "animal.quarantine_released",
+      "animalId": "ani-2005",
+      "timestamp": "2026-04-25T09:70:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "林青",
+        "key": "migrated"
+      },
+      "payload": {
+        "approvalId": "qa-7",
+        "targetCageId": "A-02",
+        "notes": "检疫合格，种鼠备用",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2005",
+        "strain": "C57BL/6J",
+        "cageId": "A-02",
+        "sex": "male",
+        "birthDate": "2026-03-01",
+        "project": "繁育种鼠",
+        "keeper": "林青",
+        "status": "released",
+        "enteredQuarantineAt": "2026-04-15T09:00:00.000Z",
+        "quarantineReleasedAt": "2026-04-25T09:70:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 1,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "990190ebb7c622b589b9cbb6a5a3a202a1ba3c11dbd7c86591a98695e8312f18",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "quarantine_release"
+      },
+      "checksum": "47f4ff32c25e77f2f72df898e9c48975564947a72914e047417eddd2870607c8"
+    },
+    {
+      "id": "evt-19",
+      "eventType": "animal.moved",
+      "animalId": "ani-2005",
+      "timestamp": "2026-04-25T09:70:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "moveId": "move-6",
+        "fromCage": "检疫区",
+        "toCage": "A-02",
+        "reason": "检疫结束，作为种鼠使用",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2005",
+        "strain": "C57BL/6J",
+        "cageId": "A-02",
+        "sex": "male",
+        "birthDate": "2026-03-01",
+        "project": "繁育种鼠",
+        "keeper": "林青",
+        "status": "released",
+        "enteredQuarantineAt": "2026-04-15T09:00:00.000Z",
+        "quarantineReleasedAt": "2026-04-25T09:70:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 1,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "47f4ff32c25e77f2f72df898e9c48975564947a72914e047417eddd2870607c8",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "move",
+        "moveId": "move-6"
+      },
+      "checksum": "8a9399effdde80abe3dddbe6848a54b6d088cb4c987a97c83610d4e671790bdb"
+    },
+    {
+      "id": "evt-20",
+      "eventType": "animal.quarantine_record",
+      "animalId": "ani-1001",
+      "timestamp": "2026-04-27T09:00:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "林青",
+        "key": "migrated"
+      },
+      "payload": {
+        "recordId": "qr-2",
+        "date": "2026-04-27",
+        "temperature": 37,
+        "weight": 19.8,
+        "condition": "正常",
+        "symptoms": [],
+        "isAbnormal": false,
+        "notes": "复检",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-1001",
+        "strain": "C57BL/6J",
+        "cageId": "A-01",
+        "sex": "female",
+        "birthDate": "2026-01-20",
+        "project": "代谢观察",
+        "keeper": "林青",
+        "status": "released",
+        "enteredQuarantineAt": "2026-04-20T09:00:00.000Z",
+        "quarantineReleasedAt": "2026-05-01T09:30:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 2
+      },
+      "previousChecksum": "8a9399effdde80abe3dddbe6848a54b6d088cb4c987a97c83610d4e671790bdb",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "quarantine_record",
+        "recordId": "qr-2"
+      },
+      "checksum": "b7934b5c9bcabe7d5186f0fed61bce11771caf031c8686079fbd5e60c4a20ef2"
+    },
+    {
+      "id": "evt-21",
+      "eventType": "animal.quarantine_released",
+      "animalId": "ani-2006",
+      "timestamp": "2026-04-28T010:80:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "林青",
+        "key": "migrated"
+      },
+      "payload": {
+        "approvalId": "qa-8",
+        "targetCageId": "A-02",
+        "notes": "检疫合格，种鼠备用",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2006",
+        "strain": "C57BL/6J",
+        "cageId": "A-02",
+        "sex": "female",
+        "birthDate": "2026-03-05",
+        "project": "繁育种鼠",
+        "keeper": "林青",
+        "status": "released",
+        "enteredQuarantineAt": "2026-04-18T09:00:00.000Z",
+        "quarantineReleasedAt": "2026-04-28T010:80:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 1,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "b7934b5c9bcabe7d5186f0fed61bce11771caf031c8686079fbd5e60c4a20ef2",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "quarantine_release"
+      },
+      "checksum": "495d89c227f485ab9cbb617d6975f5d8f253a111f5f1345c025cf48077104042"
+    },
+    {
+      "id": "evt-22",
+      "eventType": "animal.moved",
+      "animalId": "ani-2006",
+      "timestamp": "2026-04-28T010:80:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "moveId": "move-7",
+        "fromCage": "检疫区",
+        "toCage": "A-02",
+        "reason": "检疫结束，作为种鼠使用",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2006",
+        "strain": "C57BL/6J",
+        "cageId": "A-02",
+        "sex": "female",
+        "birthDate": "2026-03-05",
+        "project": "繁育种鼠",
+        "keeper": "林青",
+        "status": "released",
+        "enteredQuarantineAt": "2026-04-18T09:00:00.000Z",
+        "quarantineReleasedAt": "2026-04-28T010:80:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 1,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "495d89c227f485ab9cbb617d6975f5d8f253a111f5f1345c025cf48077104042",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "move",
+        "moveId": "move-7"
+      },
+      "checksum": "091439e6f3670dbc30b880ac5e4db8dea0d1802fd983a0183e5a7083d3f58c6b"
+    },
+    {
+      "id": "evt-23",
+      "eventType": "animal.quarantine_record",
+      "animalId": "ani-2003",
+      "timestamp": "2026-04-5T09:00:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "周遥",
+        "key": "migrated"
+      },
+      "payload": {
+        "recordId": "qr-9",
+        "date": "2026-04-5",
+        "temperature": 36.9,
+        "weight": 20.9,
+        "condition": "正常",
+        "symptoms": [],
+        "isAbnormal": false,
+        "notes": "入检初查",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2003",
+        "strain": "BALB/c",
+        "cageId": "B-04",
+        "sex": "male",
+        "birthDate": "2026-02-10",
+        "project": "繁育种鼠",
+        "keeper": "周遥",
+        "status": "released",
+        "enteredQuarantineAt": "2026-04-5T09:00:00.000Z",
+        "quarantineReleasedAt": "2026-04-15T09:50:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 1,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "091439e6f3670dbc30b880ac5e4db8dea0d1802fd983a0183e5a7083d3f58c6b",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "quarantine_record",
+        "recordId": "qr-9"
+      },
+      "checksum": "9ee75ee477a144b7e0e925db83c0132c7817e8a5c323560ae1624569b5ddce74"
+    },
+    {
+      "id": "evt-24",
+      "eventType": "animal.quarantine_record",
+      "animalId": "ani-2004",
+      "timestamp": "2026-04-8T09:00:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "周遥",
+        "key": "migrated"
+      },
+      "payload": {
+        "recordId": "qr-10",
+        "date": "2026-04-8",
+        "temperature": 36.8,
+        "weight": 22.1,
+        "condition": "正常",
+        "symptoms": [],
+        "isAbnormal": false,
+        "notes": "入检初查",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2004",
+        "strain": "BALB/c",
+        "cageId": "B-04",
+        "sex": "female",
+        "birthDate": "2026-02-15",
+        "project": "繁育种鼠",
+        "keeper": "周遥",
+        "status": "released",
+        "enteredQuarantineAt": "2026-04-8T09:00:00.000Z",
+        "quarantineReleasedAt": "2026-04-15T010:60:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 1,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "9ee75ee477a144b7e0e925db83c0132c7817e8a5c323560ae1624569b5ddce74",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "quarantine_record",
+        "recordId": "qr-10"
+      },
+      "checksum": "fa3ff33c81336aba0180b8a3693e5d94d16ae37796f978c859e9b309184e5144"
+    },
+    {
+      "id": "evt-25",
+      "eventType": "animal.quarantine_released",
+      "animalId": "ani-1001",
+      "timestamp": "2026-05-01T09:30:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "林青",
+        "key": "migrated"
+      },
+      "payload": {
+        "approvalId": "qa-1",
+        "targetCageId": "A-01",
+        "notes": "检疫合格放行",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-1001",
+        "strain": "C57BL/6J",
+        "cageId": "A-01",
+        "sex": "female",
+        "birthDate": "2026-01-20",
+        "project": "代谢观察",
+        "keeper": "林青",
+        "status": "released",
+        "enteredQuarantineAt": "2026-04-20T09:00:00.000Z",
+        "quarantineReleasedAt": "2026-05-01T09:30:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 2
+      },
+      "previousChecksum": "fa3ff33c81336aba0180b8a3693e5d94d16ae37796f978c859e9b309184e5144",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "quarantine_release"
+      },
+      "checksum": "bc4a45e70be41879d49c6bf68d97b796c069bf8d8446614d61e63beb9a699c36"
+    },
+    {
+      "id": "evt-26",
+      "eventType": "animal.moved",
+      "animalId": "ani-1001",
+      "timestamp": "2026-05-01T09:30:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "moveId": "move-1",
+        "fromCage": "检疫区",
+        "toCage": "A-01",
+        "reason": "检疫结束",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-1001",
+        "strain": "C57BL/6J",
+        "cageId": "A-01",
+        "sex": "female",
+        "birthDate": "2026-01-20",
+        "project": "代谢观察",
+        "keeper": "林青",
+        "status": "released",
+        "enteredQuarantineAt": "2026-04-20T09:00:00.000Z",
+        "quarantineReleasedAt": "2026-05-01T09:30:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 2
+      },
+      "previousChecksum": "bc4a45e70be41879d49c6bf68d97b796c069bf8d8446614d61e63beb9a699c36",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "move",
+        "moveId": "move-1"
+      },
+      "checksum": "b3707d27a805268a0da0db3212ee89279e9f95ce5aad60d467e7ee215ea1939b"
+    },
+    {
+      "id": "evt-27",
+      "eventType": "animal.created",
+      "animalId": "ani-1002",
+      "timestamp": "2026-05-10T00:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "id": "ani-1002",
+        "strain": "BALB/c",
+        "cageId": "B-03",
+        "sex": "male",
+        "birthDate": "2026-02-03",
+        "project": "免疫反应",
+        "keeper": "周遥",
+        "initialStatus": "released",
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "breedingInfo": null,
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-1002",
+        "strain": "BALB/c",
+        "cageId": "B-03",
+        "sex": "male",
+        "birthDate": "2026-02-03",
+        "project": "免疫反应",
+        "keeper": "周遥",
+        "status": "released",
+        "enteredQuarantineAt": "2026-05-10T10:00:00.000Z",
+        "quarantineReleasedAt": "2026-05-17T10:00:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "b3707d27a805268a0da0db3212ee89279e9f95ce5aad60d467e7ee215ea1939b",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "animal_created"
+      },
+      "checksum": "07a612863096bc1cb6ae9ea7dd5cc711f531d486c2aa84016931b4c7f81b31d2"
+    },
+    {
+      "id": "evt-28",
+      "eventType": "animal.quarantine_record",
+      "animalId": "ani-1002",
+      "timestamp": "2026-05-10T10:00:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "周遥",
+        "key": "migrated"
+      },
+      "payload": {
+        "recordId": "qr-3",
+        "date": "2026-05-10",
+        "temperature": 36.9,
+        "weight": 22.1,
+        "condition": "正常",
+        "symptoms": [],
+        "isAbnormal": false,
+        "notes": "入检初查",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-1002",
+        "strain": "BALB/c",
+        "cageId": "B-03",
+        "sex": "male",
+        "birthDate": "2026-02-03",
+        "project": "免疫反应",
+        "keeper": "周遥",
+        "status": "released",
+        "enteredQuarantineAt": "2026-05-10T10:00:00.000Z",
+        "quarantineReleasedAt": "2026-05-17T10:00:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "07a612863096bc1cb6ae9ea7dd5cc711f531d486c2aa84016931b4c7f81b31d2",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "quarantine_record",
+        "recordId": "qr-3"
+      },
+      "checksum": "946ad8c62c601ea6f445d6a48c0ab014129886e110474384ccf7d54d9689ad3f"
+    },
+    {
+      "id": "evt-29",
+      "eventType": "animal.quarantine_released",
+      "animalId": "ani-1002",
+      "timestamp": "2026-05-17T10:00:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "周遥",
+        "key": "migrated"
+      },
+      "payload": {
+        "approvalId": "qa-2",
+        "targetCageId": "B-03",
+        "notes": "检疫合格",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-1002",
+        "strain": "BALB/c",
+        "cageId": "B-03",
+        "sex": "male",
+        "birthDate": "2026-02-03",
+        "project": "免疫反应",
+        "keeper": "周遥",
+        "status": "released",
+        "enteredQuarantineAt": "2026-05-10T10:00:00.000Z",
+        "quarantineReleasedAt": "2026-05-17T10:00:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "946ad8c62c601ea6f445d6a48c0ab014129886e110474384ccf7d54d9689ad3f",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "quarantine_release"
+      },
+      "checksum": "9a18d06867f7783c27cd0e4d5806aab68eb0d2f5fd5c38459c260ecbb2675dfa"
+    },
+    {
+      "id": "evt-30",
+      "eventType": "animal.created",
+      "animalId": "ani-1003",
+      "timestamp": "2026-06-10T00:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "id": "ani-1003",
+        "strain": "C57BL/6J",
+        "cageId": "C-01",
+        "sex": "male",
+        "birthDate": "2026-04-15",
+        "project": "肿瘤研究",
+        "keeper": "林青",
+        "initialStatus": "quarantine",
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "breedingInfo": null,
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-1003",
+        "strain": "C57BL/6J",
+        "cageId": "C-01",
+        "sex": "male",
+        "birthDate": "2026-04-15",
+        "project": "肿瘤研究",
+        "keeper": "林青",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-10T14:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "9a18d06867f7783c27cd0e4d5806aab68eb0d2f5fd5c38459c260ecbb2675dfa",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "animal_created"
+      },
+      "checksum": "695f9ba05dde42698b9f38313f4114456a29b18a434b8e35627a69f77f2d676a"
+    },
+    {
+      "id": "evt-31",
+      "eventType": "animal.created",
+      "animalId": "ani-3001",
+      "timestamp": "2026-06-10T00:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "id": "ani-3001",
+        "strain": "C57BL/6J",
+        "cageId": "D-01",
+        "sex": "male",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "initialStatus": "quarantine",
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "breedingInfo": {
+          "fatherId": "ani-2001",
+          "motherId": "ani-2002",
+          "litterId": "litter-demo-1",
+          "pairingId": "pair-demo-1",
+          "weanDate": "2026-06-10",
+          "weaningWeight": 9.2
+        },
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-3001",
+        "strain": "C57BL/6J",
+        "cageId": "D-01",
+        "sex": "male",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "695f9ba05dde42698b9f38313f4114456a29b18a434b8e35627a69f77f2d676a",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "animal_created"
+      },
+      "checksum": "4054f196e32be1105c5c564d4ef8d32171ef8452d96a64ce971264de180df3c8"
+    },
+    {
+      "id": "evt-32",
+      "eventType": "animal.created",
+      "animalId": "ani-3002",
+      "timestamp": "2026-06-10T00:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "id": "ani-3002",
+        "strain": "C57BL/6J",
+        "cageId": "D-01",
+        "sex": "male",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "initialStatus": "quarantine",
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "breedingInfo": {
+          "fatherId": "ani-2001",
+          "motherId": "ani-2002",
+          "litterId": "litter-demo-1",
+          "pairingId": "pair-demo-1",
+          "weanDate": "2026-06-10",
+          "weaningWeight": 9.8
+        },
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-3002",
+        "strain": "C57BL/6J",
+        "cageId": "D-01",
+        "sex": "male",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "4054f196e32be1105c5c564d4ef8d32171ef8452d96a64ce971264de180df3c8",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "animal_created"
+      },
+      "checksum": "0443d4a347c16f50f8a81e2c7a36986a4474697bbbaf3075f5e498ca29928b9b"
+    },
+    {
+      "id": "evt-33",
+      "eventType": "animal.created",
+      "animalId": "ani-3003",
+      "timestamp": "2026-06-10T00:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "id": "ani-3003",
+        "strain": "C57BL/6J",
+        "cageId": "D-01",
+        "sex": "male",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "initialStatus": "quarantine",
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "breedingInfo": {
+          "fatherId": "ani-2001",
+          "motherId": "ani-2002",
+          "litterId": "litter-demo-1",
+          "pairingId": "pair-demo-1",
+          "weanDate": "2026-06-10",
+          "weaningWeight": 8.7
+        },
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-3003",
+        "strain": "C57BL/6J",
+        "cageId": "D-01",
+        "sex": "male",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "0443d4a347c16f50f8a81e2c7a36986a4474697bbbaf3075f5e498ca29928b9b",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "animal_created"
+      },
+      "checksum": "77cf5eaec0f498755f28502c53ea55a5e2009116ab473eb27eb68087daf20138"
+    },
+    {
+      "id": "evt-34",
+      "eventType": "animal.created",
+      "animalId": "ani-3004",
+      "timestamp": "2026-06-10T00:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "id": "ani-3004",
+        "strain": "C57BL/6J",
+        "cageId": "D-01",
+        "sex": "male",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "initialStatus": "quarantine",
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "breedingInfo": {
+          "fatherId": "ani-2001",
+          "motherId": "ani-2002",
+          "litterId": "litter-demo-1",
+          "pairingId": "pair-demo-1",
+          "weanDate": "2026-06-10",
+          "weaningWeight": 10.1
+        },
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-3004",
+        "strain": "C57BL/6J",
+        "cageId": "D-01",
+        "sex": "male",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "77cf5eaec0f498755f28502c53ea55a5e2009116ab473eb27eb68087daf20138",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "animal_created"
+      },
+      "checksum": "3cbc577fcd48fe16a80e640cae124ecfe7610eacda156ce1872c89f5b4fccfb8"
+    },
+    {
+      "id": "evt-35",
+      "eventType": "animal.created",
+      "animalId": "ani-3005",
+      "timestamp": "2026-06-10T00:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "id": "ani-3005",
+        "strain": "C57BL/6J",
+        "cageId": "D-02",
+        "sex": "female",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "initialStatus": "quarantine",
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "breedingInfo": {
+          "fatherId": "ani-2001",
+          "motherId": "ani-2002",
+          "litterId": "litter-demo-1",
+          "pairingId": "pair-demo-1",
+          "weanDate": "2026-06-10",
+          "weaningWeight": 8.5
+        },
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-3005",
+        "strain": "C57BL/6J",
+        "cageId": "D-02",
+        "sex": "female",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "3cbc577fcd48fe16a80e640cae124ecfe7610eacda156ce1872c89f5b4fccfb8",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "animal_created"
+      },
+      "checksum": "65328c0e269e4ec7871cded46984efa62643c67feb0eae68a85572a58c7151c4"
+    },
+    {
+      "id": "evt-36",
+      "eventType": "animal.created",
+      "animalId": "ani-3006",
+      "timestamp": "2026-06-10T00:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "id": "ani-3006",
+        "strain": "C57BL/6J",
+        "cageId": "D-02",
+        "sex": "female",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "initialStatus": "quarantine",
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "breedingInfo": {
+          "fatherId": "ani-2001",
+          "motherId": "ani-2002",
+          "litterId": "litter-demo-1",
+          "pairingId": "pair-demo-1",
+          "weanDate": "2026-06-10",
+          "weaningWeight": 9
+        },
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-3006",
+        "strain": "C57BL/6J",
+        "cageId": "D-02",
+        "sex": "female",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "65328c0e269e4ec7871cded46984efa62643c67feb0eae68a85572a58c7151c4",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "animal_created"
+      },
+      "checksum": "d4dc6ac1a4139309aa1126c79ee295d08338e306b9d0fbe2099e94a34b83b657"
+    },
+    {
+      "id": "evt-37",
+      "eventType": "animal.created",
+      "animalId": "ani-3007",
+      "timestamp": "2026-06-10T00:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "id": "ani-3007",
+        "strain": "C57BL/6J",
+        "cageId": "D-02",
+        "sex": "female",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "initialStatus": "quarantine",
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "breedingInfo": {
+          "fatherId": "ani-2001",
+          "motherId": "ani-2002",
+          "litterId": "litter-demo-1",
+          "pairingId": "pair-demo-1",
+          "weanDate": "2026-06-10",
+          "weaningWeight": 8.9
+        },
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-3007",
+        "strain": "C57BL/6J",
+        "cageId": "D-02",
+        "sex": "female",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "d4dc6ac1a4139309aa1126c79ee295d08338e306b9d0fbe2099e94a34b83b657",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "animal_created"
+      },
+      "checksum": "70fb55cf4e37f17567cb99f15aad537b2360ee70b367685f9b318ca782be5e07"
+    },
+    {
+      "id": "evt-38",
+      "eventType": "animal.moved",
+      "animalId": "ani-3001",
+      "timestamp": "2026-06-10T10:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "moveId": "move-w1",
+        "fromCage": "A-02",
+        "toCage": "D-01",
+        "reason": "断奶分笼",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-3001",
+        "strain": "C57BL/6J",
+        "cageId": "D-01",
+        "sex": "male",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "70fb55cf4e37f17567cb99f15aad537b2360ee70b367685f9b318ca782be5e07",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "move",
+        "moveId": "move-w1"
+      },
+      "checksum": "a5fad54410a919135e32052a6fa58ff56b840797d759c16081a04aa5f1be844a"
+    },
+    {
+      "id": "evt-39",
+      "eventType": "breeding.litter_weaned",
+      "animalId": "ani-3001",
+      "timestamp": "2026-06-10T10:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "litterId": "litter-demo-1",
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "weaningWeight": 9.2,
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-3001",
+        "strain": "C57BL/6J",
+        "cageId": "D-01",
+        "sex": "male",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "a5fad54410a919135e32052a6fa58ff56b840797d759c16081a04aa5f1be844a",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "weaned"
+      },
+      "checksum": "36547db2437bee5a299b58bfe929390e456f203ad377b6345134cc1e64399b6a"
+    },
+    {
+      "id": "evt-40",
+      "eventType": "animal.moved",
+      "animalId": "ani-3002",
+      "timestamp": "2026-06-10T10:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "moveId": "move-w2",
+        "fromCage": "A-02",
+        "toCage": "D-01",
+        "reason": "断奶分笼",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-3002",
+        "strain": "C57BL/6J",
+        "cageId": "D-01",
+        "sex": "male",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "36547db2437bee5a299b58bfe929390e456f203ad377b6345134cc1e64399b6a",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "move",
+        "moveId": "move-w2"
+      },
+      "checksum": "cbe6f4124b85f58309f73e8023d372d5b588ea4322b69383906e2b45e7cc195b"
+    },
+    {
+      "id": "evt-41",
+      "eventType": "breeding.litter_weaned",
+      "animalId": "ani-3002",
+      "timestamp": "2026-06-10T10:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "litterId": "litter-demo-1",
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "weaningWeight": 9.8,
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-3002",
+        "strain": "C57BL/6J",
+        "cageId": "D-01",
+        "sex": "male",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "cbe6f4124b85f58309f73e8023d372d5b588ea4322b69383906e2b45e7cc195b",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "weaned"
+      },
+      "checksum": "85df8c5408bab3a8a9404aec154ded48f34e5b6d9f3b4d463f52bab0fb5bde8e"
+    },
+    {
+      "id": "evt-42",
+      "eventType": "animal.moved",
+      "animalId": "ani-3003",
+      "timestamp": "2026-06-10T10:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "moveId": "move-w3",
+        "fromCage": "A-02",
+        "toCage": "D-01",
+        "reason": "断奶分笼",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-3003",
+        "strain": "C57BL/6J",
+        "cageId": "D-01",
+        "sex": "male",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "85df8c5408bab3a8a9404aec154ded48f34e5b6d9f3b4d463f52bab0fb5bde8e",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "move",
+        "moveId": "move-w3"
+      },
+      "checksum": "22c1fbdef9a568797d6492d1a5dedcc3ac8a3c821d4cf154fdd8661a65b12f95"
+    },
+    {
+      "id": "evt-43",
+      "eventType": "breeding.litter_weaned",
+      "animalId": "ani-3003",
+      "timestamp": "2026-06-10T10:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "litterId": "litter-demo-1",
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "weaningWeight": 8.7,
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-3003",
+        "strain": "C57BL/6J",
+        "cageId": "D-01",
+        "sex": "male",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "22c1fbdef9a568797d6492d1a5dedcc3ac8a3c821d4cf154fdd8661a65b12f95",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "weaned"
+      },
+      "checksum": "2fc2356ae382104c5daa4a173e0cf074b6f7e3fa240258068e46484993d1d571"
+    },
+    {
+      "id": "evt-44",
+      "eventType": "animal.moved",
+      "animalId": "ani-3004",
+      "timestamp": "2026-06-10T10:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "moveId": "move-w4",
+        "fromCage": "A-02",
+        "toCage": "D-01",
+        "reason": "断奶分笼",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-3004",
+        "strain": "C57BL/6J",
+        "cageId": "D-01",
+        "sex": "male",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "2fc2356ae382104c5daa4a173e0cf074b6f7e3fa240258068e46484993d1d571",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "move",
+        "moveId": "move-w4"
+      },
+      "checksum": "e40be9f1c25374dceac0371d4f421b51c527c02688cd229824921aa9942367cf"
+    },
+    {
+      "id": "evt-45",
+      "eventType": "breeding.litter_weaned",
+      "animalId": "ani-3004",
+      "timestamp": "2026-06-10T10:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "litterId": "litter-demo-1",
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "weaningWeight": 10.1,
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-3004",
+        "strain": "C57BL/6J",
+        "cageId": "D-01",
+        "sex": "male",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "e40be9f1c25374dceac0371d4f421b51c527c02688cd229824921aa9942367cf",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "weaned"
+      },
+      "checksum": "a9b86b0d9f364bcecf76013ec9c8c243ea932c514dd4372be438cd7796e549cb"
+    },
+    {
+      "id": "evt-46",
+      "eventType": "animal.moved",
+      "animalId": "ani-3005",
+      "timestamp": "2026-06-10T10:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "moveId": "move-w5",
+        "fromCage": "A-02",
+        "toCage": "D-02",
+        "reason": "断奶分笼",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-3005",
+        "strain": "C57BL/6J",
+        "cageId": "D-02",
+        "sex": "female",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "a9b86b0d9f364bcecf76013ec9c8c243ea932c514dd4372be438cd7796e549cb",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "move",
+        "moveId": "move-w5"
+      },
+      "checksum": "ef97bc259adf3f30e898ae16f7dbffdd394e79900452ace015022cbac1a835b4"
+    },
+    {
+      "id": "evt-47",
+      "eventType": "breeding.litter_weaned",
+      "animalId": "ani-3005",
+      "timestamp": "2026-06-10T10:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "litterId": "litter-demo-1",
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "weaningWeight": 8.5,
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-3005",
+        "strain": "C57BL/6J",
+        "cageId": "D-02",
+        "sex": "female",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "ef97bc259adf3f30e898ae16f7dbffdd394e79900452ace015022cbac1a835b4",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "weaned"
+      },
+      "checksum": "51a59afe018ff50dc81c69b50bef959b8c42256f30046932515ade1d201e533c"
+    },
+    {
+      "id": "evt-48",
+      "eventType": "animal.moved",
+      "animalId": "ani-3006",
+      "timestamp": "2026-06-10T10:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "moveId": "move-w6",
+        "fromCage": "A-02",
+        "toCage": "D-02",
+        "reason": "断奶分笼",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-3006",
+        "strain": "C57BL/6J",
+        "cageId": "D-02",
+        "sex": "female",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "51a59afe018ff50dc81c69b50bef959b8c42256f30046932515ade1d201e533c",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "move",
+        "moveId": "move-w6"
+      },
+      "checksum": "7acc6c962d7f5ac47a29390c7d63cefe26802c504ba32e938a4fa8799c2c6e56"
+    },
+    {
+      "id": "evt-49",
+      "eventType": "breeding.litter_weaned",
+      "animalId": "ani-3006",
+      "timestamp": "2026-06-10T10:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "litterId": "litter-demo-1",
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "weaningWeight": 9,
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-3006",
+        "strain": "C57BL/6J",
+        "cageId": "D-02",
+        "sex": "female",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "7acc6c962d7f5ac47a29390c7d63cefe26802c504ba32e938a4fa8799c2c6e56",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "weaned"
+      },
+      "checksum": "a8bf6f5bfa8adf5392e92d146c6b250243c85c887ccea17a2455e790d503e20b"
+    },
+    {
+      "id": "evt-50",
+      "eventType": "animal.moved",
+      "animalId": "ani-3007",
+      "timestamp": "2026-06-10T10:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "moveId": "move-w7",
+        "fromCage": "A-02",
+        "toCage": "D-02",
+        "reason": "断奶分笼",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-3007",
+        "strain": "C57BL/6J",
+        "cageId": "D-02",
+        "sex": "female",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "a8bf6f5bfa8adf5392e92d146c6b250243c85c887ccea17a2455e790d503e20b",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "move",
+        "moveId": "move-w7"
+      },
+      "checksum": "614da53aafe758b28a17417bb9dce0c0f8d9f21cb30d6874979d976296f20bfa"
+    },
+    {
+      "id": "evt-51",
+      "eventType": "breeding.litter_weaned",
+      "animalId": "ani-3007",
+      "timestamp": "2026-06-10T10:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "litterId": "litter-demo-1",
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "weaningWeight": 8.9,
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-3007",
+        "strain": "C57BL/6J",
+        "cageId": "D-02",
+        "sex": "female",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "614da53aafe758b28a17417bb9dce0c0f8d9f21cb30d6874979d976296f20bfa",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "weaned"
+      },
+      "checksum": "2280b60732946201d10781404aa7cf08a00e46e8b173d8ebaa656cd1fd123e5d"
+    },
+    {
+      "id": "evt-52",
+      "eventType": "animal.note_added",
+      "animalId": "ani-1001",
+      "timestamp": "2026-06-10T12:00:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "林青",
+        "key": "migrated"
+      },
+      "payload": {
+        "noteId": "note-1",
+        "date": "2026-06-10",
+        "weight": 21.4,
+        "condition": "正常进食",
+        "type": "general",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-1001",
+        "strain": "C57BL/6J",
+        "cageId": "A-01",
+        "sex": "female",
+        "birthDate": "2026-01-20",
+        "project": "代谢观察",
+        "keeper": "林青",
+        "status": "released",
+        "enteredQuarantineAt": "2026-04-20T09:00:00.000Z",
+        "quarantineReleasedAt": "2026-05-01T09:30:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 2
+      },
+      "previousChecksum": "2280b60732946201d10781404aa7cf08a00e46e8b173d8ebaa656cd1fd123e5d",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "note",
+        "noteId": "note-1"
+      },
+      "checksum": "19a2f39c03352a578ccf30baf4c047a34f36f240a197f9ca7feb7a80d4d0b6e5"
+    },
+    {
+      "id": "evt-53",
+      "eventType": "animal.note_added",
+      "animalId": "ani-3001",
+      "timestamp": "2026-06-10T12:00:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "林青",
+        "key": "migrated"
+      },
+      "payload": {
+        "noteId": "note-w1",
+        "date": "2026-06-10",
+        "weight": 9.2,
+        "condition": "断奶分笼",
+        "type": "weaning",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-3001",
+        "strain": "C57BL/6J",
+        "cageId": "D-01",
+        "sex": "male",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "19a2f39c03352a578ccf30baf4c047a34f36f240a197f9ca7feb7a80d4d0b6e5",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "note",
+        "noteId": "note-w1"
+      },
+      "checksum": "ef6afa5bf480385f8a8446561ffc550cd91b2f4275e682083f6cd27a581e6e36"
+    },
+    {
+      "id": "evt-54",
+      "eventType": "animal.note_added",
+      "animalId": "ani-3002",
+      "timestamp": "2026-06-10T12:00:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "林青",
+        "key": "migrated"
+      },
+      "payload": {
+        "noteId": "note-w2",
+        "date": "2026-06-10",
+        "weight": 9.8,
+        "condition": "断奶分笼",
+        "type": "weaning",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-3002",
+        "strain": "C57BL/6J",
+        "cageId": "D-01",
+        "sex": "male",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "ef6afa5bf480385f8a8446561ffc550cd91b2f4275e682083f6cd27a581e6e36",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "note",
+        "noteId": "note-w2"
+      },
+      "checksum": "19fd4b0a05fc410788421b391a6403ec32513e9e082d82813eb7c1ae165c9037"
+    },
+    {
+      "id": "evt-55",
+      "eventType": "animal.note_added",
+      "animalId": "ani-3003",
+      "timestamp": "2026-06-10T12:00:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "林青",
+        "key": "migrated"
+      },
+      "payload": {
+        "noteId": "note-w3",
+        "date": "2026-06-10",
+        "weight": 8.7,
+        "condition": "断奶分笼",
+        "type": "weaning",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-3003",
+        "strain": "C57BL/6J",
+        "cageId": "D-01",
+        "sex": "male",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "19fd4b0a05fc410788421b391a6403ec32513e9e082d82813eb7c1ae165c9037",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "note",
+        "noteId": "note-w3"
+      },
+      "checksum": "355e88fa171dd53c93cbfb1567ec34b805deeb551e25d19b109ff6cc6331c624"
+    },
+    {
+      "id": "evt-56",
+      "eventType": "animal.note_added",
+      "animalId": "ani-3004",
+      "timestamp": "2026-06-10T12:00:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "林青",
+        "key": "migrated"
+      },
+      "payload": {
+        "noteId": "note-w4",
+        "date": "2026-06-10",
+        "weight": 10.1,
+        "condition": "断奶分笼",
+        "type": "weaning",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-3004",
+        "strain": "C57BL/6J",
+        "cageId": "D-01",
+        "sex": "male",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "355e88fa171dd53c93cbfb1567ec34b805deeb551e25d19b109ff6cc6331c624",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "note",
+        "noteId": "note-w4"
+      },
+      "checksum": "0598103da00ac80b276bb465d1b2b2c5f7aa6052427c2570a3ad53d545da33a5"
+    },
+    {
+      "id": "evt-57",
+      "eventType": "animal.note_added",
+      "animalId": "ani-3005",
+      "timestamp": "2026-06-10T12:00:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "林青",
+        "key": "migrated"
+      },
+      "payload": {
+        "noteId": "note-w5",
+        "date": "2026-06-10",
+        "weight": 8.5,
+        "condition": "断奶分笼",
+        "type": "weaning",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-3005",
+        "strain": "C57BL/6J",
+        "cageId": "D-02",
+        "sex": "female",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "0598103da00ac80b276bb465d1b2b2c5f7aa6052427c2570a3ad53d545da33a5",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "note",
+        "noteId": "note-w5"
+      },
+      "checksum": "e730d3140622f75c34e9d0c114b8bf73b8cffa07aea8fe3f7819327dfb0dce86"
+    },
+    {
+      "id": "evt-58",
+      "eventType": "animal.note_added",
+      "animalId": "ani-3006",
+      "timestamp": "2026-06-10T12:00:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "林青",
+        "key": "migrated"
+      },
+      "payload": {
+        "noteId": "note-w6",
+        "date": "2026-06-10",
+        "weight": 9,
+        "condition": "断奶分笼",
+        "type": "weaning",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-3006",
+        "strain": "C57BL/6J",
+        "cageId": "D-02",
+        "sex": "female",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "e730d3140622f75c34e9d0c114b8bf73b8cffa07aea8fe3f7819327dfb0dce86",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "note",
+        "noteId": "note-w6"
+      },
+      "checksum": "94d0c8a1797fd133c5c1c437a78dae0138f6425b0017e9805f3c186a8b39c134"
+    },
+    {
+      "id": "evt-59",
+      "eventType": "animal.note_added",
+      "animalId": "ani-3007",
+      "timestamp": "2026-06-10T12:00:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "林青",
+        "key": "migrated"
+      },
+      "payload": {
+        "noteId": "note-w7",
+        "date": "2026-06-10",
+        "weight": 8.9,
+        "condition": "断奶分笼",
+        "type": "weaning",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-3007",
+        "strain": "C57BL/6J",
+        "cageId": "D-02",
+        "sex": "female",
+        "birthDate": "2026-05-20",
+        "project": "子代繁育群",
+        "keeper": "林青",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": "ani-2001",
+        "motherId": "ani-2002",
+        "litterId": "litter-demo-1",
+        "weanedAt": "2026-06-10T10:00:00.000Z",
+        "notesCount": 1,
+        "movesCount": 1,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "94d0c8a1797fd133c5c1c437a78dae0138f6425b0017e9805f3c186a8b39c134",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "note",
+        "noteId": "note-w7"
+      },
+      "checksum": "819e4c7556d494f1441a7b6903e77ece51ab6b66b6f7b17099ce49208be56483"
+    },
+    {
+      "id": "evt-60",
+      "eventType": "animal.quarantine_record",
+      "animalId": "ani-1003",
+      "timestamp": "2026-06-10T14:00:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "林青",
+        "key": "migrated"
+      },
+      "payload": {
+        "recordId": "qr-4",
+        "date": "2026-06-10",
+        "temperature": 36.7,
+        "weight": 16.5,
+        "condition": "正常",
+        "symptoms": [],
+        "isAbnormal": false,
+        "notes": "入检初查，状态良好",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-1003",
+        "strain": "C57BL/6J",
+        "cageId": "C-01",
+        "sex": "male",
+        "birthDate": "2026-04-15",
+        "project": "肿瘤研究",
+        "keeper": "林青",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-10T14:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "819e4c7556d494f1441a7b6903e77ece51ab6b66b6f7b17099ce49208be56483",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "quarantine_record",
+        "recordId": "qr-4"
+      },
+      "checksum": "78495f6ae2a011eb2ad6dc2418de03ba07cbe732c8ef3c8820682c9150adc1fc"
+    },
+    {
+      "id": "evt-61",
+      "eventType": "feeding.recorded",
+      "animalId": "ani-3003",
+      "timestamp": "2026-06-11T08:35:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "林青",
+        "key": "migrated"
+      },
+      "payload": {
+        "recordId": "record-6",
+        "planId": null,
+        "feedType": "高蛋白饲料",
+        "amount": 1.5,
+        "condition": "断奶后食欲不振，体型偏小",
+        "weight": 8.7,
+        "notes": "与同窝相比明显偏小，需加强营养",
+        "date": "2026-06-11",
+        "migrated": true
+      },
+      "snapshotAfter": null,
+      "previousChecksum": "78495f6ae2a011eb2ad6dc2418de03ba07cbe732c8ef3c8820682c9150adc1fc",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "feeding_record",
+        "recordId": "record-6"
+      },
+      "checksum": "9c7a093d2d45bcc0629ad65cc9200d5147abd3a6cb1cd916cdbe616bbd3e7094"
+    },
+    {
+      "id": "evt-62",
+      "eventType": "animal.created",
+      "animalId": "ani-1004",
+      "timestamp": "2026-06-12T00:00:00.000Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "id": "ani-1004",
+        "strain": "BALB/c",
+        "cageId": "C-01",
+        "sex": "female",
+        "birthDate": "2026-04-20",
+        "project": "疫苗测试",
+        "keeper": "周遥",
+        "initialStatus": "quarantine_abnormal",
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "breedingInfo": null,
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-1004",
+        "strain": "BALB/c",
+        "cageId": "C-01",
+        "sex": "female",
+        "birthDate": "2026-04-20",
+        "project": "疫苗测试",
+        "keeper": "周遥",
+        "status": "quarantine_abnormal",
+        "enteredQuarantineAt": "2026-06-12T09:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 2
+      },
+      "previousChecksum": "9c7a093d2d45bcc0629ad65cc9200d5147abd3a6cb1cd916cdbe616bbd3e7094",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "animal_created"
+      },
+      "checksum": "e8547b0569ddd100f311a48b28ff06cd36ad486ccb3ca5af6dcae5934d97fea8"
+    },
+    {
+      "id": "evt-63",
+      "eventType": "animal.quarantine_record",
+      "animalId": "ani-1004",
+      "timestamp": "2026-06-12T09:00:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "周遥",
+        "key": "migrated"
+      },
+      "payload": {
+        "recordId": "qr-5",
+        "date": "2026-06-12",
+        "temperature": 37.1,
+        "weight": 15.2,
+        "condition": "正常",
+        "symptoms": [],
+        "isAbnormal": false,
+        "notes": "入检初查",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-1004",
+        "strain": "BALB/c",
+        "cageId": "C-01",
+        "sex": "female",
+        "birthDate": "2026-04-20",
+        "project": "疫苗测试",
+        "keeper": "周遥",
+        "status": "quarantine_abnormal",
+        "enteredQuarantineAt": "2026-06-12T09:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 2
+      },
+      "previousChecksum": "e8547b0569ddd100f311a48b28ff06cd36ad486ccb3ca5af6dcae5934d97fea8",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "quarantine_record",
+        "recordId": "qr-5"
+      },
+      "checksum": "c968c67bea398edc10bd21118990ab3b1ad8f0ddd6c5fed0188e816cb6151e3c"
+    },
+    {
+      "id": "evt-64",
+      "eventType": "feeding.recorded",
+      "animalId": "ani-1001",
+      "timestamp": "2026-06-13T08:05:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "林青",
+        "key": "migrated"
+      },
+      "payload": {
+        "recordId": "record-1",
+        "planId": "plan-1",
+        "feedType": "标准颗粒饲料",
+        "amount": 2.5,
+        "condition": "",
+        "notes": "食欲良好，全部吃完",
+        "date": "2026-06-13",
+        "migrated": true
+      },
+      "snapshotAfter": null,
+      "previousChecksum": "c968c67bea398edc10bd21118990ab3b1ad8f0ddd6c5fed0188e816cb6151e3c",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "feeding_record",
+        "recordId": "record-1"
+      },
+      "checksum": "d20c4f287f900e17c809099279728f1a2657e40a4e4fcb9d1f7a694c52467502"
+    },
+    {
+      "id": "evt-65",
+      "eventType": "animal.quarantine_record",
+      "animalId": "ani-1004",
+      "timestamp": "2026-06-13T09:00:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "周遥",
+        "key": "migrated"
+      },
+      "payload": {
+        "recordId": "qr-6",
+        "date": "2026-06-13",
+        "temperature": 38.5,
+        "weight": 14.8,
+        "condition": "食欲下降",
+        "symptoms": [
+          "发热",
+          "毛发杂乱"
+        ],
+        "isAbnormal": true,
+        "notes": "发现异常，需密切观察",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-1004",
+        "strain": "BALB/c",
+        "cageId": "C-01",
+        "sex": "female",
+        "birthDate": "2026-04-20",
+        "project": "疫苗测试",
+        "keeper": "周遥",
+        "status": "quarantine_abnormal",
+        "enteredQuarantineAt": "2026-06-12T09:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 2
+      },
+      "previousChecksum": "d20c4f287f900e17c809099279728f1a2657e40a4e4fcb9d1f7a694c52467502",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "quarantine_record",
+        "recordId": "qr-6"
+      },
+      "checksum": "1e8fc00f9baa7f33ce44bebe424c6080a891c3aa3aff3804831856d60ef8dfdd"
+    },
+    {
+      "id": "evt-66",
+      "eventType": "animal.quarantine_abnormal",
+      "animalId": "ani-1004",
+      "timestamp": "2026-06-13T09:00:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "周遥",
+        "key": "migrated"
+      },
+      "payload": {
+        "reason": "发热，食欲下降",
+        "notes": "疑似感染，待进一步检测",
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-1004",
+        "strain": "BALB/c",
+        "cageId": "C-01",
+        "sex": "female",
+        "birthDate": "2026-04-20",
+        "project": "疫苗测试",
+        "keeper": "周遥",
+        "status": "quarantine_abnormal",
+        "enteredQuarantineAt": "2026-06-12T09:00:00.000Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 2
+      },
+      "previousChecksum": "1e8fc00f9baa7f33ce44bebe424c6080a891c3aa3aff3804831856d60ef8dfdd",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "quarantine_abnormal"
+      },
+      "checksum": "720d3da36f4156cf07d91739b6da4c0b90ac3339170285bc483bf753097b38b8"
+    },
+    {
+      "id": "evt-67",
+      "eventType": "feeding.recorded",
+      "animalId": "ani-1002",
+      "timestamp": "2026-06-13T09:15:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "周遥",
+        "key": "migrated"
+      },
+      "payload": {
+        "recordId": "record-3",
+        "planId": "plan-2",
+        "feedType": "高蛋白饲料",
+        "amount": 4.5,
+        "condition": "",
+        "notes": "进食正常",
+        "date": "2026-06-13",
+        "migrated": true
+      },
+      "snapshotAfter": null,
+      "previousChecksum": "720d3da36f4156cf07d91739b6da4c0b90ac3339170285bc483bf753097b38b8",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "feeding_record",
+        "recordId": "record-3"
+      },
+      "checksum": "ed879ad42033012a45971dc7c9499781fe75aa3b5f2fd1c56a2d78c5d3b6affb"
+    },
+    {
+      "id": "evt-68",
+      "eventType": "feeding.recorded",
+      "animalId": "ani-1001",
+      "timestamp": "2026-06-13T18:10:00.000Z",
+      "operator": {
+        "role": "keeper",
+        "name": "林青",
+        "key": "migrated"
+      },
+      "payload": {
+        "recordId": "record-2",
+        "planId": "plan-1",
+        "feedType": "标准颗粒饲料",
+        "amount": 2.5,
+        "condition": "",
+        "notes": "",
+        "date": "2026-06-13",
+        "migrated": true
+      },
+      "snapshotAfter": null,
+      "previousChecksum": "ed879ad42033012a45971dc7c9499781fe75aa3b5f2fd1c56a2d78c5d3b6affb",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "feeding_record",
+        "recordId": "record-2"
+      },
+      "checksum": "8b743b0cae198a882245f58d5a7e0d01b6de34ff38922078e6e5d7a20b15170b"
+    },
+    {
+      "id": "evt-69",
+      "eventType": "animal.created",
+      "animalId": "ani-1781421656784-93drv",
+      "timestamp": "2026-06-14T07:20:56.784Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "id": "ani-1781421656784-93drv",
+        "strain": "C57BL/6J",
+        "cageId": "C-01",
+        "sex": "female",
+        "birthDate": "2026-05-01",
+        "project": "验证项目",
+        "keeper": "测试饲养员",
+        "initialStatus": "quarantine",
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "breedingInfo": null,
+        "migrated": true
+      },
+      "snapshotAfter": {
+        "id": "ani-1781421656784-93drv",
+        "strain": "C57BL/6J",
+        "cageId": "C-01",
+        "sex": "female",
+        "birthDate": "2026-05-01",
+        "project": "验证项目",
+        "keeper": "测试饲养员",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-14T07:20:56.784Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "8b743b0cae198a882245f58d5a7e0d01b6de34ff38922078e6e5d7a20b15170b",
+      "metadata": {
+        "source": "snapshot_migration",
+        "migrationType": "animal_created"
+      },
+      "checksum": "84e0a825324885de62677fa1fdb978704d3ff60dc32f2c445e3a53bdd67cc685"
+    },
+    {
+      "id": "evt-70",
+      "eventType": "ledger.migrated_from_snapshot",
+      "animalId": null,
+      "timestamp": "2026-06-14T09:07:55.455Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "totalAnimals": 18,
+        "totalEvents": 68,
+        "feedingEvents": 4
+      },
+      "snapshotAfter": null,
+      "previousChecksum": "84e0a825324885de62677fa1fdb978704d3ff60dc32f2c445e3a53bdd67cc685",
+      "metadata": {
+        "source": "snapshot_migration"
+      },
+      "checksum": "552ead41ccf282333cd7c53848778b499ca176ccd7a343b78ecea554e04b836c"
+    }
+  ],
+  "nextId": 71,
+  "migratedFromSnapshot": true,
+  "checksumChain": [
+    "2c53c73df1fcad1c8f0e28535c0fb02888604ee9af0324bc8e0569d7ee3f246c",
+    "073954a942e25a437bd1c9409811f94e36bd78ef536797ce55f3d1f067ca59df",
+    "5451865018020c5d3cb4edebb47ad5e104d03ff4b438fdfaace3b0f61a7a4274",
+    "c7f9bee675a7f6d32949c0c387c341b515686b222d2c1ce7c6651ff2a2a6f769",
+    "0d5a07e1fe865664a22cd8f710fd50835085d86504fbe17d20bf0a3b7fcb2ad2",
+    "707597cc6718608487fb0d5a952864581e49825f0134681dcffcc22f0d6b1ed4",
+    "08955ef72e8321b4bd2a0c138b5f8fb0501e058f1424eb9158b18c273651bc9b",
+    "530e0fecd3c49e85d9e7d17cf5a37430984a48d4639704c6a45edfe83c526f7f",
+    "bf628d31949349531d83f15e8f315e2deacd15cdedf30ca99b955987b78daf29",
+    "ae90011bd6929c33964dcc98043b7dfd25a15b5a0531f25488e5970cce0b34f4",
+    "1924bdfed3dfc595c85bbbb86a0beec66331d3eeca551e54d9031418abdebdba",
+    "fcdd219d20d69af9c5352baaec9a67cf4971e7093569b370a421caed57414f24",
+    "bb920fca1b50a556db06366263ea6bda022251fb6cd217c1b6c538469711d205",
+    "a0e971cb02b706767bd743a52dba33f4705614418da79a78b6ce0432c40b590a",
+    "ec594bb8cb0b7a33452129937b8578485ebd2c014d8d8b99d2807c5334bdac62",
+    "e0590096e57255bf9af3b1dd155f54c88fd6b362e4a8816ac5271801e0779786",
+    "990190ebb7c622b589b9cbb6a5a3a202a1ba3c11dbd7c86591a98695e8312f18",
+    "47f4ff32c25e77f2f72df898e9c48975564947a72914e047417eddd2870607c8",
+    "8a9399effdde80abe3dddbe6848a54b6d088cb4c987a97c83610d4e671790bdb",
+    "b7934b5c9bcabe7d5186f0fed61bce11771caf031c8686079fbd5e60c4a20ef2",
+    "495d89c227f485ab9cbb617d6975f5d8f253a111f5f1345c025cf48077104042",
+    "091439e6f3670dbc30b880ac5e4db8dea0d1802fd983a0183e5a7083d3f58c6b",
+    "9ee75ee477a144b7e0e925db83c0132c7817e8a5c323560ae1624569b5ddce74",
+    "fa3ff33c81336aba0180b8a3693e5d94d16ae37796f978c859e9b309184e5144",
+    "bc4a45e70be41879d49c6bf68d97b796c069bf8d8446614d61e63beb9a699c36",
+    "b3707d27a805268a0da0db3212ee89279e9f95ce5aad60d467e7ee215ea1939b",
+    "07a612863096bc1cb6ae9ea7dd5cc711f531d486c2aa84016931b4c7f81b31d2",
+    "946ad8c62c601ea6f445d6a48c0ab014129886e110474384ccf7d54d9689ad3f",
+    "9a18d06867f7783c27cd0e4d5806aab68eb0d2f5fd5c38459c260ecbb2675dfa",
+    "695f9ba05dde42698b9f38313f4114456a29b18a434b8e35627a69f77f2d676a",
+    "4054f196e32be1105c5c564d4ef8d32171ef8452d96a64ce971264de180df3c8",
+    "0443d4a347c16f50f8a81e2c7a36986a4474697bbbaf3075f5e498ca29928b9b",
+    "77cf5eaec0f498755f28502c53ea55a5e2009116ab473eb27eb68087daf20138",
+    "3cbc577fcd48fe16a80e640cae124ecfe7610eacda156ce1872c89f5b4fccfb8",
+    "65328c0e269e4ec7871cded46984efa62643c67feb0eae68a85572a58c7151c4",
+    "d4dc6ac1a4139309aa1126c79ee295d08338e306b9d0fbe2099e94a34b83b657",
+    "70fb55cf4e37f17567cb99f15aad537b2360ee70b367685f9b318ca782be5e07",
+    "a5fad54410a919135e32052a6fa58ff56b840797d759c16081a04aa5f1be844a",
+    "36547db2437bee5a299b58bfe929390e456f203ad377b6345134cc1e64399b6a",
+    "cbe6f4124b85f58309f73e8023d372d5b588ea4322b69383906e2b45e7cc195b",
+    "85df8c5408bab3a8a9404aec154ded48f34e5b6d9f3b4d463f52bab0fb5bde8e",
+    "22c1fbdef9a568797d6492d1a5dedcc3ac8a3c821d4cf154fdd8661a65b12f95",
+    "2fc2356ae382104c5daa4a173e0cf074b6f7e3fa240258068e46484993d1d571",
+    "e40be9f1c25374dceac0371d4f421b51c527c02688cd229824921aa9942367cf",
+    "a9b86b0d9f364bcecf76013ec9c8c243ea932c514dd4372be438cd7796e549cb",
+    "ef97bc259adf3f30e898ae16f7dbffdd394e79900452ace015022cbac1a835b4",
+    "51a59afe018ff50dc81c69b50bef959b8c42256f30046932515ade1d201e533c",
+    "7acc6c962d7f5ac47a29390c7d63cefe26802c504ba32e938a4fa8799c2c6e56",
+    "a8bf6f5bfa8adf5392e92d146c6b250243c85c887ccea17a2455e790d503e20b",
+    "614da53aafe758b28a17417bb9dce0c0f8d9f21cb30d6874979d976296f20bfa",
+    "2280b60732946201d10781404aa7cf08a00e46e8b173d8ebaa656cd1fd123e5d",
+    "19a2f39c03352a578ccf30baf4c047a34f36f240a197f9ca7feb7a80d4d0b6e5",
+    "ef6afa5bf480385f8a8446561ffc550cd91b2f4275e682083f6cd27a581e6e36",
+    "19fd4b0a05fc410788421b391a6403ec32513e9e082d82813eb7c1ae165c9037",
+    "355e88fa171dd53c93cbfb1567ec34b805deeb551e25d19b109ff6cc6331c624",
+    "0598103da00ac80b276bb465d1b2b2c5f7aa6052427c2570a3ad53d545da33a5",
+    "e730d3140622f75c34e9d0c114b8bf73b8cffa07aea8fe3f7819327dfb0dce86",
+    "94d0c8a1797fd133c5c1c437a78dae0138f6425b0017e9805f3c186a8b39c134",
+    "819e4c7556d494f1441a7b6903e77ece51ab6b66b6f7b17099ce49208be56483",
+    "78495f6ae2a011eb2ad6dc2418de03ba07cbe732c8ef3c8820682c9150adc1fc",
+    "9c7a093d2d45bcc0629ad65cc9200d5147abd3a6cb1cd916cdbe616bbd3e7094",
+    "e8547b0569ddd100f311a48b28ff06cd36ad486ccb3ca5af6dcae5934d97fea8",
+    "c968c67bea398edc10bd21118990ab3b1ad8f0ddd6c5fed0188e816cb6151e3c",
+    "d20c4f287f900e17c809099279728f1a2657e40a4e4fcb9d1f7a694c52467502",
+    "1e8fc00f9baa7f33ce44bebe424c6080a891c3aa3aff3804831856d60ef8dfdd",
+    "720d3da36f4156cf07d91739b6da4c0b90ac3339170285bc483bf753097b38b8",
+    "ed879ad42033012a45971dc7c9499781fe75aa3b5f2fd1c56a2d78c5d3b6affb",
+    "8b743b0cae198a882245f58d5a7e0d01b6de34ff38922078e6e5d7a20b15170b",
+    "84e0a825324885de62677fa1fdb978704d3ff60dc32f2c445e3a53bdd67cc685",
+    "552ead41ccf282333cd7c53848778b499ca176ccd7a343b78ecea554e04b836c"
+  ]
+}

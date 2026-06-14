@@ -97,7 +97,7 @@ async function handleAddAnimal(req, res, db) {
     return send(res, 422, { error: "cage_validation_failed", details: cageValidation.errors });
   }
 
-  const animal = addAnimal(db, input);
+  const animal = await addAnimal(db, input, { operator: req._principal });
   send(res, 201, animal);
 }
 
@@ -106,7 +106,7 @@ async function handleAddNote(req, res, db, animalId) {
   if (!animal) { send(res, 404, { error: "animal_not_found" }); return; }
 
   const input = await body(req);
-  const note = addNote(db, animalId, input);
+  const note = await addNote(db, animalId, input, { operator: req._principal });
 
   let healthResult = null;
   const condition = input.condition || "";
@@ -153,7 +153,7 @@ async function handleMoveAnimal(req, res, db, animalId) {
     return send(res, 422, { error: "cage_validation_failed", details: validation.errors });
   }
 
-  const updated = moveAnimal(db, animalId, input.cageId, input.reason);
+  const updated = await moveAnimal(db, animalId, input.cageId, input.reason, { operator: req._principal });
   send(res, 200, updated);
 }
 
@@ -162,7 +162,7 @@ async function handleRemoveAnimal(req, res, db, animalId) {
   if (!animal) { send(res, 404, { error: "animal_not_found" }); return; }
 
   const input = await body(req);
-  const updated = removeAnimal(db, animalId, input.reason);
+  const updated = await removeAnimal(db, animalId, input.reason, { operator: req._principal });
   send(res, 200, updated);
 }
 
@@ -228,7 +228,7 @@ async function handleImportConfirm(req, res, db) {
   }
 
   const validItems = getValidImportItems(db, input);
-  const imported = batchAddAnimals(db, validItems);
+  const imported = await batchAddAnimals(db, validItems, { operator: req._principal });
   await saveDb(db);
 
   send(res, 201, {
@@ -257,7 +257,7 @@ async function handleQuarantineRecord(req, res, db, animalId) {
   }
 
   const input = await body(req);
-  const record = addQuarantineRecord(db, animalId, input);
+  const record = await addQuarantineRecord(db, animalId, input, { operator: req._principal });
 
   let healthResult = null;
   const conditionText = [input.condition || "", ...(input.symptoms || []), input.notes || ""].join(" ");
@@ -329,7 +329,7 @@ async function handleQuarantineRelease(req, res, db, animalId) {
     }
   }
 
-  const result = releaseAnimal(db, animalId, input);
+  const result = await releaseAnimal(db, animalId, input, { operator: req._principal });
   if (result.error) {
     return send(res, 422, { error: result.error, message: result.message });
   }
@@ -348,7 +348,7 @@ async function handleQuarantineAbnormal(req, res, db, animalId) {
   }
 
   const input = await body(req);
-  const result = markQuarantineAbnormal(db, animalId, input);
+  const result = await markQuarantineAbnormal(db, animalId, input, { operator: req._principal });
   if (result.error) {
     return send(res, 422, { error: result.error, message: result.message });
   }
@@ -400,7 +400,7 @@ async function handleQuarantineResolve(req, res, db, animalId) {
   }
 
   const input = await body(req);
-  const result = resolveQuarantineAbnormal(db, animalId, input);
+  const result = await resolveQuarantineAbnormal(db, animalId, input, { operator: req._principal });
   if (result.error) {
     return send(res, 422, { error: result.error, message: result.message });
   }

@@ -145,7 +145,7 @@ async function handleCreatePair(req, res, db) {
     return send(res, 409, { error: "pairing_id_exists" });
   }
 
-  const pair = createBreedingPair(db, input);
+  const pair = await createBreedingPair(db, input, { operator: req._principal });
   send(res, 201, pair);
 }
 
@@ -246,7 +246,7 @@ async function handleWeanLitter(req, res, db, id) {
     ? (db.breedingPairs || []).find((p) => p.id === litter.pairSummary.id)
     : null;
 
-  const result = weanLitter(db, id, input.weanDate, input.offspring, pairing);
+  const result = await weanLitter(db, id, input.weanDate, input.offspring, pairing, { operator: req._principal });
 
   if (result.error) {
     return send(res, 422, { error: result.error, message: result.message });

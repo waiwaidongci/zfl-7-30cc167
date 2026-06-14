@@ -6,7 +6,10 @@ import { handleAnimalRoutes } from "./routes/animalRoutes.js";
 import { handleBreedingRoutes } from "./routes/breedingRoutes.js";
 import { handleHealthEventRoutes } from "./routes/healthEventRoutes.js";
 import { handleAuditRoutes } from "./routes/auditRoutes.js";
+import { handleLedgerRoutes } from "./routes/ledgerRoutes.js";
 import { ANIMAL_STATUS, ACTIVE_STOCK_STATUSES } from "./lib/animalValidator.js";
+import { ledgerExists, getLedgerInfo } from "./lib/eventLedger.js";
+import { migrateFromSnapshot } from "./scripts/migrate-events.js";
 import { PAIRING_STATUS, LITTER_STATUS } from "./lib/breedingValidator.js";
 import { ensureHealthCollections, getHealthEventStats, migrateHistoricalNotes } from "./lib/healthEventData.js";
 import { authenticate } from "./lib/auth.js";
@@ -367,7 +370,16 @@ function buildEndpointList() {
     "GET /audit/logs [admin]",
     "GET /audit/logs/:id [admin]",
     "GET /audit/stats [admin]",
-    "GET /audit/operations [admin]"
+    "GET /audit/operations [admin]",
+    "GET /ledger/info",
+    "GET /ledger/event-types",
+    "GET /ledger/events?eventType=&animalId=&fromDate=&toDate=",
+    "GET /ledger/events/:id",
+    "GET /ledger/animals/:id/lifecycle?until=",
+    "GET /ledger/export?fromDate=&toDate=&format=&animalId= [admin]",
+    "GET /ledger/verify/integrity [admin]",
+    "GET /ledger/verify/snapshot [admin]",
+    "POST /ledger/migrate?force= [admin]"
   ];
 }
 
@@ -384,6 +396,8 @@ async function processRoutes(req, res, url, db) {
   if (healthHandled) return true;
   const auditHandled = await handleAuditRoutes(req, res, url, db);
   if (auditHandled) return true;
+  const ledgerHandled = await handleLedgerRoutes(req, res, url, db);
+  if (ledgerHandled) return true;
 
   if (req.method === "GET" && url.pathname === "/reports/stock") {
     const active = db.animals.filter((a) => ACTIVE_STOCK_STATUSES.includes(a.status));
@@ -488,7 +502,30 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-server.listen(port, () => {
+async function initializeLedger() {
+  try {
+    const exists = await ledgerExists();
+    if (!exists) {
+      console.log("Event ledger not found, migrating from snapshot...");
+      const result = await migrateFromSnapshot({
+        operator: { role: "system", name: "server_startup", key: "system" }
+      });
+      console.log(`Ledger migration complete: ${result.totalEvents} events from ${result.totalAnimals} animals`);
+    } else {
+      const info = await getLedgerInfo();
+      console.log(`Event ledger loaded: ${info.totalEvents} events, ${info.uniqueAnimals} animals`);
+      if (!info.migratedFromSnapshot) {
+        console.log("Ledger not marked as migrated, you may need to run POST /ledger/migrate?force=true");
+      }
+    }
+  } catch (error) {
+    console.error("Ledger initialization failed:", error.message);
+    console.error("Continuing without event ledger - write operations will attempt to record events");
+  }
+}
+
+server.listen(port, async () => {
   console.log(`Lab animal room API listening on http://localhost:${port}`);
   console.log(`API Key source: ${getApiKeySource()}`);
+  await initializeLedger();
 });

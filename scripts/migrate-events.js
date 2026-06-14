@@ -17,6 +17,36 @@ import {
   getLedgerInfo
 } from "../lib/eventLedger.js";
 
+function timestampSortValue(value) {
+  if (!value) return Number.POSITIVE_INFINITY;
+  const parsed = new Date(value).getTime();
+  if (!Number.isNaN(parsed)) return parsed;
+
+  const match = String(value).match(/^(\d{4})-(\d{1,2})-(\d{1,2})(?:T(\d{1,3}):(\d{1,2}):(\d{1,2})(?:\.(\d+))?Z?)?$/);
+  if (!match) return Number.POSITIVE_INFINITY;
+
+  const [, y, m, d, h = "0", min = "0", s = "0", ms = "0"] = match;
+  return Date.UTC(
+    Number(y),
+    Number(m) - 1,
+    Number(d),
+    Number(h),
+    Number(min),
+    Number(s),
+    Number(String(ms).slice(0, 3).padEnd(3, "0"))
+  );
+}
+
+function compareTimestamps(a, b) {
+  const diff = timestampSortValue(a) - timestampSortValue(b);
+  return diff || String(a || "").localeCompare(String(b || ""));
+}
+
+function normalizeEventTimestamp(value) {
+  const sortValue = timestampSortValue(value);
+  return Number.isFinite(sortValue) ? new Date(sortValue).toISOString() : value;
+}
+
 async function loadDb() {
   if (!existsSync(dbPath)) {
     throw new Error("lab.json not found");
@@ -70,17 +100,61 @@ function getEarliestTimestamp(animal) {
     return new Date().toISOString();
   }
 
-  return timestamps.sort()[0];
+  return timestamps.sort(compareTimestamps)[0];
+}
+
+function cloneAnimalBase(animal) {
+  return {
+    id: animal.id,
+    strain: animal.strain,
+    cageId: animal.cageId,
+    sex: animal.sex,
+    birthDate: animal.birthDate,
+    project: animal.project,
+    keeper: animal.keeper,
+    status: animal.enteredQuarantineAt ? "quarantine" : animal.status,
+    observationNodes: [],
+    notes: [],
+    moves: [],
+    quarantineRecords: [],
+    enteredQuarantineAt: animal.enteredQuarantineAt || null,
+    quarantineReleasedAt: null,
+    quarantineApproval: null,
+    abnormalMarkedAt: null,
+    abnormalReason: null,
+    abnormalHandler: null,
+    abnormalNotes: null,
+    abnormalResolvedAt: null,
+    abnormalResolution: null,
+    abnormalResolver: null,
+    removedAt: null,
+    removeReason: null,
+    fatherId: animal.fatherId || null,
+    motherId: animal.motherId || null,
+    litterId: animal.litterId || null,
+    weanedAt: null,
+    weaningWeight: null,
+    breedingInfo: animal.breedingInfo || null
+  };
+}
+
+function snapshotCopy(animal) {
+  return JSON.parse(JSON.stringify(animal));
 }
 
 function buildAnimalEvents(animal, operator) {
   const events = [];
   const createdTimestamp = getEarliestTimestamp(animal);
+  const state = cloneAnimalBase(animal);
+  if (animal.weanedAt && animal.weanedAt <= createdTimestamp) {
+    state.weanedAt = animal.weanedAt;
+    state.weaningWeight = animal.weaningWeight || null;
+  }
 
   events.push({
     eventType: EVENT_TYPES.ANIMAL_CREATED,
     animalId: animal.id,
-    timestamp: createdTimestamp,
+    timestamp: normalizeEventTimestamp(createdTimestamp),
     operator,
     payload: {
       id: animal.id,
@@ -98,7 +172,7 @@ function buildAnimalEvents(animal, operator) {
       breedingInfo: animal.breedingInfo || null,
       migrated: true
     },
-    snapshotAfter: animal,
+    snapshotAfter: snapshotCopy(state),
     metadata: { source: "snapshot_migration", migrationType: "animal_created" }
   });
 
@@ -106,17 +180,21 @@ function buildAnimalEvents(animal, operator) {
     const sortedRecords = [...animal.quarantineRecords].sort((a, b) => {
       const tsA = a.createdAt || `${a.date}T00:00:00.000Z`;
       const tsB = b.createdAt || `${b.date}T00:00:00.000Z`;
-      return tsA.localeCompare(tsB);
+      return compareTimestamps(tsA, tsB);
     });
 
     for (const record of sortedRecords) {
       const recordTs = record.createdAt || `${record.date}T00:00:00.000Z`;
-      if (recordTs <= createdTimestamp) continue;
+      if (compareTimestamps(recordTs, createdTimestamp) <= 0) continue;
+      state.quarantineRecords.push(record);
+      if (record.isAbnormal && state.status === "quarantine") {
+        state.status = "quarantine_abnormal";
+      }
 
       events.push({
         eventType: EVENT_TYPES.ANIMAL_QUARANTINE_RECORD,
         animalId: animal.id,
-        timestamp: recordTs,
+        timestamp: normalizeEventTimestamp(recordTs),
         operator: { role: "keeper", name: record.examiner || animal.keeper, key: "migrated" },
         payload: {
           recordId: record.id,
@@ -129,34 +207,45 @@ function buildAnimalEvents(animal, operator) {
           notes: record.notes || "",
           migrated: true
         },
-        snapshotAfter: animal,
+        snapshotAfter: snapshotCopy(state),
         metadata: { source: "snapshot_migration", migrationType: "quarantine_record", recordId: record.id }
       });
     }
   }
 
-  if (animal.abnormalMarkedAt && animal.abnormalMarkedAt > createdTimestamp) {
+  if (animal.abnormalMarkedAt && compareTimestamps(animal.abnormalMarkedAt, createdTimestamp) > 0) {
+    state.status = "quarantine_abnormal";
+    state.abnormalMarkedAt = animal.abnormalMarkedAt;
+    state.abnormalReason = animal.abnormalReason || "检疫异常";
+    state.abnormalHandler = animal.abnormalHandler || animal.keeper;
+    state.abnormalNotes = animal.abnormalNotes || "";
     events.push({
       eventType: EVENT_TYPES.ANIMAL_QUARANTINE_ABNORMAL,
       animalId: animal.id,
-      timestamp: animal.abnormalMarkedAt,
+      timestamp: normalizeEventTimestamp(animal.abnormalMarkedAt),
       operator: { role: "keeper", name: animal.abnormalHandler || animal.keeper, key: "migrated" },
       payload: {
         reason: animal.abnormalReason || "检疫异常",
         notes: animal.abnormalNotes || "",
         migrated: true
       },
-      snapshotAfter: animal,
+      snapshotAfter: snapshotCopy(state),
       metadata: { source: "snapshot_migration", migrationType: "quarantine_abnormal" }
     });
   }
 
-  if (animal.quarantineReleasedAt && animal.quarantineReleasedAt > createdTimestamp) {
+  if (animal.quarantineReleasedAt && compareTimestamps(animal.quarantineReleasedAt, createdTimestamp) > 0) {
     const approval = animal.quarantineApproval || {};
+    state.status = "released";
+    state.quarantineReleasedAt = animal.quarantineReleasedAt;
+    state.quarantineApproval = approval;
+    if (approval.targetCageId) {
+      state.cageId = approval.targetCageId;
+    }
     events.push({
       eventType: EVENT_TYPES.ANIMAL_QUARANTINE_RELEASED,
       animalId: animal.id,
-      timestamp: animal.quarantineReleasedAt,
+      timestamp: normalizeEventTimestamp(animal.quarantineReleasedAt),
       operator: { role: "keeper", name: approval.approver || animal.keeper, key: "migrated" },
       payload: {
         approvalId: approval.id || null,
@@ -164,23 +253,25 @@ function buildAnimalEvents(animal, operator) {
         notes: approval.notes || "",
         migrated: true
       },
-      snapshotAfter: animal,
+      snapshotAfter: snapshotCopy(state),
       metadata: { source: "snapshot_migration", migrationType: "quarantine_release" }
     });
   }
 
   if (animal.moves && animal.moves.length > 0) {
     const sortedMoves = [...animal.moves].sort((a, b) =>
-      (a.movedAt || "").localeCompare(b.movedAt || "")
+      compareTimestamps(a.movedAt, b.movedAt)
     );
 
     for (const move of sortedMoves) {
-      if (!move.movedAt || move.movedAt <= createdTimestamp) continue;
+      if (!move.movedAt || compareTimestamps(move.movedAt, createdTimestamp) <= 0) continue;
+      state.cageId = move.to;
+      state.moves.push(move);
 
       events.push({
         eventType: EVENT_TYPES.ANIMAL_MOVED,
         animalId: animal.id,
-        timestamp: move.movedAt,
+        timestamp: normalizeEventTimestamp(move.movedAt),
         operator,
         payload: {
           moveId: move.id,
@@ -189,7 +280,7 @@ function buildAnimalEvents(animal, operator) {
           reason: move.reason || "笼位调整",
           migrated: true
         },
-        snapshotAfter: animal,
+        snapshotAfter: snapshotCopy(state),
         metadata: { source: "snapshot_migration", migrationType: "move", moveId: move.id }
       });
     }
@@ -197,17 +288,18 @@ function buildAnimalEvents(animal, operator) {
 
   if (animal.notes && animal.notes.length > 0) {
     const sortedNotes = [...animal.notes].sort((a, b) =>
-      (a.date || "").localeCompare(b.date || "")
+      compareTimestamps(a.date, b.date)
     );
 
     for (const note of sortedNotes) {
       const noteTs = `${note.date}T12:00:00.000Z`;
-      if (noteTs <= createdTimestamp) continue;
+      if (compareTimestamps(noteTs, createdTimestamp) <= 0) continue;
+      state.notes.push(note);
 
       events.push({
         eventType: EVENT_TYPES.ANIMAL_NOTE_ADDED,
         animalId: animal.id,
-        timestamp: noteTs,
+        timestamp: normalizeEventTimestamp(noteTs),
         operator: { role: "keeper", name: note.keeper || animal.keeper, key: "migrated" },
         payload: {
           noteId: note.id,
@@ -217,34 +309,39 @@ function buildAnimalEvents(animal, operator) {
           type: note.type || "general",
           migrated: true
         },
-        snapshotAfter: animal,
+        snapshotAfter: snapshotCopy(state),
         metadata: { source: "snapshot_migration", migrationType: "note", noteId: note.id }
       });
     }
   }
 
-  if (animal.removedAt && animal.removedAt > createdTimestamp) {
+  if (animal.removedAt && compareTimestamps(animal.removedAt, createdTimestamp) > 0) {
+    state.status = "removed";
+    state.removedAt = animal.removedAt;
+    state.removeReason = animal.removeReason || "移出";
     events.push({
       eventType: EVENT_TYPES.ANIMAL_REMOVED,
       animalId: animal.id,
-      timestamp: animal.removedAt,
+      timestamp: normalizeEventTimestamp(animal.removedAt),
       operator,
       payload: {
         reason: animal.removeReason || "移出",
         migrated: true
       },
-      snapshotAfter: animal,
+      snapshotAfter: snapshotCopy(state),
       metadata: { source: "snapshot_migration", migrationType: "remove" }
     });
   }
 
   if (animal.litterId && animal.weanedAt) {
     const weanTs = animal.weanedAt;
-    if (weanTs > createdTimestamp && !events.find(e => e.eventType === EVENT_TYPES.BREEDING_LITTER_WEANED && e.timestamp === weanTs)) {
+    if (compareTimestamps(weanTs, createdTimestamp) > 0 && !events.find(e => e.eventType === EVENT_TYPES.BREEDING_LITTER_WEANED && e.timestamp === weanTs)) {
+      state.weanedAt = animal.weanedAt;
+      state.weaningWeight = animal.weaningWeight || null;
       events.push({
         eventType: EVENT_TYPES.BREEDING_LITTER_WEANED,
         animalId: animal.id,
-        timestamp: weanTs,
+        timestamp: normalizeEventTimestamp(weanTs),
         operator,
         payload: {
           litterId: animal.litterId,
@@ -253,13 +350,13 @@ function buildAnimalEvents(animal, operator) {
           weaningWeight: animal.weaningWeight || null,
           migrated: true
         },
-        snapshotAfter: animal,
+        snapshotAfter: snapshotCopy(state),
         metadata: { source: "snapshot_migration", migrationType: "weaned" }
       });
     }
   }
 
-  return events;
+  return events.sort((a, b) => compareTimestamps(a.timestamp, b.timestamp));
 }
 
 function buildFeedingEvents(db, operator) {
@@ -272,7 +369,7 @@ function buildFeedingEvents(db, operator) {
     events.push({
       eventType: EVENT_TYPES.FEEDING_RECORDED,
       animalId: record.targetId,
-      timestamp: record.actualTime || new Date().toISOString(),
+      timestamp: normalizeEventTimestamp(record.actualTime || new Date().toISOString()),
       operator: { role: "keeper", name: record.keeper, key: "migrated" },
       payload: {
         recordId: record.id,
@@ -332,7 +429,7 @@ async function migrateFromSnapshot(options = {}) {
   const feedingEvents = buildFeedingEvents(db, operator);
   allEvents = allEvents.concat(feedingEvents);
 
-  allEvents.sort((a, b) => a.timestamp.localeCompare(b.timestamp));
+  allEvents.sort((a, b) => compareTimestamps(a.timestamp, b.timestamp));
 
   console.log(`Generated ${allEvents.length} events from snapshot...`);
 

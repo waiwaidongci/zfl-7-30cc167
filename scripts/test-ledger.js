@@ -24,6 +24,7 @@ import {
 } from "../lib/eventLedger.js";
 
 import { migrateFromSnapshot } from "./migrate-events.js";
+import { buildAnimalEvents } from "./migrate-events.js";
 
 import {
   addAnimal,
@@ -305,6 +306,13 @@ tests.push({
     const filteredByType = await queryEvents({ eventType: EVENT_TYPES.ANIMAL_CREATED, limit: 100 });
     assert(filteredByType.events.every(e => e.eventType === EVENT_TYPES.ANIMAL_CREATED), "All events should be created type");
 
+    const filteredByTypes = await queryEvents({
+      eventType: [EVENT_TYPES.ANIMAL_CREATED, EVENT_TYPES.ANIMAL_MOVED],
+      limit: 1000
+    });
+    assert(filteredByTypes.events.length > 0, "Should support multiple event types");
+    assert(filteredByTypes.events.every(e => [EVENT_TYPES.ANIMAL_CREATED, EVENT_TYPES.ANIMAL_MOVED].includes(e.eventType)), "All events should match requested types");
+
     const animalRelated = await queryEvents({ animalRelated: true, limit: 100 });
     assert(animalRelated.events.every(e => e.animalId !== null), "All animal related events should have animalId");
 
@@ -322,6 +330,29 @@ tests.push({
     const eventById = await getEventById(eventId);
     assert(eventById !== null, "Should find event by ID");
     assert(eventById.id === eventId, "Event ID should match");
+  }
+});
+
+tests.push({
+  name: "5b. Migration snapshots represent event-time state",
+  fn: async () => {
+    const db = await loadDb();
+    const animal = getAnimal(db, "ani-1001");
+    assert(animal !== null, "Should find sample animal ani-1001");
+
+    const events = buildAnimalEvents(animal, { role: "system", name: "test", key: "test" });
+    const createdEvent = events.find(e => e.eventType === EVENT_TYPES.ANIMAL_CREATED);
+    assert(createdEvent.snapshotAfter.status === "quarantine", "Created snapshot should start in quarantine");
+    assert(createdEvent.snapshotAfter.quarantineReleasedAt === null, "Created snapshot should not include later release time");
+    assert(createdEvent.snapshotAfter.notes.length === 0, "Created snapshot should not include later notes");
+    assert(createdEvent.snapshotAfter.moves.length === 0, "Created snapshot should not include later moves");
+
+    const releaseEvent = events.find(e => e.eventType === EVENT_TYPES.ANIMAL_QUARANTINE_RELEASED);
+    assert(releaseEvent.snapshotAfter.status === "released", "Release snapshot should be released");
+    assert(releaseEvent.snapshotAfter.quarantineReleasedAt === animal.quarantineReleasedAt, "Release snapshot should include release time");
+
+    const noteEvent = events.find(e => e.eventType === EVENT_TYPES.ANIMAL_NOTE_ADDED);
+    assert(noteEvent.snapshotAfter.notes.length === 1, "Note snapshot should include added note");
   }
 });
 

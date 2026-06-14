@@ -32,8 +32,9 @@ export async function handleLedgerRoutes(req, res, url, db) {
   }
 
   if (req.method === "GET" && url.pathname === "/ledger/events") {
+    const eventTypes = url.searchParams.getAll("eventType").filter(Boolean);
     const filters = {
-      eventType: url.searchParams.get("eventType") || undefined,
+      eventType: eventTypes.length > 1 ? eventTypes : (eventTypes[0] || undefined),
       animalId: url.searchParams.get("animalId") || undefined,
       operatorName: url.searchParams.get("operatorName") || undefined,
       operatorRole: url.searchParams.get("operatorRole") || undefined,

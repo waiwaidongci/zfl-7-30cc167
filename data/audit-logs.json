@@ -1,0 +1,198 @@
+{
+  "logs": [
+    {
+      "id": "audit-1",
+      "timestamp": "2026-06-14T05:55:20.019Z",
+      "operation": "animal.create",
+      "operator": {
+        "key": "readonly-key-demo-001",
+        "role": "readonly",
+        "name": "只读用户-审计员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/animals",
+        "query": {},
+        "body": {},
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": 403,
+        "body": {
+          "error": "insufficient_permission",
+          "message": "角色 readonly 无权执行 write 操作 POST /animals",
+          "requiredRole": "keeper"
+        }
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-2",
+      "timestamp": "2026-06-14T05:55:20.020Z",
+      "operation": "cage.create",
+      "operator": {
+        "key": "keeper-key-demo-001",
+        "role": "keeper",
+        "name": "饲养员-林青"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/cages",
+        "query": {},
+        "body": {},
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": 403,
+        "body": {
+          "error": "insufficient_permission",
+          "message": "角色 keeper 无权执行 admin 操作 POST /cages",
+          "requiredRole": "admin"
+        }
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-3",
+      "timestamp": "2026-06-14T05:55:20.022Z",
+      "operation": "cage.create",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/cages",
+        "query": {},
+        "body": {
+          "id": "T-99",
+          "area": "TEST区",
+          "rack": "T",
+          "capacity": 5
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": 201,
+        "body": {
+          "id": "T-99",
+          "area": "TEST区",
+          "rack": "T",
+          "capacity": 5,
+          "status": "active",
+          "createdAt": "2026-06-14T05:55:20.021Z"
+        }
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-4",
+      "timestamp": "2026-06-14T05:55:20.024Z",
+      "operation": "animal.create",
+      "operator": {
+        "key": "keeper-key-demo-001",
+        "role": "keeper",
+        "name": "饲养员-林青"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/animals",
+        "query": {},
+        "body": {
+          "strain": "C57BL/6J",
+          "cageId": "C-01",
+          "sex": "female",
+          "birthDate": "2026-05-01",
+          "project": "验证项目",
+          "keeper": "测试饲养员"
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": 201,
+        "body": {
+          "id": "ani-1781416520023-xf7ac",
+          "strain": "C57BL/6J",
+          "cageId": "C-01",
+          "sex": "female",
+          "birthDate": "2026-05-01",
+          "project": "验证项目",
+          "keeper": "测试饲养员",
+          "status": "quarantine",
+          "observationNodes": [],
+          "notes": [],
+          "moves": [],
+          "quarantineRecords": [],
+          "enteredQuarantineAt": "2026-06-14T05:55:20.023Z",
+          "fatherId": null,
+          "motherId": null,
+          "litterId": null,
+          "breedingInfo": null
+        }
+      },
+      "animalIds": [
+        "ani-1781416520023-xf7ac"
+      ]
+    },
+    {
+      "id": "audit-5",
+      "timestamp": "2026-06-14T06:22:08.986Z",
+      "operation": "animal.create",
+      "operator": {
+        "key": "readonly-key-demo-001",
+        "role": "readonly",
+        "name": "只读用户-审计员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/animals",
+        "query": {},
+        "body": {},
+        "ip": "::1",
+        "userAgent": "node"
+      },
+      "response": {
+        "status": 403,
+        "body": {
+          "error": "insufficient_permission",
+          "message": "角色 readonly 无权执行 write 操作 POST /animals",
+          "requiredRole": "keeper"
+        }
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-6",
+      "timestamp": "2026-06-14T06:22:08.989Z",
+      "operation": "cage.create",
+      "operator": {
+        "key": "keeper-key-demo-001",
+        "role": "keeper",
+        "name": "饲养员-林青"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/cages",
+        "query": {},
+        "body": {},
+        "ip": "::1",
+        "userAgent": "node"
+      },
+      "response": {
+        "status": 403,
+        "body": {
+          "error": "insufficient_permission",
+          "message": "角色 keeper 无权执行 admin 操作 POST /cages",
+          "requiredRole": "admin"
+        }
+      },
+      "animalIds": []
+    }
+  ],
+  "nextId": 7
+}

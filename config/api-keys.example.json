@@ -1,0 +1,32 @@
+{
+  "apiKeys": [
+    {
+      "key": "admin-key-demo-001",
+      "role": "admin",
+      "name": "系统管理员",
+      "description": "拥有所有接口的完整访问权限",
+      "createdAt": "2026-06-01T00:00:00.000Z"
+    },
+    {
+      "key": "keeper-key-demo-001",
+      "role": "keeper",
+      "name": "饲养员-林青",
+      "description": "可进行动物建档、记录、移笼、饲喂等日常操作",
+      "createdAt": "2026-06-01T00:00:00.000Z"
+    },
+    {
+      "key": "keeper-key-demo-002",
+      "role": "keeper",
+      "name": "饲养员-周遥",
+      "description": "可进行动物建档、记录、移笼、饲喂等日常操作",
+      "createdAt": "2026-06-01T00:00:00.000Z"
+    },
+    {
+      "key": "readonly-key-demo-001",
+      "role": "readonly",
+      "name": "只读用户-审计员",
+      "description": "仅能查询数据，不能执行任何写操作",
+      "createdAt": "2026-06-01T00:00:00.000Z"
+    }
+  ]
+}

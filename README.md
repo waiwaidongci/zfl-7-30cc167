@@ -11,27 +11,36 @@ npm start
 ## 项目结构
 
 ```
-├── server.js              # 入口：HTTP 服务器、路由分发
+├── server.js              # 入口：HTTP 服务器、路由分发、中间件链（认证→权限→路由→审计）
+├── config/
+│   └── api-keys.example.json # API Key 示例配置（生产请拷贝为 api-keys.json）
 ├── lib/
-│   ├── helpers.js         # 公共工具：send / body / readQuery / loadDb / saveDb
-│   ├── cageData.js        # 笼位数据操作：listCages / getCage / addCage / disableCage / countOccupancy
-│   ├── cageValidator.js   # 笼位校验：存在性 / 停用 / 容量
-│   ├── animalData.js      # 动物数据操作：listAnimals / getAnimal / addAnimal / batchAddAnimals
-│   ├── animalValidator.js # 动物字段校验：必填字段 / 性别 / 出生日期格式
-│   ├── batchImportValidator.js # 批量导入校验：重复ID / 缺失笼位 / 容量冲突 / 预览
-│   ├── healthEventData.js # 健康异常事件：事件存储、状态流转、异常检测、重复合并、统计
+│   ├── helpers.js         # 公共工具：send / body(带缓存) / readQuery / loadDb / saveDb
+│   ├── apiKeys.js         # API Key 加载与角色常量 ROLES(admin/keeper/readonly)
+│   ├── auth.js            # 认证解析：extractApiKey / authenticate / requireRole
+│   ├── permissions.js     # 权限判断：端点→动作映射、角色权限表、authorize()
+│   ├── audit.js           # 审计日志：写入、按条件查询、统计、操作类型常量
+│   ├── cageData.js        # 笼位数据操作
+│   ├── cageValidator.js   # 笼位校验
+│   ├── animalData.js      # 动物数据操作
+│   ├── animalValidator.js # 动物字段校验
+│   ├── batchImportValidator.js # 批量导入校验
+│   ├── healthEventData.js # 健康异常事件
 │   └── feedingScheduler.js
 ├── routes/
-│   ├── cageRoutes.js      # 笼位路由处理
-│   ├── animalRoutes.js    # 动物路由处理（含批量导入预览/确认）
-│   ├── feedingRoutes.js   # 饲喂路由处理（含健康异常自动检测）
-│   ├── healthEventRoutes.js # 健康异常事件路由处理
-│   └── breedingRoutes.js
+│   ├── cageRoutes.js      # 笼位路由
+│   ├── animalRoutes.js    # 动物路由（含批量导入）
+│   ├── feedingRoutes.js   # 饲喂路由
+│   ├── healthEventRoutes.js # 健康事件路由
+│   ├── breedingRoutes.js  # 繁育路由
+│   └── auditRoutes.js     # 审计查询路由（仅 admin）
 ├── data/
-│   ├── lab.json           # JSON 持久化存储
+│   ├── lab.json           # 业务数据持久化
+│   ├── audit-logs.json    # 审计日志持久化（自动创建）
 │   └── sample-import.json # 批量导入示例数据
 ├── scripts/
-│   └── test-batch-import.js # 批量导入测试脚本
+│   ├── test-batch-import.js  # 批量导入测试脚本
+│   └── test-auth-audit.js    # 权限与审计最小验证脚本
 └── README.md
 ```
 
@@ -790,4 +799,303 @@ npm start
   }
 }
 ```
+
+## API Key 权限模块
+
+### 认证方式
+
+所有业务接口（除 `/healthz` 和 `/_ping`）均需携带有效 API Key。支持两种传递方式：
+
+**方式一：自定义 Header（推荐）**
+```
+X-API-Key: admin-key-demo-001
+```
+
+**方式二：Bearer Token**
+```
+Authorization: Bearer admin-key-demo-001
+```
+
+认证失败返回 `401`，响应体：
+```json
+{ "error": "missing_api_key", "message": "缺少 X-API-Key Header 或 Authorization: Bearer <key>" }
+```
+
+### 角色定义
+
+| 角色       | 常量值     | 权限动作                  | 说明                     |
+| ---------- | ---------- | ------------------------- | ------------------------ |
+| 管理员     | `admin`    | READ / WRITE / ADMIN      | 可执行所有操作           |
+| 饲养员     | `keeper`   | READ / WRITE              | 可读写业务数据，不可管理 |
+| 只读用户   | `readonly` | READ                      | 仅查询，不可写           |
+
+权限继承关系：`admin > keeper > readonly`
+
+### 权限动作分级
+
+| 动作    | 说明                  | 允许角色                 |
+| ------- | --------------------- | ------------------------ |
+| READ    | 所有 GET 查询         | admin / keeper / readonly |
+| WRITE   | 业务写操作（建档/记录/移笼/移出/饲喂/繁育/健康事件等） | admin / keeper |
+| ADMIN   | 管理操作（笼位增删、历史迁移、审计查询） | admin only |
+
+### 接口权限矩阵（节选）
+
+| 接口                                     | 方法 | 动作  | 需要角色 |
+| ---------------------------------------- | ---- | ----- | -------- |
+| GET /animals, GET /cages                 | GET  | READ  | 三角色均可 |
+| POST /animals                            | POST | WRITE | keeper+  |
+| POST /animals/:id/notes                  | POST | WRITE | keeper+  |
+| POST /animals/:id/move                   | POST | WRITE | keeper+  |
+| POST /animals/:id/remove                 | POST | WRITE | keeper+  |
+| POST /animals/:id/quarantine/*           | POST | WRITE | keeper+  |
+| POST /feeding/*, /breeding/*, /health-events (除migrate) | POST | WRITE | keeper+ |
+| POST /cages, POST /cages/:id/disable     | POST | ADMIN | admin    |
+| POST /health-events/migrate-historical   | POST | ADMIN | admin    |
+| GET /audit/* (所有审计查询)              | GET  | ADMIN | admin    |
+
+权限不足返回 `403`，响应体：
+```json
+{
+  "error": "insufficient_permission",
+  "message": "角色 readonly 无权执行 write 操作 POST /animals",
+  "requiredRole": "keeper"
+}
+```
+
+### API Key 配置
+
+配置文件优先加载顺序：
+1. `config/api-keys.json`（生产使用，不提交到版本库）
+2. `config/api-keys.example.json`（示例，已内置 4 个测试 Key）
+
+配置格式：
+```json
+{
+  "apiKeys": [
+    {
+      "key": "admin-key-demo-001",
+      "role": "admin",
+      "name": "系统管理员",
+      "description": "所有权限",
+      "createdAt": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "key": "keeper-key-demo-001",
+      "role": "keeper",
+      "name": "饲养员-林青",
+      "description": "日常业务操作"
+    },
+    {
+      "key": "readonly-key-demo-001",
+      "role": "readonly",
+      "name": "只读用户-审计员",
+      "description": "数据查询与审计"
+    }
+  ]
+}
+```
+
+**内置示例 Key**（仅用于开发测试，生产请替换）：
+
+| 用途     | Key 值                  | 角色     |
+| -------- | ----------------------- | -------- |
+| 管理员   | `admin-key-demo-001`    | admin    |
+| 饲养员   | `keeper-key-demo-001`   | keeper   |
+| 饲养员   | `keeper-key-demo-002`   | keeper   |
+| 只读     | `readonly-key-demo-001` | readonly |
+
+### 根端点认证信息
+
+`GET /` 返回当前认证上下文与权限矩阵：
+```json
+{
+  "auth": {
+    "enabled": true,
+    "apiKeySource": "config/api-keys.example.json",
+    "currentUser": { "role": "admin", "name": "系统管理员" },
+    "roles": ["admin", "keeper", "readonly"],
+    "permissions": {
+      "readonly": ["read"],
+      "keeper": ["read", "write"],
+      "admin": ["read", "write", "admin"]
+    }
+  }
+}
+```
+
+---
+
+## 操作审计模块
+
+### 审计范围
+
+以下所有写操作自动写入审计日志（不阻塞请求响应，`setImmediate` 异步写入）：
+
+| 操作类型                 | 说明                     |
+| ------------------------ | ------------------------ |
+| `animal.create`          | 动物建档                 |
+| `animal.add_note`        | 添加饲养记录             |
+| `animal.move`            | 笼位移动                 |
+| `animal.remove`          | 移出动物                 |
+| `animal.quarantine_*`    | 检疫流程（记录/放行/异常/解除） |
+| `animal.batch_import`    | 批量导入                 |
+| `cage.create` / `cage.disable` | 笼位管理            |
+| `feeding.plan_*` / `feeding.checkin` | 饲喂操作        |
+| `breeding.pair_*` / `breeding.litter_*` | 繁育操作    |
+| `health.event_*`         | 健康事件（创建/分派/记录/关闭） |
+| `health.migrate_historical` | 历史数据迁移         |
+
+### 审计日志结构
+
+每条日志完整记录请求、响应、操作者、关联动物 ID：
+
+```json
+{
+  "id": "audit-1",
+  "timestamp": "2026-07-08T10:30:00.000Z",
+  "operation": "animal.create",
+  "operator": {
+    "key": "keeper-key-demo-001",
+    "role": "keeper",
+    "name": "饲养员-林青"
+  },
+  "request": {
+    "method": "POST",
+    "pathname": "/animals",
+    "query": {},
+    "body": { "strain": "C57BL/6J", "cageId": "C-01", "sex": "female", "..." : "..." },
+    "ip": "::ffff:127.0.0.1",
+    "userAgent": "curl/7.88.1"
+  },
+  "response": {
+    "status": 201,
+    "body": { "id": "ani-5001", "status": "quarantine", "..." : "..." }
+  },
+  "animalIds": ["ani-5001"]
+}
+```
+
+**说明**：
+- `animalIds`：智能关联，从路径参数、响应体、请求体中提取动物 ID（批量导入自动展开所有子 ID）
+- 超大 body（>5KB）自动截断，避免日志膨胀
+- 持久化文件：`data/audit-logs.json`
+
+### 审计查询接口（仅 admin）
+
+#### GET /audit/logs — 多条件筛选查询
+
+**查询参数**（均可组合）：
+
+| 参数           | 说明                                    |
+| -------------- | --------------------------------------- |
+| `animalId`     | 按关联动物 ID 筛选                      |
+| `operatorKey`  | 按操作者 API Key 筛选                   |
+| `operatorName` | 按操作者姓名模糊筛选                    |
+| `role`         | 按操作者角色筛选 (admin/keeper/readonly)|
+| `operation`    | 按操作类型筛选，如 `animal.create`      |
+| `method`       | 按 HTTP 方法筛选                        |
+| `fromDate`     | 时间下限（YYYY-MM-DD）                  |
+| `toDate`       | 时间上限（YYYY-MM-DD）                  |
+| `statusCode`   | 按响应状态码筛选                        |
+| `limit`        | 分页大小，默认 100                      |
+| `offset`       | 分页偏移，默认 0                        |
+
+响应：
+```json
+{
+  "total": 42,
+  "limit": 100,
+  "offset": 0,
+  "logs": [ { "id": "audit-42", "..." : "..." } ]
+}
+```
+
+**查询示例**：
+```bash
+# 按动物ID查询所有相关操作
+curl -H "X-API-Key: admin-key-demo-001" \
+  "http://localhost:3007/audit/logs?animalId=ani-1001"
+
+# 按操作者Key查询（饲养员-林青的所有操作）
+curl -H "X-API-Key: admin-key-demo-001" \
+  "http://localhost:3007/audit/logs?operatorKey=keeper-key-demo-001"
+
+# 查询2026年7月所有动物移出
+curl -H "X-API-Key: admin-key-demo-001" \
+  "http://localhost:3007/audit/logs?operation=animal.remove&fromDate=2026-07-01&toDate=2026-07-31"
+```
+
+#### GET /audit/logs/:id — 单条审计详情
+
+不存在返回 `404 audit_log_not_found`
+
+#### GET /audit/stats — 审计统计汇总
+
+响应：
+```json
+{
+  "total": 128,
+  "byOperation": {
+    "animal.create": 20,
+    "animal.add_note": 35,
+    "feeding.checkin": 48,
+    "health.event_create": 25
+  },
+  "byOperator": {
+    "饲养员-林青": 75,
+    "饲养员-周遥": 53
+  },
+  "byStatus": { "200": 95, "201": 28, "422": 5 },
+  "topAnimals": [
+    { "animalId": "ani-1001", "count": 12 },
+    { "animalId": "ani-1004", "count": 8 }
+  ]
+}
+```
+
+#### GET /audit/operations — 操作类型枚举
+
+返回所有 `AUDIT_OPERATIONS` 常量，供前端下拉选择。
+
+---
+
+## 中间件链（请求处理流程）
+
+```
+Request → 数据库初始化
+        → 免认证旁路 (/healthz, /_ping)
+        → wrapResponseForAudit (猴子补丁拦截响应)
+        → authenticate (401 失败即返回)
+        → authorize    (403 失败即返回)
+        → 非GET请求读取 body 并缓存
+        → 路由处理 (cage→feeding→animal→breeding→health→audit)
+        → finally: setImmediate 异步写审计日志 → Response
+```
+
+关键点：
+- **无框架**：纯 Node `http.createServer`，线性流程无中间件库
+- **Body 缓存**：`helpers.body(req)` 带 `_bodyCache`，server 与 handler 共享一次流式消费
+- **响应拦截**：包装 `res.writeHead` / `res.end` 捕获状态码和响应体，供审计使用
+- **异步审计**：`setImmediate` + 独立 `writeAuditLog` 不阻塞响应返回
+
+---
+
+## 最小验证脚本
+
+```bash
+node scripts/test-auth-audit.js
+```
+
+覆盖 8 项最小验证：
+1. 无 Key → 401
+2. 无效 Key → 401
+3. readonly 写动物 → 403
+4. keeper 新增笼位（admin 操作）→ 403
+5. admin 新增笼位 → 成功
+6. keeper 动物建档 → 201 + 自动关联 animalId
+7. 按动物 ID 查询审计日志 → 命中
+8. 按操作者 Key 查询审计日志 → 命中
+
+启动时自动清理 `data/lab.json` 和 `data/audit-logs.json`，使用独立端口 3099 不影响开发环境。
 

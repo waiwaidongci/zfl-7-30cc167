@@ -71,6 +71,14 @@
       "capacity": 5,
       "status": "active",
       "createdAt": "2026-05-01T00:00:00.000Z"
+    },
+    {
+      "id": "T-99",
+      "area": "TEST区",
+      "rack": "T",
+      "capacity": 5,
+      "status": "active",
+      "createdAt": "2026-06-14T05:55:20.021Z"
     }
   ],
   "animals": [
@@ -140,6 +148,12 @@
         "targetCageId": "A-01",
         "notes": "检疫合格放行"
       },
+      "abnormalMarkedAt": null,
+      "abnormalReason": null,
+      "abnormalHandler": null,
+      "abnormalNotes": null,
+      "weanedAt": null,
+      "weaningWeight": null,
       "fatherId": null,
       "motherId": null,
       "litterId": null,
@@ -182,6 +196,12 @@
         "targetCageId": "B-03",
         "notes": "检疫合格"
       },
+      "abnormalMarkedAt": null,
+      "abnormalReason": null,
+      "abnormalHandler": null,
+      "abnormalNotes": null,
+      "weanedAt": null,
+      "weaningWeight": null,
       "fatherId": null,
       "motherId": null,
       "litterId": null,
@@ -214,6 +234,14 @@
         }
       ],
       "enteredQuarantineAt": "2026-06-10T14:00:00.000Z",
+      "quarantineReleasedAt": null,
+      "quarantineApproval": null,
+      "abnormalMarkedAt": null,
+      "abnormalReason": null,
+      "abnormalHandler": null,
+      "abnormalNotes": null,
+      "weanedAt": null,
+      "weaningWeight": null,
       "fatherId": null,
       "motherId": null,
       "litterId": null,
@@ -261,10 +289,14 @@
         }
       ],
       "enteredQuarantineAt": "2026-06-12T09:00:00.000Z",
+      "quarantineReleasedAt": null,
+      "quarantineApproval": null,
       "abnormalMarkedAt": "2026-06-13T09:00:00.000Z",
       "abnormalReason": "发热，食欲下降",
       "abnormalHandler": "周遥",
       "abnormalNotes": "疑似感染，待进一步检测",
+      "weanedAt": null,
+      "weaningWeight": null,
       "fatherId": null,
       "motherId": null,
       "litterId": null,
@@ -294,8 +326,8 @@
         {
           "id": "qr-7",
           "date": "2026-04-10",
-          "temperature": 36.9,
-          "weight": 23.5,
+          "temperature": 36.8,
+          "weight": 18.5,
           "condition": "正常",
           "symptoms": [],
           "isAbnormal": false,
@@ -313,6 +345,12 @@
         "targetCageId": "A-02",
         "notes": "检疫合格，种鼠备用"
       },
+      "abnormalMarkedAt": null,
+      "abnormalReason": null,
+      "abnormalHandler": null,
+      "abnormalNotes": null,
+      "weanedAt": null,
+      "weaningWeight": null,
       "fatherId": null,
       "motherId": null,
       "litterId": null,
@@ -334,33 +372,39 @@
           "id": "move-3",
           "from": "检疫区",
           "to": "A-02",
-          "movedAt": "2026-04-22T10:00:00.000Z",
+          "movedAt": "2026-04-20T010:40:00.000Z",
           "reason": "检疫结束，作为种鼠使用"
         }
       ],
       "quarantineRecords": [
         {
           "id": "qr-8",
-          "date": "2026-04-12",
-          "temperature": 36.8,
-          "weight": 19.2,
+          "date": "2026-04-10",
+          "temperature": 36.849999999999994,
+          "weight": 19.7,
           "condition": "正常",
           "symptoms": [],
           "isAbnormal": false,
           "notes": "入检初查",
           "examiner": "林青",
-          "createdAt": "2026-04-12T09:00:00.000Z"
+          "createdAt": "2026-04-10T09:00:00.000Z"
         }
       ],
-      "enteredQuarantineAt": "2026-04-12T09:00:00.000Z",
-      "quarantineReleasedAt": "2026-04-22T10:00:00.000Z",
+      "enteredQuarantineAt": "2026-04-10T09:00:00.000Z",
+      "quarantineReleasedAt": "2026-04-20T010:40:00.000Z",
       "quarantineApproval": {
         "id": "qa-4",
-        "approvedAt": "2026-04-22T10:00:00.000Z",
+        "approvedAt": "2026-04-20T010:40:00.000Z",
         "approver": "林青",
         "targetCageId": "A-02",
         "notes": "检疫合格，种鼠备用"
       },
+      "abnormalMarkedAt": null,
+      "abnormalReason": null,
+      "abnormalHandler": null,
+      "abnormalNotes": null,
+      "weanedAt": null,
+      "weaningWeight": null,
       "fatherId": null,
       "motherId": null,
       "litterId": null,
@@ -377,30 +421,44 @@
       "status": "released",
       "observationNodes": [],
       "notes": [],
-      "moves": [],
+      "moves": [
+        {
+          "id": "move-4",
+          "from": "检疫区",
+          "to": "B-04",
+          "movedAt": "2026-04-15T09:50:00.000Z",
+          "reason": "检疫结束，作为种鼠使用"
+        }
+      ],
       "quarantineRecords": [
         {
           "id": "qr-9",
-          "date": "2026-05-05",
-          "temperature": 37,
-          "weight": 24,
+          "date": "2026-04-5",
+          "temperature": 36.9,
+          "weight": 20.9,
           "condition": "正常",
           "symptoms": [],
           "isAbnormal": false,
           "notes": "入检初查",
           "examiner": "周遥",
-          "createdAt": "2026-05-05T10:00:00.000Z"
+          "createdAt": "2026-04-5T09:00:00.000Z"
         }
       ],
-      "enteredQuarantineAt": "2026-05-05T10:00:00.000Z",
-      "quarantineReleasedAt": "2026-05-15T10:00:00.000Z",
+      "enteredQuarantineAt": "2026-04-5T09:00:00.000Z",
+      "quarantineReleasedAt": "2026-04-15T09:50:00.000Z",
       "quarantineApproval": {
         "id": "qa-5",
-        "approvedAt": "2026-05-15T10:00:00.000Z",
+        "approvedAt": "2026-04-15T09:50:00.000Z",
         "approver": "周遥",
         "targetCageId": "B-04",
-        "notes": "检疫合格"
+        "notes": "检疫合格，种鼠备用"
       },
+      "abnormalMarkedAt": null,
+      "abnormalReason": null,
+      "abnormalHandler": null,
+      "abnormalNotes": null,
+      "weanedAt": null,
+      "weaningWeight": null,
       "fatherId": null,
       "motherId": null,
       "litterId": null,
@@ -417,30 +475,44 @@
       "status": "released",
       "observationNodes": [],
       "notes": [],
-      "moves": [],
+      "moves": [
+        {
+          "id": "move-5",
+          "from": "检疫区",
+          "to": "B-04",
+          "movedAt": "2026-04-15T010:60:00.000Z",
+          "reason": "检疫结束，作为种鼠使用"
+        }
+      ],
       "quarantineRecords": [
         {
           "id": "qr-10",
-          "date": "2026-05-08",
-          "temperature": 36.9,
-          "weight": 19.5,
+          "date": "2026-04-8",
+          "temperature": 36.8,
+          "weight": 22.1,
           "condition": "正常",
           "symptoms": [],
           "isAbnormal": false,
           "notes": "入检初查",
           "examiner": "周遥",
-          "createdAt": "2026-05-08T10:00:00.000Z"
+          "createdAt": "2026-04-8T09:00:00.000Z"
         }
       ],
-      "enteredQuarantineAt": "2026-05-08T10:00:00.000Z",
-      "quarantineReleasedAt": "2026-05-18T10:00:00.000Z",
+      "enteredQuarantineAt": "2026-04-8T09:00:00.000Z",
+      "quarantineReleasedAt": "2026-04-15T010:60:00.000Z",
       "quarantineApproval": {
         "id": "qa-6",
-        "approvedAt": "2026-05-18T10:00:00.000Z",
+        "approvedAt": "2026-04-15T010:60:00.000Z",
         "approver": "周遥",
         "targetCageId": "B-04",
-        "notes": "检疫合格"
+        "notes": "检疫合格，种鼠备用"
       },
+      "abnormalMarkedAt": null,
+      "abnormalReason": null,
+      "abnormalHandler": null,
+      "abnormalNotes": null,
+      "weanedAt": null,
+      "weaningWeight": null,
       "fatherId": null,
       "motherId": null,
       "litterId": null,
@@ -459,36 +531,42 @@
       "notes": [],
       "moves": [
         {
-          "id": "move-4",
+          "id": "move-6",
           "from": "检疫区",
           "to": "A-02",
-          "movedAt": "2026-05-25T09:00:00.000Z",
-          "reason": "检疫合格，种鼠备用"
+          "movedAt": "2026-04-25T09:70:00.000Z",
+          "reason": "检疫结束，作为种鼠使用"
         }
       ],
       "quarantineRecords": [
         {
           "id": "qr-11",
-          "date": "2026-05-15",
-          "temperature": 36.8,
-          "weight": 22,
+          "date": "2026-04-15",
+          "temperature": 36.849999999999994,
+          "weight": 23.3,
           "condition": "正常",
           "symptoms": [],
           "isAbnormal": false,
           "notes": "入检初查",
           "examiner": "林青",
-          "createdAt": "2026-05-15T09:00:00.000Z"
+          "createdAt": "2026-04-15T09:00:00.000Z"
         }
       ],
-      "enteredQuarantineAt": "2026-05-15T09:00:00.000Z",
-      "quarantineReleasedAt": "2026-05-25T09:00:00.000Z",
+      "enteredQuarantineAt": "2026-04-15T09:00:00.000Z",
+      "quarantineReleasedAt": "2026-04-25T09:70:00.000Z",
       "quarantineApproval": {
         "id": "qa-7",
-        "approvedAt": "2026-05-25T09:00:00.000Z",
+        "approvedAt": "2026-04-25T09:70:00.000Z",
         "approver": "林青",
         "targetCageId": "A-02",
-        "notes": "检疫合格"
+        "notes": "检疫合格，种鼠备用"
       },
+      "abnormalMarkedAt": null,
+      "abnormalReason": null,
+      "abnormalHandler": null,
+      "abnormalNotes": null,
+      "weanedAt": null,
+      "weaningWeight": null,
       "fatherId": null,
       "motherId": null,
       "litterId": null,
@@ -507,36 +585,42 @@
       "notes": [],
       "moves": [
         {
-          "id": "move-5",
+          "id": "move-7",
           "from": "检疫区",
           "to": "A-02",
-          "movedAt": "2026-05-28T09:00:00.000Z",
-          "reason": "检疫合格，种鼠备用"
+          "movedAt": "2026-04-28T010:80:00.000Z",
+          "reason": "检疫结束，作为种鼠使用"
         }
       ],
       "quarantineRecords": [
         {
           "id": "qr-12",
-          "date": "2026-05-18",
+          "date": "2026-04-18",
           "temperature": 36.9,
-          "weight": 18.8,
+          "weight": 24.5,
           "condition": "正常",
           "symptoms": [],
           "isAbnormal": false,
           "notes": "入检初查",
           "examiner": "林青",
-          "createdAt": "2026-05-18T09:00:00.000Z"
+          "createdAt": "2026-04-18T09:00:00.000Z"
         }
       ],
-      "enteredQuarantineAt": "2026-05-18T09:00:00.000Z",
-      "quarantineReleasedAt": "2026-05-28T09:00:00.000Z",
+      "enteredQuarantineAt": "2026-04-18T09:00:00.000Z",
+      "quarantineReleasedAt": "2026-04-28T010:80:00.000Z",
       "quarantineApproval": {
         "id": "qa-8",
-        "approvedAt": "2026-05-28T09:00:00.000Z",
+        "approvedAt": "2026-04-28T010:80:00.000Z",
         "approver": "林青",
         "targetCageId": "A-02",
-        "notes": "检疫合格"
+        "notes": "检疫合格，种鼠备用"
       },
+      "abnormalMarkedAt": null,
+      "abnormalReason": null,
+      "abnormalHandler": null,
+      "abnormalNotes": null,
+      "weanedAt": null,
+      "weaningWeight": null,
       "fatherId": null,
       "motherId": null,
       "litterId": null,
@@ -577,6 +661,12 @@
       ],
       "quarantineRecords": [],
       "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+      "quarantineReleasedAt": null,
+      "quarantineApproval": null,
+      "abnormalMarkedAt": null,
+      "abnormalReason": null,
+      "abnormalHandler": null,
+      "abnormalNotes": null,
       "weanedAt": "2026-06-10T10:00:00.000Z",
       "weaningWeight": 9.2,
       "fatherId": "ani-2001",
@@ -626,6 +716,12 @@
       ],
       "quarantineRecords": [],
       "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+      "quarantineReleasedAt": null,
+      "quarantineApproval": null,
+      "abnormalMarkedAt": null,
+      "abnormalReason": null,
+      "abnormalHandler": null,
+      "abnormalNotes": null,
       "weanedAt": "2026-06-10T10:00:00.000Z",
       "weaningWeight": 9.8,
       "fatherId": "ani-2001",
@@ -675,6 +771,12 @@
       ],
       "quarantineRecords": [],
       "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+      "quarantineReleasedAt": null,
+      "quarantineApproval": null,
+      "abnormalMarkedAt": null,
+      "abnormalReason": null,
+      "abnormalHandler": null,
+      "abnormalNotes": null,
       "weanedAt": "2026-06-10T10:00:00.000Z",
       "weaningWeight": 8.7,
       "fatherId": "ani-2001",
@@ -724,6 +826,12 @@
       ],
       "quarantineRecords": [],
       "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+      "quarantineReleasedAt": null,
+      "quarantineApproval": null,
+      "abnormalMarkedAt": null,
+      "abnormalReason": null,
+      "abnormalHandler": null,
+      "abnormalNotes": null,
       "weanedAt": "2026-06-10T10:00:00.000Z",
       "weaningWeight": 10.1,
       "fatherId": "ani-2001",
@@ -773,6 +881,12 @@
       ],
       "quarantineRecords": [],
       "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+      "quarantineReleasedAt": null,
+      "quarantineApproval": null,
+      "abnormalMarkedAt": null,
+      "abnormalReason": null,
+      "abnormalHandler": null,
+      "abnormalNotes": null,
       "weanedAt": "2026-06-10T10:00:00.000Z",
       "weaningWeight": 8.5,
       "fatherId": "ani-2001",
@@ -822,6 +936,12 @@
       ],
       "quarantineRecords": [],
       "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+      "quarantineReleasedAt": null,
+      "quarantineApproval": null,
+      "abnormalMarkedAt": null,
+      "abnormalReason": null,
+      "abnormalHandler": null,
+      "abnormalNotes": null,
       "weanedAt": "2026-06-10T10:00:00.000Z",
       "weaningWeight": 9,
       "fatherId": "ani-2001",
@@ -871,6 +991,12 @@
       ],
       "quarantineRecords": [],
       "enteredQuarantineAt": "2026-06-10T10:00:00.000Z",
+      "quarantineReleasedAt": null,
+      "quarantineApproval": null,
+      "abnormalMarkedAt": null,
+      "abnormalReason": null,
+      "abnormalHandler": null,
+      "abnormalNotes": null,
       "weanedAt": "2026-06-10T10:00:00.000Z",
       "weaningWeight": 8.9,
       "fatherId": "ani-2001",
@@ -884,6 +1010,25 @@
         "weanDate": "2026-06-10",
         "weaningWeight": 8.9
       }
+    },
+    {
+      "id": "ani-1781416520023-xf7ac",
+      "strain": "C57BL/6J",
+      "cageId": "C-01",
+      "sex": "female",
+      "birthDate": "2026-05-01",
+      "project": "验证项目",
+      "keeper": "测试饲养员",
+      "status": "quarantine",
+      "observationNodes": [],
+      "notes": [],
+      "moves": [],
+      "quarantineRecords": [],
+      "enteredQuarantineAt": "2026-06-14T05:55:20.023Z",
+      "fatherId": null,
+      "motherId": null,
+      "litterId": null,
+      "breedingInfo": null
     }
   ],
   "breedingPairs": [
@@ -1170,7 +1315,12 @@
       "source": "historical_quarantine_abnormal",
       "sourceRecordId": "qr-6",
       "condition": "食欲下降 发热 毛发杂乱 发现异常，需密切观察",
-      "abnormalKeywords": ["食欲下降", "发热", "毛发杂乱", "检疫标记异常"],
+      "abnormalKeywords": [
+        "食欲下降",
+        "发热",
+        "毛发杂乱",
+        "检疫标记异常"
+      ],
       "weightChange": {
         "previousWeight": 15.2,
         "previousDate": "2026-06-12",
@@ -1206,7 +1356,10 @@
       "inProgressAt": "2026-06-13T14:30:00.000Z",
       "closedAt": null,
       "closeReason": null,
-      "relatedRecordIds": ["qr-6", "abnormal-mark-ani-1004"]
+      "relatedRecordIds": [
+        "qr-6",
+        "abnormal-mark-ani-1004"
+      ]
     },
     {
       "id": "hev-demo-2",
@@ -1216,7 +1369,10 @@
       "source": "animal_note",
       "sourceRecordId": "note-1",
       "condition": "体重下降明显，1周内减轻2.5g",
-      "abnormalKeywords": ["体重下降", "体重异常变化"],
+      "abnormalKeywords": [
+        "体重下降",
+        "体重异常变化"
+      ],
       "weightChange": {
         "previousWeight": 23.9,
         "previousDate": "2026-06-03",
@@ -1237,7 +1393,9 @@
       "inProgressAt": null,
       "closedAt": null,
       "closeReason": null,
-      "relatedRecordIds": ["note-1"]
+      "relatedRecordIds": [
+        "note-1"
+      ]
     },
     {
       "id": "hev-demo-3",
@@ -1247,7 +1405,11 @@
       "source": "feeding_checkin",
       "sourceRecordId": "record-3",
       "condition": "腹泻，粪便稀软，精神差",
-      "abnormalKeywords": ["腹泻", "粪便异常", "精神差"],
+      "abnormalKeywords": [
+        "腹泻",
+        "粪便异常",
+        "精神差"
+      ],
       "weightChange": null,
       "handler": null,
       "assignee": "周遥",
@@ -1267,7 +1429,9 @@
       "inProgressAt": null,
       "closedAt": null,
       "closeReason": null,
-      "relatedRecordIds": ["record-3"]
+      "relatedRecordIds": [
+        "record-3"
+      ]
     },
     {
       "id": "hev-demo-4",
@@ -1277,7 +1441,11 @@
       "source": "feeding_checkin",
       "sourceRecordId": "record-6",
       "condition": "断奶后食欲不振，体型偏小",
-      "abnormalKeywords": ["食欲下降", "消瘦", "待观察"],
+      "abnormalKeywords": [
+        "食欲下降",
+        "消瘦",
+        "待观察"
+      ],
       "weightChange": {
         "previousWeight": 9.5,
         "previousDate": "2026-06-10",
@@ -1305,7 +1473,10 @@
           "content": "给予营养补充剂，调整饲料配方为高蛋白",
           "createdAt": "2026-06-11T14:00:00.000Z",
           "author": "林青",
-          "metadata": {"treatment": "营养补充剂", "dosage": "0.5g/天"}
+          "metadata": {
+            "treatment": "营养补充剂",
+            "dosage": "0.5g/天"
+          }
         },
         {
           "id": "hn-demo-6",
@@ -1329,7 +1500,10 @@
       "inProgressAt": "2026-06-11T14:00:00.000Z",
       "closedAt": "2026-06-13T16:00:00.000Z",
       "closeReason": "处理完成，已恢复正常",
-      "relatedRecordIds": ["record-6", "note-w3"]
+      "relatedRecordIds": [
+        "record-6",
+        "note-w3"
+      ]
     },
     {
       "id": "hev-demo-5",
@@ -1339,7 +1513,10 @@
       "source": "quarantine_record",
       "sourceRecordId": "qr-4",
       "condition": "入检时发现轻微脱毛，需观察",
-      "abnormalKeywords": ["脱毛", "待观察"],
+      "abnormalKeywords": [
+        "脱毛",
+        "待观察"
+      ],
       "weightChange": null,
       "handler": "林青",
       "assignee": "林青",
@@ -1358,7 +1535,10 @@
           "content": "皮肤镜检，排除真菌感染，判定为应激性脱毛",
           "createdAt": "2026-06-11T10:00:00.000Z",
           "author": "林青",
-          "metadata": {"exam": "皮肤镜检", "result": "阴性"}
+          "metadata": {
+            "exam": "皮肤镜检",
+            "result": "阴性"
+          }
         },
         {
           "id": "hn-demo-10",
@@ -1375,7 +1555,44 @@
       "inProgressAt": "2026-06-11T10:00:00.000Z",
       "closedAt": "2026-06-12T09:00:00.000Z",
       "closeReason": "处理完成，排除病理因素",
-      "relatedRecordIds": ["qr-4"]
+      "relatedRecordIds": [
+        "qr-4"
+      ]
+    },
+    {
+      "id": "hev-1781416520014-ogpcv",
+      "animalId": "ani-1001",
+      "project": "代谢观察",
+      "keeper": "林青",
+      "source": "historical_quarantine",
+      "sourceRecordId": "qr-1",
+      "condition": "正常 入检初查",
+      "abnormalKeywords": [
+        "体重异常变化"
+      ],
+      "weightChange": {
+        "previousWeight": 21.4,
+        "previousDate": "2026-06-10",
+        "currentWeight": 18.5,
+        "diff": -2.8999999999999986,
+        "percent": -13.551401869158871,
+        "daysDiff": 5,
+        "threshold": 10,
+        "isAbnormal": true
+      },
+      "handler": null,
+      "assignee": null,
+      "status": "pending",
+      "notes": [],
+      "createdAt": "2026-06-14T05:55:20.014Z",
+      "updatedAt": "2026-06-14T05:55:20.014Z",
+      "assignedAt": null,
+      "inProgressAt": null,
+      "closedAt": null,
+      "closeReason": null,
+      "relatedRecordIds": [
+        "qr-1"
+      ]
     }
   ]
 }

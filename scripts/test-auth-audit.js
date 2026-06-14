@@ -1,6 +1,6 @@
 import http from "node:http";
 import { spawn } from "node:child_process";
-import { unlinkSync, existsSync } from "node:fs";
+import { unlinkSync, existsSync, renameSync, readFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -26,10 +26,22 @@ let passed = 0;
 let failed = 0;
 const results = [];
 
-function cleanup() {
+function backupData() {
   for (const f of DATA_FILES) {
     if (existsSync(f)) {
+      try { renameSync(f, f + ".bak"); } catch (e) {}
+    }
+  }
+}
+
+function restoreData() {
+  for (const f of DATA_FILES) {
+    const bak = f + ".bak";
+    if (existsSync(f)) {
       try { unlinkSync(f); } catch (e) {}
+    }
+    if (existsSync(bak)) {
+      try { renameSync(bak, f); } catch (e) {}
     }
   }
 }
@@ -242,8 +254,29 @@ async function runTests() {
   }
 }
 
+function snapshotData() {
+  const snapshot = {};
+  for (const f of DATA_FILES) {
+    if (existsSync(f)) {
+      try { snapshot[f] = readFileSync(f, "utf8"); } catch (e) { snapshot[f] = null; }
+    } else {
+      snapshot[f] = null;
+    }
+  }
+  return snapshot;
+}
+
+function dataMatchesSnapshot(snapshot) {
+  for (const f of DATA_FILES) {
+    const current = existsSync(f) ? readFileSync(f, "utf8") : null;
+    if (current !== snapshot[f]) return false;
+  }
+  return true;
+}
+
 async function main() {
-  cleanup();
+  const beforeSnapshot = snapshotData();
+  backupData();
   try {
     await startServer();
     await runTests();
@@ -252,6 +285,13 @@ async function main() {
     process.exitCode = 1;
   } finally {
     await stopServer();
+    restoreData();
+    const restored = dataMatchesSnapshot(beforeSnapshot);
+    if (restored) {
+      console.log("\n\x1b[36m♻ 数据已恢复，无测试污染\x1b[0m");
+    } else {
+      console.log("\n\x1b[33m⚠ 数据恢复后与快照不一致，可能存在残留\x1b[0m");
+    }
   }
 }
 

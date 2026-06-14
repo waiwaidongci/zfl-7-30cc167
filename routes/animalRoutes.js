@@ -1,6 +1,6 @@
 import { send, body, saveDb } from "../lib/helpers.js";
-import { listAnimals, getAnimal, addAnimal, addNote, moveAnimal, removeAnimal, batchAddAnimals } from "../lib/animalData.js";
-import { validateAnimalFull, validateAnimalFields } from "../lib/animalValidator.js";
+import { listAnimals, getAnimal, addAnimal, addNote, moveAnimal, removeAnimal, batchAddAnimals, addQuarantineRecord, releaseAnimal, markQuarantineAbnormal, resolveQuarantineAbnormal } from "../lib/animalData.js";
+import { validateAnimalFull, validateAnimalFields, ANIMAL_STATUS } from "../lib/animalValidator.js";
 import { validateCageForAnimal } from "../lib/cageValidator.js";
 import { validateBatchImport, getValidImportItems } from "../lib/batchImportValidator.js";
 
@@ -27,6 +27,22 @@ export async function handleAnimalRoutes(req, res, url, db) {
 
   if (req.method === "POST" && url.pathname === "/animals") {
     await handleAddAnimal(req, res, db);
+    await saveDb(db);
+    return true;
+  }
+
+  const quarantineMatch = url.pathname.match(/^\/animals\/([^/]+)\/quarantine\/(record|release|abnormal|resolve)$/);
+  if (quarantineMatch && req.method === "POST") {
+    const [, id, subAction] = quarantineMatch;
+    if (subAction === "record") {
+      await handleQuarantineRecord(req, res, db, id);
+    } else if (subAction === "release") {
+      await handleQuarantineRelease(req, res, db, id);
+    } else if (subAction === "abnormal") {
+      await handleQuarantineAbnormal(req, res, db, id);
+    } else if (subAction === "resolve") {
+      await handleQuarantineResolve(req, res, db, id);
+    }
     await saveDb(db);
     return true;
   }
@@ -197,4 +213,84 @@ async function handleImportConfirm(req, res, db) {
       capacityConflicts: validation.capacityConflicts
     }
   });
+}
+
+async function handleQuarantineRecord(req, res, db, animalId) {
+  const animal = getAnimal(db, animalId);
+  if (!animal) { send(res, 404, { error: "animal_not_found" }); return; }
+
+  if (animal.status !== ANIMAL_STATUS.QUARANTINE && animal.status !== ANIMAL_STATUS.QUARANTINE_ABNORMAL) {
+    return send(res, 422, {
+      error: "invalid_status",
+      message: `当前状态 ${animal.status} 无法添加检疫记录`
+    });
+  }
+
+  const input = await body(req);
+  const record = addQuarantineRecord(db, animalId, input);
+  send(res, 201, record);
+}
+
+async function handleQuarantineRelease(req, res, db, animalId) {
+  const animal = getAnimal(db, animalId);
+  if (!animal) { send(res, 404, { error: "animal_not_found" }); return; }
+
+  if (animal.status !== ANIMAL_STATUS.QUARANTINE && animal.status !== ANIMAL_STATUS.QUARANTINE_ABNORMAL) {
+    return send(res, 422, {
+      error: "invalid_status",
+      message: `当前状态 ${animal.status} 无法放行`
+    });
+  }
+
+  const input = await body(req);
+  if (input.targetCageId) {
+    const validation = validateCageForAnimal(db, input.targetCageId, animal.cageId);
+    if (!validation.valid) {
+      return send(res, 422, { error: "cage_validation_failed", details: validation.errors });
+    }
+  }
+
+  const result = releaseAnimal(db, animalId, input);
+  if (result.error) {
+    return send(res, 422, { error: result.error, message: result.message });
+  }
+  send(res, 200, result);
+}
+
+async function handleQuarantineAbnormal(req, res, db, animalId) {
+  const animal = getAnimal(db, animalId);
+  if (!animal) { send(res, 404, { error: "animal_not_found" }); return; }
+
+  if (animal.status !== ANIMAL_STATUS.QUARANTINE && animal.status !== ANIMAL_STATUS.QUARANTINE_ABNORMAL) {
+    return send(res, 422, {
+      error: "invalid_status",
+      message: `当前状态 ${animal.status} 无法标记为异常`
+    });
+  }
+
+  const input = await body(req);
+  const result = markQuarantineAbnormal(db, animalId, input);
+  if (result.error) {
+    return send(res, 422, { error: result.error, message: result.message });
+  }
+  send(res, 200, result);
+}
+
+async function handleQuarantineResolve(req, res, db, animalId) {
+  const animal = getAnimal(db, animalId);
+  if (!animal) { send(res, 404, { error: "animal_not_found" }); return; }
+
+  if (animal.status !== ANIMAL_STATUS.QUARANTINE_ABNORMAL) {
+    return send(res, 422, {
+      error: "invalid_status",
+      message: `当前状态 ${animal.status} 无法解除异常`
+    });
+  }
+
+  const input = await body(req);
+  const result = resolveQuarantineAbnormal(db, animalId, input);
+  if (result.error) {
+    return send(res, 422, { error: result.error, message: result.message });
+  }
+  send(res, 200, result);
 }

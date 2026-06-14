@@ -3,6 +3,7 @@ import { loadDb, saveDb, send, body, readQuery } from "./lib/helpers.js";
 import { handleCageRoutes } from "./routes/cageRoutes.js";
 import { handleFeedingRoutes } from "./routes/feedingRoutes.js";
 import { handleAnimalRoutes } from "./routes/animalRoutes.js";
+import { ANIMAL_STATUS, ACTIVE_STOCK_STATUSES } from "./lib/animalValidator.js";
 
 const seed = {
   cages: [
@@ -21,14 +22,21 @@ const seed = {
       birthDate: "2026-01-20",
       project: "代谢观察",
       keeper: "林青",
-      status: "active",
+      status: ANIMAL_STATUS.RELEASED,
       observationNodes: ["2026-06-18", "2026-07-02"],
       notes: [
         { id: "note-1", date: "2026-06-10", weight: 21.4, condition: "正常进食", keeper: "林青" }
       ],
       moves: [
         { id: "move-1", from: "检疫区", to: "A-01", movedAt: "2026-05-01T09:30:00.000Z", reason: "检疫结束" }
-      ]
+      ],
+      quarantineRecords: [
+        { id: "qr-1", date: "2026-04-20", temperature: 36.8, weight: 18.5, condition: "正常", symptoms: [], isAbnormal: false, notes: "入检初查", examiner: "林青", createdAt: "2026-04-20T09:00:00.000Z" },
+        { id: "qr-2", date: "2026-04-27", temperature: 37.0, weight: 19.8, condition: "正常", symptoms: [], isAbnormal: false, notes: "复检", examiner: "林青", createdAt: "2026-04-27T09:00:00.000Z" }
+      ],
+      enteredQuarantineAt: "2026-04-20T09:00:00.000Z",
+      quarantineReleasedAt: "2026-05-01T09:30:00.000Z",
+      quarantineApproval: { id: "qa-1", approvedAt: "2026-05-01T09:30:00.000Z", approver: "林青", targetCageId: "A-01", notes: "检疫合格放行" }
     },
     {
       id: "ani-1002",
@@ -38,10 +46,55 @@ const seed = {
       birthDate: "2026-02-03",
       project: "免疫反应",
       keeper: "周遥",
-      status: "active",
+      status: ANIMAL_STATUS.RELEASED,
       observationNodes: ["2026-06-15"],
       notes: [],
-      moves: []
+      moves: [],
+      quarantineRecords: [
+        { id: "qr-3", date: "2026-05-10", temperature: 36.9, weight: 22.1, condition: "正常", symptoms: [], isAbnormal: false, notes: "入检初查", examiner: "周遥", createdAt: "2026-05-10T10:00:00.000Z" }
+      ],
+      enteredQuarantineAt: "2026-05-10T10:00:00.000Z",
+      quarantineReleasedAt: "2026-05-17T10:00:00.000Z",
+      quarantineApproval: { id: "qa-2", approvedAt: "2026-05-17T10:00:00.000Z", approver: "周遥", targetCageId: "B-03", notes: "检疫合格" }
+    },
+    {
+      id: "ani-1003",
+      strain: "C57BL/6J",
+      cageId: "C-01",
+      sex: "male",
+      birthDate: "2026-04-15",
+      project: "肿瘤研究",
+      keeper: "林青",
+      status: ANIMAL_STATUS.QUARANTINE,
+      observationNodes: [],
+      notes: [],
+      moves: [],
+      quarantineRecords: [
+        { id: "qr-4", date: "2026-06-10", temperature: 36.7, weight: 16.5, condition: "正常", symptoms: [], isAbnormal: false, notes: "入检初查，状态良好", examiner: "林青", createdAt: "2026-06-10T14:00:00.000Z" }
+      ],
+      enteredQuarantineAt: "2026-06-10T14:00:00.000Z"
+    },
+    {
+      id: "ani-1004",
+      strain: "BALB/c",
+      cageId: "C-01",
+      sex: "female",
+      birthDate: "2026-04-20",
+      project: "疫苗测试",
+      keeper: "周遥",
+      status: ANIMAL_STATUS.QUARANTINE_ABNORMAL,
+      observationNodes: [],
+      notes: [],
+      moves: [],
+      quarantineRecords: [
+        { id: "qr-5", date: "2026-06-12", temperature: 37.1, weight: 15.2, condition: "正常", symptoms: [], isAbnormal: false, notes: "入检初查", examiner: "周遥", createdAt: "2026-06-12T09:00:00.000Z" },
+        { id: "qr-6", date: "2026-06-13", temperature: 38.5, weight: 14.8, condition: "食欲下降", symptoms: ["发热", "毛发杂乱"], isAbnormal: true, notes: "发现异常，需密切观察", examiner: "周遥", createdAt: "2026-06-13T09:00:00.000Z" }
+      ],
+      enteredQuarantineAt: "2026-06-12T09:00:00.000Z",
+      abnormalMarkedAt: "2026-06-13T09:00:00.000Z",
+      abnormalReason: "发热，食欲下降",
+      abnormalHandler: "周遥",
+      abnormalNotes: "疑似感染，待进一步检测"
     }
   ],
   feedingPlans: [
@@ -182,12 +235,41 @@ function hoursUntil(dateText) {
   return (new Date(dateText).getTime() - Date.now()) / 36e5;
 }
 
+function migrateDb(db) {
+  if (!db || !db.animals) return db;
+  let migrated = false;
+  for (const animal of db.animals) {
+    if (animal.status === "active") {
+      animal.status = ANIMAL_STATUS.RELEASED;
+      migrated = true;
+    }
+    if (animal.status === "removed") {
+      animal.status = ANIMAL_STATUS.REMOVED;
+      migrated = true;
+    }
+    if (!animal.quarantineRecords) {
+      animal.quarantineRecords = [];
+      migrated = true;
+    }
+    if (animal.status === ANIMAL_STATUS.RELEASED && !animal.enteredQuarantineAt) {
+      animal.enteredQuarantineAt = null;
+      migrated = true;
+    }
+  }
+  if (migrated) {
+    saveDb(db).catch(() => {});
+  }
+  return db;
+}
+
 const server = http.createServer(async (req, res) => {
   try {
     let db = await loadDb();
     if (!db) {
       await saveDb(seed);
       db = JSON.parse(JSON.stringify(seed));
+    } else {
+      db = migrateDb(db);
     }
 
     const url = readQuery(req);
@@ -206,6 +288,10 @@ const server = http.createServer(async (req, res) => {
           "POST /animals/:id/notes",
           "POST /animals/:id/move",
           "POST /animals/:id/remove",
+          "POST /animals/:id/quarantine/record",
+          "POST /animals/:id/quarantine/release",
+          "POST /animals/:id/quarantine/abnormal",
+          "POST /animals/:id/quarantine/resolve",
           "POST /animals/import/preview",
           "POST /animals/import",
           "GET /reports/stock",
@@ -234,19 +320,29 @@ const server = http.createServer(async (req, res) => {
     if (animalHandled) return;
 
     if (req.method === "GET" && url.pathname === "/reports/stock") {
-      const active = db.animals.filter((a) => a.status === "active");
+      const active = db.animals.filter((a) => ACTIVE_STOCK_STATUSES.includes(a.status));
       const byProject = Object.fromEntries(active.reduce((map, a) => map.set(a.project, (map.get(a.project) || 0) + 1), new Map()));
       const byCage = Object.fromEntries(active.reduce((map, a) => map.set(a.cageId, (map.get(a.cageId) || 0) + 1), new Map()));
-      return send(res, 200, { total: active.length, byProject, byCage });
+      const quarantineCount = db.animals.filter((a) => a.status === ANIMAL_STATUS.QUARANTINE).length;
+      const abnormalCount = db.animals.filter((a) => a.status === ANIMAL_STATUS.QUARANTINE_ABNORMAL).length;
+      return send(res, 200, {
+        total: active.length,
+        byProject,
+        byCage,
+        quarantine: quarantineCount,
+        quarantineAbnormal: abnormalCount
+      });
     }
 
     if (req.method === "GET" && url.pathname === "/reports/upcoming") {
       const days = Number(url.searchParams.get("days") || 7);
-      const upcoming = db.animals.flatMap((animal) =>
-        animal.observationNodes
-          .filter((node) => hoursUntil(node) >= 0 && hoursUntil(node) <= days * 24)
-          .map((node) => ({ animalId: animal.id, cageId: animal.cageId, project: animal.project, keeper: animal.keeper, date: node }))
-      );
+      const upcoming = db.animals
+        .filter((a) => ACTIVE_STOCK_STATUSES.includes(a.status))
+        .flatMap((animal) =>
+          animal.observationNodes
+            .filter((node) => hoursUntil(node) >= 0 && hoursUntil(node) <= days * 24)
+            .map((node) => ({ animalId: animal.id, cageId: animal.cageId, project: animal.project, keeper: animal.keeper, date: node }))
+        );
       return send(res, 200, upcoming.sort((a, b) => a.date.localeCompare(b.date)));
     }
 

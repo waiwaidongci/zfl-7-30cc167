@@ -110,13 +110,24 @@ npm start
 
 ## 动物模块接口
 
+### 动物状态说明
+
+| 状态值               | 说明     | 参与库存统计 | 参与观察提醒 |
+| -------------------- | -------- | ------------ | ------------ |
+| `quarantine`         | 检疫中   | 否           | 否           |
+| `released`           | 已放行   | 是           | 是           |
+| `quarantine_abnormal`| 检疫异常 | 否           | 否           |
+| `removed`            | 已移出   | 否           | 否           |
+
+> 新动物建档默认进入 `quarantine`（检疫中）状态，需经过检疫记录、放行审批后进入 `released`（已放行）正式状态。
+
 ### GET /animals?project=&cageId=&status=
 
-查询动物列表。
+查询动物列表。可通过 `status` 参数按状态筛选。
 
 ### POST /animals
 
-新增动物（建档），自动校验 `cageId` 对应笼位。
+新增动物（建档），自动校验 `cageId` 对应笼位。新建动物默认状态为 `quarantine`（检疫中）。
 
 请求体字段说明：
 
@@ -124,16 +135,17 @@ npm start
 | ----------------- | ---- | -------------------------- |
 | id                | 否   | 动物编号，不传则自动生成   |
 | strain            | 是   | 品系                       |
-| cageId            | 是   | 所属笼位                   |
+| cageId            | 是   | 所属笼位（建议检疫区笼位） |
 | sex               | 是   | 性别：male / female        |
 | birthDate         | 是   | 出生日期，格式 YYYY-MM-DD  |
 | project           | 是   | 所属项目                   |
 | keeper            | 是   | 饲养员                     |
 | observationNodes  | 否   | 观察节点日期数组           |
+| status            | 否   | 初始状态，默认 quarantine  |
 
 ### GET /animals/:id
 
-获取单个动物详情。
+获取单个动物详情，包含检疫记录、审批信息等。
 
 ### POST /animals/:id/notes
 
@@ -145,7 +157,84 @@ npm start
 
 ### POST /animals/:id/remove
 
-移出动物。
+移出动物，状态变更为 `removed`。
+
+## 检疫流程模块接口
+
+### POST /animals/:id/quarantine/record
+
+添加检疫记录。仅 `quarantine` 或 `quarantine_abnormal` 状态的动物可添加。
+
+请求体字段：
+
+| 字段         | 必填 | 说明                          |
+| ------------ | ---- | ----------------------------- |
+| date         | 否   | 检疫日期，默认当天            |
+| temperature  | 否   | 体温                          |
+| weight       | 否   | 体重                          |
+| condition    | 否   | 整体状况描述                  |
+| symptoms     | 否   | 症状列表（字符串数组）        |
+| isAbnormal   | 否   | 是否标记异常，默认 false。设为 true 时自动将动物状态转为 quarantine_abnormal |
+| notes        | 否   | 备注                          |
+| examiner     | 否   | 检疫人员，默认取动物饲养员    |
+
+成功响应（201）：返回新创建的检疫记录。
+
+错误响应：
+
+| 状态码 | 错误码          | 说明                     |
+| ------ | --------------- | ------------------------ |
+| 404    | animal_not_found | 动物不存在             |
+| 422    | invalid_status   | 当前状态不允许添加检疫记录 |
+
+### POST /animals/:id/quarantine/release
+
+放行审批。将动物从检疫区转入正式笼位，状态变更为 `released`。仅 `quarantine` 或 `quarantine_abnormal` 状态可放行。
+
+请求体字段：
+
+| 字段         | 必填 | 说明                                        |
+| ------------ | ---- | ------------------------------------------- |
+| approver     | 否   | 审批人，默认取动物饲养员                    |
+| targetCageId | 否   | 目标正式笼位 ID。提供时会校验笼位可用性，并自动执行移动 |
+| notes        | 否   | 审批备注                                    |
+
+成功响应（200）：返回更新后的动物信息。
+
+错误响应：
+
+| 状态码 | 错误码                 | 说明                   |
+| ------ | ---------------------- | ---------------------- |
+| 404    | animal_not_found       | 动物不存在             |
+| 422    | invalid_status         | 当前状态不允许放行     |
+| 422    | cage_validation_failed | 目标笼位校验失败       |
+
+### POST /animals/:id/quarantine/abnormal
+
+手动标记检疫异常。仅 `quarantine` 或 `quarantine_abnormal` 状态可操作。
+
+请求体字段：
+
+| 字段     | 必填 | 说明                     |
+| -------- | ---- | ------------------------ |
+| reason   | 否   | 异常原因，默认"检疫异常" |
+| handler  | 否   | 处理人，默认取动物饲养员 |
+| notes    | 否   | 异常备注                 |
+
+成功响应（200）：返回更新后的动物信息。
+
+### POST /animals/:id/quarantine/resolve
+
+解除检疫异常，恢复为 `quarantine` 状态继续观察。仅 `quarantine_abnormal` 状态可操作。
+
+请求体字段：
+
+| 字段       | 必填 | 说明                           |
+| ---------- | ---- | ------------------------------ |
+| resolution | 否   | 处理结果，默认"已处理恢复检疫" |
+| resolver   | 否   | 处理人，默认取动物饲养员       |
+
+成功响应（200）：返回更新后的动物信息。
 
 ## 批量导入模块
 
@@ -283,8 +372,47 @@ npm start
 
 ### GET /reports/stock
 
-存栏统计（按项目、按笼位）。
+存栏统计（按项目、按笼位）。仅统计 `released`（已放行）状态的动物。
+
+响应字段：
+
+| 字段                | 说明                              |
+| ------------------- | --------------------------------- |
+| total               | 已放行动物总数                    |
+| byProject           | 按项目分组的数量统计              |
+| byCage              | 按笼位分组的数量统计              |
+| quarantine          | 检疫中动物数量                    |
+| quarantineAbnormal  | 检疫异常动物数量                  |
+
+响应示例：
+
+```json
+{
+  "total": 2,
+  "byProject": {
+    "代谢观察": 1,
+    "免疫反应": 1
+  },
+  "byCage": {
+    "A-01": 1,
+    "B-03": 1
+  },
+  "quarantine": 1,
+  "quarantineAbnormal": 1
+}
+```
 
 ### GET /reports/upcoming?days=7
 
-即将到来的观察节点。
+即将到来的观察节点。仅统计 `released`（已放行）状态动物的观察节点。
+
+## 数据迁移兼容
+
+系统启动时自动执行数据迁移，兼容旧版数据：
+
+- 旧状态 `active` → 新状态 `released`（已放行）
+- 旧状态 `removed` → 新状态 `removed`（已移出）
+- 自动为动物补充缺失的 `quarantineRecords` 字段（空数组）
+- 自动为已放行动物补充缺失的 `enteredQuarantineAt` 字段（null）
+
+迁移完成后会自动保存到 `data/lab.json`。

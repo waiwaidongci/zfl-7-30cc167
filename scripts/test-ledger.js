@@ -34,7 +34,8 @@ import {
   releaseAnimal,
   markQuarantineAbnormal,
   resolveQuarantineAbnormal,
-  getAnimal
+  getAnimal,
+  batchAddAnimals
 } from "../lib/animalData.js";
 
 import { addFeedingRecord } from "../lib/feedingData.js";
@@ -452,6 +453,135 @@ tests.push({
     assert(integrity.valid === true, "Integrity should remain valid after new events");
 
     await removeAnimal(db, animal.id, "测试清理", { operator });
+    await saveDb(db);
+  }
+});
+
+tests.push({
+  name: "11. Batch import animal-level events",
+  fn: async () => {
+    const db = await loadDb();
+    const operator = { role: "keeper", name: "测试员", key: "test-key" };
+    const preInfo = await getLedgerInfo();
+
+    const animals = [
+      {
+        strain: "C57BL/6J",
+        cageId: "B-01",
+        sex: "male",
+        birthDate: "2026-05-01",
+        project: "批量导入测试",
+        keeper: "测试员"
+      },
+      {
+        strain: "C57BL/6J",
+        cageId: "B-01",
+        sex: "female",
+        birthDate: "2026-05-01",
+        project: "批量导入测试",
+        keeper: "测试员"
+      },
+      {
+        strain: "BALB/c",
+        cageId: "B-02",
+        sex: "male",
+        birthDate: "2026-05-02",
+        project: "批量导入测试",
+        keeper: "测试员"
+      }
+    ];
+
+    const imported = await batchAddAnimals(db, animals, { operator, source: "batch_test" });
+    await saveDb(db);
+
+    const postInfo = await getLedgerInfo();
+    const expectedNewEvents = 3 + 1;
+    assert(postInfo.totalEvents === preInfo.totalEvents + expectedNewEvents, `Should have ${expectedNewEvents} new events (3 created + 1 batch)`);
+
+    for (const animal of imported) {
+      const events = await queryEvents({ animalId: animal.id, sort: "asc" });
+      assert(events.total >= 1, `Animal ${animal.id} should have events`);
+      assert(events.events[events.events.length - 1].eventType === EVENT_TYPES.ANIMAL_CREATED, `Last event should be created for ${animal.id}`);
+      assert(events.events[events.events.length - 1].payload.batchImported === true, "Should have batchImported flag");
+    }
+
+    const batchEvents = await queryEvents({ eventType: EVENT_TYPES.ANIMAL_BATCH_IMPORTED });
+    assert(batchEvents.total >= 1, "Should have batch import event");
+    assert(batchEvents.events[0].payload.count === 3, "Should have count 3");
+    assert(batchEvents.events[0].payload.source === "batch_test", "Should have correct source");
+
+    for (const animal of imported) {
+      await removeAnimal(db, animal.id, "测试清理", { operator });
+    }
+    await saveDb(db);
+  }
+});
+
+tests.push({
+  name: "12. Breeding pair creation animal-level events",
+  fn: async () => {
+    const db = await loadDb();
+    const operator = { role: "keeper", name: "测试员", key: "test-key" };
+
+    const male = await addAnimal(db, {
+      strain: "C57BL/6J",
+      cageId: "C-01",
+      sex: "male",
+      birthDate: "2026-03-01",
+      project: "繁育测试",
+      keeper: "测试员"
+    }, { operator });
+    await saveDb(db);
+
+    const female = await addAnimal(db, {
+      strain: "C57BL/6J",
+      cageId: "C-02",
+      sex: "female",
+      birthDate: "2026-03-05",
+      project: "繁育测试",
+      keeper: "测试员"
+    }, { operator });
+    await saveDb(db);
+
+    const preInfo = await getLedgerInfo();
+
+    const { createBreedingPair } = await import("../lib/breedingData.js");
+    const pair = await createBreedingPair(db, {
+      maleId: male.id,
+      femaleId: female.id,
+      cageId: "C-03",
+      pairDate: "2026-06-10",
+      keeper: "测试员"
+    }, { operator });
+    await saveDb(db);
+
+    const postInfo = await getLedgerInfo();
+    const expectedNewEvents = 2 + 2;
+    assert(postInfo.totalEvents === preInfo.totalEvents + expectedNewEvents, `Should have ${expectedNewEvents} new events (2 moves + 2 pair created)`);
+
+    const maleEvents = await queryEvents({ animalId: male.id, sort: "asc" });
+    const maleMovedEvent = maleEvents.events[maleEvents.events.length - 2];
+    assert(maleMovedEvent.eventType === EVENT_TYPES.ANIMAL_MOVED, "Male should have moved event");
+    assert(maleMovedEvent.payload.toCage === "C-03", "Male should have moved to C-03");
+    assert(maleMovedEvent.payload.reason === "合笼配对移入", "Male move reason should be correct");
+
+    const femaleEvents = await queryEvents({ animalId: female.id, sort: "asc" });
+    const femaleMovedEvent = femaleEvents.events[femaleEvents.events.length - 2];
+    assert(femaleMovedEvent.eventType === EVENT_TYPES.ANIMAL_MOVED, "Female should have moved event");
+    assert(femaleMovedEvent.payload.toCage === "C-03", "Female should have moved to C-03");
+    assert(femaleMovedEvent.payload.reason === "合笼配对移入", "Female move reason should be correct");
+
+    const malePairEvent = maleEvents.events[maleEvents.events.length - 1];
+    assert(malePairEvent.eventType === EVENT_TYPES.BREEDING_PAIR_CREATED, "Male should have pair created event");
+    assert(malePairEvent.payload.role === "male", "Should have role male");
+    assert(malePairEvent.payload.pairId === pair.id, "Should have correct pairId");
+
+    const femalePairEvent = femaleEvents.events[femaleEvents.events.length - 1];
+    assert(femalePairEvent.eventType === EVENT_TYPES.BREEDING_PAIR_CREATED, "Female should have pair created event");
+    assert(femalePairEvent.payload.role === "female", "Should have role female");
+
+    await removeAnimal(db, male.id, "测试清理", { operator });
+    await removeAnimal(db, female.id, "测试清理", { operator });
     await saveDb(db);
   }
 });

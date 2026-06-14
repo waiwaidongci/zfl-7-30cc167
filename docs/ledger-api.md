@@ -8,19 +8,19 @@
 
 ## 通用响应格式
 
+成功响应直接返回数据对象：
 ```json
 {
-  "success": true,
-  "data": { ... },
-  "message": "操作成功"
+  "totalEvents": 156,
+  "uniqueAnimals": 32,
+  ...
 }
 ```
 
 错误响应:
 ```json
 {
-  "success": false,
-  "error": "错误原因",
+  "error": "错误代码",
   "message": "详细错误信息"
 }
 ```
@@ -37,23 +37,24 @@
 
 ```json
 {
-  "success": true,
-  "data": {
-    "totalEvents": 156,
-    "uniqueAnimals": 32,
-    "eventTypeCounts": {
-      "animal.created": 32,
-      "animal.note_added": 45,
-      "animal.moved": 12,
-      "feeding.recorded": 38,
-      "ledger.initialized": 1,
-      "ledger.migrated_from_snapshot": 1
-    },
-    "firstEventTimestamp": "2026-01-20T10:00:00.000Z",
-    "lastEventTimestamp": "2026-06-14T15:30:00.000Z",
-    "migratedFromSnapshot": true,
-    "chainLength": 156
-  }
+  "totalEvents": 70,
+  "nextId": 71,
+  "migratedFromSnapshot": true,
+  "byType": {
+    "ledger.initialized": 1,
+    "animal.created": 18,
+    "animal.quarantine_record": 12,
+    "animal.quarantine_released": 6,
+    "animal.moved": 12,
+    "breeding.litter_weaned": 7,
+    "animal.note_added": 8,
+    "feeding.recorded": 4,
+    "animal.quarantine_abnormal": 1,
+    "ledger.migrated_from_snapshot": 1
+  },
+  "uniqueAnimals": 18,
+  "checksumChainLength": 70,
+  "integrityStatus": "ok"
 }
 ```
 
@@ -71,25 +72,22 @@
 ### 响应示例
 
 ```json
-{
-  "success": true,
-  "data": [
-    { "type": "animal.created", "description": "动物建档" },
-    { "type": "animal.note_added", "description": "添加饲养记录" },
-    { "type": "animal.moved", "description": "移笼" },
-    { "type": "animal.removed", "description": "移出" },
-    { "type": "animal.quarantine_record", "description": "检疫记录" },
-    { "type": "animal.quarantine_released", "description": "检疫放行" },
-    { "type": "animal.quarantine_abnormal", "description": "检疫异常标记" },
-    { "type": "animal.quarantine_resolved", "description": "检疫异常解除" },
-    { "type": "animal.batch_imported", "description": "批量导入" },
-    { "type": "feeding.recorded", "description": "饲喂记录" },
-    { "type": "breeding.pair_created", "description": "繁育配对" },
-    { "type": "breeding.litter_weaned", "description": "断奶分笼" },
-    { "type": "ledger.initialized", "description": "账本初始化" },
-    { "type": "ledger.migrated_from_snapshot", "description": "从快照迁移完成" }
-  ]
-}
+[
+  { "key": "ANIMAL_CREATED", "value": "animal.created", "label": "动物建档", "animalRelated": true },
+  { "key": "ANIMAL_NOTE_ADDED", "value": "animal.note_added", "label": "添加饲养记录", "animalRelated": true },
+  { "key": "ANIMAL_MOVED", "value": "animal.moved", "label": "移笼", "animalRelated": true },
+  { "key": "ANIMAL_REMOVED", "value": "animal.removed", "label": "移出", "animalRelated": true },
+  { "key": "ANIMAL_QUARANTINE_RECORD", "value": "animal.quarantine_record", "label": "检疫记录", "animalRelated": true },
+  { "key": "ANIMAL_QUARANTINE_RELEASED", "value": "animal.quarantine_released", "label": "检疫放行", "animalRelated": true },
+  { "key": "ANIMAL_QUARANTINE_ABNORMAL", "value": "animal.quarantine_abnormal", "label": "检疫异常标记", "animalRelated": true },
+  { "key": "ANIMAL_QUARANTINE_RESOLVED", "value": "animal.quarantine_resolved", "label": "检疫异常解除", "animalRelated": true },
+  { "key": "ANIMAL_BATCH_IMPORTED", "value": "animal.batch_imported", "label": "批量导入", "animalRelated": true },
+  { "key": "FEEDING_RECORDED", "value": "feeding.recorded", "label": "饲喂记录", "animalRelated": true },
+  { "key": "BREEDING_PAIR_CREATED", "value": "breeding.pair_created", "label": "繁育配对", "animalRelated": true },
+  { "key": "BREEDING_LITTER_WEANED", "value": "breeding.litter_weaned", "label": "断奶分笼", "animalRelated": true },
+  { "key": "LEDGER_INITIALIZED", "value": "ledger.initialized", "label": "账本初始化", "animalRelated": false },
+  { "key": "LEDGER_MIGRATED", "value": "ledger.migrated_from_snapshot", "label": "从快照迁移", "animalRelated": false }
+]
 ```
 
 ### 权限要求
@@ -122,37 +120,33 @@
 
 ```json
 {
-  "success": true,
-  "data": {
-    "events": [
-      {
-        "id": "evt-156",
-        "eventType": "animal.moved",
-        "animalId": "ani-1001",
-        "timestamp": "2026-06-14T15:30:00.000Z",
-        "operator": {
-          "role": "keeper",
-          "name": "林青"
-        },
-        "payload": {
-          "fromCage": "A-01",
-          "toCage": "B-02",
-          "reason": "分组实验"
-        },
-        "snapshotAfter": {
-          "id": "ani-1001",
-          "status": "normal",
-          "cageId": "B-02",
-          "movesCount": 3
-        }
-      }
-    ],
-    "total": 156,
-    "filtered": 12,
-    "limit": 20,
-    "offset": 0,
-    "sort": "desc"
-  }
+  "total": 70,
+  "limit": 3,
+  "offset": 0,
+  "events": [
+    {
+      "id": "evt-1",
+      "eventType": "ledger.initialized",
+      "animalId": null,
+      "timestamp": "2026-06-14T09:07:55.446Z",
+      "operator": {
+        "role": "system",
+        "name": "server_startup",
+        "key": "system"
+      },
+      "payload": {
+        "totalAnimals": 18,
+        "migratedAt": "2026-06-14T09:07:55.445Z"
+      },
+      "snapshotAfter": null,
+      "previousChecksum": null,
+      "metadata": {
+        "source": "snapshot_migration"
+      },
+      "checksum": "2c53c73df1fcad1c8f0e28535c0fb02888604ee9af0324bc8e0569d7ee3f246c"
+    }
+  ],
+  "sort": "desc"
 }
 ```
 
@@ -177,33 +171,30 @@
 
 ```json
 {
-  "success": true,
-  "data": {
-    "id": "evt-156",
-    "eventType": "animal.moved",
-    "animalId": "ani-1001",
-    "timestamp": "2026-06-14T15:30:00.000Z",
-    "operator": {
-      "role": "keeper",
-      "name": "林青",
-      "key": "xxx"
-    },
-    "payload": {
-      "fromCage": "A-01",
-      "toCage": "B-02",
-      "reason": "分组实验"
-    },
-    "snapshotAfter": {
-      "id": "ani-1001",
-      "status": "normal",
-      "cageId": "B-02",
-      "movesCount": 3
-    },
-    "previousChecksum": "sha256-abc123...",
-    "checksum": "sha256-def456...",
-    "metadata": {
-      "source": "api"
-    }
+  "id": "evt-30",
+  "eventType": "animal.moved",
+  "animalId": "ani-1001",
+  "timestamp": "2026-06-14T15:30:00.000Z",
+  "operator": {
+    "role": "keeper",
+    "name": "林青",
+    "key": "xxx"
+  },
+  "payload": {
+    "fromCage": "A-01",
+    "toCage": "B-02",
+    "reason": "分组实验"
+  },
+  "snapshotAfter": {
+    "id": "ani-1001",
+    "status": "normal",
+    "cageId": "B-02",
+    "movesCount": 3
+  },
+  "previousChecksum": "sha256-abc123...",
+  "checksum": "sha256-def456...",
+  "metadata": {
+    "source": "api"
   }
 }
 ```
@@ -235,44 +226,51 @@
 
 ```json
 {
-  "success": true,
-  "data": {
-    "animalId": "ani-1001",
-    "found": true,
-    "totalEvents": 7,
-    "filteredEvents": 7,
-    "events": [
-      {
-        "timestamp": "2026-01-20T10:00:00.000Z",
-        "eventType": "animal.created",
-        "description": "动物建档",
-        "payload": { ... },
-        "snapshotAfter": { ... }
-      }
-    ],
-    "snapshots": [
-      {
-        "timestamp": "2026-01-20T10:00:00.000Z",
-        "eventType": "animal.created",
+  "animalId": "ani-1001",
+  "found": true,
+  "totalEvents": 5,
+  "filteredEvents": 5,
+  "events": [
+    {
+      "id": "evt-3",
+      "eventType": "animal.created",
+      "animalId": "ani-1001",
+      "timestamp": "2026-01-20T10:00:00.000Z",
+      "operator": { "role": "keeper", "name": "林青" },
+      "payload": { "strain": "C57BL/6J", "sex": "female", "cageId": "A-01" },
+      "snapshotAfter": { "id": "ani-1001", "status": "quarantine", "cageId": "A-01" },
+      "checksum": "abc123..."
+    }
+  ],
+  "snapshots": [
+    {
+      "eventId": "evt-3",
+      "eventType": "animal.created",
+      "timestamp": "2026-01-20T10:00:00.000Z",
+      "snapshot": {
+        "id": "ani-1001",
+        "strain": "C57BL/6J",
+        "sex": "female",
         "status": "quarantine",
         "cageId": "A-01",
-        "summary": "建档，品系 C57BL/6J，性别 female"
+        "notesCount": 0,
+        "movesCount": 0
       }
-    ],
-    "finalSnapshot": {
-      "id": "ani-1001",
-      "strain": "C57BL/6J",
-      "sex": "female",
-      "birthDate": "2026-01-20",
-      "status": "normal",
-      "cageId": "B-02",
-      "project": "免疫实验",
-      "keeper": "林青",
-      "notesCount": 3,
-      "movesCount": 3
-    },
-    "until": null
-  }
+    }
+  ],
+  "finalSnapshot": {
+    "id": "ani-1001",
+    "strain": "C57BL/6J",
+    "sex": "female",
+    "birthDate": "2026-01-20",
+    "status": "normal",
+    "cageId": "B-02",
+    "project": "免疫实验",
+    "keeper": "林青",
+    "notesCount": 3,
+    "movesCount": 3
+  },
+  "until": null
 }
 ```
 
@@ -301,15 +299,12 @@
 
 ```json
 {
-  "success": true,
-  "data": {
-    "format": "json",
-    "fromDate": "2026-01-01T00:00:00.000Z",
-    "toDate": "2026-06-30T23:59:59.999Z",
-    "total": 42,
-    "generatedAt": "2026-06-14T16:00:00.000Z",
-    "events": [ ... ]
-  }
+  "format": "json",
+  "fromDate": "2026-01-01T00:00:00.000Z",
+  "toDate": "2026-06-30T23:59:59.999Z",
+  "total": 42,
+  "generatedAt": "2026-06-14T16:00:00.000Z",
+  "events": [ ... ]
 }
 ```
 
@@ -336,24 +331,21 @@ evt-2,animal.moved,ani-1001,2026-03-15T14:30:00.000Z,keeper,林青,移笼: A-01 
 
 ```json
 {
-  "success": true,
-  "data": {
-    "valid": true,
-    "totalEvents": 156,
-    "checked": 156,
-    "errors": [],
-    "firstEvent": {
-      "id": "evt-1",
-      "timestamp": "2026-01-20T10:00:00.000Z",
-      "checksum": "sha256-abc123..."
-    },
-    "lastEvent": {
-      "id": "evt-156",
-      "timestamp": "2026-06-14T15:30:00.000Z",
-      "checksum": "sha256-xyz789..."
-    },
-    "chainVerified": true
-  }
+  "valid": true,
+  "totalEvents": 70,
+  "checked": 70,
+  "errors": [],
+  "firstEvent": {
+    "id": "evt-1",
+    "timestamp": "2026-06-14T09:07:55.446Z",
+    "checksum": "2c53c73df1fcad1c8f0e28535c0fb02888604ee9af0324bc8e0569d7ee3f246c"
+  },
+  "lastEvent": {
+    "id": "evt-70",
+    "timestamp": "2026-06-14T09:07:55.689Z",
+    "checksum": "a1b2c3d4e5f6..."
+  },
+  "chainVerified": true
 }
 ```
 
@@ -361,27 +353,24 @@ evt-2,animal.moved,ani-1001,2026-03-15T14:30:00.000Z,keeper,林青,移笼: A-01 
 
 ```json
 {
-  "success": true,
-  "data": {
-    "valid": false,
-    "totalEvents": 156,
-    "checked": 45,
-    "errors": [
-      {
-        "eventId": "evt-45",
-        "type": "checksum_mismatch",
-        "message": "Event checksum does not match calculated value"
-      },
-      {
-        "eventId": "evt-46",
-        "type": "previous_checksum_mismatch",
-        "message": "Previous checksum reference does not match previous event"
-      }
-    ],
-    "firstEvent": { ... },
-    "lastEvent": { ... },
-    "chainVerified": false
-  }
+  "valid": false,
+  "totalEvents": 70,
+  "checked": 45,
+  "errors": [
+    {
+      "eventId": "evt-45",
+      "type": "checksum_mismatch",
+      "message": "Event checksum does not match calculated value"
+    },
+    {
+      "eventId": "evt-46",
+      "type": "previous_checksum_mismatch",
+      "message": "Previous checksum reference does not match previous event"
+    }
+  ],
+  "firstEvent": { ... },
+  "lastEvent": { ... },
+  "chainVerified": false
 }
 ```
 
@@ -400,17 +389,15 @@ evt-2,animal.moved,ani-1001,2026-03-15T14:30:00.000Z,keeper,林青,移笼: A-01 
 
 ```json
 {
-  "success": true,
-  "data": {
-    "consistent": true,
-    "totalAnimalsInLedger": 32,
-    "totalAnimalsInSnapshot": 32,
-    "totalChecked": 32,
-    "totalPassed": 32,
-    "totalFailed": 0,
-    "errors": [],
-    "checkedAt": "2026-06-14T16:00:00.000Z"
-  }
+  "consistent": true,
+  "totalAnimalsInLedger": 18,
+  "totalAnimalsInSnapshot": 18,
+  "totalChecked": 18,
+  "totalPassed": 18,
+  "totalFailed": 0,
+  "totalRemoved": 0,
+  "errors": [],
+  "checkedAt": "2026-06-14T16:00:00.000Z"
 }
 ```
 
@@ -418,26 +405,24 @@ evt-2,animal.moved,ani-1001,2026-03-15T14:30:00.000Z,keeper,林青,移笼: A-01 
 
 ```json
 {
-  "success": true,
-  "data": {
-    "consistent": false,
-    "totalAnimalsInLedger": 32,
-    "totalAnimalsInSnapshot": 32,
-    "totalChecked": 32,
-    "totalPassed": 31,
-    "totalFailed": 1,
-    "errors": [
-      {
-        "animalId": "ani-1005",
-        "type": "field_mismatch",
-        "field": "status",
-        "snapshotValue": "normal",
-        "ledgerValue": "quarantine",
-        "message": "Field 'status' mismatch: snapshot='normal', ledger='quarantine'"
-      }
-    ],
-    "checkedAt": "2026-06-14T16:00:00.000Z"
-  }
+  "consistent": false,
+  "totalAnimalsInLedger": 18,
+  "totalAnimalsInSnapshot": 18,
+  "totalChecked": 18,
+  "totalPassed": 17,
+  "totalFailed": 1,
+  "totalRemoved": 0,
+  "errors": [
+    {
+      "animalId": "ani-1005",
+      "type": "field_mismatch",
+      "field": "status",
+      "snapshotValue": "normal",
+      "ledgerValue": "quarantine",
+      "message": "动物 ani-1005 的 status 字段不匹配：事件日志=quarantine, 快照=normal"
+    }
+  ],
+  "checkedAt": "2026-06-14T16:00:00.000Z"
 }
 ```
 
@@ -469,27 +454,26 @@ X-API-Key: admin-key
 
 ```json
 {
-  "success": true,
-  "data": {
-    "migrated": true,
-    "force": true,
-    "totalAnimals": 32,
-    "totalEvents": 154,
-    "byEventType": {
-      "animal.created": 32,
-      "animal.note_added": 45,
-      "animal.moved": 12,
-      "animal.quarantine_record": 28,
-      "animal.quarantine_released": 18,
-      "feeding.recorded": 19
-    },
-    "operator": {
-      "role": "admin",
-      "name": "管理员",
-      "key": "api-key"
-    },
-    "durationMs": 1256
-  }
+  "migrated": true,
+  "force": true,
+  "totalAnimals": 18,
+  "totalEvents": 68,
+  "byEventType": {
+    "animal.created": 18,
+    "animal.note_added": 8,
+    "animal.moved": 12,
+    "animal.quarantine_record": 12,
+    "animal.quarantine_released": 6,
+    "animal.quarantine_abnormal": 1,
+    "breeding.litter_weaned": 7,
+    "feeding.recorded": 4
+  },
+  "operator": {
+    "role": "admin",
+    "name": "管理员",
+    "key": "api-key"
+  },
+  "durationMs": 1256
 }
 ```
 

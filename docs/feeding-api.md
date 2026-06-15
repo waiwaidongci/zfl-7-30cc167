@@ -158,7 +158,116 @@
 }
 ```
 
-### 7. 提交饲喂打卡
+### 7. 查询饲喂日程（日期范围）
+
+**GET** `/feeding/schedule?dateFrom=&dateTo=&targetType=&keeper=&roomId=`
+
+**查询参数：**
+- `dateFrom`: 起始日期（YYYY-MM-DD），默认今天
+- `dateTo`: 结束日期（YYYY-MM-DD），默认今天+6天（共7天），最大范围31天
+- `targetType`: 按目标类型筛选（animal / cage）
+- `keeper`: 按饲养员筛选
+- `roomId`: 按房间筛选
+
+**响应 200：**
+```json
+{
+  "dateFrom": "2026-06-15",
+  "dateTo": "2026-06-21",
+  "days": 7,
+  "filters": {
+    "targetType": null,
+    "keeper": null,
+    "roomId": null
+  },
+  "overall": {
+    "total": 42,
+    "completed": 6,
+    "pending": 36,
+    "overdue": 2,
+    "completionRate": 14.3,
+    "byKeeper": [
+      { "keeper": "林青", "total": 28, "completed": 4, "completionRate": 14.3 }
+    ]
+  },
+  "dailySchedule": [
+    {
+      "date": "2026-06-15",
+      "total": 6,
+      "completed": 2,
+      "pending": 4,
+      "completionRate": 33.3,
+      "missedRisk": {
+        "level": "medium",
+        "reason": "overdue_tasks",
+        "pendingCount": 4,
+        "overdueCount": 2
+      },
+      "byKeeper": [
+        { "keeper": "林青", "total": 4, "completed": 2, "completionRate": 50.0 }
+      ],
+      "tasks": [
+        {
+          "planId": "plan-1",
+          "targetType": "animal",
+          "targetId": "ani-1001",
+          "feedType": "标准颗粒饲料",
+          "scheduledTime": "08:00",
+          "keeper": "林青",
+          "status": "completed",
+          "completedAt": "2026-06-15T08:05:00.000Z",
+          "recordId": "record-xxx",
+          "roomId": "room-main",
+          "zoneId": "zone-spf",
+          "date": "2026-06-15"
+        }
+      ]
+    }
+  ]
+}
+```
+
+**漏喂风险等级（missedRisk.level）说明：**
+- `none`: 无风险（全部完成或无任务）
+- `low`: 低风险（未来日期 / 今日任务均未逾期）
+- `medium`: 中风险（今日有部分任务逾期，占比 <50%）
+- `high`: 高风险（今日超50%任务逾期 / 昨日有未完成任务）
+- `critical`: 严重风险（历史日期任务全部未完成）
+
+**响应 400（日期格式/范围错误）：**
+```json
+{ "error": "range_too_large", "message": "查询范围不能超过31天" }
+```
+
+---
+
+### 8. 饲喂日程摘要（日期范围，不含任务明细）
+
+**GET** `/feeding/schedule/summary?dateFrom=&dateTo=&targetType=&keeper=&roomId=`
+
+查询参数与 `/feeding/schedule` 相同，返回结构也相同，区别在于 `dailySchedule` 中只返回统计数据，不包含 `tasks` 数组（用 `taskCount` 代替），用于减少响应体积。
+
+**响应 200 dailySchedule 片段：**
+```json
+{
+  "dailySchedule": [
+    {
+      "date": "2026-06-15",
+      "total": 6,
+      "completed": 2,
+      "pending": 4,
+      "completionRate": 33.3,
+      "missedRisk": { "level": "medium", "reason": "overdue_tasks", "pendingCount": 4, "overdueCount": 2 },
+      "byKeeper": [{ "keeper": "林青", "total": 4, "completed": 2, "completionRate": 50.0 }],
+      "taskCount": 6
+    }
+  ]
+}
+```
+
+---
+
+### 9. 提交饲喂打卡
 
 **POST** `/feeding/checkin`
 
@@ -322,7 +431,19 @@ curl -X POST http://localhost:3007/feeding/checkin \
   }'
 ```
 
-### 示例4：查看历史记录
+### 示例4：查看未来7天饲喂日程
+
+```bash
+curl "http://localhost:3007/feeding/schedule?dateFrom=2026-06-15&dateTo=2026-06-21"
+```
+
+### 示例5：按饲养员和房间筛选日程摘要
+
+```bash
+curl "http://localhost:3007/feeding/schedule/summary?keeper=林青&roomId=room-main"
+```
+
+### 示例6：查看历史记录
 
 ```bash
 curl "http://localhost:3007/feeding/history?days=7&keeper=林青"

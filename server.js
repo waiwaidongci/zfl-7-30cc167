@@ -529,6 +529,8 @@ function buildEndpointList() {
     "POST /feeding/plans/:id/disable [keeper]",
     "GET /feeding/today?targetType=&keeper=&date=",
     "GET /feeding/today/summary",
+    "GET /feeding/schedule?dateFrom=&dateTo=&targetType=&keeper=&roomId=",
+    "GET /feeding/schedule/summary?dateFrom=&dateTo=&targetType=&keeper=&roomId=",
     "POST /feeding/checkin [keeper]",
     "GET /feeding/records?planId=&targetType=&targetId=&date=&keeper=&status=&roomId=&project=",
     "GET /feeding/records/:id",

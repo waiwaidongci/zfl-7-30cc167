@@ -11,7 +11,10 @@ import {
 import {
   getTodayTasks,
   getTodaySummary,
-  getFeedingHistory
+  getFeedingHistory,
+  getFeedingSchedule,
+  validateDateRange,
+  getDefaultDateRange
 } from "../lib/feedingScheduler.js";
 import { detectAndCreateEvent } from "../lib/healthEventData.js";
 import { getAnimal } from "../lib/animalData.js";
@@ -21,6 +24,7 @@ import { checkRoomWriteAccess } from "../lib/permissions.js";
 export async function handleFeedingRoutes(req, res, url, db) {
   if (handlePlans(req, res, url, db)) return true;
   if (handleToday(req, res, url, db)) return true;
+  if (handleSchedule(req, res, url, db)) return true;
   if (handleRecords(req, res, url, db)) return true;
   if (handleHistory(req, res, url, db)) return true;
   return false;
@@ -120,6 +124,70 @@ function handleToday(req, res, url, db) {
       date: url.searchParams.get("date")
     };
     send(res, 200, getTodaySummary(db, options));
+    return true;
+  }
+
+  return false;
+}
+
+function handleSchedule(req, res, url, db) {
+  if (req.method !== "GET") return false;
+
+  if (url.pathname === "/feeding/schedule" || url.pathname === "/feeding/schedule/summary") {
+    const dateFrom = url.searchParams.get("dateFrom");
+    const dateTo = url.searchParams.get("dateTo");
+    const targetType = url.searchParams.get("targetType");
+    const keeper = url.searchParams.get("keeper");
+    const roomId = url.searchParams.get("roomId");
+
+    if (dateFrom || dateTo) {
+      const check = validateDateRange(
+        dateFrom || getDefaultDateRange().dateFrom,
+        dateTo || getDefaultDateRange().dateTo
+      );
+      if (!check.valid) {
+        send(res, 400, { error: check.error, message: check.message });
+        return true;
+      }
+    }
+
+    const options = {
+      dateFrom,
+      dateTo,
+      targetType,
+      keeper,
+      roomId,
+      principal: req._principal || null
+    };
+
+    const result = getFeedingSchedule(db, options);
+    if (result.error) {
+      send(res, 400, result);
+      return true;
+    }
+
+    if (url.pathname === "/feeding/schedule/summary") {
+      const summary = {
+        dateFrom: result.dateFrom,
+        dateTo: result.dateTo,
+        days: result.days,
+        filters: result.filters,
+        overall: result.overall,
+        dailySchedule: result.dailySchedule.map((d) => ({
+          date: d.date,
+          total: d.total,
+          completed: d.completed,
+          pending: d.pending,
+          completionRate: d.completionRate,
+          missedRisk: d.missedRisk,
+          byKeeper: d.byKeeper,
+          taskCount: d.tasks.length
+        }))
+      };
+      send(res, 200, summary);
+    } else {
+      send(res, 200, result);
+    }
     return true;
   }
 

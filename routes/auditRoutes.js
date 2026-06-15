@@ -1,9 +1,14 @@
 import { send } from "../lib/helpers.js";
-import { queryAuditLogs, getAuditLogById, getAuditStats, getAuditOperations } from "../lib/audit.js";
+import { queryAuditLogs, getAuditLogById, getAuditStats, getAuditOperations, exportAuditLogs } from "../lib/audit.js";
 
 export async function handleAuditRoutes(req, res, url, db) {
   if (req.method === "GET" && url.pathname === "/audit/logs") {
     await handleListLogs(req, res, url);
+    return true;
+  }
+
+  if (req.method === "GET" && url.pathname === "/audit/export") {
+    await handleExportLogs(req, res, url, db);
     return true;
   }
 
@@ -58,4 +63,20 @@ async function handleStats(req, res, url) {
   };
   const stats = await getAuditStats(filters);
   send(res, 200, stats);
+}
+
+async function handleExportLogs(req, res, url, db) {
+  const filters = {
+    fromDate: url.searchParams.get("fromDate"),
+    toDate: url.searchParams.get("toDate"),
+    operatorRole: url.searchParams.get("operatorRole"),
+    operation: url.searchParams.get("operation"),
+    animalId: url.searchParams.get("animalId"),
+    roomId: url.searchParams.get("roomId"),
+    projectId: url.searchParams.get("projectId"),
+    format: url.searchParams.get("format") || "summary"
+  };
+
+  const result = await exportAuditLogs(filters, db);
+  send(res, 200, result);
 }

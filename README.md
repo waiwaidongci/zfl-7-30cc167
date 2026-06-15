@@ -179,6 +179,59 @@ BreedingPair / BreedingLitter
 
 设施概览：返回所有房间、区域、项目、饲养员列表 + 按房间维度的笼位使用统计。非管理员自动按 `allowedRoomIds` 过滤。
 
+#### GET /facility/room-pressure-dashboard
+
+房间压力看板：按房间汇总活跃笼位数、禁用笼位数、当前占用率、检疫动物数、繁育中配对数和待处理健康事件数，并返回全站汇总统计。非管理员自动按 `allowedRoomIds` 过滤仅可见房间。
+
+响应字段说明：
+
+```json
+{
+  "rooms": [ /* 房间对象数组 */ ],
+  "byRoom": {
+    "room-default": {
+      "roomId": "room-default",
+      "roomName": "主动物房",
+      "roomCode": "MAIN",
+      "roomStatus": "active",
+      "activeCageCount": 20,
+      "disabledCageCount": 2,
+      "totalCapacity": 100,
+      "occupiedCount": 65,
+      "occupancyRate": 65.00,
+      "quarantineAnimalCount": 8,
+      "breedingPairCount": 5,
+      "pendingHealthEventCount": 3
+    }
+  },
+  "summary": {
+    "totalRooms": 3,
+    "totalActiveCages": 50,
+    "totalDisabledCages": 5,
+    "totalOccupied": 150,
+    "totalCapacity": 250,
+    "overallOccupancyRate": 60.00,
+    "totalQuarantineAnimals": 15,
+    "totalBreedingPairs": 10,
+    "totalPendingHealthEvents": 7
+  }
+}
+```
+
+字段说明：
+
+| 字段                        | 类型   | 说明                                                         |
+| --------------------------- | ------ | ------------------------------------------------------------ |
+| `activeCageCount`           | number | 活跃笼位数（status=active）                                  |
+| `disabledCageCount`         | number | 禁用笼位数（status=disabled）                                |
+| `totalCapacity`             | number | 活跃笼位总容量                                               |
+| `occupiedCount`             | number | 当前占用动物数（检疫中+已放行+检疫异常）                     |
+| `occupancyRate`             | number | 当前占用率（百分比，保留2位小数）                            |
+| `quarantineAnimalCount`     | number | 检疫动物数（quarantine + quarantine_abnormal 状态）          |
+| `breedingPairCount`         | number | 繁育中配对数（pending/mated/pregnant/delivered 状态）        |
+| `pendingHealthEventCount`   | number | 待处理健康事件数（pending/assigned/in_progress 状态）        |
+| `summary.overallOccupancyRate` | number | 所有可见房间的整体占用率（百分比）                       |
+
 #### GET /facility/defaults
 
 返回默认房间/区域/项目ID：
@@ -1370,4 +1423,17 @@ node scripts/test-auth-audit.js
 12. keeper 访问 /audit/operations → 403；admin 访问 /audit/operations → 200（含 operations 枚举）
 
 启动时自动清理 `data/lab.json` 和 `data/audit-logs.json`，使用独立端口 3099 不影响开发环境。
+
+```bash
+node scripts/test-room-pressure-dashboard.js
+```
+
+覆盖房间压力看板 7 项最小验证：
+1. admin 访问 `/facility/room-pressure-dashboard` → 200，包含 `byRoom` 和 `summary`
+2. 返回结构包含每房间 6 项核心指标：activeCageCount / disabledCageCount / occupancyRate / quarantineAnimalCount / breedingPairCount / pendingHealthEventCount
+3. summary 汇总统计字段完整（totalRooms、totalActiveCages 等 9 项）
+4. 占用率 occupancyRate 为合法百分比数值（0-100，两位小数）
+5. readonly 角色访问 → 200（READ 权限允许）
+6. keeper 角色（仅允许主动物房 room-default）访问 → byRoom 中仅有白名单房间
+7. 权限过滤后 summary 仅汇总白名单房间数据（跨房间数据不泄露）
 

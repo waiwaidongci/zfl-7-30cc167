@@ -16,6 +16,7 @@ import {
   addKeeper,
   updateKeeper,
   getFacilityOverview,
+  getRoomPressureDashboard,
   DEFAULT_ROOM_ID,
   DEFAULT_ZONE_ID,
   DEFAULT_PROJECT_ID,
@@ -46,6 +47,37 @@ export async function facilityRoutes(req, res, url, db) {
       }
     }
     return send(res, 200, overview);
+  }
+
+  if (url.pathname === "/facility/room-pressure-dashboard" && method === "GET") {
+    const dashboard = getRoomPressureDashboard(db);
+    if (principal?.role !== ROLES.ADMIN) {
+      const allowedRoomIds = principal.allowedRoomIds || ["*"];
+      if (!allowedRoomIds.includes("*")) {
+        const filteredByRoom = {};
+        for (const [rid, data] of Object.entries(dashboard.byRoom || {})) {
+          if (allowedRoomIds.includes(rid)) filteredByRoom[rid] = data;
+        }
+        dashboard.byRoom = filteredByRoom;
+        dashboard.rooms = (dashboard.rooms || []).filter(r => allowedRoomIds.includes(r.id));
+        const filteredValues = Object.values(filteredByRoom);
+        dashboard.summary = {
+          totalRooms: filteredValues.length,
+          totalActiveCages: filteredValues.reduce((s, r) => s + r.activeCageCount, 0),
+          totalDisabledCages: filteredValues.reduce((s, r) => s + r.disabledCageCount, 0),
+          totalOccupied: filteredValues.reduce((s, r) => s + r.occupiedCount, 0),
+          totalCapacity: filteredValues.reduce((s, r) => s + r.totalCapacity, 0),
+          overallOccupancyRate: 0,
+          totalQuarantineAnimals: filteredValues.reduce((s, r) => s + r.quarantineAnimalCount, 0),
+          totalBreedingPairs: filteredValues.reduce((s, r) => s + r.breedingPairCount, 0),
+          totalPendingHealthEvents: filteredValues.reduce((s, r) => s + r.pendingHealthEventCount, 0)
+        };
+        const cap = dashboard.summary.totalCapacity;
+        const occ = dashboard.summary.totalOccupied;
+        dashboard.summary.overallOccupancyRate = cap > 0 ? Number(((occ / cap) * 100).toFixed(2)) : 0;
+      }
+    }
+    return send(res, 200, dashboard);
   }
 
   if (url.pathname === "/facility/defaults" && method === "GET") {

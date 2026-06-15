@@ -129,11 +129,67 @@ const SUMMARY_FIELDS = [
   "totalQuarantineAnimals", "totalBreedingPairs", "totalPendingHealthEvents"
 ];
 
+const SUMMARY_SUM_FIELDS = [
+  "totalActiveCages", "totalDisabledCages", "totalOccupied",
+  "totalCapacity", "totalQuarantineAnimals",
+  "totalBreedingPairs", "totalPendingHealthEvents"
+];
+
+function summarizeRooms(adminByRoom, roomIds) {
+  const visible = roomIds.map(id => adminByRoom[id]).filter(Boolean);
+  const result = { totalRooms: visible.length };
+  for (const sumField of SUMMARY_SUM_FIELDS) {
+    result[sumField] = 0;
+  }
+  const roomFieldMap = {
+    totalActiveCages: "activeCageCount",
+    totalDisabledCages: "disabledCageCount",
+    totalOccupied: "occupiedCount",
+    totalCapacity: "totalCapacity",
+    totalQuarantineAnimals: "quarantineAnimalCount",
+    totalBreedingPairs: "breedingPairCount",
+    totalPendingHealthEvents: "pendingHealthEventCount"
+  };
+  for (const room of visible) {
+    for (const [sumField, roomField] of Object.entries(roomFieldMap)) {
+      result[sumField] += (room[roomField] || 0);
+    }
+  }
+  result.overallOccupancyRate = result.totalCapacity > 0
+    ? Number(((result.totalOccupied / result.totalCapacity) * 100).toFixed(2))
+    : 0;
+  return result;
+}
+
+function arraysEqualSets(a, b) {
+  if (a.length !== b.length) return false;
+  const sa = new Set(a);
+  for (const x of b) if (!sa.has(x)) return false;
+  return true;
+}
+
 async function runTests() {
   console.log("=== 房间压力看板最小验证 ===\n");
 
-  console.log("[1/7] admin 访问接口 → 200 + byRoom + summary");
   let adminResp = null;
+  let adminScope = null;
+  let keeperScope = null;
+
+  console.log("[0] 根端点获取 allowedScope & 端点清单");
+  {
+    const [rAdmin, rKeeper] = await Promise.all([
+      request("GET", "/", { apiKey: KEYS.ADMIN }),
+      request("GET", "/", { apiKey: KEYS.KEEPER })
+    ]);
+    adminScope = rAdmin.body?.auth?.allowedScope || { rooms: [] };
+    keeperScope = rKeeper.body?.auth?.allowedScope || { rooms: [] };
+    const endpoints = rAdmin.body?.endpoints || [];
+    const hasDashboard = endpoints.includes("GET /facility/room-pressure-dashboard");
+    logResult("端点清单包含房间压力看板", hasDashboard,
+      `adminAllowed=${JSON.stringify(adminScope.rooms)} keeperAllowed=${JSON.stringify(keeperScope.rooms)}`);
+  }
+
+  console.log("\n[1/7] admin 访问接口 → 200 + byRoom + summary");
   {
     const r = await request("GET", "/facility/room-pressure-dashboard", { apiKey: KEYS.ADMIN });
     adminResp = r.body;
@@ -195,41 +251,79 @@ async function runTests() {
     logResult("readonly 访问成功", r.status === 200, `status=${r.status}`);
   }
 
-  console.log("\n[6/7] keeper → byRoom中仅有白名单房间(不超过admin全量)");
+  console.log("\n[6/7] keeper allowedRoomIds 严格双向断言（正包含+反向排除）");
   {
     const r = await request("GET", "/facility/room-pressure-dashboard", { apiKey: KEYS.KEEPER });
-    const byRoom = r.body?.byRoom || {};
+    const keeperByRoom = r.body?.byRoom || {};
+    const keeperRoomsArray = r.body?.rooms || [];
     const adminByRoom = adminResp?.byRoom || {};
-    const roomIds = Object.keys(byRoom);
-    const adminRoomIds = Object.keys(adminByRoom);
-    const noExtra = roomIds.length > 0 && roomIds.every(id => adminRoomIds.includes(id));
-    const subsetOk = roomIds.length <= adminRoomIds.length;
-    logResult("keeper 权限过滤(子集关系)正确", noExtra && subsetOk,
-      `keeper=${roomIds.join(",") || "empty"} adminTotal=${adminRoomIds.length}`);
+
+    const allowed = keeperScope.rooms || [];
+    const hasWildcard = allowed.includes("*");
+    const keeperRoomIds = Object.keys(keeperByRoom);
+    const keeperRoomIdsFromArray = keeperRoomsArray.map(rm => rm.id);
+
+    let byRoomExact = true;
+    let roomsArrayExact = true;
+
+    if (hasWildcard) {
+      byRoomExact = arraysEqualSets(keeperRoomIds, Object.keys(adminByRoom));
+      roomsArrayExact = arraysEqualSets(keeperRoomIdsFromArray, (adminResp?.rooms || []).map(r => r.id));
+    } else {
+      byRoomExact = arraysEqualSets(keeperRoomIds, allowed.filter(id => adminByRoom[id]));
+      roomsArrayExact = arraysEqualSets(
+        keeperRoomIdsFromArray,
+        (adminResp?.rooms || []).filter(r => allowed.includes(r.id)).map(r => r.id)
+      );
+    }
+
+    let noLeak = true;
+    for (const id of keeperRoomIds) {
+      if (!adminByRoom[id]) {
+        noLeak = false;
+        break;
+      }
+    }
+
+    const allGood = byRoomExact && roomsArrayExact && noLeak;
+    logResult("keeper byRoom/rooms 与 allowedRoomIds 精确匹配", allGood,
+      `allowed=${JSON.stringify(allowed)} wildcard=${hasWildcard} byRoom=${JSON.stringify(keeperRoomIds)} roomsArray=${JSON.stringify(keeperRoomIdsFromArray)} byRoomExact=${byRoomExact} roomsArrayExact=${roomsArrayExact}`);
   }
 
-  console.log("\n[7/7] 权限过滤后 summary 仅汇总可见房间(与admin全量对比)");
+  console.log("\n[7/7] 权限过滤后 summary 9项字段逐项严格加总对齐（无数据泄漏）");
   {
     const rKeeper = await request("GET", "/facility/room-pressure-dashboard", { apiKey: KEYS.KEEPER });
     const keeperSummary = rKeeper.body?.summary || {};
-    const adminSummary = adminResp?.summary || {};
+    const adminByRoom = adminResp?.byRoom || {};
     const keeperByRoom = rKeeper.body?.byRoom || {};
     const keeperRoomIds = Object.keys(keeperByRoom);
 
-    const expectedTotal = keeperRoomIds.length;
-    const expectedActive = keeperRoomIds.reduce((s, id) => s + (adminResp?.byRoom?.[id]?.activeCageCount ?? 0), 0);
+    const expected = summarizeRooms(adminByRoom, keeperRoomIds);
 
-    const keeperTotal = keeperSummary.totalRooms;
-    const keeperActive = keeperSummary.totalActiveCages;
+    const diffs = [];
+    for (const field of SUMMARY_FIELDS) {
+      const actual = keeperSummary[field];
+      const want = expected[field];
+      if (typeof actual !== "number" || !Number.isFinite(actual)) {
+        diffs.push(`${field}: 非数值 actual=${JSON.stringify(actual)}`);
+        continue;
+      }
+      if (field === "overallOccupancyRate") {
+        if (Math.abs(actual - want) > 0.01) {
+          diffs.push(`${field}: actual=${actual} want=${want}`);
+        }
+      } else {
+        if (actual !== want) {
+          diffs.push(`${field}: actual=${actual} want=${want}`);
+        }
+      }
+    }
 
-    const consistent =
-      keeperTotal === expectedTotal &&
-      typeof keeperActive === "number" &&
-      keeperActive === expectedActive &&
-      adminSummary.totalRooms >= keeperTotal;
-
-    logResult("权限过滤后 summary 汇总一致", consistent,
-      `keeper:totalRooms=${keeperTotal} expected=${expectedTotal} active=${keeperActive} expectedActive=${expectedActive}`);
+    const allConsistent = diffs.length === 0;
+    const detailMsg = allConsistent
+      ? `visibleRooms=${keeperRoomIds.length} totalCapacity=${expected.totalCapacity} overall=${expected.overallOccupancyRate}%`
+      : `diffs=[${diffs.join("; ")}]`;
+    logResult("summary 全字段逐项严格加总对齐", allConsistent, detailMsg);
   }
 
   console.log("\n=== 汇总 ===");

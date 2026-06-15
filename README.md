@@ -313,6 +313,8 @@ BreedingPair / BreedingLitter
 
 | 模块接口              | 新增过滤参数                         |
 | --------------------- | ------------------------------------ |
+| `GET /facility/overview` | 按 `allowedRoomIds` 自动过滤         |
+| `GET /facility/room-pressure-dashboard` | 按 `allowedRoomIds` 自动过滤（路由层重新汇总 summary） |
 | `GET /cages`          | `roomId`, `zoneId`                   |
 | `GET /animals`        | `roomId`, `zoneId`, `keeper`, `projectId` |
 | `GET /reports/stock`  | `roomId`, `projectId`                |
@@ -1428,12 +1430,13 @@ node scripts/test-auth-audit.js
 node scripts/test-room-pressure-dashboard.js
 ```
 
-覆盖房间压力看板 7 项最小验证：
-1. admin 访问 `/facility/room-pressure-dashboard` → 200，包含 `byRoom` 和 `summary`
-2. 返回结构包含每房间 6 项核心指标：activeCageCount / disabledCageCount / occupancyRate / quarantineAnimalCount / breedingPairCount / pendingHealthEventCount
-3. summary 汇总统计字段完整（totalRooms、totalActiveCages 等 9 项）
-4. 占用率 occupancyRate 为合法百分比数值（0-100，两位小数）
+覆盖房间压力看板 8 项最小验证：
+0. 根端点 endpoints 清单包含 GET /facility/room-pressure-dashboard
+1. admin 访问 /facility/room-pressure-dashboard → 200，包含 byRoom 和 summary
+2. 返回结构每房间含 6 项核心指标：activeCageCount / disabledCageCount / occupancyRate / quarantineAnimalCount / breedingPairCount / pendingHealthEventCount
+3. summary 汇总字段完整（totalRooms、totalActiveCages 等 9 项）
+4. 占用率 occupancyRate 为合法百分比数值（0-100，保留2位小数）
 5. readonly 角色访问 → 200（READ 权限允许）
-6. keeper 角色（仅允许主动物房 room-default）访问 → byRoom 中仅有白名单房间
-7. 权限过滤后 summary 仅汇总白名单房间数据（跨房间数据不泄露）
+6. keeper allowedRoomIds 严格双向断言：byRoom 键集合、rooms 数组 id 集合均精确等于 allowedRoomIds ∩ admin全量（正包含+反向排除，支持 wildcard "*"）
+7. summary 9 项字段逐项严格加总对齐：基于 keeper 可见房间由 admin 全量数据独立重算，逐项比对 9 个数值字段（占用率允许 0.01% 浮点误差），确保无跨房间数据泄漏
 

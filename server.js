@@ -486,6 +486,7 @@ async function handleRoot(req, res, principal, db) {
 function buildEndpointList() {
   return [
     "GET /facility/overview",
+    "GET /facility/room-pressure-dashboard",
     "GET /facility/defaults",
     "GET /rooms?status=&building=",
     "GET /rooms/:id",

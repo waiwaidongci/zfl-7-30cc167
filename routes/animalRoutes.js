@@ -214,6 +214,7 @@ async function handleImportPreview(req, res, db) {
     projectPermissionErrors: preview.projectPermissionErrors,
     capacityConflicts: preview.capacityConflicts,
     roomPermissionErrors: preview.roomPermissionErrors,
+    autoResolvedWarnings: preview.autoResolvedWarnings,
     validItems: preview.validItems
   });
 }
@@ -253,7 +254,8 @@ async function handleImportConfirm(req, res, db) {
         projectMismatches: validation.projectMismatches,
         projectPermissionErrors: validation.projectPermissionErrors,
         capacityConflicts: validation.capacityConflicts,
-        roomPermissionErrors: validation.roomPermissionErrors
+        roomPermissionErrors: validation.roomPermissionErrors,
+        autoResolvedWarnings: validation.autoResolvedWarnings
       }
     });
   }
@@ -279,7 +281,8 @@ async function handleImportConfirm(req, res, db) {
       projectMismatches: validation.projectMismatches,
       projectPermissionErrors: validation.projectPermissionErrors,
       capacityConflicts: validation.capacityConflicts,
-      roomPermissionErrors: validation.roomPermissionErrors
+      roomPermissionErrors: validation.roomPermissionErrors,
+      autoResolvedWarnings: validation.autoResolvedWarnings
     }
   });
 }

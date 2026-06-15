@@ -8,6 +8,8 @@ import { handleHealthEventRoutes } from "./routes/healthEventRoutes.js";
 import { handleAuditRoutes } from "./routes/auditRoutes.js";
 import { handleLedgerRoutes } from "./routes/ledgerRoutes.js";
 import { facilityRoutes } from "./routes/facilityRoutes.js";
+import { handleSyncRoutes } from "./routes/syncRoutes.js";
+import { ensureSyncCollections } from "./lib/syncData.js";
 import { ANIMAL_STATUS, ACTIVE_STOCK_STATUSES } from "./lib/animalValidator.js";
 import { ledgerExists, getLedgerInfo } from "./lib/eventLedger.js";
 import { migrateFromSnapshot } from "./scripts/migrate-events.js";
@@ -426,6 +428,9 @@ function migrateDb(db) {
   ensureFacilityCollections(db);
   const facilityMigrated = migrateLegacyFacilityData(db);
   if (facilityMigrated) { migrated = true; }
+  const prevSyncLen = db.syncOperations ? db.syncOperations.length : 0;
+  ensureSyncCollections(db);
+  if (db.syncOperations.length !== prevSyncLen || !db.syncQueues || !db.cageAbnormalReports) { migrated = true; }
   if (migrated) { saveDb(db).catch(() => {}); }
   return db;
 }
@@ -562,7 +567,12 @@ function buildEndpointList() {
     "GET /ledger/export?fromDate=&toDate=&format=&animalId= [admin]",
     "GET /ledger/verify/integrity [admin]",
     "GET /ledger/verify/snapshot [admin]",
-    "POST /ledger/migrate?force= [admin]"
+    "POST /ledger/migrate?force= [admin]",
+    "GET /sync/meta",
+    "POST /sync/batch [keeper]",
+    "GET /sync/operations?status=&keeper=&operationType=&fromDate=&toDate=",
+    "GET /sync/operations/:id",
+    "GET /sync/cage-abnormal?cageId=&roomId=&status=&severity=&fromDate=&toDate="
   ];
 }
 
@@ -583,6 +593,8 @@ async function processRoutes(req, res, url, db) {
   if (auditHandled) return true;
   const ledgerHandled = await handleLedgerRoutes(req, res, url, db);
   if (ledgerHandled) return true;
+  const syncHandled = await handleSyncRoutes(req, res, url, db);
+  if (syncHandled) return true;
 
   if (req.method === "GET" && url.pathname === "/reports/stock") {
     const roomId = url.searchParams.get("roomId") || undefined;

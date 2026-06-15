@@ -341,6 +341,20 @@
           "weight": 21.4,
           "condition": "正常进食",
           "keeper": "林青"
+        },
+        {
+          "id": "note-1781490457109-mzva9",
+          "date": "2026-06-15",
+          "weight": 21.5,
+          "condition": "离线测试 - 食欲良好",
+          "keeper": "林青"
+        },
+        {
+          "id": "note-1781490621173-fmjz3",
+          "date": "2099-12-31",
+          "weight": 21.5,
+          "condition": "离线测试 - 食欲良好",
+          "keeper": "林青"
         }
       ],
       "moves": [
@@ -401,7 +415,7 @@
     {
       "id": "ani-1002",
       "strain": "BALB/c",
-      "cageId": "B-03",
+      "cageId": "B-04",
       "roomId": "room-default",
       "zoneId": "zone-conventional",
       "projectId": "proj-immunology",
@@ -413,8 +427,42 @@
       "observationNodes": [
         "2026-06-15"
       ],
-      "notes": [],
-      "moves": [],
+      "notes": [
+        {
+          "id": "note-1781490457114-p09jj",
+          "date": "2026-06-15",
+          "weight": 22,
+          "condition": "幂等性测试",
+          "keeper": "周遥"
+        },
+        {
+          "id": "note-1781490621181-6p9aq",
+          "date": "2099-12-31",
+          "weight": 22,
+          "condition": "幂等性测试",
+          "keeper": "林青"
+        }
+      ],
+      "moves": [
+        {
+          "id": "move-1781490457136-oouyn",
+          "from": "B-03",
+          "to": "B-04",
+          "fromRoomId": "room-default",
+          "toRoomId": "room-default",
+          "movedAt": "2026-06-15T02:27:37.136Z",
+          "reason": "混合批量测试 - 移笼"
+        },
+        {
+          "id": "move-1781490621207-f4856",
+          "from": "B-04",
+          "to": "B-04",
+          "fromRoomId": "room-default",
+          "toRoomId": "room-default",
+          "movedAt": "2026-06-15T02:30:21.207Z",
+          "reason": "混合批量测试 - 移笼"
+        }
+      ],
       "quarantineRecords": [
         {
           "id": "qr-3",
@@ -462,7 +510,22 @@
       "keeper": "林青",
       "status": "quarantine",
       "observationNodes": [],
-      "notes": [],
+      "notes": [
+        {
+          "id": "note-1781490457121-8x3go",
+          "date": "2026-06-15",
+          "weight": 16.5,
+          "condition": "A端 - 状态正常",
+          "keeper": "林青"
+        },
+        {
+          "id": "note-1781490621187-fo6oi",
+          "date": "2099-12-31",
+          "weight": 16.5,
+          "condition": "A端 - 状态正常",
+          "keeper": "周遥"
+        }
+      ],
       "moves": [],
       "quarantineRecords": [
         {
@@ -505,7 +568,43 @@
       "keeper": "周遥",
       "status": "quarantine_abnormal",
       "observationNodes": [],
-      "notes": [],
+      "notes": [
+        {
+          "id": "note-1781490457125-oakce",
+          "date": "2026-06-15",
+          "weight": 15,
+          "condition": "原始记录",
+          "keeper": "周遥"
+        },
+        {
+          "id": "note-1781490457133-vcy72",
+          "date": "2026-06-15",
+          "weight": 15.5,
+          "condition": "客户端覆盖",
+          "keeper": "周遥"
+        },
+        {
+          "id": "note-1781490496679-hz3by",
+          "date": "2026-06-15",
+          "weight": 15.5,
+          "condition": "客户端覆盖",
+          "keeper": "周遥"
+        },
+        {
+          "id": "note-1781490621195-1mrt6",
+          "date": "2099-12-31",
+          "weight": 15,
+          "condition": "原始记录",
+          "keeper": "林青"
+        },
+        {
+          "id": "note-1781490621201-8cmvx",
+          "date": "2099-12-31",
+          "weight": 15.5,
+          "condition": "客户端覆盖",
+          "keeper": "林青"
+        }
+      ],
       "moves": [],
       "quarantineRecords": [
         {
@@ -1632,6 +1731,25 @@
       "zoneId": null,
       "project": "子代繁育群",
       "projectId": "proj-breeding"
+    },
+    {
+      "id": "record-1781490621208",
+      "targetType": "animal",
+      "targetId": "ani-1001",
+      "roomId": "room-default",
+      "zoneId": "zone-default",
+      "project": "代谢观察",
+      "projectId": "proj-metabolism",
+      "date": "2026-06-15",
+      "scheduledTime": null,
+      "actualTime": "2026-06-15T02:30:21.208Z",
+      "feedType": "标准颗粒饲料",
+      "amount": 2.5,
+      "keeper": "林青",
+      "status": "completed",
+      "condition": "进食良好",
+      "weight": null,
+      "notes": "混合批量测试"
     }
   ],
   "healthEvents": [
@@ -2173,33 +2291,2448 @@
       "roomId": "room-default",
       "source": "historical_quarantine",
       "sourceRecordId": "qr-1",
-      "condition": "正常 入检初查",
+      "condition": "正常 入检初查；正常 复检",
       "abnormalKeywords": [
         "体重异常变化"
       ],
       "weightChange": {
-        "previousWeight": 21.4,
-        "previousDate": "2026-06-10",
-        "currentWeight": 18.5,
-        "diff": -2.8999999999999986,
-        "percent": -13.551401869158871,
-        "daysDiff": 5,
-        "threshold": 10,
+        "previousWeight": 21.5,
+        "previousDate": "2026-06-15",
+        "currentWeight": 19.8,
+        "diff": -1.6999999999999993,
+        "percent": -7.906976744186044,
+        "daysDiff": 1,
+        "threshold": 5,
         "isAbnormal": true
       },
       "handler": null,
       "assignee": null,
       "status": "pending",
-      "notes": [],
+      "notes": [
+        {
+          "id": "hn-1781490457114-2ov2q",
+          "type": "auto_merge",
+          "content": "正常 复检",
+          "createdAt": "2026-06-15T02:27:37.114Z",
+          "author": "system",
+          "keywords": [
+            "体重异常变化"
+          ]
+        }
+      ],
       "createdAt": "2026-06-14T10:33:40.050Z",
-      "updatedAt": "2026-06-14T10:33:40.050Z",
+      "updatedAt": "2026-06-15T02:27:37.114Z",
       "assignedAt": null,
       "inProgressAt": null,
       "closedAt": null,
       "closeReason": null,
       "relatedRecordIds": [
-        "qr-1"
+        "qr-1",
+        "qr-2"
       ]
+    }
+  ],
+  "syncOperations": [
+    {
+      "operationId": "note-1781490457107-kg5z7x",
+      "operationType": "animal_note",
+      "keeper": "林青",
+      "deviceId": "test-device-001",
+      "clientCreatedAt": "2026-06-15T08:30:00.000Z",
+      "submittedAt": "2026-06-15T02:27:37.109Z",
+      "status": "applied",
+      "payload": {
+        "animalId": "ani-1001",
+        "date": "2026-06-15",
+        "weight": 21.5,
+        "condition": "离线测试 - 食欲良好",
+        "photoPlaceholders": [
+          {
+            "localPath": "test.jpg",
+            "size": 123456,
+            "takenAt": "2026-06-15T08:28:00.000Z",
+            "hash": "sha256:test123"
+          }
+        ]
+      },
+      "result": {
+        "note": {
+          "id": "note-1781490457109-mzva9",
+          "date": "2026-06-15",
+          "weight": 21.5,
+          "condition": "离线测试 - 食欲良好",
+          "keeper": "林青"
+        },
+        "healthEvent": {
+          "created": false,
+          "merged": false,
+          "eventId": null
+        }
+      },
+      "conflictDetails": null,
+      "error": null,
+      "mergedFields": null,
+      "animalId": "ani-1001",
+      "cageId": null,
+      "date": "2026-06-15"
+    },
+    {
+      "operationId": "idempotent-1781490457112-1gqcxi",
+      "operationType": "animal_note",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": "2026-06-15T09:00:00.000Z",
+      "submittedAt": "2026-06-15T02:27:37.114Z",
+      "status": "applied",
+      "payload": {
+        "animalId": "ani-1002",
+        "date": "2026-06-15",
+        "weight": 22,
+        "condition": "幂等性测试"
+      },
+      "result": {
+        "note": {
+          "id": "note-1781490457114-p09jj",
+          "date": "2026-06-15",
+          "weight": 22,
+          "condition": "幂等性测试",
+          "keeper": "周遥"
+        },
+        "healthEvent": {
+          "created": false,
+          "merged": false,
+          "eventId": null
+        }
+      },
+      "conflictDetails": null,
+      "error": null,
+      "mergedFields": null,
+      "animalId": "ani-1002",
+      "cageId": null,
+      "date": "2026-06-15"
+    },
+    {
+      "operationId": "idempotent-1781490457112-1gqcxi",
+      "operationType": "animal_note",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": "2026-06-15T09:00:00.000Z",
+      "submittedAt": "2026-06-15T02:27:37.119Z",
+      "status": "duplicate",
+      "payload": {
+        "animalId": "ani-1002",
+        "date": "2026-06-15",
+        "weight": 22,
+        "condition": "幂等性测试"
+      },
+      "result": {
+        "note": {
+          "id": "note-1781490457114-p09jj",
+          "date": "2026-06-15",
+          "weight": 22,
+          "condition": "幂等性测试",
+          "keeper": "周遥"
+        },
+        "healthEvent": {
+          "created": false,
+          "merged": false,
+          "eventId": null
+        }
+      },
+      "conflictDetails": null,
+      "error": null,
+      "mergedFields": null,
+      "animalId": "ani-1002",
+      "cageId": null,
+      "date": "2026-06-15"
+    },
+    {
+      "operationId": "conflict-a-1781490457121-euvt1l",
+      "operationType": "animal_note",
+      "keeper": "周遥",
+      "deviceId": "device-A",
+      "clientCreatedAt": "2026-06-15T07:00:00.000Z",
+      "submittedAt": "2026-06-15T02:27:37.121Z",
+      "status": "applied",
+      "payload": {
+        "animalId": "ani-1003",
+        "date": "2026-06-15",
+        "weight": 16.5,
+        "condition": "A端 - 状态正常"
+      },
+      "result": {
+        "note": {
+          "id": "note-1781490457121-8x3go",
+          "date": "2026-06-15",
+          "weight": 16.5,
+          "condition": "A端 - 状态正常",
+          "keeper": "林青"
+        },
+        "healthEvent": {
+          "created": false,
+          "merged": false,
+          "eventId": null
+        }
+      },
+      "conflictDetails": null,
+      "error": null,
+      "mergedFields": null,
+      "animalId": "ani-1003",
+      "cageId": null,
+      "date": "2026-06-15"
+    },
+    {
+      "operationId": "conflict-b-1781490457121-fnukej",
+      "operationType": "animal_note",
+      "keeper": "林青",
+      "deviceId": "device-B",
+      "clientCreatedAt": "2026-06-15T10:00:00.000Z",
+      "submittedAt": "2026-06-15T02:27:37.123Z",
+      "status": "conflict",
+      "payload": {
+        "animalId": "ani-1003",
+        "date": "2026-06-15",
+        "weight": 16.8,
+        "condition": "B端 - 状态正常"
+      },
+      "result": null,
+      "conflictDetails": {
+        "incomingOperationId": "conflict-b-1781490457121-fnukej",
+        "existingOperationId": "conflict-a-1781490457121-euvt1l",
+        "existingKeeper": "周遥",
+        "existingSubmittedAt": "2026-06-15T02:27:37.121Z",
+        "existingClientCreatedAt": "2026-06-15T07:00:00.000Z",
+        "operationType": "animal_note",
+        "date": "2026-06-15",
+        "animalId": "ani-1003",
+        "cageId": null,
+        "conflictingFields": [
+          {
+            "field": "weight",
+            "clientValue": 16.8,
+            "serverValue": 16.5
+          },
+          {
+            "field": "condition",
+            "clientValue": "B端 - 状态正常",
+            "serverValue": "A端 - 状态正常"
+          }
+        ],
+        "nonConflictingFields": [
+          {
+            "field": "animalId",
+            "clientValue": "ani-1003",
+            "serverValue": "ani-1003",
+            "identical": true
+          },
+          {
+            "field": "date",
+            "clientValue": "2026-06-15",
+            "serverValue": "2026-06-15",
+            "identical": true
+          }
+        ],
+        "explanation": "同一饲养记录/体重在当天已有服务端记录，存在 2 个字段冲突；冲突字段：weight、condition"
+      },
+      "error": {
+        "code": "conflict_detected",
+        "message": "同一饲养记录/体重在当天已有服务端记录，存在 2 个字段冲突；冲突字段：weight、condition"
+      },
+      "mergedFields": null,
+      "animalId": "ani-1003",
+      "cageId": null,
+      "date": "2026-06-15"
+    },
+    {
+      "operationId": "reject-1781490457124-vq72rf",
+      "operationType": "animal_note",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": "2026-06-15T11:00:00.000Z",
+      "submittedAt": "2026-06-15T02:27:37.125Z",
+      "status": "applied",
+      "payload": {
+        "animalId": "ani-1004",
+        "date": "2026-06-15",
+        "weight": 15,
+        "condition": "原始记录"
+      },
+      "result": {
+        "note": {
+          "id": "note-1781490457125-oakce",
+          "date": "2026-06-15",
+          "weight": 15,
+          "condition": "原始记录",
+          "keeper": "周遥"
+        },
+        "healthEvent": {
+          "created": false,
+          "merged": false,
+          "eventId": null
+        }
+      },
+      "conflictDetails": null,
+      "error": null,
+      "mergedFields": null,
+      "animalId": "ani-1004",
+      "cageId": null,
+      "date": "2026-06-15"
+    },
+    {
+      "operationId": "reject-2-1781490457124-j0vvq2",
+      "operationType": "animal_note",
+      "keeper": "周遥",
+      "deviceId": null,
+      "clientCreatedAt": "2026-06-15T11:30:00.000Z",
+      "submittedAt": "2026-06-15T02:27:37.127Z",
+      "status": "conflict",
+      "payload": {
+        "animalId": "ani-1004",
+        "date": "2026-06-15",
+        "weight": 15.2
+      },
+      "result": null,
+      "conflictDetails": {
+        "incomingOperationId": "reject-2-1781490457124-j0vvq2",
+        "existingOperationId": "reject-1781490457124-vq72rf",
+        "existingKeeper": "林青",
+        "existingSubmittedAt": "2026-06-15T02:27:37.125Z",
+        "existingClientCreatedAt": "2026-06-15T11:00:00.000Z",
+        "operationType": "animal_note",
+        "date": "2026-06-15",
+        "animalId": "ani-1004",
+        "cageId": null,
+        "conflictingFields": [
+          {
+            "field": "weight",
+            "clientValue": 15.2,
+            "serverValue": 15
+          }
+        ],
+        "nonConflictingFields": [
+          {
+            "field": "animalId",
+            "clientValue": "ani-1004",
+            "serverValue": "ani-1004",
+            "identical": true
+          },
+          {
+            "field": "date",
+            "clientValue": "2026-06-15",
+            "serverValue": "2026-06-15",
+            "identical": true
+          },
+          {
+            "field": "condition",
+            "clientValue": null,
+            "serverValue": "原始记录"
+          }
+        ],
+        "explanation": "同一饲养记录/体重在当天已有服务端记录，存在 1 个字段冲突；冲突字段：weight；1 个非冲突字段可自动合并"
+      },
+      "error": {
+        "code": "conflict_rejected",
+        "message": "存在冲突，按策略拒绝写入"
+      },
+      "mergedFields": null,
+      "animalId": "ani-1004",
+      "cageId": null,
+      "date": "2026-06-15"
+    },
+    {
+      "operationId": "cw-1781490457128-m98w76",
+      "operationType": "animal_note",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": "2026-06-15T12:00:00.000Z",
+      "submittedAt": "2026-06-15T02:27:37.133Z",
+      "status": "partial",
+      "payload": {
+        "animalId": "ani-1004",
+        "date": "2026-06-15",
+        "weight": 15.5,
+        "condition": "客户端覆盖"
+      },
+      "result": {
+        "note": {
+          "id": "note-1781490457133-vcy72",
+          "date": "2026-06-15",
+          "weight": 15.5,
+          "condition": "客户端覆盖",
+          "keeper": "周遥"
+        },
+        "healthEvent": {
+          "created": false,
+          "merged": false,
+          "eventId": null
+        }
+      },
+      "conflictDetails": {
+        "incomingOperationId": "cw-1781490457128-m98w76",
+        "existingOperationId": "reject-1781490457124-vq72rf",
+        "existingKeeper": "林青",
+        "existingSubmittedAt": "2026-06-15T02:27:37.125Z",
+        "existingClientCreatedAt": "2026-06-15T11:00:00.000Z",
+        "operationType": "animal_note",
+        "date": "2026-06-15",
+        "animalId": "ani-1004",
+        "cageId": null,
+        "conflictingFields": [
+          {
+            "field": "weight",
+            "clientValue": 15.5,
+            "serverValue": 15
+          },
+          {
+            "field": "condition",
+            "clientValue": "客户端覆盖",
+            "serverValue": "原始记录"
+          }
+        ],
+        "nonConflictingFields": [
+          {
+            "field": "animalId",
+            "clientValue": "ani-1004",
+            "serverValue": "ani-1004",
+            "identical": true
+          },
+          {
+            "field": "date",
+            "clientValue": "2026-06-15",
+            "serverValue": "2026-06-15",
+            "identical": true
+          }
+        ],
+        "explanation": "同一饲养记录/体重在当天已有服务端记录，存在 2 个字段冲突；冲突字段：weight、condition"
+      },
+      "error": null,
+      "mergedFields": [
+        "weight",
+        "condition",
+        "animalId",
+        "date"
+      ],
+      "animalId": "ani-1004",
+      "cageId": null,
+      "date": "2026-06-15"
+    },
+    {
+      "operationId": "mix-note-1781490457135-635hkw",
+      "operationType": "animal_note",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": "2026-06-15T08:00:00.000Z",
+      "submittedAt": "2026-06-15T02:27:37.136Z",
+      "status": "conflict",
+      "payload": {
+        "animalId": "ani-1001",
+        "date": "2026-06-15",
+        "weight": 21.7,
+        "condition": "混合批量测试 - note",
+        "photoPlaceholders": [
+          {
+            "localPath": "mix.jpg",
+            "size": 1000,
+            "takenAt": "2026-06-15T07:59:00.000Z",
+            "hash": "mixhash"
+          }
+        ]
+      },
+      "result": null,
+      "conflictDetails": {
+        "incomingOperationId": "mix-note-1781490457135-635hkw",
+        "existingOperationId": "note-1781490457107-kg5z7x",
+        "existingKeeper": "林青",
+        "existingSubmittedAt": "2026-06-15T02:27:37.109Z",
+        "existingClientCreatedAt": "2026-06-15T08:30:00.000Z",
+        "operationType": "animal_note",
+        "date": "2026-06-15",
+        "animalId": "ani-1001",
+        "cageId": null,
+        "conflictingFields": [
+          {
+            "field": "weight",
+            "clientValue": 21.7,
+            "serverValue": 21.5
+          },
+          {
+            "field": "condition",
+            "clientValue": "混合批量测试 - note",
+            "serverValue": "离线测试 - 食欲良好"
+          },
+          {
+            "field": "photoPlaceholders",
+            "clientValue": [
+              {
+                "localPath": "mix.jpg",
+                "size": 1000,
+                "takenAt": "2026-06-15T07:59:00.000Z",
+                "hash": "mixhash"
+              }
+            ],
+            "serverValue": [
+              {
+                "localPath": "test.jpg",
+                "size": 123456,
+                "takenAt": "2026-06-15T08:28:00.000Z",
+                "hash": "sha256:test123"
+              }
+            ]
+          }
+        ],
+        "nonConflictingFields": [
+          {
+            "field": "animalId",
+            "clientValue": "ani-1001",
+            "serverValue": "ani-1001",
+            "identical": true
+          },
+          {
+            "field": "date",
+            "clientValue": "2026-06-15",
+            "serverValue": "2026-06-15",
+            "identical": true
+          }
+        ],
+        "explanation": "同一饲养记录/体重在当天已有服务端记录，存在 3 个字段冲突；冲突字段：weight、condition、photoPlaceholders"
+      },
+      "error": {
+        "code": "conflict_detected",
+        "message": "同一饲养记录/体重在当天已有服务端记录，存在 3 个字段冲突；冲突字段：weight、condition、photoPlaceholders"
+      },
+      "mergedFields": null,
+      "animalId": "ani-1001",
+      "cageId": null,
+      "date": "2026-06-15"
+    },
+    {
+      "operationId": "mix-move-1781490457135-9cew4z",
+      "operationType": "animal_move",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": "2026-06-15T08:10:00.000Z",
+      "submittedAt": "2026-06-15T02:27:37.138Z",
+      "status": "applied",
+      "payload": {
+        "animalId": "ani-1002",
+        "cageId": "B-04",
+        "reason": "混合批量测试 - 移笼"
+      },
+      "result": {
+        "animal": {
+          "id": "ani-1002",
+          "strain": "BALB/c",
+          "cageId": "B-04",
+          "roomId": "room-default",
+          "zoneId": "zone-conventional",
+          "projectId": "proj-immunology",
+          "sex": "male",
+          "birthDate": "2026-02-03",
+          "project": "免疫反应",
+          "keeper": "周遥",
+          "status": "released",
+          "observationNodes": [
+            "2026-06-15"
+          ],
+          "notes": [
+            {
+              "id": "note-1781490457114-p09jj",
+              "date": "2026-06-15",
+              "weight": 22,
+              "condition": "幂等性测试",
+              "keeper": "周遥"
+            }
+          ],
+          "moves": [
+            {
+              "id": "move-1781490457136-oouyn",
+              "from": "B-03",
+              "to": "B-04",
+              "fromRoomId": "room-default",
+              "toRoomId": "room-default",
+              "movedAt": "2026-06-15T02:27:37.136Z",
+              "reason": "混合批量测试 - 移笼"
+            }
+          ],
+          "quarantineRecords": [
+            {
+              "id": "qr-3",
+              "date": "2026-05-10",
+              "temperature": 36.9,
+              "weight": 22.1,
+              "condition": "正常",
+              "symptoms": [],
+              "isAbnormal": false,
+              "notes": "入检初查",
+              "examiner": "周遥",
+              "createdAt": "2026-05-10T10:00:00.000Z"
+            }
+          ],
+          "enteredQuarantineAt": "2026-05-10T10:00:00.000Z",
+          "quarantineReleasedAt": "2026-05-17T10:00:00.000Z",
+          "quarantineApproval": {
+            "id": "qa-2",
+            "approvedAt": "2026-05-17T10:00:00.000Z",
+            "approver": "周遥",
+            "targetCageId": "B-03",
+            "notes": "检疫合格"
+          },
+          "abnormalMarkedAt": null,
+          "abnormalReason": null,
+          "abnormalHandler": null,
+          "abnormalNotes": null,
+          "weanedAt": null,
+          "weaningWeight": null,
+          "fatherId": null,
+          "motherId": null,
+          "litterId": null,
+          "breedingInfo": null
+        },
+        "move": {
+          "id": "move-1781490457136-oouyn",
+          "from": "B-03",
+          "to": "B-04",
+          "fromRoomId": "room-default",
+          "toRoomId": "room-default",
+          "movedAt": "2026-06-15T02:27:37.136Z",
+          "reason": "混合批量测试 - 移笼"
+        }
+      },
+      "conflictDetails": null,
+      "error": null,
+      "mergedFields": null,
+      "animalId": "ani-1002",
+      "cageId": "B-04",
+      "date": "2026-06-15"
+    },
+    {
+      "operationId": "mix-feed-1781490457135-h03uy5",
+      "operationType": "feeding_record",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": "2026-06-15T08:15:00.000Z",
+      "submittedAt": "2026-06-15T02:27:37.138Z",
+      "status": "error",
+      "payload": {
+        "targetType": "animal",
+        "targetId": "ani-1001",
+        "feedType": "标准颗粒饲料",
+        "amount": 2.5,
+        "condition": "进食良好",
+        "notes": "混合批量测试"
+      },
+      "result": null,
+      "conflictDetails": null,
+      "error": {
+        "code": "validation_failed",
+        "details": [
+          {
+            "field": "payload.keeper",
+            "message": "feeding_record 需要 keeper"
+          }
+        ]
+      },
+      "mergedFields": null,
+      "animalId": "ani-1001",
+      "cageId": null,
+      "date": "2026-06-15"
+    },
+    {
+      "operationId": "mix-cage-1781490457135-wmfk2n",
+      "operationType": "cage_abnormal",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": "2026-06-15T08:20:00.000Z",
+      "submittedAt": "2026-06-15T02:27:37.138Z",
+      "status": "applied",
+      "payload": {
+        "cageId": "C-01",
+        "abnormalType": "hygiene",
+        "severity": "minor",
+        "description": "混合批量测试 - 笼位需清洁",
+        "photoPlaceholders": [
+          {
+            "localPath": "cage.jpg",
+            "size": 2000,
+            "takenAt": "2026-06-15T08:19:00.000Z",
+            "hash": "cagehash"
+          }
+        ]
+      },
+      "result": {
+        "report": {
+          "id": "car-1781490457138-en64z",
+          "cageId": "C-01",
+          "roomId": "room-default",
+          "zoneId": "zone-quarantine",
+          "date": "2026-06-15",
+          "reportedAt": "2026-06-15T02:27:37.138Z",
+          "clientReportedAt": null,
+          "reporter": "系统管理员",
+          "keeper": "系统管理员",
+          "abnormalType": "hygiene",
+          "severity": "minor",
+          "description": "混合批量测试 - 笼位需清洁",
+          "photoPlaceholders": [
+            {
+              "localPath": "cage.jpg",
+              "size": 2000,
+              "takenAt": "2026-06-15T08:19:00.000Z",
+              "hash": "cagehash"
+            }
+          ],
+          "status": "open",
+          "notes": ""
+        }
+      },
+      "conflictDetails": null,
+      "error": null,
+      "mergedFields": null,
+      "animalId": null,
+      "cageId": "C-01",
+      "date": "2026-06-15"
+    },
+    {
+      "operationType": "animal_note",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": null,
+      "submittedAt": "2026-06-15T02:27:37.141Z",
+      "status": "error",
+      "payload": {
+        "animalId": "ani-1001"
+      },
+      "result": null,
+      "conflictDetails": null,
+      "error": {
+        "code": "validation_failed",
+        "details": [
+          {
+            "field": "operationId",
+            "message": "operationId 必填（客户端生成的唯一操作ID，用于幂等去重）"
+          }
+        ]
+      },
+      "mergedFields": null,
+      "animalId": "ani-1001",
+      "cageId": null,
+      "date": "2026-06-15"
+    },
+    {
+      "operationId": "bad-1781490457144-r659uw",
+      "operationType": "invalid_type",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": null,
+      "submittedAt": "2026-06-15T02:27:37.145Z",
+      "status": "error",
+      "payload": {},
+      "result": null,
+      "conflictDetails": null,
+      "error": {
+        "code": "validation_failed",
+        "details": [
+          {
+            "field": "operationType",
+            "message": "operationType 必须是: animal_note, animal_move, feeding_record, cage_abnormal"
+          }
+        ]
+      },
+      "mergedFields": null,
+      "animalId": null,
+      "cageId": null,
+      "date": "2026-06-15"
+    },
+    {
+      "operationId": "noanimal-1781490457146-mje451",
+      "operationType": "animal_note",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": null,
+      "submittedAt": "2026-06-15T02:27:37.147Z",
+      "status": "error",
+      "payload": {
+        "weight": 20
+      },
+      "result": null,
+      "conflictDetails": null,
+      "error": {
+        "code": "validation_failed",
+        "details": [
+          {
+            "field": "payload.animalId",
+            "message": "animal_note 操作需要 animalId"
+          }
+        ]
+      },
+      "mergedFields": null,
+      "animalId": null,
+      "cageId": null,
+      "date": "2026-06-15"
+    },
+    {
+      "operationId": "note-1781490496648-0owwvz",
+      "operationType": "animal_note",
+      "keeper": "林青",
+      "deviceId": "test-device-001",
+      "clientCreatedAt": "2026-06-15T08:30:00.000Z",
+      "submittedAt": "2026-06-15T02:28:16.652Z",
+      "status": "conflict",
+      "payload": {
+        "animalId": "ani-1001",
+        "date": "2026-06-15",
+        "weight": 21.5,
+        "condition": "离线测试 - 食欲良好",
+        "photoPlaceholders": [
+          {
+            "localPath": "test.jpg",
+            "size": 123456,
+            "takenAt": "2026-06-15T08:28:00.000Z",
+            "hash": "sha256:test123"
+          }
+        ]
+      },
+      "result": null,
+      "conflictDetails": {
+        "incomingOperationId": "note-1781490496648-0owwvz",
+        "existingOperationId": "note-1781490457107-kg5z7x",
+        "existingKeeper": "林青",
+        "existingSubmittedAt": "2026-06-15T02:27:37.109Z",
+        "existingClientCreatedAt": "2026-06-15T08:30:00.000Z",
+        "operationType": "animal_note",
+        "date": "2026-06-15",
+        "animalId": "ani-1001",
+        "cageId": null,
+        "conflictingFields": [],
+        "nonConflictingFields": [
+          {
+            "field": "animalId",
+            "clientValue": "ani-1001",
+            "serverValue": "ani-1001",
+            "identical": true
+          },
+          {
+            "field": "date",
+            "clientValue": "2026-06-15",
+            "serverValue": "2026-06-15",
+            "identical": true
+          },
+          {
+            "field": "weight",
+            "clientValue": 21.5,
+            "serverValue": 21.5,
+            "identical": true
+          },
+          {
+            "field": "condition",
+            "clientValue": "离线测试 - 食欲良好",
+            "serverValue": "离线测试 - 食欲良好",
+            "identical": true
+          },
+          {
+            "field": "photoPlaceholders",
+            "clientValue": [
+              {
+                "localPath": "test.jpg",
+                "size": 123456,
+                "takenAt": "2026-06-15T08:28:00.000Z",
+                "hash": "sha256:test123"
+              }
+            ],
+            "serverValue": [
+              {
+                "localPath": "test.jpg",
+                "size": 123456,
+                "takenAt": "2026-06-15T08:28:00.000Z",
+                "hash": "sha256:test123"
+              }
+            ],
+            "identical": true
+          }
+        ],
+        "explanation": "同一饲养记录/体重在当天已有服务端记录，存在 0 个字段冲突"
+      },
+      "error": {
+        "code": "conflict_detected",
+        "message": "同一饲养记录/体重在当天已有服务端记录，存在 0 个字段冲突"
+      },
+      "mergedFields": null,
+      "animalId": "ani-1001",
+      "cageId": null,
+      "date": "2026-06-15"
+    },
+    {
+      "operationId": "idempotent-1781490496655-rxhutx",
+      "operationType": "animal_note",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": "2026-06-15T09:00:00.000Z",
+      "submittedAt": "2026-06-15T02:28:16.657Z",
+      "status": "conflict",
+      "payload": {
+        "animalId": "ani-1002",
+        "date": "2026-06-15",
+        "weight": 22,
+        "condition": "幂等性测试"
+      },
+      "result": null,
+      "conflictDetails": {
+        "incomingOperationId": "idempotent-1781490496655-rxhutx",
+        "existingOperationId": "idempotent-1781490457112-1gqcxi",
+        "existingKeeper": "林青",
+        "existingSubmittedAt": "2026-06-15T02:27:37.114Z",
+        "existingClientCreatedAt": "2026-06-15T09:00:00.000Z",
+        "operationType": "animal_note",
+        "date": "2026-06-15",
+        "animalId": "ani-1002",
+        "cageId": null,
+        "conflictingFields": [],
+        "nonConflictingFields": [
+          {
+            "field": "animalId",
+            "clientValue": "ani-1002",
+            "serverValue": "ani-1002",
+            "identical": true
+          },
+          {
+            "field": "date",
+            "clientValue": "2026-06-15",
+            "serverValue": "2026-06-15",
+            "identical": true
+          },
+          {
+            "field": "weight",
+            "clientValue": 22,
+            "serverValue": 22,
+            "identical": true
+          },
+          {
+            "field": "condition",
+            "clientValue": "幂等性测试",
+            "serverValue": "幂等性测试",
+            "identical": true
+          }
+        ],
+        "explanation": "同一饲养记录/体重在当天已有服务端记录，存在 0 个字段冲突"
+      },
+      "error": {
+        "code": "conflict_detected",
+        "message": "同一饲养记录/体重在当天已有服务端记录，存在 0 个字段冲突"
+      },
+      "mergedFields": null,
+      "animalId": "ani-1002",
+      "cageId": null,
+      "date": "2026-06-15"
+    },
+    {
+      "operationId": "idempotent-1781490496655-rxhutx",
+      "operationType": "animal_note",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": "2026-06-15T09:00:00.000Z",
+      "submittedAt": "2026-06-15T02:28:16.659Z",
+      "status": "duplicate",
+      "payload": {
+        "animalId": "ani-1002",
+        "date": "2026-06-15",
+        "weight": 22,
+        "condition": "幂等性测试"
+      },
+      "result": null,
+      "conflictDetails": null,
+      "error": null,
+      "mergedFields": null,
+      "animalId": "ani-1002",
+      "cageId": null,
+      "date": "2026-06-15"
+    },
+    {
+      "operationId": "conflict-a-1781490496660-tqat3n",
+      "operationType": "animal_note",
+      "keeper": "周遥",
+      "deviceId": "device-A",
+      "clientCreatedAt": "2026-06-15T07:00:00.000Z",
+      "submittedAt": "2026-06-15T02:28:16.661Z",
+      "status": "conflict",
+      "payload": {
+        "animalId": "ani-1003",
+        "date": "2026-06-15",
+        "weight": 16.5,
+        "condition": "A端 - 状态正常"
+      },
+      "result": null,
+      "conflictDetails": {
+        "incomingOperationId": "conflict-a-1781490496660-tqat3n",
+        "existingOperationId": "conflict-a-1781490457121-euvt1l",
+        "existingKeeper": "周遥",
+        "existingSubmittedAt": "2026-06-15T02:27:37.121Z",
+        "existingClientCreatedAt": "2026-06-15T07:00:00.000Z",
+        "operationType": "animal_note",
+        "date": "2026-06-15",
+        "animalId": "ani-1003",
+        "cageId": null,
+        "conflictingFields": [],
+        "nonConflictingFields": [
+          {
+            "field": "animalId",
+            "clientValue": "ani-1003",
+            "serverValue": "ani-1003",
+            "identical": true
+          },
+          {
+            "field": "date",
+            "clientValue": "2026-06-15",
+            "serverValue": "2026-06-15",
+            "identical": true
+          },
+          {
+            "field": "weight",
+            "clientValue": 16.5,
+            "serverValue": 16.5,
+            "identical": true
+          },
+          {
+            "field": "condition",
+            "clientValue": "A端 - 状态正常",
+            "serverValue": "A端 - 状态正常",
+            "identical": true
+          }
+        ],
+        "explanation": "同一饲养记录/体重在当天已有服务端记录，存在 0 个字段冲突"
+      },
+      "error": {
+        "code": "conflict_detected",
+        "message": "同一饲养记录/体重在当天已有服务端记录，存在 0 个字段冲突"
+      },
+      "mergedFields": null,
+      "animalId": "ani-1003",
+      "cageId": null,
+      "date": "2026-06-15"
+    },
+    {
+      "operationId": "conflict-b-1781490496660-9qvcqo",
+      "operationType": "animal_note",
+      "keeper": "林青",
+      "deviceId": "device-B",
+      "clientCreatedAt": "2026-06-15T10:00:00.000Z",
+      "submittedAt": "2026-06-15T02:28:16.663Z",
+      "status": "conflict",
+      "payload": {
+        "animalId": "ani-1003",
+        "date": "2026-06-15",
+        "weight": 16.8,
+        "condition": "B端 - 状态正常"
+      },
+      "result": null,
+      "conflictDetails": {
+        "incomingOperationId": "conflict-b-1781490496660-9qvcqo",
+        "existingOperationId": "conflict-a-1781490457121-euvt1l",
+        "existingKeeper": "周遥",
+        "existingSubmittedAt": "2026-06-15T02:27:37.121Z",
+        "existingClientCreatedAt": "2026-06-15T07:00:00.000Z",
+        "operationType": "animal_note",
+        "date": "2026-06-15",
+        "animalId": "ani-1003",
+        "cageId": null,
+        "conflictingFields": [
+          {
+            "field": "weight",
+            "clientValue": 16.8,
+            "serverValue": 16.5
+          },
+          {
+            "field": "condition",
+            "clientValue": "B端 - 状态正常",
+            "serverValue": "A端 - 状态正常"
+          }
+        ],
+        "nonConflictingFields": [
+          {
+            "field": "animalId",
+            "clientValue": "ani-1003",
+            "serverValue": "ani-1003",
+            "identical": true
+          },
+          {
+            "field": "date",
+            "clientValue": "2026-06-15",
+            "serverValue": "2026-06-15",
+            "identical": true
+          }
+        ],
+        "explanation": "同一饲养记录/体重在当天已有服务端记录，存在 2 个字段冲突；冲突字段：weight、condition"
+      },
+      "error": {
+        "code": "conflict_detected",
+        "message": "同一饲养记录/体重在当天已有服务端记录，存在 2 个字段冲突；冲突字段：weight、condition"
+      },
+      "mergedFields": null,
+      "animalId": "ani-1003",
+      "cageId": null,
+      "date": "2026-06-15"
+    },
+    {
+      "operationId": "reject-1781490496666-bn6hvq",
+      "operationType": "animal_note",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": "2026-06-15T11:00:00.000Z",
+      "submittedAt": "2026-06-15T02:28:16.667Z",
+      "status": "conflict",
+      "payload": {
+        "animalId": "ani-1004",
+        "date": "2026-06-15",
+        "weight": 15,
+        "condition": "原始记录"
+      },
+      "result": null,
+      "conflictDetails": {
+        "incomingOperationId": "reject-1781490496666-bn6hvq",
+        "existingOperationId": "reject-1781490457124-vq72rf",
+        "existingKeeper": "林青",
+        "existingSubmittedAt": "2026-06-15T02:27:37.125Z",
+        "existingClientCreatedAt": "2026-06-15T11:00:00.000Z",
+        "operationType": "animal_note",
+        "date": "2026-06-15",
+        "animalId": "ani-1004",
+        "cageId": null,
+        "conflictingFields": [],
+        "nonConflictingFields": [
+          {
+            "field": "animalId",
+            "clientValue": "ani-1004",
+            "serverValue": "ani-1004",
+            "identical": true
+          },
+          {
+            "field": "date",
+            "clientValue": "2026-06-15",
+            "serverValue": "2026-06-15",
+            "identical": true
+          },
+          {
+            "field": "weight",
+            "clientValue": 15,
+            "serverValue": 15,
+            "identical": true
+          },
+          {
+            "field": "condition",
+            "clientValue": "原始记录",
+            "serverValue": "原始记录",
+            "identical": true
+          }
+        ],
+        "explanation": "同一饲养记录/体重在当天已有服务端记录，存在 0 个字段冲突"
+      },
+      "error": {
+        "code": "conflict_detected",
+        "message": "同一饲养记录/体重在当天已有服务端记录，存在 0 个字段冲突"
+      },
+      "mergedFields": null,
+      "animalId": "ani-1004",
+      "cageId": null,
+      "date": "2026-06-15"
+    },
+    {
+      "operationId": "reject-2-1781490496666-kwlcdz",
+      "operationType": "animal_note",
+      "keeper": "周遥",
+      "deviceId": null,
+      "clientCreatedAt": "2026-06-15T11:30:00.000Z",
+      "submittedAt": "2026-06-15T02:28:16.670Z",
+      "status": "conflict",
+      "payload": {
+        "animalId": "ani-1004",
+        "date": "2026-06-15",
+        "weight": 15.2
+      },
+      "result": null,
+      "conflictDetails": {
+        "incomingOperationId": "reject-2-1781490496666-kwlcdz",
+        "existingOperationId": "reject-1781490457124-vq72rf",
+        "existingKeeper": "林青",
+        "existingSubmittedAt": "2026-06-15T02:27:37.125Z",
+        "existingClientCreatedAt": "2026-06-15T11:00:00.000Z",
+        "operationType": "animal_note",
+        "date": "2026-06-15",
+        "animalId": "ani-1004",
+        "cageId": null,
+        "conflictingFields": [
+          {
+            "field": "weight",
+            "clientValue": 15.2,
+            "serverValue": 15
+          }
+        ],
+        "nonConflictingFields": [
+          {
+            "field": "animalId",
+            "clientValue": "ani-1004",
+            "serverValue": "ani-1004",
+            "identical": true
+          },
+          {
+            "field": "date",
+            "clientValue": "2026-06-15",
+            "serverValue": "2026-06-15",
+            "identical": true
+          },
+          {
+            "field": "condition",
+            "clientValue": null,
+            "serverValue": "原始记录"
+          }
+        ],
+        "explanation": "同一饲养记录/体重在当天已有服务端记录，存在 1 个字段冲突；冲突字段：weight；1 个非冲突字段可自动合并"
+      },
+      "error": {
+        "code": "conflict_rejected",
+        "message": "存在冲突，按策略拒绝写入"
+      },
+      "mergedFields": null,
+      "animalId": "ani-1004",
+      "cageId": null,
+      "date": "2026-06-15"
+    },
+    {
+      "operationId": "cw-1781490496671-bgg4ls",
+      "operationType": "animal_note",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": "2026-06-15T12:00:00.000Z",
+      "submittedAt": "2026-06-15T02:28:16.679Z",
+      "status": "partial",
+      "payload": {
+        "animalId": "ani-1004",
+        "date": "2026-06-15",
+        "weight": 15.5,
+        "condition": "客户端覆盖"
+      },
+      "result": {
+        "note": {
+          "id": "note-1781490496679-hz3by",
+          "date": "2026-06-15",
+          "weight": 15.5,
+          "condition": "客户端覆盖",
+          "keeper": "周遥"
+        },
+        "healthEvent": {
+          "created": false,
+          "merged": false,
+          "eventId": null
+        }
+      },
+      "conflictDetails": {
+        "incomingOperationId": "cw-1781490496671-bgg4ls",
+        "existingOperationId": "reject-1781490457124-vq72rf",
+        "existingKeeper": "林青",
+        "existingSubmittedAt": "2026-06-15T02:27:37.125Z",
+        "existingClientCreatedAt": "2026-06-15T11:00:00.000Z",
+        "operationType": "animal_note",
+        "date": "2026-06-15",
+        "animalId": "ani-1004",
+        "cageId": null,
+        "conflictingFields": [
+          {
+            "field": "weight",
+            "clientValue": 15.5,
+            "serverValue": 15
+          },
+          {
+            "field": "condition",
+            "clientValue": "客户端覆盖",
+            "serverValue": "原始记录"
+          }
+        ],
+        "nonConflictingFields": [
+          {
+            "field": "animalId",
+            "clientValue": "ani-1004",
+            "serverValue": "ani-1004",
+            "identical": true
+          },
+          {
+            "field": "date",
+            "clientValue": "2026-06-15",
+            "serverValue": "2026-06-15",
+            "identical": true
+          }
+        ],
+        "explanation": "同一饲养记录/体重在当天已有服务端记录，存在 2 个字段冲突；冲突字段：weight、condition"
+      },
+      "error": null,
+      "mergedFields": [
+        "weight",
+        "condition",
+        "animalId",
+        "date"
+      ],
+      "animalId": "ani-1004",
+      "cageId": null,
+      "date": "2026-06-15"
+    },
+    {
+      "operationId": "mix-note-1781490496683-i5f6z9",
+      "operationType": "animal_note",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": "2026-06-15T08:00:00.000Z",
+      "submittedAt": "2026-06-15T02:28:16.685Z",
+      "status": "conflict",
+      "payload": {
+        "animalId": "ani-1001",
+        "date": "2026-06-15",
+        "weight": 21.7,
+        "condition": "混合批量测试 - note",
+        "photoPlaceholders": [
+          {
+            "localPath": "mix.jpg",
+            "size": 1000,
+            "takenAt": "2026-06-15T07:59:00.000Z",
+            "hash": "mixhash"
+          }
+        ]
+      },
+      "result": null,
+      "conflictDetails": {
+        "incomingOperationId": "mix-note-1781490496683-i5f6z9",
+        "existingOperationId": "note-1781490457107-kg5z7x",
+        "existingKeeper": "林青",
+        "existingSubmittedAt": "2026-06-15T02:27:37.109Z",
+        "existingClientCreatedAt": "2026-06-15T08:30:00.000Z",
+        "operationType": "animal_note",
+        "date": "2026-06-15",
+        "animalId": "ani-1001",
+        "cageId": null,
+        "conflictingFields": [
+          {
+            "field": "weight",
+            "clientValue": 21.7,
+            "serverValue": 21.5
+          },
+          {
+            "field": "condition",
+            "clientValue": "混合批量测试 - note",
+            "serverValue": "离线测试 - 食欲良好"
+          },
+          {
+            "field": "photoPlaceholders",
+            "clientValue": [
+              {
+                "localPath": "mix.jpg",
+                "size": 1000,
+                "takenAt": "2026-06-15T07:59:00.000Z",
+                "hash": "mixhash"
+              }
+            ],
+            "serverValue": [
+              {
+                "localPath": "test.jpg",
+                "size": 123456,
+                "takenAt": "2026-06-15T08:28:00.000Z",
+                "hash": "sha256:test123"
+              }
+            ]
+          }
+        ],
+        "nonConflictingFields": [
+          {
+            "field": "animalId",
+            "clientValue": "ani-1001",
+            "serverValue": "ani-1001",
+            "identical": true
+          },
+          {
+            "field": "date",
+            "clientValue": "2026-06-15",
+            "serverValue": "2026-06-15",
+            "identical": true
+          }
+        ],
+        "explanation": "同一饲养记录/体重在当天已有服务端记录，存在 3 个字段冲突；冲突字段：weight、condition、photoPlaceholders"
+      },
+      "error": {
+        "code": "conflict_detected",
+        "message": "同一饲养记录/体重在当天已有服务端记录，存在 3 个字段冲突；冲突字段：weight、condition、photoPlaceholders"
+      },
+      "mergedFields": null,
+      "animalId": "ani-1001",
+      "cageId": null,
+      "date": "2026-06-15"
+    },
+    {
+      "operationId": "mix-move-1781490496683-rrietw",
+      "operationType": "animal_move",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": "2026-06-15T08:10:00.000Z",
+      "submittedAt": "2026-06-15T02:28:16.685Z",
+      "status": "conflict",
+      "payload": {
+        "animalId": "ani-1002",
+        "cageId": "B-04",
+        "reason": "混合批量测试 - 移笼"
+      },
+      "result": null,
+      "conflictDetails": {
+        "incomingOperationId": "mix-move-1781490496683-rrietw",
+        "existingOperationId": "mix-move-1781490457135-9cew4z",
+        "existingKeeper": "林青",
+        "existingSubmittedAt": "2026-06-15T02:27:37.138Z",
+        "existingClientCreatedAt": "2026-06-15T08:10:00.000Z",
+        "operationType": "animal_move",
+        "date": "2026-06-15",
+        "animalId": "ani-1002",
+        "cageId": "B-04",
+        "conflictingFields": [],
+        "nonConflictingFields": [
+          {
+            "field": "animalId",
+            "clientValue": "ani-1002",
+            "serverValue": "ani-1002",
+            "identical": true
+          },
+          {
+            "field": "cageId",
+            "clientValue": "B-04",
+            "serverValue": "B-04",
+            "identical": true
+          },
+          {
+            "field": "reason",
+            "clientValue": "混合批量测试 - 移笼",
+            "serverValue": "混合批量测试 - 移笼",
+            "identical": true
+          }
+        ],
+        "explanation": "同一动物移笼在当天已有服务端记录，存在 0 个字段冲突"
+      },
+      "error": {
+        "code": "conflict_detected",
+        "message": "同一动物移笼在当天已有服务端记录，存在 0 个字段冲突"
+      },
+      "mergedFields": null,
+      "animalId": "ani-1002",
+      "cageId": "B-04",
+      "date": "2026-06-15"
+    },
+    {
+      "operationId": "mix-feed-1781490496683-cszyoh",
+      "operationType": "feeding_record",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": "2026-06-15T08:15:00.000Z",
+      "submittedAt": "2026-06-15T02:28:16.685Z",
+      "status": "error",
+      "payload": {
+        "targetType": "animal",
+        "targetId": "ani-1001",
+        "feedType": "标准颗粒饲料",
+        "amount": 2.5,
+        "condition": "进食良好",
+        "notes": "混合批量测试"
+      },
+      "result": null,
+      "conflictDetails": null,
+      "error": {
+        "code": "validation_failed",
+        "details": [
+          {
+            "field": "payload.keeper",
+            "message": "feeding_record 需要 keeper"
+          }
+        ]
+      },
+      "mergedFields": null,
+      "animalId": "ani-1001",
+      "cageId": null,
+      "date": "2026-06-15"
+    },
+    {
+      "operationId": "mix-cage-1781490496683-t7vp0z",
+      "operationType": "cage_abnormal",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": "2026-06-15T08:20:00.000Z",
+      "submittedAt": "2026-06-15T02:28:16.686Z",
+      "status": "conflict",
+      "payload": {
+        "cageId": "C-01",
+        "abnormalType": "hygiene",
+        "severity": "minor",
+        "description": "混合批量测试 - 笼位需清洁",
+        "photoPlaceholders": [
+          {
+            "localPath": "cage.jpg",
+            "size": 2000,
+            "takenAt": "2026-06-15T08:19:00.000Z",
+            "hash": "cagehash"
+          }
+        ]
+      },
+      "result": null,
+      "conflictDetails": {
+        "incomingOperationId": "mix-cage-1781490496683-t7vp0z",
+        "existingOperationId": "mix-cage-1781490457135-wmfk2n",
+        "existingKeeper": "林青",
+        "existingSubmittedAt": "2026-06-15T02:27:37.138Z",
+        "existingClientCreatedAt": "2026-06-15T08:20:00.000Z",
+        "operationType": "cage_abnormal",
+        "date": "2026-06-15",
+        "animalId": null,
+        "cageId": "C-01",
+        "conflictingFields": [],
+        "nonConflictingFields": [
+          {
+            "field": "cageId",
+            "clientValue": "C-01",
+            "serverValue": "C-01",
+            "identical": true
+          },
+          {
+            "field": "abnormalType",
+            "clientValue": "hygiene",
+            "serverValue": "hygiene",
+            "identical": true
+          },
+          {
+            "field": "severity",
+            "clientValue": "minor",
+            "serverValue": "minor",
+            "identical": true
+          },
+          {
+            "field": "description",
+            "clientValue": "混合批量测试 - 笼位需清洁",
+            "serverValue": "混合批量测试 - 笼位需清洁",
+            "identical": true
+          },
+          {
+            "field": "photoPlaceholders",
+            "clientValue": [
+              {
+                "localPath": "cage.jpg",
+                "size": 2000,
+                "takenAt": "2026-06-15T08:19:00.000Z",
+                "hash": "cagehash"
+              }
+            ],
+            "serverValue": [
+              {
+                "localPath": "cage.jpg",
+                "size": 2000,
+                "takenAt": "2026-06-15T08:19:00.000Z",
+                "hash": "cagehash"
+              }
+            ],
+            "identical": true
+          }
+        ],
+        "explanation": "同一笼位异常上报在当天已有服务端记录，存在 0 个字段冲突"
+      },
+      "error": {
+        "code": "conflict_detected",
+        "message": "同一笼位异常上报在当天已有服务端记录，存在 0 个字段冲突"
+      },
+      "mergedFields": null,
+      "animalId": null,
+      "cageId": "C-01",
+      "date": "2026-06-15"
+    },
+    {
+      "operationType": "animal_note",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": null,
+      "submittedAt": "2026-06-15T02:28:16.700Z",
+      "status": "error",
+      "payload": {
+        "animalId": "ani-1001"
+      },
+      "result": null,
+      "conflictDetails": null,
+      "error": {
+        "code": "validation_failed",
+        "details": [
+          {
+            "field": "operationId",
+            "message": "operationId 必填（客户端生成的唯一操作ID，用于幂等去重）"
+          }
+        ]
+      },
+      "mergedFields": null,
+      "animalId": "ani-1001",
+      "cageId": null,
+      "date": "2026-06-15"
+    },
+    {
+      "operationId": "bad-1781490496702-4hayw4",
+      "operationType": "invalid_type",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": null,
+      "submittedAt": "2026-06-15T02:28:16.703Z",
+      "status": "error",
+      "payload": {},
+      "result": null,
+      "conflictDetails": null,
+      "error": {
+        "code": "validation_failed",
+        "details": [
+          {
+            "field": "operationType",
+            "message": "operationType 必须是: animal_note, animal_move, feeding_record, cage_abnormal"
+          }
+        ]
+      },
+      "mergedFields": null,
+      "animalId": null,
+      "cageId": null,
+      "date": "2026-06-15"
+    },
+    {
+      "operationId": "noanimal-1781490496708-ptkm2a",
+      "operationType": "animal_note",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": null,
+      "submittedAt": "2026-06-15T02:28:16.709Z",
+      "status": "error",
+      "payload": {
+        "weight": 20
+      },
+      "result": null,
+      "conflictDetails": null,
+      "error": {
+        "code": "validation_failed",
+        "details": [
+          {
+            "field": "payload.animalId",
+            "message": "animal_note 操作需要 animalId"
+          }
+        ]
+      },
+      "mergedFields": null,
+      "animalId": null,
+      "cageId": null,
+      "date": "2026-06-15"
+    },
+    {
+      "operationId": "note-1781490621170-knxrvf",
+      "operationType": "animal_note",
+      "keeper": "林青",
+      "deviceId": "test-device-001",
+      "clientCreatedAt": "2099-12-31T08:30:00.000Z",
+      "submittedAt": "2026-06-15T02:30:21.173Z",
+      "status": "applied",
+      "payload": {
+        "animalId": "ani-1001",
+        "date": "2099-12-31",
+        "weight": 21.5,
+        "condition": "离线测试 - 食欲良好",
+        "photoPlaceholders": [
+          {
+            "localPath": "test.jpg",
+            "size": 123456,
+            "takenAt": "2099-12-31T08:28:00.000Z",
+            "hash": "sha256:test123"
+          }
+        ]
+      },
+      "result": {
+        "note": {
+          "id": "note-1781490621173-fmjz3",
+          "date": "2099-12-31",
+          "weight": 21.5,
+          "condition": "离线测试 - 食欲良好",
+          "keeper": "林青"
+        },
+        "healthEvent": {
+          "created": false,
+          "merged": false,
+          "eventId": null
+        }
+      },
+      "conflictDetails": null,
+      "error": null,
+      "mergedFields": null,
+      "animalId": "ani-1001",
+      "cageId": null,
+      "date": "2099-12-31"
+    },
+    {
+      "operationId": "idempotent-1781490621179-ukj57b",
+      "operationType": "animal_note",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": "2099-12-31T09:00:00.000Z",
+      "submittedAt": "2026-06-15T02:30:21.181Z",
+      "status": "applied",
+      "payload": {
+        "animalId": "ani-1002",
+        "date": "2099-12-31",
+        "weight": 22,
+        "condition": "幂等性测试"
+      },
+      "result": {
+        "note": {
+          "id": "note-1781490621181-6p9aq",
+          "date": "2099-12-31",
+          "weight": 22,
+          "condition": "幂等性测试",
+          "keeper": "林青"
+        },
+        "healthEvent": {
+          "created": false,
+          "merged": false,
+          "eventId": null
+        }
+      },
+      "conflictDetails": null,
+      "error": null,
+      "mergedFields": null,
+      "animalId": "ani-1002",
+      "cageId": null,
+      "date": "2099-12-31"
+    },
+    {
+      "operationId": "idempotent-1781490621179-ukj57b",
+      "operationType": "animal_note",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": "2099-12-31T09:00:00.000Z",
+      "submittedAt": "2026-06-15T02:30:21.183Z",
+      "status": "duplicate",
+      "payload": {
+        "animalId": "ani-1002",
+        "date": "2099-12-31",
+        "weight": 22,
+        "condition": "幂等性测试"
+      },
+      "result": {
+        "note": {
+          "id": "note-1781490621181-6p9aq",
+          "date": "2099-12-31",
+          "weight": 22,
+          "condition": "幂等性测试",
+          "keeper": "林青"
+        },
+        "healthEvent": {
+          "created": false,
+          "merged": false,
+          "eventId": null
+        }
+      },
+      "conflictDetails": null,
+      "error": null,
+      "mergedFields": null,
+      "animalId": "ani-1002",
+      "cageId": null,
+      "date": "2099-12-31"
+    },
+    {
+      "operationId": "conflict-a-1781490621185-r859m5",
+      "operationType": "animal_note",
+      "keeper": "周遥",
+      "deviceId": "device-A",
+      "clientCreatedAt": "2099-12-31T07:00:00.000Z",
+      "submittedAt": "2026-06-15T02:30:21.187Z",
+      "status": "applied",
+      "payload": {
+        "animalId": "ani-1003",
+        "date": "2099-12-31",
+        "weight": 16.5,
+        "condition": "A端 - 状态正常"
+      },
+      "result": {
+        "note": {
+          "id": "note-1781490621187-fo6oi",
+          "date": "2099-12-31",
+          "weight": 16.5,
+          "condition": "A端 - 状态正常",
+          "keeper": "周遥"
+        },
+        "healthEvent": {
+          "created": false,
+          "merged": false,
+          "eventId": null
+        }
+      },
+      "conflictDetails": null,
+      "error": null,
+      "mergedFields": null,
+      "animalId": "ani-1003",
+      "cageId": null,
+      "date": "2099-12-31"
+    },
+    {
+      "operationId": "conflict-b-1781490621185-w4t5xt",
+      "operationType": "animal_note",
+      "keeper": "林青",
+      "deviceId": "device-B",
+      "clientCreatedAt": "2099-12-31T10:00:00.000Z",
+      "submittedAt": "2026-06-15T02:30:21.192Z",
+      "status": "conflict",
+      "payload": {
+        "animalId": "ani-1003",
+        "date": "2099-12-31",
+        "weight": 16.8,
+        "condition": "B端 - 状态正常"
+      },
+      "result": null,
+      "conflictDetails": {
+        "incomingOperationId": "conflict-b-1781490621185-w4t5xt",
+        "existingOperationId": "conflict-a-1781490621185-r859m5",
+        "existingKeeper": "周遥",
+        "existingSubmittedAt": "2026-06-15T02:30:21.187Z",
+        "existingClientCreatedAt": "2099-12-31T07:00:00.000Z",
+        "operationType": "animal_note",
+        "date": "2099-12-31",
+        "animalId": "ani-1003",
+        "cageId": null,
+        "conflictingFields": [
+          {
+            "field": "weight",
+            "clientValue": 16.8,
+            "serverValue": 16.5
+          },
+          {
+            "field": "condition",
+            "clientValue": "B端 - 状态正常",
+            "serverValue": "A端 - 状态正常"
+          }
+        ],
+        "nonConflictingFields": [
+          {
+            "field": "animalId",
+            "clientValue": "ani-1003",
+            "serverValue": "ani-1003",
+            "identical": true
+          },
+          {
+            "field": "date",
+            "clientValue": "2099-12-31",
+            "serverValue": "2099-12-31",
+            "identical": true
+          }
+        ],
+        "explanation": "同一饲养记录/体重在当天已有服务端记录，存在 2 个字段冲突；冲突字段：weight、condition"
+      },
+      "error": {
+        "code": "conflict_detected",
+        "message": "同一饲养记录/体重在当天已有服务端记录，存在 2 个字段冲突；冲突字段：weight、condition"
+      },
+      "mergedFields": null,
+      "animalId": "ani-1003",
+      "cageId": null,
+      "date": "2099-12-31"
+    },
+    {
+      "operationId": "reject-1781490621194-bkadzs",
+      "operationType": "animal_note",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": "2099-12-31T11:00:00.000Z",
+      "submittedAt": "2026-06-15T02:30:21.195Z",
+      "status": "applied",
+      "payload": {
+        "animalId": "ani-1004",
+        "date": "2099-12-31",
+        "weight": 15,
+        "condition": "原始记录"
+      },
+      "result": {
+        "note": {
+          "id": "note-1781490621195-1mrt6",
+          "date": "2099-12-31",
+          "weight": 15,
+          "condition": "原始记录",
+          "keeper": "林青"
+        },
+        "healthEvent": {
+          "created": false,
+          "merged": false,
+          "eventId": null
+        }
+      },
+      "conflictDetails": null,
+      "error": null,
+      "mergedFields": null,
+      "animalId": "ani-1004",
+      "cageId": null,
+      "date": "2099-12-31"
+    },
+    {
+      "operationId": "reject-2-1781490621194-lty2h4",
+      "operationType": "animal_note",
+      "keeper": "周遥",
+      "deviceId": null,
+      "clientCreatedAt": "2099-12-31T11:30:00.000Z",
+      "submittedAt": "2026-06-15T02:30:21.197Z",
+      "status": "conflict",
+      "payload": {
+        "animalId": "ani-1004",
+        "date": "2099-12-31",
+        "weight": 15.2
+      },
+      "result": null,
+      "conflictDetails": {
+        "incomingOperationId": "reject-2-1781490621194-lty2h4",
+        "existingOperationId": "reject-1781490621194-bkadzs",
+        "existingKeeper": "林青",
+        "existingSubmittedAt": "2026-06-15T02:30:21.195Z",
+        "existingClientCreatedAt": "2099-12-31T11:00:00.000Z",
+        "operationType": "animal_note",
+        "date": "2099-12-31",
+        "animalId": "ani-1004",
+        "cageId": null,
+        "conflictingFields": [
+          {
+            "field": "weight",
+            "clientValue": 15.2,
+            "serverValue": 15
+          }
+        ],
+        "nonConflictingFields": [
+          {
+            "field": "animalId",
+            "clientValue": "ani-1004",
+            "serverValue": "ani-1004",
+            "identical": true
+          },
+          {
+            "field": "date",
+            "clientValue": "2099-12-31",
+            "serverValue": "2099-12-31",
+            "identical": true
+          },
+          {
+            "field": "condition",
+            "clientValue": null,
+            "serverValue": "原始记录"
+          }
+        ],
+        "explanation": "同一饲养记录/体重在当天已有服务端记录，存在 1 个字段冲突；冲突字段：weight；1 个非冲突字段可自动合并"
+      },
+      "error": {
+        "code": "conflict_rejected",
+        "message": "存在冲突，按策略拒绝写入"
+      },
+      "mergedFields": null,
+      "animalId": "ani-1004",
+      "cageId": null,
+      "date": "2099-12-31"
+    },
+    {
+      "operationId": "cw-1781490621199-8hvcah",
+      "operationType": "animal_note",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": "2099-12-31T12:00:00.000Z",
+      "submittedAt": "2026-06-15T02:30:21.201Z",
+      "status": "partial",
+      "payload": {
+        "animalId": "ani-1004",
+        "date": "2099-12-31",
+        "weight": 15.5,
+        "condition": "客户端覆盖"
+      },
+      "result": {
+        "note": {
+          "id": "note-1781490621201-8cmvx",
+          "date": "2099-12-31",
+          "weight": 15.5,
+          "condition": "客户端覆盖",
+          "keeper": "林青"
+        },
+        "healthEvent": {
+          "created": false,
+          "merged": false,
+          "eventId": null
+        }
+      },
+      "conflictDetails": {
+        "incomingOperationId": "cw-1781490621199-8hvcah",
+        "existingOperationId": "reject-1781490621194-bkadzs",
+        "existingKeeper": "林青",
+        "existingSubmittedAt": "2026-06-15T02:30:21.195Z",
+        "existingClientCreatedAt": "2099-12-31T11:00:00.000Z",
+        "operationType": "animal_note",
+        "date": "2099-12-31",
+        "animalId": "ani-1004",
+        "cageId": null,
+        "conflictingFields": [
+          {
+            "field": "weight",
+            "clientValue": 15.5,
+            "serverValue": 15
+          },
+          {
+            "field": "condition",
+            "clientValue": "客户端覆盖",
+            "serverValue": "原始记录"
+          }
+        ],
+        "nonConflictingFields": [
+          {
+            "field": "animalId",
+            "clientValue": "ani-1004",
+            "serverValue": "ani-1004",
+            "identical": true
+          },
+          {
+            "field": "date",
+            "clientValue": "2099-12-31",
+            "serverValue": "2099-12-31",
+            "identical": true
+          }
+        ],
+        "explanation": "同一饲养记录/体重在当天已有服务端记录，存在 2 个字段冲突；冲突字段：weight、condition"
+      },
+      "error": null,
+      "mergedFields": [
+        "weight",
+        "condition",
+        "animalId",
+        "date"
+      ],
+      "animalId": "ani-1004",
+      "cageId": null,
+      "date": "2099-12-31"
+    },
+    {
+      "operationId": "mix-note-1781490621204-h53v7t",
+      "operationType": "animal_note",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": "2099-12-31T08:00:00.000Z",
+      "submittedAt": "2026-06-15T02:30:21.206Z",
+      "status": "conflict",
+      "payload": {
+        "animalId": "ani-1001",
+        "date": "2099-12-31",
+        "weight": 21.7,
+        "condition": "混合批量测试 - note",
+        "photoPlaceholders": [
+          {
+            "localPath": "mix.jpg",
+            "size": 1000,
+            "takenAt": "2099-12-31T07:59:00.000Z",
+            "hash": "mixhash"
+          }
+        ]
+      },
+      "result": null,
+      "conflictDetails": {
+        "incomingOperationId": "mix-note-1781490621204-h53v7t",
+        "existingOperationId": "note-1781490621170-knxrvf",
+        "existingKeeper": "林青",
+        "existingSubmittedAt": "2026-06-15T02:30:21.173Z",
+        "existingClientCreatedAt": "2099-12-31T08:30:00.000Z",
+        "operationType": "animal_note",
+        "date": "2099-12-31",
+        "animalId": "ani-1001",
+        "cageId": null,
+        "conflictingFields": [
+          {
+            "field": "weight",
+            "clientValue": 21.7,
+            "serverValue": 21.5
+          },
+          {
+            "field": "condition",
+            "clientValue": "混合批量测试 - note",
+            "serverValue": "离线测试 - 食欲良好"
+          },
+          {
+            "field": "photoPlaceholders",
+            "clientValue": [
+              {
+                "localPath": "mix.jpg",
+                "size": 1000,
+                "takenAt": "2099-12-31T07:59:00.000Z",
+                "hash": "mixhash"
+              }
+            ],
+            "serverValue": [
+              {
+                "localPath": "test.jpg",
+                "size": 123456,
+                "takenAt": "2099-12-31T08:28:00.000Z",
+                "hash": "sha256:test123"
+              }
+            ]
+          }
+        ],
+        "nonConflictingFields": [
+          {
+            "field": "animalId",
+            "clientValue": "ani-1001",
+            "serverValue": "ani-1001",
+            "identical": true
+          },
+          {
+            "field": "date",
+            "clientValue": "2099-12-31",
+            "serverValue": "2099-12-31",
+            "identical": true
+          }
+        ],
+        "explanation": "同一饲养记录/体重在当天已有服务端记录，存在 3 个字段冲突；冲突字段：weight、condition、photoPlaceholders"
+      },
+      "error": {
+        "code": "conflict_detected",
+        "message": "同一饲养记录/体重在当天已有服务端记录，存在 3 个字段冲突；冲突字段：weight、condition、photoPlaceholders"
+      },
+      "mergedFields": null,
+      "animalId": "ani-1001",
+      "cageId": null,
+      "date": "2099-12-31"
+    },
+    {
+      "operationId": "mix-move-1781490621204-rlssrm",
+      "operationType": "animal_move",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": "2099-12-31T08:10:00.000Z",
+      "submittedAt": "2026-06-15T02:30:21.208Z",
+      "status": "applied",
+      "payload": {
+        "animalId": "ani-1002",
+        "cageId": "B-04",
+        "reason": "混合批量测试 - 移笼"
+      },
+      "result": {
+        "animal": {
+          "id": "ani-1002",
+          "strain": "BALB/c",
+          "cageId": "B-04",
+          "roomId": "room-default",
+          "zoneId": "zone-conventional",
+          "projectId": "proj-immunology",
+          "sex": "male",
+          "birthDate": "2026-02-03",
+          "project": "免疫反应",
+          "keeper": "周遥",
+          "status": "released",
+          "observationNodes": [
+            "2026-06-15"
+          ],
+          "notes": [
+            {
+              "id": "note-1781490457114-p09jj",
+              "date": "2026-06-15",
+              "weight": 22,
+              "condition": "幂等性测试",
+              "keeper": "周遥"
+            },
+            {
+              "id": "note-1781490621181-6p9aq",
+              "date": "2099-12-31",
+              "weight": 22,
+              "condition": "幂等性测试",
+              "keeper": "林青"
+            }
+          ],
+          "moves": [
+            {
+              "id": "move-1781490457136-oouyn",
+              "from": "B-03",
+              "to": "B-04",
+              "fromRoomId": "room-default",
+              "toRoomId": "room-default",
+              "movedAt": "2026-06-15T02:27:37.136Z",
+              "reason": "混合批量测试 - 移笼"
+            },
+            {
+              "id": "move-1781490621207-f4856",
+              "from": "B-04",
+              "to": "B-04",
+              "fromRoomId": "room-default",
+              "toRoomId": "room-default",
+              "movedAt": "2026-06-15T02:30:21.207Z",
+              "reason": "混合批量测试 - 移笼"
+            }
+          ],
+          "quarantineRecords": [
+            {
+              "id": "qr-3",
+              "date": "2026-05-10",
+              "temperature": 36.9,
+              "weight": 22.1,
+              "condition": "正常",
+              "symptoms": [],
+              "isAbnormal": false,
+              "notes": "入检初查",
+              "examiner": "周遥",
+              "createdAt": "2026-05-10T10:00:00.000Z"
+            }
+          ],
+          "enteredQuarantineAt": "2026-05-10T10:00:00.000Z",
+          "quarantineReleasedAt": "2026-05-17T10:00:00.000Z",
+          "quarantineApproval": {
+            "id": "qa-2",
+            "approvedAt": "2026-05-17T10:00:00.000Z",
+            "approver": "周遥",
+            "targetCageId": "B-03",
+            "notes": "检疫合格"
+          },
+          "abnormalMarkedAt": null,
+          "abnormalReason": null,
+          "abnormalHandler": null,
+          "abnormalNotes": null,
+          "weanedAt": null,
+          "weaningWeight": null,
+          "fatherId": null,
+          "motherId": null,
+          "litterId": null,
+          "breedingInfo": null
+        },
+        "move": {
+          "id": "move-1781490621207-f4856",
+          "from": "B-04",
+          "to": "B-04",
+          "fromRoomId": "room-default",
+          "toRoomId": "room-default",
+          "movedAt": "2026-06-15T02:30:21.207Z",
+          "reason": "混合批量测试 - 移笼"
+        }
+      },
+      "conflictDetails": null,
+      "error": null,
+      "mergedFields": null,
+      "animalId": "ani-1002",
+      "cageId": "B-04",
+      "date": "2099-12-31"
+    },
+    {
+      "operationId": "mix-feed-1781490621204-tkdqxa",
+      "operationType": "feeding_record",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": "2099-12-31T08:15:00.000Z",
+      "submittedAt": "2026-06-15T02:30:21.209Z",
+      "status": "applied",
+      "payload": {
+        "targetType": "animal",
+        "targetId": "ani-1001",
+        "feedType": "标准颗粒饲料",
+        "amount": 2.5,
+        "condition": "进食良好",
+        "notes": "混合批量测试"
+      },
+      "result": {
+        "record": {
+          "id": "record-1781490621208",
+          "targetType": "animal",
+          "targetId": "ani-1001",
+          "roomId": "room-default",
+          "zoneId": "zone-default",
+          "project": "代谢观察",
+          "projectId": "proj-metabolism",
+          "date": "2026-06-15",
+          "scheduledTime": null,
+          "actualTime": "2026-06-15T02:30:21.208Z",
+          "feedType": "标准颗粒饲料",
+          "amount": 2.5,
+          "keeper": "林青",
+          "status": "completed",
+          "condition": "进食良好",
+          "weight": null,
+          "notes": "混合批量测试"
+        }
+      },
+      "conflictDetails": null,
+      "error": null,
+      "mergedFields": null,
+      "animalId": "ani-1001",
+      "cageId": null,
+      "date": "2099-12-31"
+    },
+    {
+      "operationId": "mix-cage-1781490621204-1vys63",
+      "operationType": "cage_abnormal",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": "2099-12-31T08:20:00.000Z",
+      "submittedAt": "2026-06-15T02:30:21.209Z",
+      "status": "applied",
+      "payload": {
+        "cageId": "C-01",
+        "abnormalType": "hygiene",
+        "severity": "minor",
+        "description": "混合批量测试 - 笼位需清洁",
+        "photoPlaceholders": [
+          {
+            "localPath": "cage.jpg",
+            "size": 2000,
+            "takenAt": "2099-12-31T08:19:00.000Z",
+            "hash": "cagehash"
+          }
+        ]
+      },
+      "result": {
+        "report": {
+          "id": "car-1781490621209-bb4p4",
+          "cageId": "C-01",
+          "roomId": "room-default",
+          "zoneId": "zone-quarantine",
+          "date": "2026-06-15",
+          "reportedAt": "2026-06-15T02:30:21.209Z",
+          "clientReportedAt": null,
+          "reporter": "系统管理员",
+          "keeper": "林青",
+          "abnormalType": "hygiene",
+          "severity": "minor",
+          "description": "混合批量测试 - 笼位需清洁",
+          "photoPlaceholders": [
+            {
+              "localPath": "cage.jpg",
+              "size": 2000,
+              "takenAt": "2099-12-31T08:19:00.000Z",
+              "hash": "cagehash"
+            }
+          ],
+          "status": "open",
+          "notes": ""
+        }
+      },
+      "conflictDetails": null,
+      "error": null,
+      "mergedFields": null,
+      "animalId": null,
+      "cageId": "C-01",
+      "date": "2099-12-31"
+    },
+    {
+      "operationType": "animal_note",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": null,
+      "submittedAt": "2026-06-15T02:30:21.213Z",
+      "status": "error",
+      "payload": {
+        "animalId": "ani-1001"
+      },
+      "result": null,
+      "conflictDetails": null,
+      "error": {
+        "code": "validation_failed",
+        "details": [
+          {
+            "field": "operationId",
+            "message": "operationId 必填（客户端生成的唯一操作ID，用于幂等去重）"
+          }
+        ]
+      },
+      "mergedFields": null,
+      "animalId": "ani-1001",
+      "cageId": null,
+      "date": "2026-06-15"
+    },
+    {
+      "operationId": "bad-1781490621214-pjgdvk",
+      "operationType": "invalid_type",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": null,
+      "submittedAt": "2026-06-15T02:30:21.214Z",
+      "status": "error",
+      "payload": {},
+      "result": null,
+      "conflictDetails": null,
+      "error": {
+        "code": "validation_failed",
+        "details": [
+          {
+            "field": "operationType",
+            "message": "operationType 必须是: animal_note, animal_move, feeding_record, cage_abnormal"
+          }
+        ]
+      },
+      "mergedFields": null,
+      "animalId": null,
+      "cageId": null,
+      "date": "2026-06-15"
+    },
+    {
+      "operationId": "noanimal-1781490621215-1kex03",
+      "operationType": "animal_note",
+      "keeper": "林青",
+      "deviceId": null,
+      "clientCreatedAt": null,
+      "submittedAt": "2026-06-15T02:30:21.217Z",
+      "status": "error",
+      "payload": {
+        "weight": 20
+      },
+      "result": null,
+      "conflictDetails": null,
+      "error": {
+        "code": "validation_failed",
+        "details": [
+          {
+            "field": "payload.animalId",
+            "message": "animal_note 操作需要 animalId"
+          }
+        ]
+      },
+      "mergedFields": null,
+      "animalId": null,
+      "cageId": null,
+      "date": "2026-06-15"
+    }
+  ],
+  "syncQueues": [],
+  "cageAbnormalReports": [
+    {
+      "id": "car-1781490457138-en64z",
+      "cageId": "C-01",
+      "roomId": "room-default",
+      "zoneId": "zone-quarantine",
+      "date": "2026-06-15",
+      "reportedAt": "2026-06-15T02:27:37.138Z",
+      "clientReportedAt": null,
+      "reporter": "系统管理员",
+      "keeper": "系统管理员",
+      "abnormalType": "hygiene",
+      "severity": "minor",
+      "description": "混合批量测试 - 笼位需清洁",
+      "photoPlaceholders": [
+        {
+          "localPath": "cage.jpg",
+          "size": 2000,
+          "takenAt": "2026-06-15T08:19:00.000Z",
+          "hash": "cagehash"
+        }
+      ],
+      "status": "open",
+      "notes": ""
+    },
+    {
+      "id": "car-1781490621209-bb4p4",
+      "cageId": "C-01",
+      "roomId": "room-default",
+      "zoneId": "zone-quarantine",
+      "date": "2026-06-15",
+      "reportedAt": "2026-06-15T02:30:21.209Z",
+      "clientReportedAt": null,
+      "reporter": "系统管理员",
+      "keeper": "林青",
+      "abnormalType": "hygiene",
+      "severity": "minor",
+      "description": "混合批量测试 - 笼位需清洁",
+      "photoPlaceholders": [
+        {
+          "localPath": "cage.jpg",
+          "size": 2000,
+          "takenAt": "2099-12-31T08:19:00.000Z",
+          "hash": "cagehash"
+        }
+      ],
+      "status": "open",
+      "notes": ""
     }
   ]
 }

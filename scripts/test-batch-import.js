@@ -10,6 +10,8 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = join(__dirname, "..");
 const TEST_PORT = 3099;
 const TEST_DB_PATH = join(tmpdir(), `lab-test-batch-${Date.now()}.json`);
+const TEST_AUDIT_PATH = join(tmpdir(), `audit-test-batch-${Date.now()}.json`);
+const TEST_LEDGER_PATH = join(tmpdir(), `ledger-test-batch-${Date.now()}.json`);
 
 const API_KEYS = {
   ADMIN: "admin-key-demo-001",
@@ -72,6 +74,12 @@ function waitForServer(baseUrl, maxRetries = 30, interval = 500) {
   });
 }
 
+function assertResult(condition, message) {
+  if (!condition) {
+    throw new Error(message);
+  }
+}
+
 async function runTests() {
   const BASE_URL = `http://localhost:${TEST_PORT}`;
   const req = (path, method, body, apiKey) => request(BASE_URL, path, method, body, apiKey);
@@ -81,13 +89,21 @@ async function runTests() {
   console.log("=".repeat(60));
   console.log(`测试服务器: ${BASE_URL}`);
   console.log(`测试数据库: ${TEST_DB_PATH}`);
+  console.log(`测试审计日志: ${TEST_AUDIT_PATH}`);
+  console.log(`测试事件账本: ${TEST_LEDGER_PATH}`);
 
   let serverProcess;
   try {
     console.log("\n启动测试服务器...");
     serverProcess = spawn("node", ["server.js"], {
       cwd: PROJECT_ROOT,
-      env: { ...process.env, PORT: String(TEST_PORT), DB_PATH: TEST_DB_PATH },
+      env: {
+        ...process.env,
+        PORT: String(TEST_PORT),
+        DB_PATH: TEST_DB_PATH,
+        AUDIT_LOG_PATH: TEST_AUDIT_PATH,
+        EVENT_LEDGER_PATH: TEST_LEDGER_PATH
+      },
       stdio: ["pipe", "pipe", "pipe"]
     });
 
@@ -112,6 +128,7 @@ async function runTests() {
     console.log("-".repeat(60));
 
     const previewRes = await req("/animals/import/preview", "POST", sampleData);
+    assertResult(previewRes.status === 200, "导入预览接口应返回200");
     console.log(`状态码: ${previewRes.status}`);
     console.log(`总数: ${previewRes.body.total}`);
     console.log(`可导入: ${previewRes.body.importable}`);
@@ -156,6 +173,7 @@ async function runTests() {
 
     const importRes = await req("/animals/import", "POST", sampleData);
     console.log(`状态码: ${importRes.status}`);
+    assertResult(importRes.status === 201, "确认导入接口应返回201");
     if (importRes.status === 201) {
       console.log(`成功导入: ${importRes.body.imported}`);
       console.log(`跳过数: ${importRes.body.skipped}`);
@@ -171,6 +189,8 @@ async function runTests() {
 
     const animalsRes = await req("/animals", "GET");
     const withFacilityFields = animalsRes.body.filter(a => a.roomId && a.zoneId && a.projectId);
+    assertResult(Array.isArray(animalsRes.body), "动物列表应返回数组");
+    assertResult(withFacilityFields.length === animalsRes.body.length, "所有动物都应有完整设施字段");
     console.log(`动物总数: ${animalsRes.body.length}`);
     console.log(`含完整设施字段的动物数: ${withFacilityFields.length}`);
     console.log(`结果: ${withFacilityFields.length === animalsRes.body.length ? "✓ 所有动物都有完整设施字段" : `✗ 有 ${animalsRes.body.length - withFacilityFields.length} 只动物缺失设施字段`}`);
@@ -180,6 +200,7 @@ async function runTests() {
     const emptyRes = await req("/animals/import/preview", "POST", []);
     console.log(`状态码: ${emptyRes.status}`);
     console.log(`错误: ${emptyRes.body.error}`);
+    assertResult(emptyRes.status === 400, "空数组导入预览应返回400");
     console.log(`结果: ${emptyRes.status === 400 ? "✓ 正确拒绝" : "✗ 错误"}`);
 
     console.log("\n5. 测试非数组输入");
@@ -187,6 +208,7 @@ async function runTests() {
     const invalidRes = await req("/animals/import/preview", "POST", { not: "array" });
     console.log(`状态码: ${invalidRes.status}`);
     console.log(`错误: ${invalidRes.body.error}`);
+    assertResult(invalidRes.status === 400, "非数组输入应返回400");
     console.log(`结果: ${invalidRes.status === 400 ? "✓ 正确拒绝" : "✗ 错误"}`);
 
     console.log("\n6. 测试单个动物建档（含roomId/zoneId/projectId）");
@@ -198,6 +220,7 @@ async function runTests() {
     });
     if (singleRes.status === 201) {
       const a = singleRes.body;
+      assertResult(a.roomId === "room-default" && a.projectId === "proj-metabolism", "单个动物建档应保留正确roomId和projectId");
       console.log(`roomId: ${a.roomId} | zoneId: ${a.zoneId} | projectId: ${a.projectId}`);
       console.log(`结果: ${a.roomId === "room-default" && a.projectId === "proj-metabolism" ? "✓ 正确" : "✗ 错误"}`);
     } else {
@@ -210,7 +233,19 @@ async function runTests() {
     const fmtErrors = fmtRes.body.fieldErrors[0]?.errors || [];
     const facilityFieldErrors = fmtErrors.filter(e => e.code && (e.code.includes("room") || e.code.includes("zone") || e.code.includes("project")));
     facilityFieldErrors.forEach(e => console.log(`  ${e.field}: ${e.message}`));
+    assertResult(facilityFieldErrors.length > 0, "设施字段格式错误应被拦截");
     console.log(`结果: ${facilityFieldErrors.length > 0 ? "✓ 正确拦截格式错误" : "✗ 未拦截"}`);
+
+    console.log("\n7.1 测试不存在的roomId/zoneId不放行");
+    console.log("-".repeat(60));
+    const missingRoomRes = await req("/animals/import/preview", "POST", [{ id: "ani-t7-room-" + Date.now(), strain: "C57BL/6J", cageId: "D-03", roomId: "room-does-not-exist", projectId: "proj-metabolism", sex: "male", birthDate: "2026-04-01", project: "代谢观察", keeper: "测试员" }]);
+    console.log(`缺失房间提示数: ${(missingRoomRes.body.missingRooms || []).length}`);
+    console.log(`可导入数: ${missingRoomRes.body.importable}`);
+    assertResult((missingRoomRes.body.missingRooms || []).length === 1 && missingRoomRes.body.importable === 0, "不存在的roomId应提示并阻止导入");
+    const missingZoneRes = await req("/animals/import/preview", "POST", [{ id: "ani-t7-zone-" + Date.now(), strain: "C57BL/6J", cageId: "D-03", zoneId: "zone-does-not-exist", projectId: "proj-metabolism", sex: "male", birthDate: "2026-04-01", project: "代谢观察", keeper: "测试员" }]);
+    console.log(`缺失区域提示数: ${(missingZoneRes.body.missingZones || []).length}`);
+    console.log(`可导入数: ${missingZoneRes.body.importable}`);
+    assertResult((missingZoneRes.body.missingZones || []).length === 1 && missingZoneRes.body.importable === 0, "不存在的zoneId应提示并阻止导入");
 
     console.log("\n8. 测试房间归属一致性（roomId与笼位不一致，以笼位为准）");
     console.log("-".repeat(60));
@@ -219,9 +254,13 @@ async function runTests() {
     const mmRes = await req("/animals/import", "POST", [{ id: "ani-t8-" + Date.now(), strain: "C57BL/6J", cageId: cage8Id, roomId: "room-secondary", zoneId: "zone-default", projectId: "proj-metabolism", sex: "male", birthDate: "2026-04-02", project: "代谢观察", keeper: "测试员" }]);
     if (mmRes.status === 201 && mmRes.body.animals?.length > 0) {
       const a = mmRes.body.animals[0];
+      assertResult(a.roomId === "room-default", "roomId与笼位不一致时应以笼位房间为准");
+      assertResult(mmRes.body.warnings?.roomMismatches?.length > 0, "roomId不一致时应返回房间不匹配警告");
       console.log(`导入动物 roomId: ${a.roomId} (笼位属于 room-default)`);
       console.log(`结果: ${a.roomId === "room-default" ? "✓ 以笼位所属房间为准" : "✗ 错误"}`);
       console.log(`房间不匹配警告: ${mmRes.body.warnings?.roomMismatches?.length > 0 ? "✓ 有" : "✗ 无"}`);
+    } else {
+      throw new Error("房间归属一致性测试应成功导入一条记录");
     }
 
     console.log("\n9. 测试projectId优先级（projectId优先于project名称解析）");
@@ -233,8 +272,11 @@ async function runTests() {
     const ppRes = await req("/animals/import", "POST", [{ id: "ani-t9b-" + Date.now(), strain: "BALB/c", cageId: cage9Id, roomId: "room-default", zoneId: "zone-default", projectId: "proj-oncology", sex: "female", birthDate: "2026-04-03", project: "代谢观察", keeper: "测试员" }]);
     if (ppRes.status === 201 && ppRes.body.animals?.length > 0) {
       const a = ppRes.body.animals[0];
+      assertResult(a.projectId === "proj-oncology", "projectId应优先于project名称解析");
       console.log(`导入 projectId: ${a.projectId} (输入proj-oncology vs project名"代谢观察")`);
       console.log(`结果: ${a.projectId === "proj-oncology" ? "✓ projectId优先" : "✗ 错误"}`);
+    } else {
+      throw new Error("projectId优先级测试应成功导入一条记录");
     }
 
     console.log("\n10. 测试keeper项目权限限制");
@@ -243,9 +285,11 @@ async function runTests() {
     await req("/cages", "POST", { id: cage10Id, roomId: "room-default", zoneId: "zone-default", area: "SPF区", rack: "T", capacity: 10, status: "active" });
     const restrictedRes = await req("/animals/import/preview", "POST", [{ id: "ani-t10r-" + Date.now(), strain: "C57BL/6J", cageId: cage10Id, roomId: "room-default", zoneId: "zone-default", projectId: "proj-metabolism", sex: "male", birthDate: "2026-04-04", project: "代谢观察", keeper: "测试员" }], API_KEYS.PROJECT_KEEPER);
     console.log(`项目权限错误数: ${restrictedRes.body.projectPermissionErrors?.length || 0}`);
+    assertResult((restrictedRes.body.projectPermissionErrors || []).length > 0, "无权限项目应被拦截");
     console.log(`结果: ${(restrictedRes.body.projectPermissionErrors || []).length > 0 ? "✓ 正确拦截" : "✗ 未拦截"}`);
     const allowedRes = await req("/animals/import/preview", "POST", [{ id: "ani-t10a-" + Date.now(), strain: "C57BL/6J", cageId: cage10Id, roomId: "room-default", zoneId: "zone-default", projectId: "proj-oncology", sex: "female", birthDate: "2026-04-05", project: "肿瘤研究", keeper: "测试员" }], API_KEYS.PROJECT_KEEPER);
     console.log(`有权限项目可导入数: ${allowedRes.body.importable}`);
+    assertResult(allowedRes.body.importable === 1, "有权限项目应允许导入");
     console.log(`结果: ${allowedRes.body.importable === 1 ? "✓ 正确" : "✗ 错误"}`);
 
     console.log("\n11. 测试keeper房间权限限制");
@@ -254,9 +298,11 @@ async function runTests() {
     await req("/cages", "POST", { id: cage11Id, roomId: "room-secondary", zoneId: "zone-transgenic", area: "转基因区", rack: "T", capacity: 5, status: "active" });
     const roomRestrictedRes = await req("/animals/import/preview", "POST", [{ id: "ani-t11r-" + Date.now(), strain: "C57BL/6J", cageId: cage11Id, sex: "male", birthDate: "2026-04-06", project: "转基因核心群", keeper: "测试员" }], API_KEYS.KEEPER_LQ);
     console.log(`房间权限错误数: ${roomRestrictedRes.body.roomPermissionErrors?.length || 0}`);
+    assertResult((roomRestrictedRes.body.roomPermissionErrors || []).length > 0, "无权限房间应被拦截");
     console.log(`结果: ${(roomRestrictedRes.body.roomPermissionErrors || []).length > 0 ? "✓ 正确拦截" : "✗ 未拦截"}`);
     const roomAllowedRes = await req("/animals/import/preview", "POST", [{ id: "ani-t11a-" + Date.now(), strain: "C57BL/6J", cageId: cage11Id, sex: "female", birthDate: "2026-04-07", project: "转基因核心群", keeper: "测试员" }], API_KEYS.KEEPER_ZY);
     console.log(`keeper-002可导入数: ${roomAllowedRes.body.importable}`);
+    assertResult(roomAllowedRes.body.importable === 1, "有权限房间应允许导入");
     console.log(`结果: ${roomAllowedRes.body.importable === 1 ? "✓ 正确" : "✗ 错误"}`);
 
     console.log("\n12. 测试未知项目名称不放行（缺失projectId且project名称不匹配）");
@@ -266,6 +312,8 @@ async function runTests() {
     const unknownProjRes = await req("/animals/import/preview", "POST", [{ id: "ani-t12-" + Date.now(), strain: "C57BL/6J", cageId: cage12Id, sex: "female", birthDate: "2026-04-08", project: "不存在的项目", keeper: "测试员" }]);
     const unknownProjErrors = (unknownProjRes.body.missingProjects || []).filter(p => p.message && p.message.includes("未找到匹配"));
     console.log(`未匹配项目错误数: ${unknownProjErrors.length}`);
+    assertResult(unknownProjErrors.length > 0, "未知项目名称应返回missingProjects提示");
+    assertResult(unknownProjRes.body.importable === 0, "未知项目名称预览不可导入");
     if (unknownProjErrors.length > 0) {
       console.log(`  ${unknownProjErrors[0].message}`);
       console.log(`可导入数: ${unknownProjRes.body.importable}`);
@@ -276,6 +324,7 @@ async function runTests() {
 
     const unknownProjConfirmRes = await req("/animals/import", "POST", [{ id: "ani-t12b-" + Date.now(), strain: "C57BL/6J", cageId: cage12Id, sex: "female", birthDate: "2026-04-08", project: "不存在的项目", keeper: "测试员" }]);
     console.log(`正式导入状态码: ${unknownProjConfirmRes.status}`);
+    assertResult(unknownProjConfirmRes.status === 422, "未知项目名称正式导入应返回422");
     console.log(`结果: ${unknownProjConfirmRes.status === 422 ? "✓ 正确拒绝导入" : "✗ 错误放行"}`);
 
     console.log("\n13. 测试默认项目名称可正常解析(project=默认项目)");
@@ -284,8 +333,10 @@ async function runTests() {
     await req("/cages", "POST", { id: cage13Id, roomId: "room-default", zoneId: "zone-default", area: "SPF区", rack: "T", capacity: 10, status: "active" });
     const defaultProjRes = await req("/animals/import/preview", "POST", [{ id: "ani-t13-" + Date.now(), strain: "C57BL/6J", cageId: cage13Id, sex: "male", birthDate: "2026-04-09", project: "默认项目", keeper: "测试员" }]);
     console.log(`可导入数: ${defaultProjRes.body.importable}`);
+    assertResult(defaultProjRes.body.importable === 1, "默认项目名称应可导入");
     if (defaultProjRes.body.validItems?.length > 0) {
       const v = defaultProjRes.body.validItems[0];
+      assertResult(v.projectId === "project-default", "默认项目名称应解析为project-default");
       console.log(`解析 projectId: ${v.projectId}`);
       console.log(`结果: ${v.projectId === "project-default" ? "✓ 默认项目名称正确解析" : "✗ 解析错误"}`);
     }
@@ -297,12 +348,14 @@ async function runTests() {
     const arRes = await req("/animals/import/preview", "POST", [{ id: "ani-t14-" + Date.now(), strain: "C57BL/6J", cageId: cage14Id, sex: "female", birthDate: "2026-04-10", project: "代谢观察", keeper: "测试员" }]);
     const arWarnings = arRes.body.autoResolvedWarnings || [];
     console.log(`自动解析警告数: ${arWarnings.length}`);
+    assertResult(arWarnings.length > 0, "缺省设施字段应返回自动解析警告");
     if (arWarnings.length > 0) {
       const w = arWarnings[0];
       console.log(`  字段: ${w.fields.map(f => `${f.field}←${f.from}(${f.name})`).join(", ")}`);
       const hasRoomId = w.fields.some(f => f.field === "roomId");
       const hasZoneId = w.fields.some(f => f.field === "zoneId");
       const hasProjectId = w.fields.some(f => f.field === "projectId");
+      assertResult(hasRoomId && hasZoneId && hasProjectId, "自动解析警告应包含roomId、zoneId、projectId");
       console.log(`结果: ${hasRoomId && hasZoneId && hasProjectId ? "✓ 正确提示所有自动解析字段" : "✗ 遗漏部分字段"}`);
     }
 
@@ -311,7 +364,9 @@ async function runTests() {
     const prodDbExists = existsSync(join(PROJECT_ROOT, "data", "lab.json"));
     console.log(`生产数据库存在: ${prodDbExists}`);
     console.log(`测试数据库: ${TEST_DB_PATH}`);
-    console.log(`结果: ✓ 测试使用独立临时数据库，不影响生产数据`);
+    console.log(`测试审计日志: ${TEST_AUDIT_PATH}`);
+    console.log(`测试事件账本: ${TEST_LEDGER_PATH}`);
+    console.log(`结果: ✓ 测试使用独立临时数据文件，不影响生产数据`);
 
     console.log("\n" + "=".repeat(60));
     console.log("测试完成");
@@ -321,7 +376,9 @@ async function runTests() {
     serverProcess.kill("SIGTERM");
     setTimeout(() => { try { serverProcess.kill("SIGKILL"); } catch {} }, 3000);
 
-    try { await unlink(TEST_DB_PATH); console.log(`已清理临时数据库: ${TEST_DB_PATH}`); } catch {}
+    for (const path of [TEST_DB_PATH, TEST_AUDIT_PATH, TEST_LEDGER_PATH]) {
+      try { await unlink(path); console.log(`已清理临时文件: ${path}`); } catch {}
+    }
   }
 }
 

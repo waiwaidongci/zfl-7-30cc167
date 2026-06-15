@@ -2506,23 +2506,13 @@
       "keeper": "周遥",
       "source": "feeding_checkin",
       "sourceRecordId": "record-3",
-      "condition": "腹泻，粪便稀软，精神差；幂等合并基准；客户端覆盖-幂等测试",
+      "condition": "腹泻，粪便稀软，精神差",
       "abnormalKeywords": [
         "腹泻",
         "粪便异常",
-        "精神差",
-        "体重异常变化"
+        "精神差"
       ],
-      "weightChange": {
-        "previousWeight": 22,
-        "previousDate": "4732-06-19",
-        "currentWeight": 18.5,
-        "diff": -3.5,
-        "percent": -15.909090909090908,
-        "daysDiff": -988349,
-        "threshold": 10,
-        "isAbnormal": true
-      },
+      "weightChange": null,
       "handler": null,
       "assignee": "周遥",
       "status": "assigned",
@@ -2533,83 +2523,19 @@
           "content": "分派负责人：周遥",
           "createdAt": "2026-06-13T10:00:00.000Z",
           "author": "system"
-        },
-        {
-          "id": "hn-1781492777877-o7h8f",
-          "type": "auto_merge",
-          "content": "幂等合并基准",
-          "createdAt": "2026-06-15T03:06:17.877Z",
-          "author": "system",
-          "keywords": [
-            "体重异常变化"
-          ]
-        },
-        {
-          "id": "hn-1781492777884-58gy7",
-          "type": "auto_merge",
-          "content": "客户端覆盖-幂等测试",
-          "createdAt": "2026-06-15T03:06:17.884Z",
-          "author": "system",
-          "keywords": [
-            "体重异常变化"
-          ]
-        },
-        {
-          "id": "hn-1781492986259-m2963",
-          "type": "auto_merge",
-          "content": "幂等合并基准",
-          "createdAt": "2026-06-15T03:09:46.259Z",
-          "author": "system",
-          "keywords": [
-            "体重异常变化"
-          ]
-        },
-        {
-          "id": "hn-1781492986261-r8y8u",
-          "type": "auto_merge",
-          "content": "客户端覆盖-幂等测试",
-          "createdAt": "2026-06-15T03:09:46.261Z",
-          "author": "system",
-          "keywords": [
-            "体重异常变化"
-          ]
-        },
-        {
-          "id": "hn-1781493076430-0am3x",
-          "type": "auto_merge",
-          "content": "客户端覆盖-幂等测试",
-          "createdAt": "2026-06-15T03:11:16.430Z",
-          "author": "system",
-          "keywords": [
-            "体重异常变化"
-          ]
-        },
-        {
-          "id": "hn-1781524798491-ca59w",
-          "type": "auto_merge",
-          "content": "客户端覆盖-幂等测试",
-          "createdAt": "2026-06-15T11:59:58.491Z",
-          "author": "system",
-          "keywords": [
-            "体重异常变化"
-          ]
         }
       ],
       "createdAt": "2026-06-13T09:20:00.000Z",
-      "updatedAt": "2026-06-15T11:59:58.491Z",
+      "updatedAt": "2026-06-13T10:00:00.000Z",
       "assignedAt": "2026-06-13T10:00:00.000Z",
       "inProgressAt": null,
       "closedAt": null,
       "closeReason": null,
       "relatedRecordIds": [
-        "record-3",
-        "note-1781492777877-3mpnu",
-        "note-1781492986259-lcn31",
-        "note-1781520065761-089av"
+        "record-3"
       ],
       "roomId": "room-default",
-      "projectId": "proj-immunology",
-      "severity": "critical"
+      "projectId": "proj-immunology"
     },
     {
       "id": "hev-demo-4",

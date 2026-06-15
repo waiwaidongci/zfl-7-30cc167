@@ -9,10 +9,15 @@ import {
   getHealthEventStats,
   migrateHistoricalNotes,
   EVENT_STATUS,
+  EVENT_SEVERITY,
+  EVENT_SEVERITY_LABELS,
+  EVENT_STATUS_LABELS,
   ABNORMAL_KEYWORDS,
   WEIGHT_CHANGE_THRESHOLD,
   detectAbnormalKeywords,
-  calculateWeightChange
+  calculateWeightChange,
+  inferSeverityFromKeywords,
+  isEventOverdue
 } from "../lib/healthEventData.js";
 import { getAnimal } from "../lib/animalData.js";
 import { checkRoomWriteAccess } from "../lib/permissions.js";
@@ -32,6 +37,9 @@ function handleMeta(req, res, url, db) {
   if (req.method === "GET" && url.pathname === "/health-events/meta") {
     send(res, 200, {
       statuses: EVENT_STATUS,
+      statusLabels: EVENT_STATUS_LABELS,
+      severities: EVENT_SEVERITY,
+      severityLabels: EVENT_SEVERITY_LABELS,
       abnormalKeywords: ABNORMAL_KEYWORDS,
       weightThreshold: WEIGHT_CHANGE_THRESHOLD
     });
@@ -47,6 +55,7 @@ function handleStats(req, res, url, db) {
       keeper: url.searchParams.get("keeper"),
       handler: url.searchParams.get("handler"),
       assignee: url.searchParams.get("assignee"),
+      severity: url.searchParams.get("severity") || undefined,
       fromDate: url.searchParams.get("fromDate"),
       toDate: url.searchParams.get("toDate"),
       roomId: url.searchParams.get("roomId") || undefined
@@ -111,6 +120,8 @@ function handleList(req, res, url, db) {
       project: url.searchParams.get("project"),
       keeper: url.searchParams.get("keeper"),
       handler: url.searchParams.get("handler"),
+      severity: url.searchParams.get("severity") || undefined,
+      overdue: url.searchParams.get("overdue") || undefined,
       animalId: url.searchParams.get("animalId"),
       source: url.searchParams.get("source"),
       fromDate: url.searchParams.get("fromDate"),
@@ -142,6 +153,9 @@ async function handleCreateEvent(req, res, db) {
   }
   if (!input.condition && !input.abnormalKeywords?.length) {
     return send(res, 400, { error: "condition_or_keywords_required" });
+  }
+  if (input.severity && !Object.values(EVENT_SEVERITY).includes(input.severity)) {
+    return send(res, 400, { error: "invalid_severity", allowed: Object.values(EVENT_SEVERITY) });
   }
   const roomCheck = checkRoomWriteAccess(req._principal, animal.roomId);
   if (!roomCheck.authorized) {
@@ -195,10 +209,11 @@ async function handleAssign(req, res, db, id) {
     return send(res, 403, { error: roomCheck.error, message: roomCheck.message });
   }
   const input = await body(req);
-  if (!input.assignee) {
+  const assignee = typeof input === "string" ? input : input.assignee;
+  if (!assignee) {
     return send(res, 400, { error: "assignee_required" });
   }
-  const result = assignHealthEvent(db, id, input.assignee);
+  const result = assignHealthEvent(db, id, input);
   if (result.error) {
     return send(res, 422, { error: result.error, message: result.message });
   }

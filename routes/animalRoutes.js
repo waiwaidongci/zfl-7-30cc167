@@ -3,7 +3,7 @@ import { listAnimals, getAnimal, addAnimal, addNote, moveAnimal, removeAnimal, b
 import { validateAnimalFull, validateAnimalFields, ANIMAL_STATUS } from "../lib/animalValidator.js";
 import { validateCageForAnimal } from "../lib/cageValidator.js";
 import { validateBatchImport, getValidImportItems } from "../lib/batchImportValidator.js";
-import { detectAndCreateEvent, detectAbnormalKeywords, calculateWeightChange, findMergeableEvent, mergeToExistingEvent, createHealthEvent } from "../lib/healthEventData.js";
+import { detectAndCreateEvent, detectAbnormalKeywords, calculateWeightChange, findMergeableEvent, mergeToExistingEvent, createHealthEvent, EVENT_SEVERITY, inferSeverityFromKeywords } from "../lib/healthEventData.js";
 import { checkRoomWriteAccess } from "../lib/permissions.js";
 
 export async function handleAnimalRoutes(req, res, url, db) {
@@ -315,15 +315,18 @@ async function handleQuarantineRecord(req, res, db, animalId) {
     });
     if (!healthResult.created && input.isAbnormal) {
       const allKeywords = ["检疫标记异常", ...detectAbnormalKeywords(conditionText)];
+      const weightResult = weight != null ? calculateWeightChange(animal, weight) : null;
       const existing = findMergeableEvent(db, animalId, allKeywords);
+      const inferredSeverity = inferSeverityFromKeywords(allKeywords, weightResult, EVENT_SEVERITY.WARNING);
       const eventParams = {
         animalId,
         condition: conditionText || "检疫记录标记异常",
         abnormalKeywords: allKeywords,
-        weightChange: weight != null ? calculateWeightChange(animal, weight) : null,
+        weightChange: weightResult,
         source: "quarantine_record_abnormal",
         sourceRecordId: record.id,
-        keeper: input.examiner || animal.keeper
+        keeper: input.examiner || animal.keeper,
+        severity: inferredSeverity
       };
       if (existing) {
         const merged = mergeToExistingEvent(db, existing, eventParams);
@@ -399,13 +402,15 @@ async function handleQuarantineAbnormal(req, res, db, animalId) {
   const conditionText = (input.reason || "检疫异常") + (input.notes ? `：${input.notes}` : "");
   const allKeywords = ["检疫标记异常", ...detectAbnormalKeywords(conditionText)];
   const existing = findMergeableEvent(db, animalId, allKeywords);
+  const inferredSeverity = inferSeverityFromKeywords(allKeywords, null, EVENT_SEVERITY.WARNING);
   const eventParams = {
     animalId,
     condition: conditionText,
     abnormalKeywords: allKeywords,
     source: "quarantine_abnormal_mark",
     sourceRecordId: markerId,
-    keeper: input.handler || animal.keeper
+    keeper: input.handler || animal.keeper,
+    severity: inferredSeverity
   };
 
   let healthResult;

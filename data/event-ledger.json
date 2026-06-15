@@ -3854,9 +3854,1081 @@
         "offline": true
       },
       "checksum": "e5c18a12a427683383c08d9778715a8925a03e82f16890a8381c833de46e360e"
+    },
+    {
+      "id": "evt-84",
+      "eventType": "animal.created",
+      "animalId": "ani-2011",
+      "timestamp": "2026-06-15T04:36:54.667Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "id": "ani-2011",
+        "strain": "BALB/c",
+        "cageId": "B-03",
+        "sex": "male",
+        "birthDate": "2026-03-02",
+        "project": "免疫反应",
+        "keeper": "周遥",
+        "initialStatus": "quarantine",
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "batchImported": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2011",
+        "strain": "BALB/c",
+        "cageId": "B-03",
+        "sex": "male",
+        "birthDate": "2026-03-02",
+        "project": "免疫反应",
+        "keeper": "周遥",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-15T04:36:54.666Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "e5c18a12a427683383c08d9778715a8925a03e82f16890a8381c833de46e360e",
+      "metadata": null,
+      "checksum": "a03b9b32928c1d9dbd63b5edf46aaa940df48526d15b0e02f946fcc50be1a95e"
+    },
+    {
+      "id": "evt-85",
+      "eventType": "animal.created",
+      "animalId": "ani-2007",
+      "timestamp": "2026-06-15T04:36:54.670Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "id": "ani-2007",
+        "strain": "BALB/c",
+        "cageId": "B-03",
+        "sex": "female",
+        "birthDate": "2026-02-26",
+        "project": "免疫反应",
+        "keeper": "周遥",
+        "initialStatus": "quarantine",
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "batchImported": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2007",
+        "strain": "BALB/c",
+        "cageId": "B-03",
+        "sex": "female",
+        "birthDate": "2026-02-26",
+        "project": "免疫反应",
+        "keeper": "周遥",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-15T04:36:54.666Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "a03b9b32928c1d9dbd63b5edf46aaa940df48526d15b0e02f946fcc50be1a95e",
+      "metadata": null,
+      "checksum": "64e91f8a52bf951fe43b15102cb7ffe905a769bb1506c638356c3cdc9648c24c"
+    },
+    {
+      "id": "evt-86",
+      "eventType": "animal.created",
+      "animalId": "ani-2008",
+      "timestamp": "2026-06-15T04:36:54.673Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "id": "ani-2008",
+        "strain": "BALB/c",
+        "cageId": "B-03",
+        "sex": "male",
+        "birthDate": "2026-02-27",
+        "project": "免疫反应",
+        "keeper": "周遥",
+        "initialStatus": "quarantine",
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "batchImported": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2008",
+        "strain": "BALB/c",
+        "cageId": "B-03",
+        "sex": "male",
+        "birthDate": "2026-02-27",
+        "project": "免疫反应",
+        "keeper": "周遥",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-15T04:36:54.666Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "64e91f8a52bf951fe43b15102cb7ffe905a769bb1506c638356c3cdc9648c24c",
+      "metadata": null,
+      "checksum": "d586c606a21767954fe6c1011d203a64c102d99e5f317f44692bf47872d1b53c"
+    },
+    {
+      "id": "evt-87",
+      "eventType": "animal.created",
+      "animalId": "ani-2009",
+      "timestamp": "2026-06-15T04:36:54.675Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "id": "ani-2009",
+        "strain": "BALB/c",
+        "cageId": "B-03",
+        "sex": "female",
+        "birthDate": "2026-02-28",
+        "project": "免疫反应",
+        "keeper": "周遥",
+        "initialStatus": "quarantine",
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "batchImported": true
+      },
+      "snapshotAfter": {
+        "id": "ani-2009",
+        "strain": "BALB/c",
+        "cageId": "B-03",
+        "sex": "female",
+        "birthDate": "2026-02-28",
+        "project": "免疫反应",
+        "keeper": "周遥",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-15T04:36:54.666Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "d586c606a21767954fe6c1011d203a64c102d99e5f317f44692bf47872d1b53c",
+      "metadata": null,
+      "checksum": "7e1af3b86d4c486b0e586f4b163f5ef1e5ee64e6514ab56efaf47e8f722f018e"
+    },
+    {
+      "id": "evt-88",
+      "eventType": "animal.created",
+      "animalId": "ani-1781498214666-djmui",
+      "timestamp": "2026-06-15T04:36:54.680Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "id": "ani-1781498214666-djmui",
+        "strain": "BALB/c",
+        "cageId": "B-04",
+        "sex": "female",
+        "birthDate": "2026-03-01",
+        "project": "免疫反应",
+        "keeper": "周遥",
+        "initialStatus": "quarantine",
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "batchImported": true
+      },
+      "snapshotAfter": {
+        "id": "ani-1781498214666-djmui",
+        "strain": "BALB/c",
+        "cageId": "B-04",
+        "sex": "female",
+        "birthDate": "2026-03-01",
+        "project": "免疫反应",
+        "keeper": "周遥",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-15T04:36:54.666Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "7e1af3b86d4c486b0e586f4b163f5ef1e5ee64e6514ab56efaf47e8f722f018e",
+      "metadata": null,
+      "checksum": "79ba9bb58bcc4e79d7b8193d6b2ff0cf65ddfcc43382956c1f3e25bc744fafa5"
+    },
+    {
+      "id": "evt-89",
+      "eventType": "animal.batch_imported",
+      "animalId": null,
+      "timestamp": "2026-06-15T04:36:54.683Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "count": 5,
+        "animalIds": [
+          "ani-2011",
+          "ani-2007",
+          "ani-2008",
+          "ani-2009",
+          "ani-1781498214666-djmui"
+        ],
+        "source": "api"
+      },
+      "snapshotAfter": null,
+      "previousChecksum": "79ba9bb58bcc4e79d7b8193d6b2ff0cf65ddfcc43382956c1f3e25bc744fafa5",
+      "metadata": null,
+      "checksum": "3e9b2e2031331be129be89286d95aff67b91194d1986d93214d8ab6a5e50f2ae"
+    },
+    {
+      "id": "evt-90",
+      "eventType": "animal.created",
+      "animalId": "ani-test-mismatch",
+      "timestamp": "2026-06-15T04:36:54.731Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "id": "ani-test-mismatch",
+        "strain": "C57BL/6J",
+        "cageId": "A-01",
+        "sex": "male",
+        "birthDate": "2026-04-02",
+        "project": "代谢观察",
+        "keeper": "测试员",
+        "initialStatus": "quarantine",
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "batchImported": true
+      },
+      "snapshotAfter": {
+        "id": "ani-test-mismatch",
+        "strain": "C57BL/6J",
+        "cageId": "A-01",
+        "sex": "male",
+        "birthDate": "2026-04-02",
+        "project": "代谢观察",
+        "keeper": "测试员",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-15T04:36:54.729Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "3e9b2e2031331be129be89286d95aff67b91194d1986d93214d8ab6a5e50f2ae",
+      "metadata": null,
+      "checksum": "7dbfb0082932adc85246061bdd57f49315bb0e9b8026a9a546dfdb0f09a0f0f4"
+    },
+    {
+      "id": "evt-91",
+      "eventType": "animal.batch_imported",
+      "animalId": null,
+      "timestamp": "2026-06-15T04:36:54.753Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "count": 1,
+        "animalIds": [
+          "ani-test-mismatch"
+        ],
+        "source": "api"
+      },
+      "snapshotAfter": null,
+      "previousChecksum": "7dbfb0082932adc85246061bdd57f49315bb0e9b8026a9a546dfdb0f09a0f0f4",
+      "metadata": null,
+      "checksum": "989247247c1f9d8593d89ca3f5cbf0a1b89d7cf2df5749430b090f2aba571a91"
+    },
+    {
+      "id": "evt-92",
+      "eventType": "animal.created",
+      "animalId": "ani-test-proj-priority",
+      "timestamp": "2026-06-15T04:36:55.461Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "id": "ani-test-proj-priority",
+        "strain": "BALB/c",
+        "cageId": "B-04",
+        "sex": "female",
+        "birthDate": "2026-04-03",
+        "project": "代谢观察",
+        "keeper": "测试员",
+        "initialStatus": "quarantine",
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "batchImported": true
+      },
+      "snapshotAfter": {
+        "id": "ani-test-proj-priority",
+        "strain": "BALB/c",
+        "cageId": "B-04",
+        "sex": "female",
+        "birthDate": "2026-04-03",
+        "project": "代谢观察",
+        "keeper": "测试员",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-15T04:36:55.144Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "989247247c1f9d8593d89ca3f5cbf0a1b89d7cf2df5749430b090f2aba571a91",
+      "metadata": null,
+      "checksum": "a50d652a0030e2c657efe427e9087c10b4013e8043895040f9f4c48d647a0c5a"
+    },
+    {
+      "id": "evt-93",
+      "eventType": "animal.batch_imported",
+      "animalId": null,
+      "timestamp": "2026-06-15T04:36:56.096Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "count": 1,
+        "animalIds": [
+          "ani-test-proj-priority"
+        ],
+        "source": "api"
+      },
+      "snapshotAfter": null,
+      "previousChecksum": "a50d652a0030e2c657efe427e9087c10b4013e8043895040f9f4c48d647a0c5a",
+      "metadata": null,
+      "checksum": "a7738ce97fec7fcc98f1af8b8679afbeed84785fcb38415947bde9a22d5bea76"
+    },
+    {
+      "id": "evt-94",
+      "eventType": "animal.created",
+      "animalId": "ani-test-single-1781500097005",
+      "timestamp": "2026-06-15T05:08:17.027Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限，所有房间和项目均无限制",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "id": "ani-test-single-1781500097005",
+        "strain": "C57BL/6J",
+        "cageId": "A-02",
+        "sex": "female",
+        "birthDate": "2026-04-01",
+        "project": "代谢观察",
+        "keeper": "测试员",
+        "initialStatus": "quarantine",
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "source": "api"
+      },
+      "snapshotAfter": {
+        "id": "ani-test-single-1781500097005",
+        "strain": "C57BL/6J",
+        "cageId": "A-02",
+        "sex": "female",
+        "birthDate": "2026-04-01",
+        "project": "代谢观察",
+        "keeper": "测试员",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-15T05:08:17.019Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "a7738ce97fec7fcc98f1af8b8679afbeed84785fcb38415947bde9a22d5bea76",
+      "metadata": null,
+      "checksum": "658d33844f56d2f3b1ed813de3e3c7adadb2d3e55712f0defa65628ae4dbf75f"
+    },
+    {
+      "id": "evt-95",
+      "eventType": "animal.created",
+      "animalId": "ani-test-mismatch-1781500097047",
+      "timestamp": "2026-06-15T05:08:17.052Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限，所有房间和项目均无限制",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "id": "ani-test-mismatch-1781500097047",
+        "strain": "C57BL/6J",
+        "cageId": "A-01",
+        "sex": "male",
+        "birthDate": "2026-04-02",
+        "project": "代谢观察",
+        "keeper": "测试员",
+        "initialStatus": "quarantine",
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "batchImported": true
+      },
+      "snapshotAfter": {
+        "id": "ani-test-mismatch-1781500097047",
+        "strain": "C57BL/6J",
+        "cageId": "A-01",
+        "sex": "male",
+        "birthDate": "2026-04-02",
+        "project": "代谢观察",
+        "keeper": "测试员",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-15T05:08:17.051Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "658d33844f56d2f3b1ed813de3e3c7adadb2d3e55712f0defa65628ae4dbf75f",
+      "metadata": null,
+      "checksum": "c8ef2dc33832571a58a328a938e19c3148d0cc8706854aca1556796708038c26"
+    },
+    {
+      "id": "evt-96",
+      "eventType": "animal.batch_imported",
+      "animalId": null,
+      "timestamp": "2026-06-15T05:08:17.056Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限，所有房间和项目均无限制",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "count": 1,
+        "animalIds": [
+          "ani-test-mismatch-1781500097047"
+        ],
+        "source": "api"
+      },
+      "snapshotAfter": null,
+      "previousChecksum": "c8ef2dc33832571a58a328a938e19c3148d0cc8706854aca1556796708038c26",
+      "metadata": null,
+      "checksum": "f94b4b5d231fc3205e5beb4dac788e77c5db0152426ebb4be5e1f638670da924"
+    },
+    {
+      "id": "evt-97",
+      "eventType": "animal.created",
+      "animalId": "ani-test-mismatch-1781500810828",
+      "timestamp": "2026-06-15T05:20:10.835Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限，所有房间和项目均无限制",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "id": "ani-test-mismatch-1781500810828",
+        "strain": "C57BL/6J",
+        "cageId": "A-01",
+        "sex": "male",
+        "birthDate": "2026-04-02",
+        "project": "代谢观察",
+        "keeper": "测试员",
+        "initialStatus": "quarantine",
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "batchImported": true
+      },
+      "snapshotAfter": {
+        "id": "ani-test-mismatch-1781500810828",
+        "strain": "C57BL/6J",
+        "cageId": "A-01",
+        "sex": "male",
+        "birthDate": "2026-04-02",
+        "project": "代谢观察",
+        "keeper": "测试员",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-15T05:20:10.831Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "f94b4b5d231fc3205e5beb4dac788e77c5db0152426ebb4be5e1f638670da924",
+      "metadata": null,
+      "checksum": "e75a0adb27be7dca47c198f242c54759a0496d2c4b6ab26bbb3d0e3ff078327c"
+    },
+    {
+      "id": "evt-98",
+      "eventType": "animal.batch_imported",
+      "animalId": null,
+      "timestamp": "2026-06-15T05:20:10.842Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限，所有房间和项目均无限制",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "count": 1,
+        "animalIds": [
+          "ani-test-mismatch-1781500810828"
+        ],
+        "source": "api"
+      },
+      "snapshotAfter": null,
+      "previousChecksum": "e75a0adb27be7dca47c198f242c54759a0496d2c4b6ab26bbb3d0e3ff078327c",
+      "metadata": null,
+      "checksum": "8fd2a9970256a76f602ea1d6b869c9dc791553a4d3d17a6d0ad52605b1c4f66d"
+    },
+    {
+      "id": "evt-99",
+      "eventType": "animal.created",
+      "animalId": "ani-test-proj-priority-1781500810856",
+      "timestamp": "2026-06-15T05:20:10.883Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限，所有房间和项目均无限制",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "id": "ani-test-proj-priority-1781500810856",
+        "strain": "BALB/c",
+        "cageId": "A-01",
+        "sex": "female",
+        "birthDate": "2026-04-03",
+        "project": "代谢观察",
+        "keeper": "测试员",
+        "initialStatus": "quarantine",
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "batchImported": true
+      },
+      "snapshotAfter": {
+        "id": "ani-test-proj-priority-1781500810856",
+        "strain": "BALB/c",
+        "cageId": "A-01",
+        "sex": "female",
+        "birthDate": "2026-04-03",
+        "project": "代谢观察",
+        "keeper": "测试员",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-15T05:20:10.881Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "8fd2a9970256a76f602ea1d6b869c9dc791553a4d3d17a6d0ad52605b1c4f66d",
+      "metadata": null,
+      "checksum": "3cdf67f0fda695166aedf94e99396b088dc567b3ca10ee8021dbe596454da39c"
+    },
+    {
+      "id": "evt-100",
+      "eventType": "animal.batch_imported",
+      "animalId": null,
+      "timestamp": "2026-06-15T05:20:10.890Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限，所有房间和项目均无限制",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "count": 1,
+        "animalIds": [
+          "ani-test-proj-priority-1781500810856"
+        ],
+        "source": "api"
+      },
+      "snapshotAfter": null,
+      "previousChecksum": "3cdf67f0fda695166aedf94e99396b088dc567b3ca10ee8021dbe596454da39c",
+      "metadata": null,
+      "checksum": "0354036d6d806cfe315cee3d0d5916be646bac71aa0f7e94f552aa66cd3d25ee"
+    },
+    {
+      "id": "evt-101",
+      "eventType": "animal.created",
+      "animalId": "ani-test-single-1781501321237",
+      "timestamp": "2026-06-15T05:28:41.246Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限，所有房间和项目均无限制",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "id": "ani-test-single-1781501321237",
+        "strain": "C57BL/6J",
+        "cageId": "CAGE-TEST6-1781501321236",
+        "sex": "female",
+        "birthDate": "2026-04-01",
+        "project": "代谢观察",
+        "keeper": "测试员",
+        "initialStatus": "quarantine",
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "source": "api"
+      },
+      "snapshotAfter": {
+        "id": "ani-test-single-1781501321237",
+        "strain": "C57BL/6J",
+        "cageId": "CAGE-TEST6-1781501321236",
+        "sex": "female",
+        "birthDate": "2026-04-01",
+        "project": "代谢观察",
+        "keeper": "测试员",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-15T05:28:41.245Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "0354036d6d806cfe315cee3d0d5916be646bac71aa0f7e94f552aa66cd3d25ee",
+      "metadata": null,
+      "checksum": "a98e555d9cb4660f45f631344d4cc7b7e386a7a43630b3451ea4366c9c254046"
+    },
+    {
+      "id": "evt-102",
+      "eventType": "animal.created",
+      "animalId": "ani-test-mismatch-1781501321264",
+      "timestamp": "2026-06-15T05:28:41.271Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限，所有房间和项目均无限制",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "id": "ani-test-mismatch-1781501321264",
+        "strain": "C57BL/6J",
+        "cageId": "CAGE-TEST8-1781501321258",
+        "sex": "male",
+        "birthDate": "2026-04-02",
+        "project": "代谢观察",
+        "keeper": "测试员",
+        "initialStatus": "quarantine",
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "batchImported": true
+      },
+      "snapshotAfter": {
+        "id": "ani-test-mismatch-1781501321264",
+        "strain": "C57BL/6J",
+        "cageId": "CAGE-TEST8-1781501321258",
+        "sex": "male",
+        "birthDate": "2026-04-02",
+        "project": "代谢观察",
+        "keeper": "测试员",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-15T05:28:41.268Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "a98e555d9cb4660f45f631344d4cc7b7e386a7a43630b3451ea4366c9c254046",
+      "metadata": null,
+      "checksum": "1fd867d6d904a36cd7120f6fd1fedca4e0d26af6be8af2c5c750c759598abb63"
+    },
+    {
+      "id": "evt-103",
+      "eventType": "animal.batch_imported",
+      "animalId": null,
+      "timestamp": "2026-06-15T05:28:41.272Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限，所有房间和项目均无限制",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "count": 1,
+        "animalIds": [
+          "ani-test-mismatch-1781501321264"
+        ],
+        "source": "api"
+      },
+      "snapshotAfter": null,
+      "previousChecksum": "1fd867d6d904a36cd7120f6fd1fedca4e0d26af6be8af2c5c750c759598abb63",
+      "metadata": null,
+      "checksum": "d1d81cdb7539dd7092bef14fb1f6e682f200f1e76a1bcdc2dce51820d15c3aeb"
+    },
+    {
+      "id": "evt-104",
+      "eventType": "animal.created",
+      "animalId": "ani-test-proj-priority-1781501321277",
+      "timestamp": "2026-06-15T05:28:41.286Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限，所有房间和项目均无限制",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "id": "ani-test-proj-priority-1781501321277",
+        "strain": "BALB/c",
+        "cageId": "CAGE-TEST9-1781501321276",
+        "sex": "female",
+        "birthDate": "2026-04-03",
+        "project": "代谢观察",
+        "keeper": "测试员",
+        "initialStatus": "quarantine",
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "batchImported": true
+      },
+      "snapshotAfter": {
+        "id": "ani-test-proj-priority-1781501321277",
+        "strain": "BALB/c",
+        "cageId": "CAGE-TEST9-1781501321276",
+        "sex": "female",
+        "birthDate": "2026-04-03",
+        "project": "代谢观察",
+        "keeper": "测试员",
+        "status": "quarantine",
+        "enteredQuarantineAt": "2026-06-15T05:28:41.285Z",
+        "quarantineReleasedAt": null,
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 0,
+        "movesCount": 0,
+        "quarantineRecordsCount": 0
+      },
+      "previousChecksum": "d1d81cdb7539dd7092bef14fb1f6e682f200f1e76a1bcdc2dce51820d15c3aeb",
+      "metadata": null,
+      "checksum": "3342c527089f7564074d0a8290d04b0149fd8e65ce91c17b1a8a887b03790e06"
+    },
+    {
+      "id": "evt-105",
+      "eventType": "animal.batch_imported",
+      "animalId": null,
+      "timestamp": "2026-06-15T05:28:41.287Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限，所有房间和项目均无限制",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "count": 1,
+        "animalIds": [
+          "ani-test-proj-priority-1781501321277"
+        ],
+        "source": "api"
+      },
+      "snapshotAfter": null,
+      "previousChecksum": "3342c527089f7564074d0a8290d04b0149fd8e65ce91c17b1a8a887b03790e06",
+      "metadata": null,
+      "checksum": "e5fcba252f3d821bb48efc370b218f549b886f9455b08fae172f6da580b63d36"
     }
   ],
-  "nextId": 84,
+  "nextId": 106,
   "migratedFromSnapshot": true,
   "checksumChain": [
     "16c46ef4daeab07b4976c4685312286166b9eebf25c23088599879b737d79fbc",
@@ -3941,6 +5013,28 @@
     "3ed72304ef8f8017e1f1cf9cc4df52c9fa31611c39f243453be8d7b08a4c31f4",
     "01d77bf242c7739d1266cac664b2c77b88cf0db9c604d1f6f6dc6ee415fdba13",
     "f9d498a79d577959e4a4a267211f557d89c1277bd5841ff9cdf1f16567537c63",
-    "e5c18a12a427683383c08d9778715a8925a03e82f16890a8381c833de46e360e"
+    "e5c18a12a427683383c08d9778715a8925a03e82f16890a8381c833de46e360e",
+    "a03b9b32928c1d9dbd63b5edf46aaa940df48526d15b0e02f946fcc50be1a95e",
+    "64e91f8a52bf951fe43b15102cb7ffe905a769bb1506c638356c3cdc9648c24c",
+    "d586c606a21767954fe6c1011d203a64c102d99e5f317f44692bf47872d1b53c",
+    "7e1af3b86d4c486b0e586f4b163f5ef1e5ee64e6514ab56efaf47e8f722f018e",
+    "79ba9bb58bcc4e79d7b8193d6b2ff0cf65ddfcc43382956c1f3e25bc744fafa5",
+    "3e9b2e2031331be129be89286d95aff67b91194d1986d93214d8ab6a5e50f2ae",
+    "7dbfb0082932adc85246061bdd57f49315bb0e9b8026a9a546dfdb0f09a0f0f4",
+    "989247247c1f9d8593d89ca3f5cbf0a1b89d7cf2df5749430b090f2aba571a91",
+    "a50d652a0030e2c657efe427e9087c10b4013e8043895040f9f4c48d647a0c5a",
+    "a7738ce97fec7fcc98f1af8b8679afbeed84785fcb38415947bde9a22d5bea76",
+    "658d33844f56d2f3b1ed813de3e3c7adadb2d3e55712f0defa65628ae4dbf75f",
+    "c8ef2dc33832571a58a328a938e19c3148d0cc8706854aca1556796708038c26",
+    "f94b4b5d231fc3205e5beb4dac788e77c5db0152426ebb4be5e1f638670da924",
+    "e75a0adb27be7dca47c198f242c54759a0496d2c4b6ab26bbb3d0e3ff078327c",
+    "8fd2a9970256a76f602ea1d6b869c9dc791553a4d3d17a6d0ad52605b1c4f66d",
+    "3cdf67f0fda695166aedf94e99396b088dc567b3ca10ee8021dbe596454da39c",
+    "0354036d6d806cfe315cee3d0d5916be646bac71aa0f7e94f552aa66cd3d25ee",
+    "a98e555d9cb4660f45f631344d4cc7b7e386a7a43630b3451ea4366c9c254046",
+    "1fd867d6d904a36cd7120f6fd1fedca4e0d26af6be8af2c5c750c759598abb63",
+    "d1d81cdb7539dd7092bef14fb1f6e682f200f1e76a1bcdc2dce51820d15c3aeb",
+    "3342c527089f7564074d0a8290d04b0149fd8e65ce91c17b1a8a887b03790e06",
+    "e5fcba252f3d821bb48efc370b218f549b886f9455b08fae172f6da580b63d36"
   ]
 }

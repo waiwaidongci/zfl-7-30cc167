@@ -205,6 +205,13 @@ async function handleImportPreview(req, res, db) {
     fieldErrors: preview.fieldErrors,
     duplicateIds: preview.duplicateIds,
     missingCages: preview.missingCages,
+    missingRooms: preview.missingRooms,
+    missingZones: preview.missingZones,
+    missingProjects: preview.missingProjects,
+    roomMismatches: preview.roomMismatches,
+    zoneMismatches: preview.zoneMismatches,
+    projectMismatches: preview.projectMismatches,
+    projectPermissionErrors: preview.projectPermissionErrors,
     capacityConflicts: preview.capacityConflicts,
     roomPermissionErrors: preview.roomPermissionErrors,
     validItems: preview.validItems
@@ -238,6 +245,13 @@ async function handleImportConfirm(req, res, db) {
         fieldErrors: validation.fieldErrors,
         duplicateIds: validation.duplicateIds,
         missingCages: validation.missingCages,
+        missingRooms: validation.missingRooms,
+        missingZones: validation.missingZones,
+        missingProjects: validation.missingProjects,
+        roomMismatches: validation.roomMismatches,
+        zoneMismatches: validation.zoneMismatches,
+        projectMismatches: validation.projectMismatches,
+        projectPermissionErrors: validation.projectPermissionErrors,
         capacityConflicts: validation.capacityConflicts,
         roomPermissionErrors: validation.roomPermissionErrors
       }
@@ -257,7 +271,15 @@ async function handleImportConfirm(req, res, db) {
       fieldErrors: validation.fieldErrors,
       duplicateIds: validation.duplicateIds,
       missingCages: validation.missingCages,
-      capacityConflicts: validation.capacityConflicts
+      missingRooms: validation.missingRooms,
+      missingZones: validation.missingZones,
+      missingProjects: validation.missingProjects,
+      roomMismatches: validation.roomMismatches,
+      zoneMismatches: validation.zoneMismatches,
+      projectMismatches: validation.projectMismatches,
+      projectPermissionErrors: validation.projectPermissionErrors,
+      capacityConflicts: validation.capacityConflicts,
+      roomPermissionErrors: validation.roomPermissionErrors
     }
   });
 }

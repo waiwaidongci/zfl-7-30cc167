@@ -14,7 +14,8 @@ import {
   weanLitter,
   getFamilyTree,
   getBreedingStats,
-  getOffspringByParent
+  getOffspringByParent,
+  calculateWeaningForecast
 } from "../lib/breedingData.js";
 import {
   validatePairingFull,
@@ -55,6 +56,18 @@ export async function handleBreedingRoutes(req, res, url, db) {
       projectId: url.searchParams.get("projectId") || undefined
     };
     send(res, 200, getBreedingStats(db, filters));
+    return true;
+  }
+
+  if (req.method === "GET" && url.pathname === "/breeding/weaning-forecast") {
+    const options = {
+      weaningDays: url.searchParams.get("weaningDays") ? parseInt(url.searchParams.get("weaningDays"), 10) : undefined,
+      forecastDays: url.searchParams.get("forecastDays") ? parseInt(url.searchParams.get("forecastDays"), 10) : undefined,
+      roomId: url.searchParams.get("roomId") || undefined,
+      projectId: url.searchParams.get("projectId") || undefined,
+      principal: req._principal || null
+    };
+    send(res, 200, calculateWeaningForecast(db, options));
     return true;
   }
 

@@ -3587,9 +3587,276 @@
         "offline": true
       },
       "checksum": "a05c42f840b6141b72c258641373b21dd0a34c42161c58c5b77e663e39274c7b"
+    },
+    {
+      "id": "evt-78",
+      "eventType": "animal.moved",
+      "animalId": "ani-1002",
+      "timestamp": "2026-06-15T03:00:02.016Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "moveId": "move-1781492402015-fj411",
+        "fromCage": "B-04",
+        "toCage": "B-04",
+        "reason": "混合批量测试 - 移笼"
+      },
+      "snapshotAfter": {
+        "id": "ani-1002",
+        "strain": "BALB/c",
+        "cageId": "B-04",
+        "sex": "male",
+        "birthDate": "2026-02-03",
+        "project": "免疫反应",
+        "keeper": "周遥",
+        "status": "released",
+        "enteredQuarantineAt": "2026-05-10T10:00:00.000Z",
+        "quarantineReleasedAt": "2026-05-17T10:00:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 3,
+        "movesCount": 3,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "a05c42f840b6141b72c258641373b21dd0a34c42161c58c5b77e663e39274c7b",
+      "metadata": {
+        "offline": true
+      },
+      "checksum": "fbf1ecfd90d28c45b3240576ccfda27be9f66b8aa239e3abc17f1658161e1983"
+    },
+    {
+      "id": "evt-79",
+      "eventType": "feeding.recorded",
+      "animalId": "ani-1001",
+      "timestamp": "2026-06-15T03:00:02.018Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "recordId": "record-1781492402017",
+        "feedType": "标准颗粒饲料",
+        "amount": 2.5,
+        "condition": "进食良好",
+        "weight": null,
+        "notes": "混合批量测试",
+        "date": "2026-06-15",
+        "roomId": "room-default"
+      },
+      "snapshotAfter": null,
+      "previousChecksum": "fbf1ecfd90d28c45b3240576ccfda27be9f66b8aa239e3abc17f1658161e1983",
+      "metadata": {
+        "offline": true
+      },
+      "checksum": "3caadd17ba1fcdac79bfa0bcc39f89a2a5f5658b7996a4faf61367d40d8f4195"
+    },
+    {
+      "id": "evt-80",
+      "eventType": "animal.moved",
+      "animalId": "ani-1002",
+      "timestamp": "2026-06-15T03:06:17.912Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "moveId": "move-1781492777911-fjgbu",
+        "fromCage": "B-04",
+        "toCage": "B-04",
+        "reason": "混合批量测试 - 移笼"
+      },
+      "snapshotAfter": {
+        "id": "ani-1002",
+        "strain": "BALB/c",
+        "cageId": "B-04",
+        "sex": "male",
+        "birthDate": "2026-02-03",
+        "project": "免疫反应",
+        "keeper": "周遥",
+        "status": "released",
+        "enteredQuarantineAt": "2026-05-10T10:00:00.000Z",
+        "quarantineReleasedAt": "2026-05-17T10:00:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 5,
+        "movesCount": 4,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "3caadd17ba1fcdac79bfa0bcc39f89a2a5f5658b7996a4faf61367d40d8f4195",
+      "metadata": {
+        "offline": true
+      },
+      "checksum": "3ed72304ef8f8017e1f1cf9cc4df52c9fa31611c39f243453be8d7b08a4c31f4"
+    },
+    {
+      "id": "evt-81",
+      "eventType": "feeding.recorded",
+      "animalId": "ani-1001",
+      "timestamp": "2026-06-15T03:06:17.914Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "recordId": "record-1781492777913",
+        "feedType": "标准颗粒饲料",
+        "amount": 2.5,
+        "condition": "进食良好",
+        "weight": null,
+        "notes": "混合批量测试",
+        "date": "2026-06-15",
+        "roomId": "room-default"
+      },
+      "snapshotAfter": null,
+      "previousChecksum": "3ed72304ef8f8017e1f1cf9cc4df52c9fa31611c39f243453be8d7b08a4c31f4",
+      "metadata": {
+        "offline": true
+      },
+      "checksum": "01d77bf242c7739d1266cac664b2c77b88cf0db9c604d1f6f6dc6ee415fdba13"
+    },
+    {
+      "id": "evt-82",
+      "eventType": "animal.moved",
+      "animalId": "ani-1002",
+      "timestamp": "2026-06-15T03:09:46.292Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "moveId": "move-1781492986291-qgorq",
+        "fromCage": "B-04",
+        "toCage": "B-04",
+        "reason": "混合批量测试 - 移笼"
+      },
+      "snapshotAfter": {
+        "id": "ani-1002",
+        "strain": "BALB/c",
+        "cageId": "B-04",
+        "sex": "male",
+        "birthDate": "2026-02-03",
+        "project": "免疫反应",
+        "keeper": "周遥",
+        "status": "released",
+        "enteredQuarantineAt": "2026-05-10T10:00:00.000Z",
+        "quarantineReleasedAt": "2026-05-17T10:00:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 7,
+        "movesCount": 5,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "01d77bf242c7739d1266cac664b2c77b88cf0db9c604d1f6f6dc6ee415fdba13",
+      "metadata": {
+        "offline": true
+      },
+      "checksum": "f9d498a79d577959e4a4a267211f557d89c1277bd5841ff9cdf1f16567537c63"
+    },
+    {
+      "id": "evt-83",
+      "eventType": "feeding.recorded",
+      "animalId": "ani-1001",
+      "timestamp": "2026-06-15T03:09:46.293Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "recordId": "record-1781492986293",
+        "feedType": "标准颗粒饲料",
+        "amount": 2.5,
+        "condition": "进食良好",
+        "weight": null,
+        "notes": "混合批量测试",
+        "date": "2026-06-15",
+        "roomId": "room-default"
+      },
+      "snapshotAfter": null,
+      "previousChecksum": "f9d498a79d577959e4a4a267211f557d89c1277bd5841ff9cdf1f16567537c63",
+      "metadata": {
+        "offline": true
+      },
+      "checksum": "e5c18a12a427683383c08d9778715a8925a03e82f16890a8381c833de46e360e"
     }
   ],
-  "nextId": 78,
+  "nextId": 84,
   "migratedFromSnapshot": true,
   "checksumChain": [
     "16c46ef4daeab07b4976c4685312286166b9eebf25c23088599879b737d79fbc",
@@ -3668,6 +3935,12 @@
     "5a0d939de5fded63c5d0ed022c139961c43b01ec6ea016e2d488451384260767",
     "46f9dc1ebd6763fd2b3d33eeee0629a8c9b5c5f3b32af582a20fa51a6df8fd2f",
     "ec93687f71c9effbbb9670d2ee0670127b06cb83a8e8b746d11e0584f8a841f2",
-    "a05c42f840b6141b72c258641373b21dd0a34c42161c58c5b77e663e39274c7b"
+    "a05c42f840b6141b72c258641373b21dd0a34c42161c58c5b77e663e39274c7b",
+    "fbf1ecfd90d28c45b3240576ccfda27be9f66b8aa239e3abc17f1658161e1983",
+    "3caadd17ba1fcdac79bfa0bcc39f89a2a5f5658b7996a4faf61367d40d8f4195",
+    "3ed72304ef8f8017e1f1cf9cc4df52c9fa31611c39f243453be8d7b08a4c31f4",
+    "01d77bf242c7739d1266cac664b2c77b88cf0db9c604d1f6f6dc6ee415fdba13",
+    "f9d498a79d577959e4a4a267211f557d89c1277bd5841ff9cdf1f16567537c63",
+    "e5c18a12a427683383c08d9778715a8925a03e82f16890a8381c833de46e360e"
   ]
 }

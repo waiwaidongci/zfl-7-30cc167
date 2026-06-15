@@ -10,6 +10,7 @@ import {
   detectConflict,
   applyMergeStrategy,
   applyOperation,
+  mergeExistingRecord,
   validateOperation,
   buildBatchResponse,
   listCageAbnormalReports
@@ -213,21 +214,20 @@ async function processSingleOperation(db, operation, principal) {
     const mergeResult = applyMergeStrategy(db, operation, conflictInfo, strategy);
     if (mergeResult.merged && mergeResult.fields.length > 0) {
       const effectivePayload = buildEffectivePayload(operation.payload, conflictInfo.conflictDetails, strategy);
-      const effectiveOp = { ...operation, payload: effectivePayload };
-      const applied = await applyOperation(db, effectiveOp, { operator: principal });
+      const merged = await mergeExistingRecord(db, conflictInfo.existingOperation, effectivePayload, strategy, { operator: principal });
 
-      if (!applied.ok) {
+      if (!merged.ok) {
         return {
           operation,
           status: SYNC_STATUS.ERROR,
-          error: { code: applied.error, message: applied.message }
+          error: { code: merged.error, message: merged.message }
         };
       }
 
       return {
         operation,
         status: SYNC_STATUS.PARTIAL,
-        data: applied.data,
+        data: merged.data,
         conflictDetails: conflictInfo.conflictDetails,
         mergedFields: mergeResult.fields,
         mergeStrategy: strategy,

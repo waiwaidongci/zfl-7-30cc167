@@ -25,6 +25,12 @@ function loadApiKey() {
 
 const API_KEY = loadApiKey();
 
+const _ts = Date.now();
+const _dm = String((_ts % 12) + 1).padStart(2, "0");
+const _dd = String((_ts % 28) + 1).padStart(2, "0");
+const TEST_DATE = "2099-" + _dm + "-" + _dd;
+const TEST_DATE_ALT = "2098-" + _dm + "-" + _dd;
+
 function request(path, method, body) {
   return new Promise((resolve, reject) => {
     const url = new URL(path, BASE_URL);
@@ -110,6 +116,8 @@ async function runTests() {
     await testIdempotentRetry();
     await testConflictDetection();
     await testMergeStrategies();
+    await testIdempotentMerge();
+    await testMergeNoDuplicateRecords();
     await testMultipleOperationTypes();
     await testValidationErrors();
     await testQueryOperations();
@@ -151,14 +159,14 @@ async function testBasicAnimalNoteSync() {
         operationType: "animal_note",
         keeper: "林青",
         deviceId: "test-device-001",
-        clientCreatedAt: "2099-12-31T08:30:00.000Z",
+        clientCreatedAt: TEST_DATE + "T08:30:00.000Z",
         payload: {
           animalId: "ani-1001",
-          date: "2099-12-31",
+          date: TEST_DATE,
           weight: 21.5,
           condition: "离线测试 - 食欲良好",
           photoPlaceholders: [
-            { localPath: "test.jpg", size: 123456, takenAt: "2099-12-31T08:28:00.000Z", hash: "sha256:test123" }
+            { localPath: "test.jpg", size: 123456, takenAt: TEST_DATE + "T08:28:00.000Z", hash: "sha256:test123" }
           ]
         }
       }
@@ -189,10 +197,10 @@ async function testIdempotentRetry() {
         operationId: opId,
         operationType: "animal_note",
         keeper: "林青",
-        clientCreatedAt: "2099-12-31T09:00:00.000Z",
+        clientCreatedAt: TEST_DATE + "T09:00:00.000Z",
         payload: {
           animalId: "ani-1002",
-          date: "2099-12-31",
+          date: TEST_DATE,
           weight: 22.0,
           condition: "幂等性测试"
         }
@@ -232,10 +240,10 @@ async function testConflictDetection() {
         operationType: "animal_note",
         keeper: "周遥",
         deviceId: "device-A",
-        clientCreatedAt: "2099-12-31T07:00:00.000Z",
+        clientCreatedAt: TEST_DATE + "T07:00:00.000Z",
         payload: {
           animalId: "ani-1003",
-          date: "2099-12-31",
+          date: TEST_DATE,
           weight: 16.5,
           condition: "A端 - 状态正常"
         }
@@ -253,10 +261,10 @@ async function testConflictDetection() {
         operationType: "animal_note",
         keeper: "林青",
         deviceId: "device-B",
-        clientCreatedAt: "2099-12-31T10:00:00.000Z",
+        clientCreatedAt: TEST_DATE + "T10:00:00.000Z",
         payload: {
           animalId: "ani-1003",
-          date: "2099-12-31",
+          date: TEST_DATE,
           weight: 16.8,
           condition: "B端 - 状态正常"
         }
@@ -274,7 +282,7 @@ async function testConflictDetection() {
     check(result.conflict.conflictingFields?.length > 0, `返回冲突字段列表 (${result.conflict.conflictingFields?.length}个)`);
     check(result.conflict.explanation, `返回可解释的冲突说明`);
     check(result.conflict.animalId === "ani-1003", `冲突关联正确的 animalId`);
-    check(result.conflict.date === "2099-12-31", `冲突关联正确的日期`);
+    check(result.conflict.date === TEST_DATE, `冲突关联正确的日期`);
     console.log(`  冲突说明: ${result.conflict.explanation}`);
     console.log(`  冲突字段: ${result.conflict.conflictingFields?.map((f) => f.field).join(", ")}`);
   }
@@ -293,8 +301,8 @@ async function testMergeStrategies() {
         operationId: opReject,
         operationType: "animal_note",
         keeper: "林青",
-        clientCreatedAt: "2099-12-31T11:00:00.000Z",
-        payload: { animalId: "ani-1004", date: "2099-12-31", weight: 15.0, condition: "原始记录" }
+        clientCreatedAt: TEST_DATE + "T11:00:00.000Z",
+        payload: { animalId: "ani-1004", date: TEST_DATE, weight: 15.0, condition: "原始记录" }
       }
     ]
   });
@@ -305,9 +313,9 @@ async function testMergeStrategies() {
         operationId: opReject2,
         operationType: "animal_note",
         keeper: "周遥",
-        clientCreatedAt: "2099-12-31T11:30:00.000Z",
+        clientCreatedAt: TEST_DATE + "T11:30:00.000Z",
         conflictStrategy: "reject",
-        payload: { animalId: "ani-1004", date: "2099-12-31", weight: 15.2 }
+        payload: { animalId: "ani-1004", date: TEST_DATE, weight: 15.2 }
       }
     ]
   });
@@ -322,9 +330,9 @@ async function testMergeStrategies() {
         operationId: opCw,
         operationType: "animal_note",
         keeper: "林青",
-        clientCreatedAt: "2099-12-31T12:00:00.000Z",
+        clientCreatedAt: TEST_DATE + "T12:00:00.000Z",
         conflictStrategy: "client_wins",
-        payload: { animalId: "ani-1004", date: "2099-12-31", weight: 15.5, condition: "客户端覆盖" }
+        payload: { animalId: "ani-1004", date: TEST_DATE, weight: 15.5, condition: "客户端覆盖" }
       }
     ]
   });
@@ -335,10 +343,155 @@ async function testMergeStrategies() {
   }
 }
 
+async function testIdempotentMerge() {
+  section("5b. 幂等合并验证 - 重复提交冲突合并操作");
+
+  const baseOpId = uid("idem-merge-base");
+  const mergeOpId = uid("idem-merge");
+
+  await request("/sync/batch", "POST", {
+    operations: [
+      {
+        operationId: baseOpId,
+        operationType: "animal_note",
+        keeper: "周遥",
+        clientCreatedAt: TEST_DATE_ALT + "T13:00:00.000Z",
+        payload: { animalId: "ani-1002", date: TEST_DATE_ALT, weight: 18.0, condition: "幂等合并基准" }
+      }
+    ]
+  });
+
+  subSection("5b.1 首次冲突合并提交（client_wins）");
+  const mergeBody = {
+    operations: [
+      {
+        operationId: mergeOpId,
+        operationType: "animal_note",
+        keeper: "林青",
+        clientCreatedAt: TEST_DATE_ALT + "T13:30:00.000Z",
+        conflictStrategy: "client_wins",
+        payload: { animalId: "ani-1002", date: TEST_DATE_ALT, weight: 18.5, condition: "客户端覆盖-幂等测试" }
+      }
+    ]
+  };
+  const res1 = await request("/sync/batch", "POST", mergeBody);
+  const firstStatus = res1.body.results?.[0]?.status;
+  check(firstStatus === "partial" || firstStatus === "applied", `首次合并状态为 partial 或 applied (实际: ${firstStatus})`);
+  const firstWeight = res1.body.results?.[0]?.data?.note?.weight;
+  const firstCondition = res1.body.results?.[0]?.data?.note?.condition;
+  console.log(`  首次合并: status=${firstStatus}, weight=${firstWeight}, condition=${firstCondition}`);
+
+  subSection("5b.2 重复提交相同 operationId 的合并操作");
+  const res2 = await request("/sync/batch", "POST", mergeBody);
+  check(res2.status === 200, `重复提交返回 200 (实际: ${res2.status})`);
+  check(res2.body.results?.[0]?.status === "duplicate", `重复提交状态为 duplicate (实际: ${res2.body.results?.[0]?.status})`);
+  check(res2.body.results?.[0]?.duplicateOf?.operationId === mergeOpId, `duplicateOf.operationId 匹配`);
+  console.log(`  重复提交: status=${res2.body.results?.[0]?.status}, duplicateOf=${JSON.stringify(res2.body.results?.[0]?.duplicateOf)}`);
+
+  subSection("5b.3 另一个不同 operationId 的冲突合并也应正常处理");
+  const mergeOpId2 = uid("idem-merge-2");
+  const res3 = await request("/sync/batch", "POST", {
+    operations: [
+      {
+        operationId: mergeOpId2,
+        operationType: "animal_note",
+        keeper: "林青",
+        clientCreatedAt: TEST_DATE_ALT + "T14:00:00.000Z",
+        conflictStrategy: "reject",
+        payload: { animalId: "ani-1002", date: TEST_DATE_ALT, weight: 19.0, condition: "拒绝策略测试" }
+      }
+    ]
+  });
+  check(res3.body.results?.[0]?.status === "conflict", `reject 策略返回 conflict`);
+  check(res3.body.results?.[0]?.error?.code === "conflict_rejected", `错误码 conflict_rejected`);
+}
+
+async function testMergeNoDuplicateRecords() {
+  section("5c. 合并不产生重复业务记录验证");
+
+  const _ts2 = Date.now() + 999;
+  const _mm = String((_ts2 % 12) + 1).padStart(2, "0");
+  const _dd2 = String((_ts2 % 28) + 1).padStart(2, "0");
+  const MERGE_DATE = "2097-" + _mm + "-" + _dd2;
+  const baseOpId = uid("nodup-base");
+  const mergeOpId = uid("nodup-merge");
+  const testAnimalId = "ani-2001";
+
+  const animalRes = await request("/animals/" + testAnimalId, "GET");
+  const notesBefore = animalRes.body?.notes?.length ?? -1;
+  console.log(`  合并前 ${testAnimalId} 的 notes 数量: ${notesBefore}`);
+
+  await request("/sync/batch", "POST", {
+    operations: [
+      {
+        operationId: baseOpId,
+        operationType: "animal_note",
+        keeper: "周遥",
+        clientCreatedAt: MERGE_DATE + "T09:00:00.000Z",
+        payload: { animalId: testAnimalId, date: MERGE_DATE, weight: 20.0, condition: "不重复基准" }
+      }
+    ]
+  });
+
+  const afterBase = await request("/animals/" + testAnimalId, "GET");
+  const notesAfterBase = afterBase.body?.notes?.length ?? -1;
+  console.log(`  基准提交后 notes 数量: ${notesAfterBase}`);
+
+  subSection("5c.1 合并冲突（client_wins）后 notes 数量不增加");
+  const resMerge = await request("/sync/batch", "POST", {
+    operations: [
+      {
+        operationId: mergeOpId,
+        operationType: "animal_note",
+        keeper: "林青",
+        clientCreatedAt: MERGE_DATE + "T10:00:00.000Z",
+        conflictStrategy: "client_wins",
+        payload: { animalId: testAnimalId, date: MERGE_DATE, weight: 20.5, condition: "合并覆盖" }
+      }
+    ]
+  });
+
+  const afterMerge = await request("/animals/" + testAnimalId, "GET");
+  const notesAfterMerge = afterMerge.body?.notes?.length ?? -1;
+  console.log(`  合并后 notes 数量: ${notesAfterMerge}`);
+
+  check(notesAfterMerge === notesAfterBase, `合并后 notes 数量不变 (之前: ${notesAfterBase}, 之后: ${notesAfterMerge})`);
+
+  subSection("5c.2 合并后 note 字段已更新");
+  const mergeStatus = resMerge.body.results?.[0]?.status;
+  const mergedNote = resMerge.body.results?.[0]?.data?.note;
+  check(mergeStatus === "partial" || mergeStatus === "applied", `合并状态为 partial 或 applied (实际: ${mergeStatus})`);
+
+  if (mergedNote) {
+    check(mergedNote.weight === 20.5, `合并后 weight 应为 20.5 (实际: ${mergedNote.weight})`);
+    check(mergedNote.condition === "合并覆盖", `合并后 condition 应为 "合并覆盖" (实际: ${mergedNote.condition})`);
+    check(mergedNote.lastMergedAt != null, `合并后 lastMergedAt 存在`);
+    check(mergedNote.mergeStrategy === "client_wins", `合并后 mergeStrategy 为 client_wins`);
+  }
+
+  subSection("5c.3 再用相同 operationId 重试 - 记录数仍不增加");
+  await request("/sync/batch", "POST", {
+    operations: [
+      {
+        operationId: mergeOpId,
+        operationType: "animal_note",
+        keeper: "林青",
+        clientCreatedAt: MERGE_DATE + "T10:00:00.000Z",
+        conflictStrategy: "client_wins",
+        payload: { animalId: testAnimalId, date: MERGE_DATE, weight: 20.5, condition: "合并覆盖" }
+      }
+    ]
+  });
+
+  const afterRetry = await request("/animals/" + testAnimalId, "GET");
+  const notesAfterRetry = afterRetry.body?.notes?.length ?? -1;
+  check(notesAfterRetry === notesAfterBase, `重试后 notes 数量不变 (之前: ${notesAfterBase}, 之后: ${notesAfterRetry})`);
+}
+
 async function testMultipleOperationTypes() {
   section("6. 多操作类型混合批量同步");
 
-  const today = "2099-12-31";
+  const today = TEST_DATE;
   const body = {
     operations: [
       {

@@ -2177,7 +2177,4732 @@
         }
       },
       "animalIds": []
+    },
+    {
+      "id": "audit-58",
+      "timestamp": "2026-06-15T02:56:14.678Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "note-1781492174673-jbvk77",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "deviceId": "test-device-001",
+              "clientCreatedAt": "2099-12-31T08:30:00.000Z",
+              "payload": {
+                "animalId": "ani-1001",
+                "date": "2099-12-31",
+                "weight": 21.5,
+                "condition": "离线测试 - 食欲良好",
+                "photoPlaceholders": [
+                  {
+                    "localPath": "test.jpg",
+                    "size": 123456,
+                    "takenAt": "2099-12-31T08:28:00.000Z",
+                    "hash": "sha256:test123"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1001"
+      ]
+    },
+    {
+      "id": "audit-59",
+      "timestamp": "2026-06-15T02:56:14.684Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "idempotent-1781492174680-9q51vq",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-12-31T09:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1002",
+                "date": "2099-12-31",
+                "weight": 22,
+                "condition": "幂等性测试"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1002"
+      ]
+    },
+    {
+      "id": "audit-60",
+      "timestamp": "2026-06-15T02:56:14.688Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "idempotent-1781492174680-9q51vq",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-12-31T09:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1002",
+                "date": "2099-12-31",
+                "weight": 22,
+                "condition": "幂等性测试"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1002"
+      ]
+    },
+    {
+      "id": "audit-61",
+      "timestamp": "2026-06-15T02:56:14.691Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "conflict-a-1781492174688-6dmjmk",
+              "operationType": "animal_note",
+              "keeper": "周遥",
+              "deviceId": "device-A",
+              "clientCreatedAt": "2099-12-31T07:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1003",
+                "date": "2099-12-31",
+                "weight": 16.5,
+                "condition": "A端 - 状态正常"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1003"
+      ]
+    },
+    {
+      "id": "audit-62",
+      "timestamp": "2026-06-15T02:56:14.696Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "conflict-b-1781492174688-ntlvjg",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "deviceId": "device-B",
+              "clientCreatedAt": "2099-12-31T10:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1003",
+                "date": "2099-12-31",
+                "weight": 16.8,
+                "condition": "B端 - 状态正常"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1003"
+      ]
+    },
+    {
+      "id": "audit-63",
+      "timestamp": "2026-06-15T02:56:14.699Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "reject-1781492174697-bfyn56",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-12-31T11:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1004",
+                "date": "2099-12-31",
+                "weight": 15,
+                "condition": "原始记录"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1004"
+      ]
+    },
+    {
+      "id": "audit-64",
+      "timestamp": "2026-06-15T02:56:14.701Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "reject-2-1781492174697-liyz9v",
+              "operationType": "animal_note",
+              "keeper": "周遥",
+              "clientCreatedAt": "2099-12-31T11:30:00.000Z",
+              "conflictStrategy": "reject",
+              "payload": {
+                "animalId": "ani-1004",
+                "date": "2099-12-31",
+                "weight": 15.2
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1004"
+      ]
+    },
+    {
+      "id": "audit-65",
+      "timestamp": "2026-06-15T02:56:14.708Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "cw-1781492174702-gze1mh",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-12-31T12:00:00.000Z",
+              "conflictStrategy": "client_wins",
+              "payload": {
+                "animalId": "ani-1004",
+                "date": "2099-12-31",
+                "weight": 15.5,
+                "condition": "客户端覆盖"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1004"
+      ]
+    },
+    {
+      "id": "audit-66",
+      "timestamp": "2026-06-15T02:56:14.713Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "idem-merge-base-1781492174711-vl1rno",
+              "operationType": "animal_note",
+              "keeper": "周遥",
+              "clientCreatedAt": "2099-12-31T13:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1005",
+                "date": "2099-12-31",
+                "weight": 18,
+                "condition": "幂等合并基准"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1005"
+      ]
+    },
+    {
+      "id": "audit-67",
+      "timestamp": "2026-06-15T02:56:14.716Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "idem-merge-1781492174711-329k37",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-12-31T13:30:00.000Z",
+              "conflictStrategy": "client_wins",
+              "payload": {
+                "animalId": "ani-1005",
+                "date": "2099-12-31",
+                "weight": 18.5,
+                "condition": "客户端覆盖-幂等测试"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1005"
+      ]
+    },
+    {
+      "id": "audit-68",
+      "timestamp": "2026-06-15T02:56:14.720Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "idem-merge-1781492174711-329k37",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-12-31T13:30:00.000Z",
+              "conflictStrategy": "client_wins",
+              "payload": {
+                "animalId": "ani-1005",
+                "date": "2099-12-31",
+                "weight": 18.5,
+                "condition": "客户端覆盖-幂等测试"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1005"
+      ]
+    },
+    {
+      "id": "audit-69",
+      "timestamp": "2026-06-15T02:56:14.724Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "idem-merge-2-1781492174721-mrgw3v",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-12-31T14:00:00.000Z",
+              "conflictStrategy": "reject",
+              "payload": {
+                "animalId": "ani-1005",
+                "date": "2099-12-31",
+                "weight": 19,
+                "condition": "拒绝策略测试"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1005"
+      ]
+    },
+    {
+      "id": "audit-70",
+      "timestamp": "2026-06-15T02:56:14.727Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "nodup-base-1781492174725-fxiegz",
+              "operationType": "animal_note",
+              "keeper": "周遥",
+              "clientCreatedAt": "2099-12-30T09:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1001",
+                "date": "2099-12-30",
+                "weight": 20,
+                "condition": "不重复基准"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1001"
+      ]
+    },
+    {
+      "id": "audit-71",
+      "timestamp": "2026-06-15T02:56:14.732Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "nodup-merge-1781492174725-fvxp52",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-12-30T10:00:00.000Z",
+              "conflictStrategy": "client_wins",
+              "payload": {
+                "animalId": "ani-1001",
+                "date": "2099-12-30",
+                "weight": 20.5,
+                "condition": "合并覆盖"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1001"
+      ]
+    },
+    {
+      "id": "audit-72",
+      "timestamp": "2026-06-15T02:56:14.736Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "nodup-merge-1781492174725-fvxp52",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-12-30T10:00:00.000Z",
+              "conflictStrategy": "client_wins",
+              "payload": {
+                "animalId": "ani-1001",
+                "date": "2099-12-30",
+                "weight": 20.5,
+                "condition": "合并覆盖"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1001"
+      ]
+    },
+    {
+      "id": "audit-73",
+      "timestamp": "2026-06-15T02:56:14.740Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "mix-note-1781492174738-dxmcb5",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-12-31T08:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1001",
+                "date": "2099-12-31",
+                "weight": 21.7,
+                "condition": "混合批量测试 - note",
+                "photoPlaceholders": [
+                  {
+                    "localPath": "mix.jpg",
+                    "size": 1000,
+                    "takenAt": "2099-12-31T07:59:00.000Z",
+                    "hash": "mixhash"
+                  }
+                ]
+              }
+            },
+            {
+              "operationId": "mix-move-1781492174738-ci4z1d",
+              "operationType": "animal_move",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-12-31T08:10:00.000Z",
+              "payload": {
+                "animalId": "ani-1002",
+                "cageId": "B-04",
+                "reason": "混合批量测试 - 移笼"
+              }
+            },
+            {
+              "operationId": "mix-feed-1781492174738-1q2jz2",
+              "operationType": "feeding_record",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-12-31T08:15:00.000Z",
+              "payload": {
+                "targetType": "animal",
+                "targetId": "ani-1001",
+                "feedType": "标准颗粒饲料",
+                "amount": 2.5,
+                "condition": "进食良好",
+                "notes": "混合批量测试"
+              }
+            },
+            {
+              "operationId": "mix-cage-1781492174738-lt510u",
+              "operationType": "cage_abnormal",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-12-31T08:20:00.000Z",
+              "payload": {
+                "cageId": "C-01",
+                "abnormalType": "hygiene",
+                "severity": "minor",
+                "description": "混合批量测试 - 笼位需清洁",
+                "photoPlaceholders": [
+                  {
+                    "localPath": "cage.jpg",
+                    "size": 2000,
+                    "takenAt": "2099-12-31T08:19:00.000Z",
+                    "hash": "cagehash"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1001",
+        "ani-1002"
+      ]
+    },
+    {
+      "id": "audit-74",
+      "timestamp": "2026-06-15T02:56:14.744Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": []
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": 400,
+        "body": {
+          "error": "empty_batch",
+          "message": "同步批次不能为空"
+        }
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-75",
+      "timestamp": "2026-06-15T02:56:14.746Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "payload": {
+                "animalId": "ani-1001"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1001"
+      ]
+    },
+    {
+      "id": "audit-76",
+      "timestamp": "2026-06-15T02:56:14.750Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "bad-1781492174746-mei1hp",
+              "operationType": "invalid_type",
+              "keeper": "林青",
+              "payload": {}
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-77",
+      "timestamp": "2026-06-15T02:56:14.752Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "noanimal-1781492174751-rvognp",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "payload": {
+                "weight": 20
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-78",
+      "timestamp": "2026-06-15T02:56:14.755Z",
+      "operation": "sync.operation_query",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "GET",
+        "pathname": "/sync/operations",
+        "query": {},
+        "body": {},
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "_truncated": true,
+          "length": 68030,
+          "preview": "[{\"operationId\":\"noanimal-1781492174751-rvognp\",\"operationType\":\"animal_note\",\"keeper\":\"林青\",\"deviceId\":null,\"clientCreatedAt\":null,\"submittedAt\":\"2026-06-15T02:56:14.752Z\",\"status\":\"error\",\"payload\":{\"weight\":20},\"result\":null,\"conflictDetails\":null,\"error\":{\"code\":\"validation_failed\",\"details\":[{\"field\":\"payload.animalId\",\"message\":\"animal_note 操作需要 animalId\"}]},\"mergedFields\":null,\"animalId\":null,\"cageId\":null,\"date\":\"2026-06-15\"},{\"operationId\":\"bad-1781492174746-mei1hp\",\"operationType\":\"inva"
+        }
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-79",
+      "timestamp": "2026-06-15T02:56:14.759Z",
+      "operation": "sync.operation_query",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "GET",
+        "pathname": "/sync/operations",
+        "query": {
+          "status": "applied"
+        },
+        "body": {},
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "_truncated": true,
+          "length": 12324,
+          "preview": "[{\"operationId\":\"nodup-base-1781492174725-fxiegz\",\"operationType\":\"animal_note\",\"keeper\":\"周遥\",\"deviceId\":null,\"clientCreatedAt\":\"2099-12-30T09:00:00.000Z\",\"submittedAt\":\"2026-06-15T02:56:14.727Z\",\"status\":\"applied\",\"payload\":{\"animalId\":\"ani-1001\",\"date\":\"2099-12-30\",\"weight\":20,\"condition\":\"不重复基准\"},\"result\":{\"note\":{\"id\":\"note-1781492174727-o8zee\",\"date\":\"2099-12-30\",\"weight\":20,\"condition\":\"不重复基准\",\"keeper\":\"周遥\"},\"healthEvent\":{\"created\":false,\"merged\":false,\"eventId\":null}},\"conflictDetails\":n"
+        }
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-80",
+      "timestamp": "2026-06-15T02:56:14.763Z",
+      "operation": "sync.operation_query",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "GET",
+        "pathname": "/sync/operations/noanimal-1781492174751-rvognp",
+        "query": {},
+        "body": {},
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "operationId": "noanimal-1781492174751-rvognp",
+          "operationType": "animal_note",
+          "keeper": "林青",
+          "deviceId": null,
+          "clientCreatedAt": null,
+          "submittedAt": "2026-06-15T02:56:14.752Z",
+          "status": "error",
+          "payload": {
+            "weight": 20
+          },
+          "result": null,
+          "conflictDetails": null,
+          "error": {
+            "code": "validation_failed",
+            "details": [
+              {
+                "field": "payload.animalId",
+                "message": "animal_note 操作需要 animalId"
+              }
+            ]
+          },
+          "mergedFields": null,
+          "animalId": null,
+          "cageId": null,
+          "date": "2026-06-15"
+        }
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-81",
+      "timestamp": "2026-06-15T03:00:01.954Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "note-1781492401945-uqigw1",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "deviceId": "test-device-001",
+              "clientCreatedAt": "2099-11-27T08:30:00.000Z",
+              "payload": {
+                "animalId": "ani-1001",
+                "date": "2099-11-27",
+                "weight": 21.5,
+                "condition": "离线测试 - 食欲良好",
+                "photoPlaceholders": [
+                  {
+                    "localPath": "test.jpg",
+                    "size": 123456,
+                    "takenAt": "2099-11-27T08:28:00.000Z",
+                    "hash": "sha256:test123"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1001"
+      ]
+    },
+    {
+      "id": "audit-82",
+      "timestamp": "2026-06-15T03:00:01.957Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "idempotent-1781492401954-vj03xf",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-11-27T09:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1002",
+                "date": "2099-11-27",
+                "weight": 22,
+                "condition": "幂等性测试"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1002"
+      ]
+    },
+    {
+      "id": "audit-83",
+      "timestamp": "2026-06-15T03:00:01.961Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "idempotent-1781492401954-vj03xf",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-11-27T09:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1002",
+                "date": "2099-11-27",
+                "weight": 22,
+                "condition": "幂等性测试"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1002"
+      ]
+    },
+    {
+      "id": "audit-84",
+      "timestamp": "2026-06-15T03:00:01.965Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "conflict-a-1781492401962-0jwvyb",
+              "operationType": "animal_note",
+              "keeper": "周遥",
+              "deviceId": "device-A",
+              "clientCreatedAt": "2099-11-27T07:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1003",
+                "date": "2099-11-27",
+                "weight": 16.5,
+                "condition": "A端 - 状态正常"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1003"
+      ]
+    },
+    {
+      "id": "audit-85",
+      "timestamp": "2026-06-15T03:00:01.969Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "conflict-b-1781492401962-rzbv2k",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "deviceId": "device-B",
+              "clientCreatedAt": "2099-11-27T10:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1003",
+                "date": "2099-11-27",
+                "weight": 16.8,
+                "condition": "B端 - 状态正常"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1003"
+      ]
+    },
+    {
+      "id": "audit-86",
+      "timestamp": "2026-06-15T03:00:01.972Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "reject-1781492401970-hkyskh",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-11-27T11:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1004",
+                "date": "2099-11-27",
+                "weight": 15,
+                "condition": "原始记录"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1004"
+      ]
+    },
+    {
+      "id": "audit-87",
+      "timestamp": "2026-06-15T03:00:01.977Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "reject-2-1781492401970-eprfj7",
+              "operationType": "animal_note",
+              "keeper": "周遥",
+              "clientCreatedAt": "2099-11-27T11:30:00.000Z",
+              "conflictStrategy": "reject",
+              "payload": {
+                "animalId": "ani-1004",
+                "date": "2099-11-27",
+                "weight": 15.2
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1004"
+      ]
+    },
+    {
+      "id": "audit-88",
+      "timestamp": "2026-06-15T03:00:01.981Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "cw-1781492401978-refy2v",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-11-27T12:00:00.000Z",
+              "conflictStrategy": "client_wins",
+              "payload": {
+                "animalId": "ani-1004",
+                "date": "2099-11-27",
+                "weight": 15.5,
+                "condition": "客户端覆盖"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1004"
+      ]
+    },
+    {
+      "id": "audit-89",
+      "timestamp": "2026-06-15T03:00:01.992Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "idem-merge-base-1781492401982-58e0aa",
+              "operationType": "animal_note",
+              "keeper": "周遥",
+              "clientCreatedAt": "2099-11-27T13:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1005",
+                "date": "2099-11-27",
+                "weight": 18,
+                "condition": "幂等合并基准"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1005"
+      ]
+    },
+    {
+      "id": "audit-90",
+      "timestamp": "2026-06-15T03:00:01.995Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "idem-merge-1781492401982-e5d1g9",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-11-27T13:30:00.000Z",
+              "conflictStrategy": "client_wins",
+              "payload": {
+                "animalId": "ani-1005",
+                "date": "2099-11-27",
+                "weight": 18.5,
+                "condition": "客户端覆盖-幂等测试"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1005"
+      ]
+    },
+    {
+      "id": "audit-91",
+      "timestamp": "2026-06-15T03:00:01.997Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "idem-merge-1781492401982-e5d1g9",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-11-27T13:30:00.000Z",
+              "conflictStrategy": "client_wins",
+              "payload": {
+                "animalId": "ani-1005",
+                "date": "2099-11-27",
+                "weight": 18.5,
+                "condition": "客户端覆盖-幂等测试"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1005"
+      ]
+    },
+    {
+      "id": "audit-92",
+      "timestamp": "2026-06-15T03:00:02.000Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "idem-merge-2-1781492401997-jgadsg",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-11-27T14:00:00.000Z",
+              "conflictStrategy": "reject",
+              "payload": {
+                "animalId": "ani-1005",
+                "date": "2099-11-27",
+                "weight": 19,
+                "condition": "拒绝策略测试"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1005"
+      ]
+    },
+    {
+      "id": "audit-93",
+      "timestamp": "2026-06-15T03:00:02.004Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "nodup-base-1781492402001-pzbinf",
+              "operationType": "animal_note",
+              "keeper": "周遥",
+              "clientCreatedAt": "2098-11-27T09:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1001",
+                "date": "2098-11-27",
+                "weight": 20,
+                "condition": "不重复基准"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1001"
+      ]
+    },
+    {
+      "id": "audit-94",
+      "timestamp": "2026-06-15T03:00:02.007Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "nodup-merge-1781492402001-9e33vm",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2098-11-27T10:00:00.000Z",
+              "conflictStrategy": "client_wins",
+              "payload": {
+                "animalId": "ani-1001",
+                "date": "2098-11-27",
+                "weight": 20.5,
+                "condition": "合并覆盖"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1001"
+      ]
+    },
+    {
+      "id": "audit-95",
+      "timestamp": "2026-06-15T03:00:02.011Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "nodup-merge-1781492402001-9e33vm",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2098-11-27T10:00:00.000Z",
+              "conflictStrategy": "client_wins",
+              "payload": {
+                "animalId": "ani-1001",
+                "date": "2098-11-27",
+                "weight": 20.5,
+                "condition": "合并覆盖"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1001"
+      ]
+    },
+    {
+      "id": "audit-96",
+      "timestamp": "2026-06-15T03:00:02.016Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "mix-note-1781492402014-ntb37s",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-11-27T08:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1001",
+                "date": "2099-11-27",
+                "weight": 21.7,
+                "condition": "混合批量测试 - note",
+                "photoPlaceholders": [
+                  {
+                    "localPath": "mix.jpg",
+                    "size": 1000,
+                    "takenAt": "2099-11-27T07:59:00.000Z",
+                    "hash": "mixhash"
+                  }
+                ]
+              }
+            },
+            {
+              "operationId": "mix-move-1781492402014-d2n0hn",
+              "operationType": "animal_move",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-11-27T08:10:00.000Z",
+              "payload": {
+                "animalId": "ani-1002",
+                "cageId": "B-04",
+                "reason": "混合批量测试 - 移笼"
+              }
+            },
+            {
+              "operationId": "mix-feed-1781492402014-5jdbl8",
+              "operationType": "feeding_record",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-11-27T08:15:00.000Z",
+              "payload": {
+                "targetType": "animal",
+                "targetId": "ani-1001",
+                "feedType": "标准颗粒饲料",
+                "amount": 2.5,
+                "condition": "进食良好",
+                "notes": "混合批量测试"
+              }
+            },
+            {
+              "operationId": "mix-cage-1781492402014-f7zm12",
+              "operationType": "cage_abnormal",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-11-27T08:20:00.000Z",
+              "payload": {
+                "cageId": "C-01",
+                "abnormalType": "hygiene",
+                "severity": "minor",
+                "description": "混合批量测试 - 笼位需清洁",
+                "photoPlaceholders": [
+                  {
+                    "localPath": "cage.jpg",
+                    "size": 2000,
+                    "takenAt": "2099-11-27T08:19:00.000Z",
+                    "hash": "cagehash"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1001",
+        "ani-1002"
+      ]
+    },
+    {
+      "id": "audit-97",
+      "timestamp": "2026-06-15T03:00:02.021Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": []
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": 400,
+        "body": {
+          "error": "empty_batch",
+          "message": "同步批次不能为空"
+        }
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-98",
+      "timestamp": "2026-06-15T03:00:02.023Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "payload": {
+                "animalId": "ani-1001"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1001"
+      ]
+    },
+    {
+      "id": "audit-99",
+      "timestamp": "2026-06-15T03:00:02.026Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "bad-1781492402023-yxdnab",
+              "operationType": "invalid_type",
+              "keeper": "林青",
+              "payload": {}
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-100",
+      "timestamp": "2026-06-15T03:00:02.029Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "noanimal-1781492402027-nmtpq0",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "payload": {
+                "weight": 20
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-101",
+      "timestamp": "2026-06-15T03:00:02.033Z",
+      "operation": "sync.operation_query",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "GET",
+        "pathname": "/sync/operations",
+        "query": {},
+        "body": {},
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "_truncated": true,
+          "length": 87489,
+          "preview": "[{\"operationId\":\"noanimal-1781492402027-nmtpq0\",\"operationType\":\"animal_note\",\"keeper\":\"林青\",\"deviceId\":null,\"clientCreatedAt\":null,\"submittedAt\":\"2026-06-15T03:00:02.028Z\",\"status\":\"error\",\"payload\":{\"weight\":20},\"result\":null,\"conflictDetails\":null,\"error\":{\"code\":\"validation_failed\",\"details\":[{\"field\":\"payload.animalId\",\"message\":\"animal_note 操作需要 animalId\"}]},\"mergedFields\":null,\"animalId\":null,\"cageId\":null,\"date\":\"2026-06-15\"},{\"operationId\":\"bad-1781492402023-yxdnab\",\"operationType\":\"inva"
+        }
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-102",
+      "timestamp": "2026-06-15T03:00:02.035Z",
+      "operation": "sync.operation_query",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "GET",
+        "pathname": "/sync/operations",
+        "query": {
+          "status": "applied"
+        },
+        "body": {},
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "_truncated": true,
+          "length": 19612,
+          "preview": "[{\"operationId\":\"mix-feed-1781492402014-5jdbl8\",\"operationType\":\"feeding_record\",\"keeper\":\"林青\",\"deviceId\":null,\"clientCreatedAt\":\"2099-11-27T08:15:00.000Z\",\"submittedAt\":\"2026-06-15T03:00:02.018Z\",\"status\":\"applied\",\"payload\":{\"targetType\":\"animal\",\"targetId\":\"ani-1001\",\"feedType\":\"标准颗粒饲料\",\"amount\":2.5,\"condition\":\"进食良好\",\"notes\":\"混合批量测试\"},\"result\":{\"record\":{\"id\":\"record-1781492402017\",\"targetType\":\"animal\",\"targetId\":\"ani-1001\",\"roomId\":\"room-default\",\"zoneId\":\"zone-default\",\"project\":\"代谢观察\",\"p"
+        }
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-103",
+      "timestamp": "2026-06-15T03:00:02.036Z",
+      "operation": "sync.operation_query",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "GET",
+        "pathname": "/sync/operations/noanimal-1781492402027-nmtpq0",
+        "query": {},
+        "body": {},
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "operationId": "noanimal-1781492402027-nmtpq0",
+          "operationType": "animal_note",
+          "keeper": "林青",
+          "deviceId": null,
+          "clientCreatedAt": null,
+          "submittedAt": "2026-06-15T03:00:02.028Z",
+          "status": "error",
+          "payload": {
+            "weight": 20
+          },
+          "result": null,
+          "conflictDetails": null,
+          "error": {
+            "code": "validation_failed",
+            "details": [
+              {
+                "field": "payload.animalId",
+                "message": "animal_note 操作需要 animalId"
+              }
+            ]
+          },
+          "mergedFields": null,
+          "animalId": null,
+          "cageId": null,
+          "date": "2026-06-15"
+        }
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-104",
+      "timestamp": "2026-06-15T03:06:17.845Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "note-1781492777839-62vk5a",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "deviceId": "test-device-001",
+              "clientCreatedAt": "2099-07-23T08:30:00.000Z",
+              "payload": {
+                "animalId": "ani-1001",
+                "date": "2099-07-23",
+                "weight": 21.5,
+                "condition": "离线测试 - 食欲良好",
+                "photoPlaceholders": [
+                  {
+                    "localPath": "test.jpg",
+                    "size": 123456,
+                    "takenAt": "2099-07-23T08:28:00.000Z",
+                    "hash": "sha256:test123"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1001"
+      ]
+    },
+    {
+      "id": "audit-105",
+      "timestamp": "2026-06-15T03:06:17.848Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "idempotent-1781492777845-mrloeo",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-07-23T09:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1002",
+                "date": "2099-07-23",
+                "weight": 22,
+                "condition": "幂等性测试"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1002"
+      ]
+    },
+    {
+      "id": "audit-106",
+      "timestamp": "2026-06-15T03:06:17.850Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "idempotent-1781492777845-mrloeo",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-07-23T09:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1002",
+                "date": "2099-07-23",
+                "weight": 22,
+                "condition": "幂等性测试"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1002"
+      ]
+    },
+    {
+      "id": "audit-107",
+      "timestamp": "2026-06-15T03:06:17.855Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "conflict-a-1781492777852-gd1qfd",
+              "operationType": "animal_note",
+              "keeper": "周遥",
+              "deviceId": "device-A",
+              "clientCreatedAt": "2099-07-23T07:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1003",
+                "date": "2099-07-23",
+                "weight": 16.5,
+                "condition": "A端 - 状态正常"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1003"
+      ]
+    },
+    {
+      "id": "audit-108",
+      "timestamp": "2026-06-15T03:06:17.859Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "conflict-b-1781492777852-d2yrj3",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "deviceId": "device-B",
+              "clientCreatedAt": "2099-07-23T10:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1003",
+                "date": "2099-07-23",
+                "weight": 16.8,
+                "condition": "B端 - 状态正常"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1003"
+      ]
+    },
+    {
+      "id": "audit-109",
+      "timestamp": "2026-06-15T03:06:17.865Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "reject-1781492777860-07aehh",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-07-23T11:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1004",
+                "date": "2099-07-23",
+                "weight": 15,
+                "condition": "原始记录"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1004"
+      ]
+    },
+    {
+      "id": "audit-110",
+      "timestamp": "2026-06-15T03:06:17.869Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "reject-2-1781492777860-2w0ywz",
+              "operationType": "animal_note",
+              "keeper": "周遥",
+              "clientCreatedAt": "2099-07-23T11:30:00.000Z",
+              "conflictStrategy": "reject",
+              "payload": {
+                "animalId": "ani-1004",
+                "date": "2099-07-23",
+                "weight": 15.2
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1004"
+      ]
+    },
+    {
+      "id": "audit-111",
+      "timestamp": "2026-06-15T03:06:17.873Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "cw-1781492777870-engdhs",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-07-23T12:00:00.000Z",
+              "conflictStrategy": "client_wins",
+              "payload": {
+                "animalId": "ani-1004",
+                "date": "2099-07-23",
+                "weight": 15.5,
+                "condition": "客户端覆盖"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1004"
+      ]
+    },
+    {
+      "id": "audit-112",
+      "timestamp": "2026-06-15T03:06:17.881Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "idem-merge-base-1781492777874-qjvn6o",
+              "operationType": "animal_note",
+              "keeper": "周遥",
+              "clientCreatedAt": "2098-07-23T13:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1002",
+                "date": "2098-07-23",
+                "weight": 18,
+                "condition": "幂等合并基准"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1002"
+      ]
+    },
+    {
+      "id": "audit-113",
+      "timestamp": "2026-06-15T03:06:17.886Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "idem-merge-1781492777874-s9uz24",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2098-07-23T13:30:00.000Z",
+              "conflictStrategy": "client_wins",
+              "payload": {
+                "animalId": "ani-1002",
+                "date": "2098-07-23",
+                "weight": 18.5,
+                "condition": "客户端覆盖-幂等测试"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1002"
+      ]
+    },
+    {
+      "id": "audit-114",
+      "timestamp": "2026-06-15T03:06:17.889Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "idem-merge-1781492777874-s9uz24",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2098-07-23T13:30:00.000Z",
+              "conflictStrategy": "client_wins",
+              "payload": {
+                "animalId": "ani-1002",
+                "date": "2098-07-23",
+                "weight": 18.5,
+                "condition": "客户端覆盖-幂等测试"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1002"
+      ]
+    },
+    {
+      "id": "audit-115",
+      "timestamp": "2026-06-15T03:06:17.893Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "idem-merge-2-1781492777890-akhd7l",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2098-07-23T14:00:00.000Z",
+              "conflictStrategy": "reject",
+              "payload": {
+                "animalId": "ani-1002",
+                "date": "2098-07-23",
+                "weight": 19,
+                "condition": "拒绝策略测试"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1002"
+      ]
+    },
+    {
+      "id": "audit-116",
+      "timestamp": "2026-06-15T03:06:17.899Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "nodup-base-1781492777895-xdqqwp",
+              "operationType": "animal_note",
+              "keeper": "周遥",
+              "clientCreatedAt": "2097-07-11T09:00:00.000Z",
+              "payload": {
+                "animalId": "ani-2001",
+                "date": "2097-07-11",
+                "weight": 20,
+                "condition": "不重复基准"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-2001"
+      ]
+    },
+    {
+      "id": "audit-117",
+      "timestamp": "2026-06-15T03:06:17.903Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "nodup-merge-1781492777895-appx78",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2097-07-11T10:00:00.000Z",
+              "conflictStrategy": "client_wins",
+              "payload": {
+                "animalId": "ani-2001",
+                "date": "2097-07-11",
+                "weight": 20.5,
+                "condition": "合并覆盖"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-2001"
+      ]
+    },
+    {
+      "id": "audit-118",
+      "timestamp": "2026-06-15T03:06:17.908Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "nodup-merge-1781492777895-appx78",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2097-07-11T10:00:00.000Z",
+              "conflictStrategy": "client_wins",
+              "payload": {
+                "animalId": "ani-2001",
+                "date": "2097-07-11",
+                "weight": 20.5,
+                "condition": "合并覆盖"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-2001"
+      ]
+    },
+    {
+      "id": "audit-119",
+      "timestamp": "2026-06-15T03:06:17.911Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "mix-note-1781492777910-hrqs3t",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-07-23T08:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1001",
+                "date": "2099-07-23",
+                "weight": 21.7,
+                "condition": "混合批量测试 - note",
+                "photoPlaceholders": [
+                  {
+                    "localPath": "mix.jpg",
+                    "size": 1000,
+                    "takenAt": "2099-07-23T07:59:00.000Z",
+                    "hash": "mixhash"
+                  }
+                ]
+              }
+            },
+            {
+              "operationId": "mix-move-1781492777910-xd7q0u",
+              "operationType": "animal_move",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-07-23T08:10:00.000Z",
+              "payload": {
+                "animalId": "ani-1002",
+                "cageId": "B-04",
+                "reason": "混合批量测试 - 移笼"
+              }
+            },
+            {
+              "operationId": "mix-feed-1781492777910-jn53v9",
+              "operationType": "feeding_record",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-07-23T08:15:00.000Z",
+              "payload": {
+                "targetType": "animal",
+                "targetId": "ani-1001",
+                "feedType": "标准颗粒饲料",
+                "amount": 2.5,
+                "condition": "进食良好",
+                "notes": "混合批量测试"
+              }
+            },
+            {
+              "operationId": "mix-cage-1781492777910-et3pnw",
+              "operationType": "cage_abnormal",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-07-23T08:20:00.000Z",
+              "payload": {
+                "cageId": "C-01",
+                "abnormalType": "hygiene",
+                "severity": "minor",
+                "description": "混合批量测试 - 笼位需清洁",
+                "photoPlaceholders": [
+                  {
+                    "localPath": "cage.jpg",
+                    "size": 2000,
+                    "takenAt": "2099-07-23T08:19:00.000Z",
+                    "hash": "cagehash"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1001",
+        "ani-1002"
+      ]
+    },
+    {
+      "id": "audit-120",
+      "timestamp": "2026-06-15T03:06:17.922Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": []
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": 400,
+        "body": {
+          "error": "empty_batch",
+          "message": "同步批次不能为空"
+        }
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-121",
+      "timestamp": "2026-06-15T03:06:17.924Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "payload": {
+                "animalId": "ani-1001"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1001"
+      ]
+    },
+    {
+      "id": "audit-122",
+      "timestamp": "2026-06-15T03:06:17.928Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "bad-1781492777925-uzkviu",
+              "operationType": "invalid_type",
+              "keeper": "林青",
+              "payload": {}
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-123",
+      "timestamp": "2026-06-15T03:06:17.932Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "noanimal-1781492777929-2x3sd0",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "payload": {
+                "weight": 20
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-124",
+      "timestamp": "2026-06-15T03:06:17.937Z",
+      "operation": "sync.operation_query",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "GET",
+        "pathname": "/sync/operations",
+        "query": {},
+        "body": {},
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "_truncated": true,
+          "length": 108756,
+          "preview": "[{\"operationId\":\"noanimal-1781492777929-2x3sd0\",\"operationType\":\"animal_note\",\"keeper\":\"林青\",\"deviceId\":null,\"clientCreatedAt\":null,\"submittedAt\":\"2026-06-15T03:06:17.930Z\",\"status\":\"error\",\"payload\":{\"weight\":20},\"result\":null,\"conflictDetails\":null,\"error\":{\"code\":\"validation_failed\",\"details\":[{\"field\":\"payload.animalId\",\"message\":\"animal_note 操作需要 animalId\"}]},\"mergedFields\":null,\"animalId\":null,\"cageId\":null,\"date\":\"2026-06-15\"},{\"operationId\":\"bad-1781492777925-uzkviu\",\"operationType\":\"inva"
+        }
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-125",
+      "timestamp": "2026-06-15T03:06:17.940Z",
+      "operation": "sync.operation_query",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "GET",
+        "pathname": "/sync/operations",
+        "query": {
+          "status": "applied"
+        },
+        "body": {},
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "_truncated": true,
+          "length": 27959,
+          "preview": "[{\"operationId\":\"mix-feed-1781492777910-jn53v9\",\"operationType\":\"feeding_record\",\"keeper\":\"林青\",\"deviceId\":null,\"clientCreatedAt\":\"2099-07-23T08:15:00.000Z\",\"submittedAt\":\"2026-06-15T03:06:17.914Z\",\"status\":\"applied\",\"payload\":{\"targetType\":\"animal\",\"targetId\":\"ani-1001\",\"feedType\":\"标准颗粒饲料\",\"amount\":2.5,\"condition\":\"进食良好\",\"notes\":\"混合批量测试\"},\"result\":{\"record\":{\"id\":\"record-1781492777913\",\"targetType\":\"animal\",\"targetId\":\"ani-1001\",\"roomId\":\"room-default\",\"zoneId\":\"zone-default\",\"project\":\"代谢观察\",\"p"
+        }
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-126",
+      "timestamp": "2026-06-15T03:06:17.942Z",
+      "operation": "sync.operation_query",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "GET",
+        "pathname": "/sync/operations/noanimal-1781492777929-2x3sd0",
+        "query": {},
+        "body": {},
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "operationId": "noanimal-1781492777929-2x3sd0",
+          "operationType": "animal_note",
+          "keeper": "林青",
+          "deviceId": null,
+          "clientCreatedAt": null,
+          "submittedAt": "2026-06-15T03:06:17.930Z",
+          "status": "error",
+          "payload": {
+            "weight": 20
+          },
+          "result": null,
+          "conflictDetails": null,
+          "error": {
+            "code": "validation_failed",
+            "details": [
+              {
+                "field": "payload.animalId",
+                "message": "animal_note 操作需要 animalId"
+              }
+            ]
+          },
+          "mergedFields": null,
+          "animalId": null,
+          "cageId": null,
+          "date": "2026-06-15"
+        }
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-127",
+      "timestamp": "2026-06-15T03:09:46.231Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "note-1781492986227-yw5fzg",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "deviceId": "test-device-001",
+              "clientCreatedAt": "2099-05-21T08:30:00.000Z",
+              "payload": {
+                "animalId": "ani-1001",
+                "date": "2099-05-21",
+                "weight": 21.5,
+                "condition": "离线测试 - 食欲良好",
+                "photoPlaceholders": [
+                  {
+                    "localPath": "test.jpg",
+                    "size": 123456,
+                    "takenAt": "2099-05-21T08:28:00.000Z",
+                    "hash": "sha256:test123"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1001"
+      ]
+    },
+    {
+      "id": "audit-128",
+      "timestamp": "2026-06-15T03:09:46.234Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "idempotent-1781492986232-0q3ipa",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-05-21T09:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1002",
+                "date": "2099-05-21",
+                "weight": 22,
+                "condition": "幂等性测试"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1002"
+      ]
+    },
+    {
+      "id": "audit-129",
+      "timestamp": "2026-06-15T03:09:46.239Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "idempotent-1781492986232-0q3ipa",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-05-21T09:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1002",
+                "date": "2099-05-21",
+                "weight": 22,
+                "condition": "幂等性测试"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1002"
+      ]
+    },
+    {
+      "id": "audit-130",
+      "timestamp": "2026-06-15T03:09:46.242Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "conflict-a-1781492986240-qel7yi",
+              "operationType": "animal_note",
+              "keeper": "周遥",
+              "deviceId": "device-A",
+              "clientCreatedAt": "2099-05-21T07:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1003",
+                "date": "2099-05-21",
+                "weight": 16.5,
+                "condition": "A端 - 状态正常"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1003"
+      ]
+    },
+    {
+      "id": "audit-131",
+      "timestamp": "2026-06-15T03:09:46.245Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "conflict-b-1781492986240-qqphm9",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "deviceId": "device-B",
+              "clientCreatedAt": "2099-05-21T10:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1003",
+                "date": "2099-05-21",
+                "weight": 16.8,
+                "condition": "B端 - 状态正常"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1003"
+      ]
+    },
+    {
+      "id": "audit-132",
+      "timestamp": "2026-06-15T03:09:46.248Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "reject-1781492986246-fq8mkk",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-05-21T11:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1004",
+                "date": "2099-05-21",
+                "weight": 15,
+                "condition": "原始记录"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1004"
+      ]
+    },
+    {
+      "id": "audit-133",
+      "timestamp": "2026-06-15T03:09:46.252Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "reject-2-1781492986246-l2v8wu",
+              "operationType": "animal_note",
+              "keeper": "周遥",
+              "clientCreatedAt": "2099-05-21T11:30:00.000Z",
+              "conflictStrategy": "reject",
+              "payload": {
+                "animalId": "ani-1004",
+                "date": "2099-05-21",
+                "weight": 15.2
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1004"
+      ]
+    },
+    {
+      "id": "audit-134",
+      "timestamp": "2026-06-15T03:09:46.256Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "cw-1781492986254-9g5iyf",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-05-21T12:00:00.000Z",
+              "conflictStrategy": "client_wins",
+              "payload": {
+                "animalId": "ani-1004",
+                "date": "2099-05-21",
+                "weight": 15.5,
+                "condition": "客户端覆盖"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1004"
+      ]
+    },
+    {
+      "id": "audit-135",
+      "timestamp": "2026-06-15T03:09:46.260Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "idem-merge-base-1781492986257-e9ucu8",
+              "operationType": "animal_note",
+              "keeper": "周遥",
+              "clientCreatedAt": "2098-05-21T13:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1002",
+                "date": "2098-05-21",
+                "weight": 18,
+                "condition": "幂等合并基准"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1002"
+      ]
+    },
+    {
+      "id": "audit-136",
+      "timestamp": "2026-06-15T03:09:46.264Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "idem-merge-1781492986257-oflbu1",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2098-05-21T13:30:00.000Z",
+              "conflictStrategy": "client_wins",
+              "payload": {
+                "animalId": "ani-1002",
+                "date": "2098-05-21",
+                "weight": 18.5,
+                "condition": "客户端覆盖-幂等测试"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1002"
+      ]
+    },
+    {
+      "id": "audit-137",
+      "timestamp": "2026-06-15T03:09:46.267Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "idem-merge-1781492986257-oflbu1",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2098-05-21T13:30:00.000Z",
+              "conflictStrategy": "client_wins",
+              "payload": {
+                "animalId": "ani-1002",
+                "date": "2098-05-21",
+                "weight": 18.5,
+                "condition": "客户端覆盖-幂等测试"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1002"
+      ]
+    },
+    {
+      "id": "audit-138",
+      "timestamp": "2026-06-15T03:09:46.270Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "idem-merge-2-1781492986268-3j6q9y",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2098-05-21T14:00:00.000Z",
+              "conflictStrategy": "reject",
+              "payload": {
+                "animalId": "ani-1002",
+                "date": "2098-05-21",
+                "weight": 19,
+                "condition": "拒绝策略测试"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1002"
+      ]
+    },
+    {
+      "id": "audit-139",
+      "timestamp": "2026-06-15T03:09:46.276Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "nodup-base-1781492986270-dkfzxt",
+              "operationType": "animal_note",
+              "keeper": "周遥",
+              "clientCreatedAt": "2097-02-10T09:00:00.000Z",
+              "payload": {
+                "animalId": "ani-2001",
+                "date": "2097-02-10",
+                "weight": 20,
+                "condition": "不重复基准"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-2001"
+      ]
+    },
+    {
+      "id": "audit-140",
+      "timestamp": "2026-06-15T03:09:46.282Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "nodup-merge-1781492986270-zdgdqx",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2097-02-10T10:00:00.000Z",
+              "conflictStrategy": "client_wins",
+              "payload": {
+                "animalId": "ani-2001",
+                "date": "2097-02-10",
+                "weight": 20.5,
+                "condition": "合并覆盖"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-2001"
+      ]
+    },
+    {
+      "id": "audit-141",
+      "timestamp": "2026-06-15T03:09:46.286Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "nodup-merge-1781492986270-zdgdqx",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2097-02-10T10:00:00.000Z",
+              "conflictStrategy": "client_wins",
+              "payload": {
+                "animalId": "ani-2001",
+                "date": "2097-02-10",
+                "weight": 20.5,
+                "condition": "合并覆盖"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-2001"
+      ]
+    },
+    {
+      "id": "audit-142",
+      "timestamp": "2026-06-15T03:09:46.292Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "mix-note-1781492986288-89g1b6",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-05-21T08:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1001",
+                "date": "2099-05-21",
+                "weight": 21.7,
+                "condition": "混合批量测试 - note",
+                "photoPlaceholders": [
+                  {
+                    "localPath": "mix.jpg",
+                    "size": 1000,
+                    "takenAt": "2099-05-21T07:59:00.000Z",
+                    "hash": "mixhash"
+                  }
+                ]
+              }
+            },
+            {
+              "operationId": "mix-move-1781492986288-xi8qu3",
+              "operationType": "animal_move",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-05-21T08:10:00.000Z",
+              "payload": {
+                "animalId": "ani-1002",
+                "cageId": "B-04",
+                "reason": "混合批量测试 - 移笼"
+              }
+            },
+            {
+              "operationId": "mix-feed-1781492986288-bu40k5",
+              "operationType": "feeding_record",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-05-21T08:15:00.000Z",
+              "payload": {
+                "targetType": "animal",
+                "targetId": "ani-1001",
+                "feedType": "标准颗粒饲料",
+                "amount": 2.5,
+                "condition": "进食良好",
+                "notes": "混合批量测试"
+              }
+            },
+            {
+              "operationId": "mix-cage-1781492986288-chcklq",
+              "operationType": "cage_abnormal",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-05-21T08:20:00.000Z",
+              "payload": {
+                "cageId": "C-01",
+                "abnormalType": "hygiene",
+                "severity": "minor",
+                "description": "混合批量测试 - 笼位需清洁",
+                "photoPlaceholders": [
+                  {
+                    "localPath": "cage.jpg",
+                    "size": 2000,
+                    "takenAt": "2099-05-21T08:19:00.000Z",
+                    "hash": "cagehash"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1001",
+        "ani-1002"
+      ]
+    },
+    {
+      "id": "audit-143",
+      "timestamp": "2026-06-15T03:09:46.298Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": []
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": 400,
+        "body": {
+          "error": "empty_batch",
+          "message": "同步批次不能为空"
+        }
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-144",
+      "timestamp": "2026-06-15T03:09:46.301Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "payload": {
+                "animalId": "ani-1001"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1001"
+      ]
+    },
+    {
+      "id": "audit-145",
+      "timestamp": "2026-06-15T03:09:46.307Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "bad-1781492986302-7wy3ct",
+              "operationType": "invalid_type",
+              "keeper": "林青",
+              "payload": {}
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-146",
+      "timestamp": "2026-06-15T03:09:46.310Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "noanimal-1781492986307-2y2cj2",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "payload": {
+                "weight": 20
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-147",
+      "timestamp": "2026-06-15T03:09:46.313Z",
+      "operation": "sync.operation_query",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "GET",
+        "pathname": "/sync/operations",
+        "query": {},
+        "body": {},
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "_truncated": true,
+          "length": 130476,
+          "preview": "[{\"operationId\":\"noanimal-1781492986307-2y2cj2\",\"operationType\":\"animal_note\",\"keeper\":\"林青\",\"deviceId\":null,\"clientCreatedAt\":null,\"submittedAt\":\"2026-06-15T03:09:46.309Z\",\"status\":\"error\",\"payload\":{\"weight\":20},\"result\":null,\"conflictDetails\":null,\"error\":{\"code\":\"validation_failed\",\"details\":[{\"field\":\"payload.animalId\",\"message\":\"animal_note 操作需要 animalId\"}]},\"mergedFields\":null,\"animalId\":null,\"cageId\":null,\"date\":\"2026-06-15\"},{\"operationId\":\"bad-1781492986302-7wy3ct\",\"operationType\":\"inva"
+        }
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-148",
+      "timestamp": "2026-06-15T03:09:46.320Z",
+      "operation": "sync.operation_query",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "GET",
+        "pathname": "/sync/operations",
+        "query": {
+          "status": "applied"
+        },
+        "body": {},
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "_truncated": true,
+          "length": 36759,
+          "preview": "[{\"operationId\":\"mix-feed-1781492986288-bu40k5\",\"operationType\":\"feeding_record\",\"keeper\":\"林青\",\"deviceId\":null,\"clientCreatedAt\":\"2099-05-21T08:15:00.000Z\",\"submittedAt\":\"2026-06-15T03:09:46.294Z\",\"status\":\"applied\",\"payload\":{\"targetType\":\"animal\",\"targetId\":\"ani-1001\",\"feedType\":\"标准颗粒饲料\",\"amount\":2.5,\"condition\":\"进食良好\",\"notes\":\"混合批量测试\"},\"result\":{\"record\":{\"id\":\"record-1781492986293\",\"targetType\":\"animal\",\"targetId\":\"ani-1001\",\"roomId\":\"room-default\",\"zoneId\":\"zone-default\",\"project\":\"代谢观察\",\"p"
+        }
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-149",
+      "timestamp": "2026-06-15T03:09:46.322Z",
+      "operation": "sync.operation_query",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "GET",
+        "pathname": "/sync/operations/noanimal-1781492986307-2y2cj2",
+        "query": {},
+        "body": {},
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "operationId": "noanimal-1781492986307-2y2cj2",
+          "operationType": "animal_note",
+          "keeper": "林青",
+          "deviceId": null,
+          "clientCreatedAt": null,
+          "submittedAt": "2026-06-15T03:09:46.309Z",
+          "status": "error",
+          "payload": {
+            "weight": 20
+          },
+          "result": null,
+          "conflictDetails": null,
+          "error": {
+            "code": "validation_failed",
+            "details": [
+              {
+                "field": "payload.animalId",
+                "message": "animal_note 操作需要 animalId"
+              }
+            ]
+          },
+          "mergedFields": null,
+          "animalId": null,
+          "cageId": null,
+          "date": "2026-06-15"
+        }
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-150",
+      "timestamp": "2026-06-15T03:11:16.370Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "note-1781493076364-lkutzt",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "deviceId": "test-device-001",
+              "clientCreatedAt": "2099-05-21T08:30:00.000Z",
+              "payload": {
+                "animalId": "ani-1001",
+                "date": "2099-05-21",
+                "weight": 21.5,
+                "condition": "离线测试 - 食欲良好",
+                "photoPlaceholders": [
+                  {
+                    "localPath": "test.jpg",
+                    "size": 123456,
+                    "takenAt": "2099-05-21T08:28:00.000Z",
+                    "hash": "sha256:test123"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1001"
+      ]
+    },
+    {
+      "id": "audit-151",
+      "timestamp": "2026-06-15T03:11:16.375Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "idempotent-1781493076372-raul27",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-05-21T09:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1002",
+                "date": "2099-05-21",
+                "weight": 22,
+                "condition": "幂等性测试"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1002"
+      ]
+    },
+    {
+      "id": "audit-152",
+      "timestamp": "2026-06-15T03:11:16.380Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "idempotent-1781493076372-raul27",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-05-21T09:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1002",
+                "date": "2099-05-21",
+                "weight": 22,
+                "condition": "幂等性测试"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1002"
+      ]
+    },
+    {
+      "id": "audit-153",
+      "timestamp": "2026-06-15T03:11:16.386Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "conflict-a-1781493076387-s6ds2e",
+              "operationType": "animal_note",
+              "keeper": "周遥",
+              "deviceId": "device-A",
+              "clientCreatedAt": "2099-05-21T07:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1003",
+                "date": "2099-05-21",
+                "weight": 16.5,
+                "condition": "A端 - 状态正常"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1003"
+      ]
+    },
+    {
+      "id": "audit-154",
+      "timestamp": "2026-06-15T03:11:16.393Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "conflict-b-1781493076388-e88a87",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "deviceId": "device-B",
+              "clientCreatedAt": "2099-05-21T10:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1003",
+                "date": "2099-05-21",
+                "weight": 16.8,
+                "condition": "B端 - 状态正常"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1003"
+      ]
+    },
+    {
+      "id": "audit-155",
+      "timestamp": "2026-06-15T03:11:16.399Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "reject-1781493076400-blbr0m",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-05-21T11:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1004",
+                "date": "2099-05-21",
+                "weight": 15,
+                "condition": "原始记录"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1004"
+      ]
+    },
+    {
+      "id": "audit-156",
+      "timestamp": "2026-06-15T03:11:16.406Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "reject-2-1781493076401-urdf9i",
+              "operationType": "animal_note",
+              "keeper": "周遥",
+              "clientCreatedAt": "2099-05-21T11:30:00.000Z",
+              "conflictStrategy": "reject",
+              "payload": {
+                "animalId": "ani-1004",
+                "date": "2099-05-21",
+                "weight": 15.2
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1004"
+      ]
+    },
+    {
+      "id": "audit-157",
+      "timestamp": "2026-06-15T03:11:16.413Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "cw-1781493076417-cen4fl",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-05-21T12:00:00.000Z",
+              "conflictStrategy": "client_wins",
+              "payload": {
+                "animalId": "ani-1004",
+                "date": "2099-05-21",
+                "weight": 15.5,
+                "condition": "客户端覆盖"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1004"
+      ]
+    },
+    {
+      "id": "audit-158",
+      "timestamp": "2026-06-15T03:11:16.423Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "idem-merge-base-1781493076425-mpmns2",
+              "operationType": "animal_note",
+              "keeper": "周遥",
+              "clientCreatedAt": "2098-05-21T13:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1002",
+                "date": "2098-05-21",
+                "weight": 18,
+                "condition": "幂等合并基准"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1002"
+      ]
+    },
+    {
+      "id": "audit-159",
+      "timestamp": "2026-06-15T03:11:16.433Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "idem-merge-1781493076426-qmc4ok",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2098-05-21T13:30:00.000Z",
+              "conflictStrategy": "client_wins",
+              "payload": {
+                "animalId": "ani-1002",
+                "date": "2098-05-21",
+                "weight": 18.5,
+                "condition": "客户端覆盖-幂等测试"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1002"
+      ]
+    },
+    {
+      "id": "audit-160",
+      "timestamp": "2026-06-15T03:11:16.440Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "idem-merge-1781493076426-qmc4ok",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2098-05-21T13:30:00.000Z",
+              "conflictStrategy": "client_wins",
+              "payload": {
+                "animalId": "ani-1002",
+                "date": "2098-05-21",
+                "weight": 18.5,
+                "condition": "客户端覆盖-幂等测试"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1002"
+      ]
+    },
+    {
+      "id": "audit-161",
+      "timestamp": "2026-06-15T03:11:16.456Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "idem-merge-2-1781493076459-kzee3h",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2098-05-21T14:00:00.000Z",
+              "conflictStrategy": "reject",
+              "payload": {
+                "animalId": "ani-1002",
+                "date": "2098-05-21",
+                "weight": 19,
+                "condition": "拒绝策略测试"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1002"
+      ]
+    },
+    {
+      "id": "audit-162",
+      "timestamp": "2026-06-15T03:11:16.464Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "nodup-base-1781493076471-1g6rwt",
+              "operationType": "animal_note",
+              "keeper": "周遥",
+              "clientCreatedAt": "2097-10-22T09:00:00.000Z",
+              "payload": {
+                "animalId": "ani-2001",
+                "date": "2097-10-22",
+                "weight": 20,
+                "condition": "不重复基准"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-2001"
+      ]
+    },
+    {
+      "id": "audit-163",
+      "timestamp": "2026-06-15T03:11:16.477Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "nodup-merge-1781493076472-8hptlp",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2097-10-22T10:00:00.000Z",
+              "conflictStrategy": "client_wins",
+              "payload": {
+                "animalId": "ani-2001",
+                "date": "2097-10-22",
+                "weight": 20.5,
+                "condition": "合并覆盖"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-2001"
+      ]
+    },
+    {
+      "id": "audit-164",
+      "timestamp": "2026-06-15T03:11:16.488Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "nodup-merge-1781493076472-8hptlp",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2097-10-22T10:00:00.000Z",
+              "conflictStrategy": "client_wins",
+              "payload": {
+                "animalId": "ani-2001",
+                "date": "2097-10-22",
+                "weight": 20.5,
+                "condition": "合并覆盖"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-2001"
+      ]
+    },
+    {
+      "id": "audit-165",
+      "timestamp": "2026-06-15T03:11:16.501Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "mix-note-1781493076508-tzagen",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-05-21T08:00:00.000Z",
+              "payload": {
+                "animalId": "ani-1001",
+                "date": "2099-05-21",
+                "weight": 21.7,
+                "condition": "混合批量测试 - note",
+                "photoPlaceholders": [
+                  {
+                    "localPath": "mix.jpg",
+                    "size": 1000,
+                    "takenAt": "2099-05-21T07:59:00.000Z",
+                    "hash": "mixhash"
+                  }
+                ]
+              }
+            },
+            {
+              "operationId": "mix-move-1781493076509-fgcu59",
+              "operationType": "animal_move",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-05-21T08:10:00.000Z",
+              "payload": {
+                "animalId": "ani-1002",
+                "cageId": "B-04",
+                "reason": "混合批量测试 - 移笼"
+              }
+            },
+            {
+              "operationId": "mix-feed-1781493076510-ugz0ju",
+              "operationType": "feeding_record",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-05-21T08:15:00.000Z",
+              "payload": {
+                "targetType": "animal",
+                "targetId": "ani-1001",
+                "feedType": "标准颗粒饲料",
+                "amount": 2.5,
+                "condition": "进食良好",
+                "notes": "混合批量测试"
+              }
+            },
+            {
+              "operationId": "mix-cage-1781493076511-c8xaot",
+              "operationType": "cage_abnormal",
+              "keeper": "林青",
+              "clientCreatedAt": "2099-05-21T08:20:00.000Z",
+              "payload": {
+                "cageId": "C-01",
+                "abnormalType": "hygiene",
+                "severity": "minor",
+                "description": "混合批量测试 - 笼位需清洁",
+                "photoPlaceholders": [
+                  {
+                    "localPath": "cage.jpg",
+                    "size": 2000,
+                    "takenAt": "2099-05-21T08:19:00.000Z",
+                    "hash": "cagehash"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1001",
+        "ani-1002"
+      ]
+    },
+    {
+      "id": "audit-166",
+      "timestamp": "2026-06-15T03:11:16.508Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": []
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": 400,
+        "body": {
+          "error": "empty_batch",
+          "message": "同步批次不能为空"
+        }
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-167",
+      "timestamp": "2026-06-15T03:11:16.534Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "payload": {
+                "animalId": "ani-1001"
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": [
+        "ani-1001"
+      ]
+    },
+    {
+      "id": "audit-168",
+      "timestamp": "2026-06-15T03:11:16.547Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "bad-1781493076557-ihwhz8",
+              "operationType": "invalid_type",
+              "keeper": "林青",
+              "payload": {}
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-169",
+      "timestamp": "2026-06-15T03:11:16.569Z",
+      "operation": "sync.batch",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/sync/batch",
+        "query": {},
+        "body": {
+          "operations": [
+            {
+              "operationId": "noanimal-1781493076566-c4mfq5",
+              "operationType": "animal_note",
+              "keeper": "林青",
+              "payload": {
+                "weight": 20
+              }
+            }
+          ]
+        },
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-170",
+      "timestamp": "2026-06-15T03:11:16.582Z",
+      "operation": "sync.operation_query",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "GET",
+        "pathname": "/sync/operations",
+        "query": {},
+        "body": {},
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "_truncated": true,
+          "length": 158816,
+          "preview": "[{\"operationId\":\"noanimal-1781493076566-c4mfq5\",\"operationType\":\"animal_note\",\"keeper\":\"林青\",\"deviceId\":null,\"clientCreatedAt\":null,\"submittedAt\":\"2026-06-15T03:11:16.560Z\",\"status\":\"error\",\"payload\":{\"weight\":20},\"result\":null,\"conflictDetails\":null,\"error\":{\"code\":\"validation_failed\",\"details\":[{\"field\":\"payload.animalId\",\"message\":\"animal_note 操作需要 animalId\"}]},\"mergedFields\":null,\"animalId\":null,\"cageId\":null,\"date\":\"2026-06-15\"},{\"operationId\":\"bad-1781493076557-ihwhz8\",\"operationType\":\"inva"
+        }
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-171",
+      "timestamp": "2026-06-15T03:11:16.594Z",
+      "operation": "sync.operation_query",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "GET",
+        "pathname": "/sync/operations",
+        "query": {
+          "status": "applied"
+        },
+        "body": {},
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "_truncated": true,
+          "length": 37352,
+          "preview": "[{\"operationId\":\"nodup-base-1781493076471-1g6rwt\",\"operationType\":\"animal_note\",\"keeper\":\"周遥\",\"deviceId\":null,\"clientCreatedAt\":\"2097-10-22T09:00:00.000Z\",\"submittedAt\":\"2026-06-15T03:11:16.463Z\",\"status\":\"applied\",\"payload\":{\"animalId\":\"ani-2001\",\"date\":\"2097-10-22\",\"weight\":20,\"condition\":\"不重复基准\"},\"result\":{\"note\":{\"id\":\"note-1781493076463-a9xaw\",\"date\":\"2097-10-22\",\"weight\":20,\"condition\":\"不重复基准\",\"keeper\":\"周遥\"},\"healthEvent\":{\"created\":false,\"merged\":false,\"eventId\":null}},\"conflictDetails\":n"
+        }
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-172",
+      "timestamp": "2026-06-15T03:11:16.603Z",
+      "operation": "sync.operation_query",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "GET",
+        "pathname": "/sync/operations/noanimal-1781493076566-c4mfq5",
+        "query": {},
+        "body": {},
+        "ip": "::1",
+        "userAgent": null
+      },
+      "response": {
+        "status": 200,
+        "body": {
+          "operationId": "noanimal-1781493076566-c4mfq5",
+          "operationType": "animal_note",
+          "keeper": "林青",
+          "deviceId": null,
+          "clientCreatedAt": null,
+          "submittedAt": "2026-06-15T03:11:16.560Z",
+          "status": "error",
+          "payload": {
+            "weight": 20
+          },
+          "result": null,
+          "conflictDetails": null,
+          "error": {
+            "code": "validation_failed",
+            "details": [
+              {
+                "field": "payload.animalId",
+                "message": "animal_note 操作需要 animalId"
+              }
+            ]
+          },
+          "mergedFields": null,
+          "animalId": null,
+          "cageId": null,
+          "date": "2026-06-15"
+        }
+      },
+      "animalIds": []
     }
   ],
-  "nextId": 58
+  "nextId": 173
 }

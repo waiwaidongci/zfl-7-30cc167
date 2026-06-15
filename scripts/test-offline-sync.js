@@ -1,4 +1,5 @@
 import http from "node:http";
+import { randomInt } from "node:crypto";
 import { readFileSync, existsSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -25,11 +26,13 @@ function loadApiKey() {
 
 const API_KEY = loadApiKey();
 
-const _ts = Date.now();
-const _dm = String((_ts % 12) + 1).padStart(2, "0");
-const _dd = String((_ts % 28) + 1).padStart(2, "0");
-const TEST_DATE = "2099-" + _dm + "-" + _dd;
-const TEST_DATE_ALT = "2098-" + _dm + "-" + _dd;
+function futureDate(offset) {
+  return new Date(Date.UTC(2090, 0, 1 + offset)).toISOString().slice(0, 10);
+}
+
+const RUN_DATE_OFFSET = randomInt(0, 1000000);
+const TEST_DATE = futureDate(RUN_DATE_OFFSET);
+const TEST_DATE_ALT = futureDate(RUN_DATE_OFFSET + 1);
 
 function request(path, method, body) {
   return new Promise((resolve, reject) => {
@@ -409,10 +412,7 @@ async function testIdempotentMerge() {
 async function testMergeNoDuplicateRecords() {
   section("5c. 合并不产生重复业务记录验证");
 
-  const _ts2 = Date.now() + 999;
-  const _mm = String((_ts2 % 12) + 1).padStart(2, "0");
-  const _dd2 = String((_ts2 % 28) + 1).padStart(2, "0");
-  const MERGE_DATE = "2097-" + _mm + "-" + _dd2;
+  const MERGE_DATE = futureDate(RUN_DATE_OFFSET + 2);
   const baseOpId = uid("nodup-base");
   const mergeOpId = uid("nodup-merge");
   const testAnimalId = "ani-2001";

@@ -108,6 +108,9 @@ function cloneAnimalBase(animal) {
     id: animal.id,
     strain: animal.strain,
     cageId: animal.cageId,
+    roomId: animal.roomId || null,
+    zoneId: animal.zoneId || null,
+    projectId: animal.projectId || null,
     sex: animal.sex,
     birthDate: animal.birthDate,
     project: animal.project,
@@ -154,6 +157,9 @@ function buildAnimalEvents(animal, operator) {
   events.push({
     eventType: EVENT_TYPES.ANIMAL_CREATED,
     animalId: animal.id,
+    roomId: animal.roomId || null,
+    zoneId: animal.zoneId || null,
+    projectId: animal.projectId || null,
     timestamp: normalizeEventTimestamp(createdTimestamp),
     operator,
     payload: {
@@ -194,6 +200,9 @@ function buildAnimalEvents(animal, operator) {
       events.push({
         eventType: EVENT_TYPES.ANIMAL_QUARANTINE_RECORD,
         animalId: animal.id,
+        roomId: animal.roomId || null,
+        zoneId: animal.zoneId || null,
+        projectId: animal.projectId || null,
         timestamp: normalizeEventTimestamp(recordTs),
         operator: { role: "keeper", name: record.examiner || animal.keeper, key: "migrated" },
         payload: {
@@ -222,6 +231,9 @@ function buildAnimalEvents(animal, operator) {
     events.push({
       eventType: EVENT_TYPES.ANIMAL_QUARANTINE_ABNORMAL,
       animalId: animal.id,
+      roomId: animal.roomId || null,
+      zoneId: animal.zoneId || null,
+      projectId: animal.projectId || null,
       timestamp: normalizeEventTimestamp(animal.abnormalMarkedAt),
       operator: { role: "keeper", name: animal.abnormalHandler || animal.keeper, key: "migrated" },
       payload: {
@@ -245,6 +257,9 @@ function buildAnimalEvents(animal, operator) {
     events.push({
       eventType: EVENT_TYPES.ANIMAL_QUARANTINE_RELEASED,
       animalId: animal.id,
+      roomId: animal.roomId || state.roomId || null,
+      zoneId: animal.zoneId || state.zoneId || null,
+      projectId: animal.projectId || state.projectId || null,
       timestamp: normalizeEventTimestamp(animal.quarantineReleasedAt),
       operator: { role: "keeper", name: approval.approver || animal.keeper, key: "migrated" },
       payload: {
@@ -271,12 +286,17 @@ function buildAnimalEvents(animal, operator) {
       events.push({
         eventType: EVENT_TYPES.ANIMAL_MOVED,
         animalId: animal.id,
+        roomId: move.toRoomId || animal.roomId || null,
+        zoneId: animal.zoneId || null,
+        projectId: animal.projectId || null,
         timestamp: normalizeEventTimestamp(move.movedAt),
         operator,
         payload: {
           moveId: move.id,
           fromCage: move.from,
           toCage: move.to,
+          fromRoomId: move.fromRoomId || null,
+          toRoomId: move.toRoomId || null,
           reason: move.reason || "笼位调整",
           migrated: true
         },
@@ -299,6 +319,9 @@ function buildAnimalEvents(animal, operator) {
       events.push({
         eventType: EVENT_TYPES.ANIMAL_NOTE_ADDED,
         animalId: animal.id,
+        roomId: animal.roomId || null,
+        zoneId: animal.zoneId || null,
+        projectId: animal.projectId || null,
         timestamp: normalizeEventTimestamp(noteTs),
         operator: { role: "keeper", name: note.keeper || animal.keeper, key: "migrated" },
         payload: {
@@ -322,6 +345,9 @@ function buildAnimalEvents(animal, operator) {
     events.push({
       eventType: EVENT_TYPES.ANIMAL_REMOVED,
       animalId: animal.id,
+      roomId: animal.roomId || null,
+      zoneId: animal.zoneId || null,
+      projectId: animal.projectId || null,
       timestamp: normalizeEventTimestamp(animal.removedAt),
       operator,
       payload: {
@@ -341,6 +367,9 @@ function buildAnimalEvents(animal, operator) {
       events.push({
         eventType: EVENT_TYPES.BREEDING_LITTER_WEANED,
         animalId: animal.id,
+        roomId: animal.roomId || null,
+        zoneId: animal.zoneId || null,
+        projectId: animal.projectId || null,
         timestamp: normalizeEventTimestamp(weanTs),
         operator,
         payload: {
@@ -369,6 +398,9 @@ function buildFeedingEvents(db, operator) {
     events.push({
       eventType: EVENT_TYPES.FEEDING_RECORDED,
       animalId: record.targetId,
+      roomId: record.roomId || null,
+      zoneId: record.zoneId || null,
+      projectId: record.projectId || null,
       timestamp: normalizeEventTimestamp(record.actualTime || new Date().toISOString()),
       operator: { role: "keeper", name: record.keeper, key: "migrated" },
       payload: {
@@ -380,6 +412,7 @@ function buildFeedingEvents(db, operator) {
         weight: record.weight,
         notes: record.notes || "",
         date: record.date,
+        roomId: record.roomId || null,
         migrated: true
       },
       metadata: { source: "snapshot_migration", migrationType: "feeding_record", recordId: record.id }

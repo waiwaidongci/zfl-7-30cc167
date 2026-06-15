@@ -178,6 +178,45 @@
       "endDate": "",
       "createdAt": "2026-06-14T10:33:40.051Z",
       "migratedFromAnimal": true
+    },
+    {
+      "id": "proj-1781514550103-k8p",
+      "name": "测试项目",
+      "code": "PRJ9",
+      "roomId": "room-default",
+      "description": "从旧数据项目字段自动创建：测试项目",
+      "status": "active",
+      "manager": "",
+      "startDate": "",
+      "endDate": "",
+      "createdAt": "2026-06-15T09:09:10.103Z",
+      "migratedFromAnimal": true
+    },
+    {
+      "id": "proj-1781514550103-95q",
+      "name": "生命周期测试",
+      "code": "PRJ10",
+      "roomId": "room-default",
+      "description": "从旧数据项目字段自动创建：生命周期测试",
+      "status": "active",
+      "manager": "",
+      "startDate": "",
+      "endDate": "",
+      "createdAt": "2026-06-15T09:09:10.103Z",
+      "migratedFromAnimal": true
+    },
+    {
+      "id": "proj-1781514550103-zc9",
+      "name": "检疫异常测试",
+      "code": "PRJ11",
+      "roomId": "room-default",
+      "description": "从旧数据项目字段自动创建：检疫异常测试",
+      "status": "active",
+      "manager": "",
+      "startDate": "",
+      "endDate": "",
+      "createdAt": "2026-06-15T09:09:10.103Z",
+      "migratedFromAnimal": true
     }
   ],
   "keepers": [
@@ -1990,6 +2029,131 @@
       "motherId": null,
       "litterId": null,
       "breedingInfo": null
+    },
+    {
+      "id": "ani-1781514064804-z743c",
+      "strain": "C57BL/6J",
+      "cageId": "A-01",
+      "roomId": "room-default",
+      "zoneId": "zone-default",
+      "projectId": "project-default",
+      "sex": "male",
+      "birthDate": "2026-01-01",
+      "project": "测试项目",
+      "keeper": "测试员",
+      "status": "removed",
+      "observationNodes": [],
+      "notes": [],
+      "moves": [],
+      "quarantineRecords": [],
+      "enteredQuarantineAt": "2026-06-15T09:01:04.804Z",
+      "fatherId": null,
+      "motherId": null,
+      "litterId": null,
+      "breedingInfo": null,
+      "removedAt": "2026-06-15T09:01:04.810Z",
+      "removeReason": "测试清理"
+    },
+    {
+      "id": "ani-1781514064814-3ry9w",
+      "strain": "BALB/c",
+      "cageId": "A-02",
+      "roomId": "room-default",
+      "zoneId": "zone-default",
+      "projectId": "project-default",
+      "sex": "female",
+      "birthDate": "2026-02-01",
+      "project": "生命周期测试",
+      "keeper": "测试员",
+      "status": "removed",
+      "observationNodes": [],
+      "notes": [
+        {
+          "id": "note-1781514064817-ziwgm",
+          "date": "2026-06-14",
+          "weight": 20.5,
+          "condition": "正常",
+          "keeper": "测试员"
+        }
+      ],
+      "moves": [
+        {
+          "id": "move-1781514064820-g6l9w",
+          "from": "C-01",
+          "to": "A-01",
+          "fromRoomId": "room-default",
+          "toRoomId": "room-default",
+          "movedAt": "2026-06-15T09:01:04.820Z",
+          "reason": "测试移笼"
+        },
+        {
+          "id": "move-1781514064828-e35l9",
+          "from": "A-01",
+          "to": "A-02",
+          "fromRoomId": "room-default",
+          "toRoomId": "room-default",
+          "movedAt": "2026-06-15T09:01:04.828Z",
+          "reason": "检疫放行"
+        }
+      ],
+      "quarantineRecords": [
+        {
+          "id": "qr-1781514064824-2kn7y",
+          "date": "2026-06-15",
+          "temperature": 37,
+          "weight": 20.3,
+          "condition": "良好",
+          "symptoms": [],
+          "isAbnormal": false,
+          "notes": "日常检疫",
+          "examiner": "测试员",
+          "createdAt": "2026-06-15T09:01:04.824Z"
+        }
+      ],
+      "enteredQuarantineAt": "2026-06-15T09:01:04.814Z",
+      "fatherId": null,
+      "motherId": null,
+      "litterId": null,
+      "breedingInfo": null,
+      "quarantineReleasedAt": "2026-06-15T09:01:04.828Z",
+      "quarantineApproval": {
+        "id": "qa-1781514064828-us9vc",
+        "approvedAt": "2026-06-15T09:01:04.828Z",
+        "approver": "测试员",
+        "targetCageId": "A-02",
+        "notes": "检疫合格"
+      },
+      "removedAt": "2026-06-15T09:01:04.836Z",
+      "removeReason": "测试移出"
+    },
+    {
+      "id": "ani-1781514064882-q1zko",
+      "strain": "C57BL/6J",
+      "cageId": "C-01",
+      "roomId": "room-default",
+      "zoneId": "zone-quarantine",
+      "projectId": "project-default",
+      "sex": "male",
+      "birthDate": "2026-03-01",
+      "project": "检疫异常测试",
+      "keeper": "测试员",
+      "status": "quarantine",
+      "observationNodes": [],
+      "notes": [],
+      "moves": [],
+      "quarantineRecords": [],
+      "enteredQuarantineAt": "2026-06-15T09:01:04.882Z",
+      "fatherId": null,
+      "motherId": null,
+      "litterId": null,
+      "breedingInfo": null,
+      "abnormalMarkedAt": "2026-06-15T09:01:04.885Z",
+      "abnormalReason": "发热",
+      "abnormalHandler": "测试员",
+      "abnormalNotes": "体温38.5℃",
+      "abnormalResolvedAt": "2026-06-15T09:01:04.889Z",
+      "abnormalResolution": "已恢复正常",
+      "abnormalResolver": "测试员"
     }
   ],
   "breedingPairs": [
@@ -2401,6 +2565,25 @@
       "condition": "进食良好",
       "weight": null,
       "notes": "混合批量测试"
+    },
+    {
+      "id": "record-1781514064833",
+      "targetType": "animal",
+      "targetId": "ani-1781514064814-3ry9w",
+      "roomId": "room-default",
+      "zoneId": "zone-default",
+      "project": "生命周期测试",
+      "projectId": "project-default",
+      "date": "2026-06-15",
+      "scheduledTime": null,
+      "actualTime": "2026-06-15T09:01:04.833Z",
+      "feedType": "标准饲料",
+      "amount": 5,
+      "keeper": "测试员",
+      "status": "completed",
+      "condition": "食欲良好",
+      "weight": null,
+      "notes": ""
     }
   ],
   "healthEvents": [
@@ -3043,6 +3226,45 @@
         "qr-1",
         "qr-2"
       ]
+    },
+    {
+      "id": "hev-1781514613686-4p0wz",
+      "animalId": "ani-1001",
+      "project": "代谢观察",
+      "projectId": "proj-metabolism",
+      "keeper": "林青",
+      "roomId": "room-default",
+      "zoneId": "zone-default",
+      "source": "manual",
+      "sourceRecordId": null,
+      "condition": "食欲下降，精神差",
+      "abnormalKeywords": [
+        "食欲下降",
+        "精神差"
+      ],
+      "weightChange": null,
+      "severity": "normal",
+      "handler": "林青",
+      "assignee": null,
+      "status": "closed",
+      "notes": [
+        {
+          "id": "hn-1781514638691-kcmfc",
+          "type": "close",
+          "content": "已处理恢复",
+          "createdAt": "2026-06-15T09:10:38.691Z",
+          "author": "林青",
+          "resolution": null
+        }
+      ],
+      "createdAt": "2026-06-15T09:10:13.686Z",
+      "updatedAt": "2026-06-15T09:10:38.691Z",
+      "assignedAt": null,
+      "inProgressAt": null,
+      "closedAt": "2026-06-15T09:10:38.691Z",
+      "closeReason": "已处理恢复",
+      "reviewDueAt": null,
+      "relatedRecordIds": []
     }
   ],
   "syncOperations": [

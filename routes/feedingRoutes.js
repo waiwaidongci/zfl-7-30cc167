@@ -261,7 +261,7 @@ async function handleCheckin(req, res, db) {
     const condition = input.condition || input.notes || "";
     const weight = input.weight;
     if (condition || weight != null) {
-      const result = detectAndCreateEvent(db, {
+      const result = await detectAndCreateEvent(db, {
         animalId: input.targetId,
         condition,
         weight,
@@ -278,7 +278,7 @@ async function handleCheckin(req, res, db) {
     const condition = input.condition || input.notes || "";
     if (condition) {
       for (const animal of animalsInCage) {
-        const result = detectAndCreateEvent(db, {
+        const result = await detectAndCreateEvent(db, {
           animalId: animal.id,
           condition,
           weight: input.weight,

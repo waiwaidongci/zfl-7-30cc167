@@ -405,7 +405,7 @@ function hoursUntil(dateText) {
   return (new Date(dateText).getTime() - Date.now()) / 36e5;
 }
 
-function migrateDb(db) {
+async function migrateDb(db) {
   if (!db || !db.animals) return db;
   let migrated = false;
   for (const animal of db.animals) {
@@ -423,7 +423,7 @@ function migrateDb(db) {
   const prevHealthLen = db.healthEvents ? db.healthEvents.length : 0;
   ensureHealthCollections(db);
   if (db.healthEvents.length !== prevHealthLen) { migrated = true; }
-  const migration = migrateHistoricalNotes(db);
+  const migration = await migrateHistoricalNotes(db);
   if (migration.createdCount > 0 || migration.mergedCount > 0) { migrated = true; }
   ensureFacilityCollections(db);
   const facilityMigrated = migrateLegacyFacilityData(db);
@@ -650,7 +650,7 @@ const server = http.createServer(async (req, res) => {
       await saveDb(seed);
       db = JSON.parse(JSON.stringify(seed));
     } else {
-      db = migrateDb(db);
+      db = await migrateDb(db);
     }
   } catch (error) {
     return send(res, 500, { error: "db_init_failed", message: error.message });

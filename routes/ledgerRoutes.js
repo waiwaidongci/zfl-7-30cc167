@@ -4,6 +4,8 @@ import {
   queryEvents,
   getEventById,
   replayAnimalLifecycle,
+  replayRoomTimeline,
+  replayProjectTimeline,
   exportEventsByTimeRange,
   verifyIntegrity,
   verifySnapshotConsistency,
@@ -36,6 +38,9 @@ export async function handleLedgerRoutes(req, res, url, db) {
     const filters = {
       eventType: eventTypes.length > 1 ? eventTypes : (eventTypes[0] || undefined),
       animalId: url.searchParams.get("animalId") || undefined,
+      roomId: url.searchParams.get("roomId") || undefined,
+      zoneId: url.searchParams.get("zoneId") || undefined,
+      projectId: url.searchParams.get("projectId") || undefined,
       operatorName: url.searchParams.get("operatorName") || undefined,
       operatorRole: url.searchParams.get("operatorRole") || undefined,
       fromDate: url.searchParams.get("fromDate") || undefined,
@@ -48,6 +53,9 @@ export async function handleLedgerRoutes(req, res, url, db) {
     const animalRelated = url.searchParams.get("animalRelated");
     if (animalRelated === "true") filters.animalRelated = true;
     if (animalRelated === "false") filters.animalRelated = false;
+
+    const includeNullFacility = url.searchParams.get("includeNullFacility");
+    if (includeNullFacility === "true") filters.includeNullFacility = true;
 
     const result = await queryEvents(filters);
     send(res, 200, result);
@@ -81,6 +89,46 @@ export async function handleLedgerRoutes(req, res, url, db) {
     return true;
   }
 
+  const roomTimelineMatch = url.pathname.match(/^\/ledger\/rooms\/([^/]+)\/timeline$/);
+  if (roomTimelineMatch && req.method === "GET") {
+    const roomId = roomTimelineMatch[1];
+    const options = {};
+    const until = url.searchParams.get("until");
+    if (until) options.until = until;
+    const from = url.searchParams.get("from");
+    if (from) options.from = from;
+    const animalRelated = url.searchParams.get("animalRelated");
+    if (animalRelated === "true") options.animalRelated = true;
+
+    const result = await replayRoomTimeline(roomId, options);
+    if (!result.found) {
+      send(res, 404, { error: "room_not_found_in_ledger", roomId });
+      return true;
+    }
+    send(res, 200, result);
+    return true;
+  }
+
+  const projectTimelineMatch = url.pathname.match(/^\/ledger\/projects\/([^/]+)\/timeline$/);
+  if (projectTimelineMatch && req.method === "GET") {
+    const projectId = projectTimelineMatch[1];
+    const options = {};
+    const until = url.searchParams.get("until");
+    if (until) options.until = until;
+    const from = url.searchParams.get("from");
+    if (from) options.from = from;
+    const animalRelated = url.searchParams.get("animalRelated");
+    if (animalRelated === "true") options.animalRelated = true;
+
+    const result = await replayProjectTimeline(projectId, options);
+    if (!result.found) {
+      send(res, 404, { error: "project_not_found_in_ledger", projectId });
+      return true;
+    }
+    send(res, 200, result);
+    return true;
+  }
+
   if (req.method === "GET" && url.pathname === "/ledger/export") {
     const fromDate = url.searchParams.get("fromDate");
     const toDate = url.searchParams.get("toDate");
@@ -97,6 +145,15 @@ export async function handleLedgerRoutes(req, res, url, db) {
     const options = { format };
     const animalId = url.searchParams.get("animalId");
     if (animalId) options.animalId = animalId;
+
+    const roomId = url.searchParams.get("roomId");
+    if (roomId) options.roomId = roomId;
+
+    const zoneId = url.searchParams.get("zoneId");
+    if (zoneId) options.zoneId = zoneId;
+
+    const projectId = url.searchParams.get("projectId");
+    if (projectId) options.projectId = projectId;
 
     const eventTypes = url.searchParams.get("eventTypes");
     if (eventTypes) {

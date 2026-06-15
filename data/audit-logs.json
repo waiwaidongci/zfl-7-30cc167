@@ -1,4 +1,61 @@
 {
-  "logs": [],
-  "nextId": 1
+  "logs": [
+    {
+      "id": "audit-1",
+      "timestamp": "2026-06-15T09:10:13.688Z",
+      "operation": "health.event_create",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/health-events",
+        "query": {},
+        "body": {
+          "animalId": "ani-1001",
+          "condition": "食欲下降，精神差",
+          "abnormalKeywords": [
+            "食欲下降",
+            "精神差"
+          ]
+        },
+        "ip": "::1",
+        "userAgent": "curl/8.7.1"
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": []
+    },
+    {
+      "id": "audit-2",
+      "timestamp": "2026-06-15T09:10:38.692Z",
+      "operation": "health.event_close",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员"
+      },
+      "request": {
+        "method": "POST",
+        "pathname": "/health-events/hev-1781514613686-4p0wz/close",
+        "query": {},
+        "body": {
+          "reason": "已处理恢复",
+          "handler": "林青"
+        },
+        "ip": "::1",
+        "userAgent": "curl/8.7.1"
+      },
+      "response": {
+        "status": null,
+        "body": null
+      },
+      "animalIds": []
+    }
+  ],
+  "nextId": 3
 }

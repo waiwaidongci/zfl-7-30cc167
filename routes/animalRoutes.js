@@ -122,7 +122,7 @@ async function handleAddNote(req, res, db, animalId) {
   const condition = input.condition || "";
   const weight = input.weight;
   if (condition || weight != null) {
-    healthResult = detectAndCreateEvent(db, {
+    healthResult = await detectAndCreateEvent(db, {
       animalId,
       condition,
       weight,
@@ -305,7 +305,7 @@ async function handleQuarantineRecord(req, res, db, animalId) {
   const conditionText = [input.condition || "", ...(input.symptoms || []), input.notes || ""].join(" ");
   const weight = input.weight;
   if (conditionText || weight != null || input.isAbnormal) {
-    healthResult = detectAndCreateEvent(db, {
+    healthResult = await detectAndCreateEvent(db, {
       animalId,
       condition: conditionText,
       weight,
@@ -332,7 +332,7 @@ async function handleQuarantineRecord(req, res, db, animalId) {
         const merged = mergeToExistingEvent(db, existing, eventParams);
         healthResult = { created: true, merged: true, event: merged };
       } else {
-        const event = createHealthEvent(db, eventParams);
+        const event = await createHealthEvent(db, eventParams);
         healthResult = { created: true, merged: false, event };
       }
     }
@@ -418,7 +418,7 @@ async function handleQuarantineAbnormal(req, res, db, animalId) {
     const merged = mergeToExistingEvent(db, existing, eventParams);
     healthResult = { created: true, merged: true, event: merged };
   } else {
-    const event = createHealthEvent(db, eventParams);
+    const event = await createHealthEvent(db, eventParams);
     healthResult = { created: true, merged: false, event };
   }
 

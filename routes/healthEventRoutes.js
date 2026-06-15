@@ -25,7 +25,7 @@ import { checkRoomWriteAccess } from "../lib/permissions.js";
 export async function handleHealthEventRoutes(req, res, url, db) {
   if (handleMeta(req, res, url, db)) return true;
   if (handleStats(req, res, url, db)) return true;
-  if (handleMigration(req, res, url, db)) return true;
+  if (await handleMigration(req, res, url, db)) return true;
   if (handleDetection(req, res, url, db)) return true;
   if (handleList(req, res, url, db)) return true;
   if (handleCreate(req, res, url, db)) return true;
@@ -66,10 +66,12 @@ function handleStats(req, res, url, db) {
   return false;
 }
 
-function handleMigration(req, res, url, db) {
+async function handleMigration(req, res, url, db) {
   if (req.method === "POST" && url.pathname === "/health-events/migrate-historical") {
-    const result = migrateHistoricalNotes(db);
-    saveDb(db);
+    const result = await migrateHistoricalNotes(db, {
+      operator: req._principal || null
+    });
+    await saveDb(db);
     send(res, 200, result);
     return true;
   }
@@ -161,7 +163,9 @@ async function handleCreateEvent(req, res, db) {
   if (!roomCheck.authorized) {
     return send(res, 403, { error: roomCheck.error, message: roomCheck.message });
   }
-  const event = createHealthEvent(db, input);
+  const event = await createHealthEvent(db, input, {
+    operator: req._principal || null
+  });
   await saveDb(db);
   send(res, 201, event);
 }
@@ -249,7 +253,9 @@ async function handleClose(req, res, db, id) {
     return send(res, 403, { error: roomCheck.error, message: roomCheck.message });
   }
   const input = await body(req);
-  const result = closeHealthEvent(db, id, input || {});
+  const result = await closeHealthEvent(db, id, input || {}, {
+    operator: req._principal || null
+  });
   if (result.error) {
     return send(res, 422, { error: result.error, message: result.message });
   }

@@ -3,6 +3,7 @@ import {
   SYNC_OPERATION_TYPES,
   SYNC_STATUS,
   CONFLICT_STRATEGY,
+  CONFLICT_QUEUE_STATUS,
   ensureSyncCollections,
   getSyncOperationById,
   listSyncOperations,
@@ -13,7 +14,12 @@ import {
   mergeExistingRecord,
   validateOperation,
   buildBatchResponse,
-  listCageAbnormalReports
+  listCageAbnormalReports,
+  addToConflictQueue,
+  getConflictById,
+  listConflicts,
+  resolveConflict,
+  dismissConflict
 } from "../lib/syncData.js";
 import { checkRoomWriteAccess, validateRoomAccess } from "../lib/permissions.js";
 import { getAnimal } from "../lib/animalData.js";
@@ -24,6 +30,7 @@ export async function handleSyncRoutes(req, res, url, db) {
   if (handleBatchSync(req, res, url, db)) return true;
   if (handleOperations(req, res, url, db)) return true;
   if (handleCageAbnormal(req, res, url, db)) return true;
+  if (handleConflictQueue(req, res, url, db)) return true;
   return false;
 }
 
@@ -33,6 +40,7 @@ function handleMeta(req, res, url, db) {
       operationTypes: SYNC_OPERATION_TYPES,
       statuses: SYNC_STATUS,
       conflictStrategies: CONFLICT_STRATEGY,
+      conflictQueueStatuses: CONFLICT_QUEUE_STATUS,
       batchSizeLimit: 100,
       description: "离线巡检同步接口，支持饲养记录、体重、移笼、笼位异常、饲喂打卡的批量幂等同步"
     });
@@ -90,6 +98,97 @@ function handleCageAbnormal(req, res, url, db) {
     return true;
   }
   return false;
+}
+
+function handleConflictQueue(req, res, url, db) {
+  if (handleConflictList(req, res, url, db)) return true;
+  if (handleConflictDetail(req, res, url, db)) return true;
+
+  const resolveMatch = url.pathname.match(/^\/sync\/conflicts\/([^/]+)\/resolve$/);
+  if (resolveMatch && req.method === "POST") {
+    handleConflictResolvePost(req, res, db, resolveMatch[1]);
+    return true;
+  }
+
+  const dismissMatch = url.pathname.match(/^\/sync\/conflicts\/([^/]+)\/dismiss$/);
+  if (dismissMatch && req.method === "POST") {
+    handleConflictDismissPost(req, res, db, dismissMatch[1]);
+    return true;
+  }
+
+  return false;
+}
+
+function handleConflictList(req, res, url, db) {
+  if (req.method !== "GET" || url.pathname !== "/sync/conflicts") return false;
+
+  const filters = {
+    status: url.searchParams.get("status") || undefined,
+    keeper: url.searchParams.get("keeper") || undefined,
+    roomId: url.searchParams.get("roomId") || undefined,
+    operationType: url.searchParams.get("operationType") || undefined,
+    fromDate: url.searchParams.get("fromDate") || undefined,
+    toDate: url.searchParams.get("toDate") || undefined,
+    animalId: url.searchParams.get("animalId") || undefined,
+    cageId: url.searchParams.get("cageId") || undefined
+  };
+
+  const items = listConflicts(db, filters);
+  send(res, 200, {
+    total: items.length,
+    items
+  });
+  return true;
+}
+
+function handleConflictDetail(req, res, url, db) {
+  const match = url.pathname.match(/^\/sync\/conflicts\/([^/]+)$/);
+  if (!match || req.method !== "GET") return false;
+
+  const conflict = getConflictById(db, match[1]);
+  if (!conflict) {
+    send(res, 404, { error: "conflict_not_found", message: "冲突记录不存在" });
+    return true;
+  }
+  send(res, 200, conflict);
+  return true;
+}
+
+async function handleConflictResolvePost(req, res, db, conflictId) {
+  const input = await body(req);
+  const strategy = input.strategy;
+  const note = input.note || null;
+
+  if (!strategy || (strategy !== CONFLICT_STRATEGY.SERVER_WINS && strategy !== CONFLICT_STRATEGY.CLIENT_WINS)) {
+    send(res, 400, {
+      error: "invalid_strategy",
+      message: "必须指定解决策略: server_wins 或 client_wins"
+    });
+    return;
+  }
+
+  const result = await resolveConflict(db, conflictId, strategy, req._principal, note);
+  if (!result.ok) {
+    send(res, 400, { error: result.error, message: result.message });
+    return;
+  }
+
+  await saveDb(db);
+  send(res, 200, result.data);
+}
+
+async function handleConflictDismissPost(req, res, db, conflictId) {
+  const input = await body(req);
+  const note = input.note || null;
+
+  const result = dismissConflict(db, conflictId, req._principal, note);
+  if (!result.ok) {
+    send(res, 400, { error: result.error, message: result.message });
+    return;
+  }
+
+  await saveDb(db);
+  send(res, 200, result.data);
 }
 
 async function handleBatchSyncPost(req, res, db) {
@@ -203,6 +302,10 @@ async function processSingleOperation(db, operation, principal) {
     }
 
     if (strategy === CONFLICT_STRATEGY.REJECT) {
+      addToConflictQueue(db, operation, conflictInfo, {
+        originalSyncStatus: SYNC_STATUS.CONFLICT,
+        originalMergeStrategy: strategy
+      });
       return {
         operation,
         status: SYNC_STATUS.CONFLICT,
@@ -224,6 +327,11 @@ async function processSingleOperation(db, operation, principal) {
         };
       }
 
+      addToConflictQueue(db, operation, conflictInfo, {
+        originalSyncStatus: SYNC_STATUS.PARTIAL,
+        originalMergeStrategy: strategy
+      });
+
       return {
         operation,
         status: SYNC_STATUS.PARTIAL,
@@ -236,6 +344,10 @@ async function processSingleOperation(db, operation, principal) {
     }
 
     if (strategy === CONFLICT_STRATEGY.SERVER_WINS && mergeResult.fields.length === 0) {
+      addToConflictQueue(db, operation, conflictInfo, {
+        originalSyncStatus: SYNC_STATUS.CONFLICT,
+        originalMergeStrategy: strategy
+      });
       return {
         operation,
         status: SYNC_STATUS.CONFLICT,
@@ -244,6 +356,10 @@ async function processSingleOperation(db, operation, principal) {
       };
     }
 
+    addToConflictQueue(db, operation, conflictInfo, {
+      originalSyncStatus: SYNC_STATUS.CONFLICT,
+      originalMergeStrategy: strategy
+    });
     return {
       operation,
       status: SYNC_STATUS.CONFLICT,

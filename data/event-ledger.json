@@ -7254,9 +7254,209 @@
       "previousChecksum": "b86e21bbb2eb56181b8fdaa4b62063d7eff1793ddcfc3af72acd29a1d7fbb599",
       "metadata": null,
       "checksum": "f922d70f5e1718cc0804472b1971ab4c3e60e21eacb2e0fe0eded5012efdc0d5"
+    },
+    {
+      "id": "evt-141",
+      "eventType": "animal.moved",
+      "animalId": "ani-1002",
+      "roomId": "room-default",
+      "zoneId": "zone-conventional",
+      "projectId": "proj-immunology",
+      "timestamp": "2026-06-15T10:41:05.946Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限，所有房间和项目均无限制",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "moveId": "move-1781520065903-47rdu",
+        "fromCage": "B-04",
+        "toCage": "B-04",
+        "fromRoomId": "room-default",
+        "toRoomId": "room-default",
+        "reason": "混合批量测试 - 移笼"
+      },
+      "snapshotAfter": {
+        "id": "ani-1002",
+        "strain": "BALB/c",
+        "cageId": "B-04",
+        "roomId": "room-default",
+        "zoneId": "zone-conventional",
+        "projectId": "proj-immunology",
+        "sex": "male",
+        "birthDate": "2026-02-03",
+        "project": "免疫反应",
+        "keeper": "周遥",
+        "status": "released",
+        "enteredQuarantineAt": "2026-05-10T10:00:00.000Z",
+        "quarantineReleasedAt": "2026-05-17T10:00:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 9,
+        "movesCount": 6,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "f922d70f5e1718cc0804472b1971ab4c3e60e21eacb2e0fe0eded5012efdc0d5",
+      "metadata": {
+        "offline": true
+      },
+      "checksum": "fd7a29cec769fa6987e14fb9143294407598fb8b8748a41dcac096aa1216d5ec"
+    },
+    {
+      "id": "evt-142",
+      "eventType": "feeding.recorded",
+      "animalId": "ani-1001",
+      "roomId": "room-default",
+      "zoneId": "zone-default",
+      "projectId": "proj-metabolism",
+      "timestamp": "2026-06-15T10:41:06.048Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限，所有房间和项目均无限制",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "recordId": "record-1781520066026",
+        "feedType": "标准颗粒饲料",
+        "amount": 2.5,
+        "condition": "进食良好",
+        "weight": null,
+        "notes": "混合批量测试",
+        "date": "2026-06-15",
+        "roomId": "room-default"
+      },
+      "snapshotAfter": null,
+      "previousChecksum": "fd7a29cec769fa6987e14fb9143294407598fb8b8748a41dcac096aa1216d5ec",
+      "metadata": {
+        "offline": true
+      },
+      "checksum": "4972aabbe807c2226ddabcfbd04bce309ba9466445ee2d94911a150a2ca744cb"
+    },
+    {
+      "id": "evt-143",
+      "eventType": "animal.moved",
+      "animalId": "ani-1002",
+      "roomId": "room-default",
+      "zoneId": "zone-conventional",
+      "projectId": "proj-immunology",
+      "timestamp": "2026-06-15T11:59:58.652Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限，所有房间和项目均无限制",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "moveId": "move-1781524798647-skg1h",
+        "fromCage": "B-04",
+        "toCage": "B-04",
+        "fromRoomId": "room-default",
+        "toRoomId": "room-default",
+        "reason": "混合批量测试 - 移笼"
+      },
+      "snapshotAfter": {
+        "id": "ani-1002",
+        "strain": "BALB/c",
+        "cageId": "B-04",
+        "roomId": "room-default",
+        "zoneId": "zone-conventional",
+        "projectId": "proj-immunology",
+        "sex": "male",
+        "birthDate": "2026-02-03",
+        "project": "免疫反应",
+        "keeper": "周遥",
+        "status": "released",
+        "enteredQuarantineAt": "2026-05-10T10:00:00.000Z",
+        "quarantineReleasedAt": "2026-05-17T10:00:00.000Z",
+        "removedAt": null,
+        "fatherId": null,
+        "motherId": null,
+        "litterId": null,
+        "weanedAt": null,
+        "notesCount": 12,
+        "movesCount": 7,
+        "quarantineRecordsCount": 1
+      },
+      "previousChecksum": "4972aabbe807c2226ddabcfbd04bce309ba9466445ee2d94911a150a2ca744cb",
+      "metadata": {
+        "offline": true
+      },
+      "checksum": "664cd3f79c35883eaba978f024ec692c06310dae5102e0494a857d951bd01724"
+    },
+    {
+      "id": "evt-144",
+      "eventType": "feeding.recorded",
+      "animalId": "ani-1001",
+      "roomId": "room-default",
+      "zoneId": "zone-default",
+      "projectId": "proj-metabolism",
+      "timestamp": "2026-06-15T11:59:58.656Z",
+      "operator": {
+        "key": "admin-key-demo-001",
+        "role": "admin",
+        "name": "系统管理员",
+        "description": "拥有所有接口的完整访问权限，所有房间和项目均无限制",
+        "allowedRoomIds": [
+          "*"
+        ],
+        "allowedProjectIds": [
+          "*"
+        ],
+        "allowedZones": [
+          "*"
+        ]
+      },
+      "payload": {
+        "recordId": "record-1781524798655",
+        "feedType": "标准颗粒饲料",
+        "amount": 2.5,
+        "condition": "进食良好",
+        "weight": null,
+        "notes": "混合批量测试",
+        "date": "2026-06-15",
+        "roomId": "room-default"
+      },
+      "snapshotAfter": null,
+      "previousChecksum": "664cd3f79c35883eaba978f024ec692c06310dae5102e0494a857d951bd01724",
+      "metadata": {
+        "offline": true
+      },
+      "checksum": "e5c43579fae9d23cd28931df735fba64aa51565724f1634e8026078282d8a20a"
     }
   ],
-  "nextId": 141,
+  "nextId": 145,
   "migratedFromSnapshot": true,
   "checksumChain": [
     "75be34cb8be6166074d95635314b19970daa181140fb432ab66e65ba591f4a24",
@@ -7398,6 +7598,10 @@
     "6606ccc7680199e55e2b398c1457f255252d1e02fc1617309491dd9c7b34649b",
     "78afb6fe2f5ad572b068e3999d51bf2d83d9296868d5af258dd34d2f45c5a269",
     "b86e21bbb2eb56181b8fdaa4b62063d7eff1793ddcfc3af72acd29a1d7fbb599",
-    "f922d70f5e1718cc0804472b1971ab4c3e60e21eacb2e0fe0eded5012efdc0d5"
+    "f922d70f5e1718cc0804472b1971ab4c3e60e21eacb2e0fe0eded5012efdc0d5",
+    "fd7a29cec769fa6987e14fb9143294407598fb8b8748a41dcac096aa1216d5ec",
+    "4972aabbe807c2226ddabcfbd04bce309ba9466445ee2d94911a150a2ca744cb",
+    "664cd3f79c35883eaba978f024ec692c06310dae5102e0494a857d951bd01724",
+    "e5c43579fae9d23cd28931df735fba64aa51565724f1634e8026078282d8a20a"
   ]
 }

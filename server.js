@@ -429,8 +429,9 @@ async function migrateDb(db) {
   const facilityMigrated = migrateLegacyFacilityData(db);
   if (facilityMigrated) { migrated = true; }
   const prevSyncLen = db.syncOperations ? db.syncOperations.length : 0;
+  const prevConflictQueue = db.conflictQueue ? db.conflictQueue.length : -1;
   ensureSyncCollections(db);
-  if (db.syncOperations.length !== prevSyncLen || !db.syncQueues || !db.cageAbnormalReports) { migrated = true; }
+  if (db.syncOperations.length !== prevSyncLen || !db.syncQueues || !db.cageAbnormalReports || prevConflictQueue === -1) { migrated = true; }
   if (migrated) { saveDb(db).catch(() => {}); }
   return db;
 }
@@ -575,7 +576,11 @@ function buildEndpointList() {
     "POST /sync/batch [keeper]",
     "GET /sync/operations?status=&keeper=&operationType=&fromDate=&toDate=",
     "GET /sync/operations/:id",
-    "GET /sync/cage-abnormal?cageId=&roomId=&status=&severity=&fromDate=&toDate="
+    "GET /sync/cage-abnormal?cageId=&roomId=&status=&severity=&fromDate=&toDate=",
+    "GET /sync/conflicts?status=&keeper=&roomId=&operationType=&fromDate=&toDate=",
+    "GET /sync/conflicts/:id",
+    "POST /sync/conflicts/:id/resolve [admin]",
+    "POST /sync/conflicts/:id/dismiss [admin]"
   ];
 }
 

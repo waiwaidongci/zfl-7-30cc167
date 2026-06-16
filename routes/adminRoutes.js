@@ -1,6 +1,7 @@
 import { send, body } from "../lib/helpers.js";
 import {
   runConsistencyCheck,
+  filterResult,
   SEVERITY,
   ISSUE_CATEGORIES,
   CATEGORY_LABELS
@@ -175,86 +176,6 @@ function handleListCategories(req, res) {
   ];
 
   send(res, 200, { categories, severities, checkTypes });
-}
-
-function filterResult(result, options) {
-  const { category, severity } = options;
-
-  const filteredIssues = result.issues.filter(issue => {
-    if (category && issue.category !== category) return false;
-    if (severity) {
-      const severityOrder = ["critical", "error", "warning", "info"];
-      const issueLevel = severityOrder.indexOf(issue.severity);
-      const minLevel = severityOrder.indexOf(severity);
-      if (issueLevel === -1 || minLevel === -1) return true;
-      if (issueLevel > minLevel) return false;
-    }
-    return true;
-  });
-
-  const filteredCheckResults = {};
-  for (const [key, val] of Object.entries(result.checkResults)) {
-    const filtered = val.issues.filter(issue => {
-      if (category && issue.category !== category) return false;
-      if (severity) {
-        const severityOrder = ["critical", "error", "warning", "info"];
-        const issueLevel = severityOrder.indexOf(issue.severity);
-        const minLevel = severityOrder.indexOf(severity);
-        if (issueLevel === -1 || minLevel === -1) return true;
-        if (issueLevel > minLevel) return false;
-      }
-      return true;
-    });
-    filteredCheckResults[key] = { count: filtered.length, issues: filtered };
-  }
-
-  const filteredRepairPatches = result.repairPreview.patches.filter(patch => {
-    if (category && patch.category !== category) return false;
-    if (severity) {
-      const severityOrder = ["critical", "error", "warning", "info"];
-      const issueLevel = severityOrder.indexOf(patch.severity);
-      const minLevel = severityOrder.indexOf(severity);
-      if (issueLevel === -1 || minLevel === -1) return true;
-      if (issueLevel > minLevel) return false;
-    }
-    return true;
-  });
-
-  const summary = {
-    ...result.summary,
-    total: filteredIssues.length,
-    repairable: filteredRepairPatches.length
-  };
-
-  const byCategory = {};
-  const bySeverity = {};
-  const byType = {};
-  let repairableCount = 0;
-
-  for (const issue of filteredIssues) {
-    byCategory[issue.category] = (byCategory[issue.category] || 0) + 1;
-    bySeverity[issue.severity] = (bySeverity[issue.severity] || 0) + 1;
-    byType[issue.type] = (byType[issue.type] || 0) + 1;
-    if (issue.repairable) repairableCount++;
-  }
-
-  return {
-    ...result,
-    summary: {
-      ...summary,
-      byCategory,
-      bySeverity,
-      byType,
-      repairable: repairableCount
-    },
-    checkResults: filteredCheckResults,
-    issues: filteredIssues,
-    repairPreview: {
-      ...result.repairPreview,
-      totalPatches: filteredRepairPatches.length,
-      patches: filteredRepairPatches
-    }
-  };
 }
 
 function buildSummaryResponse(result) {

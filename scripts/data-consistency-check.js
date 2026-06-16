@@ -1,4 +1,4 @@
-import { runConsistencyCheck, formatConsoleReport, ISSUE_CATEGORIES, SEVERITY } from "../lib/dataConsistency.js";
+import { runConsistencyCheck, formatConsoleReport, filterResult, ISSUE_CATEGORIES, SEVERITY } from "../lib/dataConsistency.js";
 
 function parseArgs() {
   const args = process.argv.slice(2);
@@ -83,68 +83,6 @@ function printHelp() {
   # 输出到文件
   node scripts/data-consistency-check.js --json -o report.json
 `);
-}
-
-function filterResult(result, options) {
-  if (!options.category && !options.severity) return result;
-
-  const filteredIssues = result.issues.filter(issue => {
-    if (options.category && issue.category !== options.category) return false;
-    if (options.severity) {
-      const severityOrder = ["critical", "error", "warning", "info"];
-      const issueLevel = severityOrder.indexOf(issue.severity);
-      const minLevel = severityOrder.indexOf(options.severity);
-      if (issueLevel === -1 || minLevel === -1) return true;
-      if (issueLevel > minLevel) return false;
-    }
-    return true;
-  });
-
-  const filteredCheckResults = {};
-  for (const [key, val] of Object.entries(result.checkResults)) {
-    const filtered = val.issues.filter(issue => {
-      if (options.category && issue.category !== options.category) return false;
-      if (options.severity) {
-        const severityOrder = ["critical", "error", "warning", "info"];
-        const issueLevel = severityOrder.indexOf(issue.severity);
-        const minLevel = severityOrder.indexOf(options.severity);
-        if (issueLevel === -1 || minLevel === -1) return true;
-        if (issueLevel > minLevel) return false;
-      }
-      return true;
-    });
-    filteredCheckResults[key] = { count: filtered.length, issues: filtered };
-  }
-
-  const filteredRepairPatches = result.repairPreview.patches.filter(patch => {
-    if (options.category && patch.category !== options.category) return false;
-    if (options.severity) {
-      const severityOrder = ["critical", "error", "warning", "info"];
-      const issueLevel = severityOrder.indexOf(patch.severity);
-      const minLevel = severityOrder.indexOf(options.severity);
-      if (issueLevel === -1 || minLevel === -1) return true;
-      if (issueLevel > minLevel) return false;
-    }
-    return true;
-  });
-
-  const summary = {
-    ...result.summary,
-    total: filteredIssues.length,
-    repairable: filteredRepairPatches.length
-  };
-
-  return {
-    ...result,
-    summary,
-    checkResults: filteredCheckResults,
-    issues: filteredIssues,
-    repairPreview: {
-      ...result.repairPreview,
-      totalPatches: filteredRepairPatches.length,
-      patches: filteredRepairPatches
-    }
-  };
 }
 
 async function main() {

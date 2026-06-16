@@ -7,22 +7,22 @@
       "roomId": null,
       "zoneId": null,
       "projectId": null,
-      "timestamp": "2026-06-16T04:04:41.216Z",
+      "timestamp": "2026-06-16T06:57:31.154Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
-        "totalAnimals": 33,
-        "migratedAt": "2026-06-16T04:04:41.215Z"
+        "totalAnimals": 21,
+        "migratedAt": "2026-06-16T06:57:31.152Z"
       },
       "snapshotAfter": null,
       "previousChecksum": null,
       "metadata": {
         "source": "snapshot_migration"
       },
-      "checksum": "17efca784d62491bfb60f46ded745908cd7d521d9a1a953bbe49d53d05cdab94"
+      "checksum": "2976824ae1b13255d4d9d0a20c2c4f8d08b157f8b075f4f4244331857d29db27"
     },
     {
       "id": "evt-2",
@@ -34,8 +34,8 @@
       "timestamp": "2026-04-05T00:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "id": "ani-2003",
@@ -76,7 +76,7 @@
         "movesCount": 0,
         "quarantineRecordsCount": 0
       },
-      "previousChecksum": "17efca784d62491bfb60f46ded745908cd7d521d9a1a953bbe49d53d05cdab94",
+      "previousChecksum": "2976824ae1b13255d4d9d0a20c2c4f8d08b157f8b075f4f4244331857d29db27",
       "metadata": {
         "source": "snapshot_migration",
         "migrationType": "animal_created"
@@ -148,8 +148,8 @@
       "timestamp": "2026-04-08T00:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "id": "ani-2004",
@@ -262,8 +262,8 @@
       "timestamp": "2026-04-10T00:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "id": "ani-2001",
@@ -321,8 +321,8 @@
       "timestamp": "2026-04-10T00:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "id": "ani-2002",
@@ -490,8 +490,8 @@
       "timestamp": "2026-04-15T00:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "id": "ani-2005",
@@ -653,8 +653,8 @@
       "timestamp": "2026-04-15T09:50:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "moveId": "move-4",
@@ -755,8 +755,8 @@
       "timestamp": "2026-04-15T11:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "moveId": "move-5",
@@ -808,8 +808,8 @@
       "timestamp": "2026-04-18T00:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "id": "ani-2006",
@@ -922,8 +922,8 @@
       "timestamp": "2026-04-20T00:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "id": "ani-1001",
@@ -1085,8 +1085,8 @@
       "timestamp": "2026-04-20T09:30:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "moveId": "move-2",
@@ -1187,8 +1187,8 @@
       "timestamp": "2026-04-20T10:40:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "moveId": "move-3",
@@ -1289,8 +1289,8 @@
       "timestamp": "2026-04-25T10:10:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "moveId": "move-6",
@@ -1446,8 +1446,8 @@
       "timestamp": "2026-04-28T11:20:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "moveId": "move-7",
@@ -1548,8 +1548,8 @@
       "timestamp": "2026-05-01T09:30:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "moveId": "move-1",
@@ -1601,8 +1601,8 @@
       "timestamp": "2026-05-10T00:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "id": "ani-1002",
@@ -1764,8 +1764,8 @@
       "timestamp": "2026-06-10T00:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "id": "ani-1003",
@@ -1823,8 +1823,8 @@
       "timestamp": "2026-06-10T00:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "id": "ani-3001",
@@ -1889,8 +1889,8 @@
       "timestamp": "2026-06-10T00:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "id": "ani-3002",
@@ -1955,8 +1955,8 @@
       "timestamp": "2026-06-10T00:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "id": "ani-3003",
@@ -2021,8 +2021,8 @@
       "timestamp": "2026-06-10T00:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "id": "ani-3004",
@@ -2087,8 +2087,8 @@
       "timestamp": "2026-06-10T00:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "id": "ani-3005",
@@ -2153,8 +2153,8 @@
       "timestamp": "2026-06-10T00:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "id": "ani-3006",
@@ -2219,8 +2219,8 @@
       "timestamp": "2026-06-10T00:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "id": "ani-3007",
@@ -2285,8 +2285,8 @@
       "timestamp": "2026-06-10T10:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "moveId": "move-w1",
@@ -2338,8 +2338,8 @@
       "timestamp": "2026-06-10T10:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "litterId": "litter-demo-1",
@@ -2388,8 +2388,8 @@
       "timestamp": "2026-06-10T10:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "moveId": "move-w2",
@@ -2441,8 +2441,8 @@
       "timestamp": "2026-06-10T10:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "litterId": "litter-demo-1",
@@ -2491,8 +2491,8 @@
       "timestamp": "2026-06-10T10:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "moveId": "move-w3",
@@ -2544,8 +2544,8 @@
       "timestamp": "2026-06-10T10:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "litterId": "litter-demo-1",
@@ -2594,8 +2594,8 @@
       "timestamp": "2026-06-10T10:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "moveId": "move-w4",
@@ -2647,8 +2647,8 @@
       "timestamp": "2026-06-10T10:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "litterId": "litter-demo-1",
@@ -2697,8 +2697,8 @@
       "timestamp": "2026-06-10T10:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "moveId": "move-w5",
@@ -2750,8 +2750,8 @@
       "timestamp": "2026-06-10T10:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "litterId": "litter-demo-1",
@@ -2800,8 +2800,8 @@
       "timestamp": "2026-06-10T10:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "moveId": "move-w6",
@@ -2853,8 +2853,8 @@
       "timestamp": "2026-06-10T10:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "litterId": "litter-demo-1",
@@ -2903,8 +2903,8 @@
       "timestamp": "2026-06-10T10:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "moveId": "move-w7",
@@ -2956,8 +2956,8 @@
       "timestamp": "2026-06-10T10:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "litterId": "litter-demo-1",
@@ -3511,8 +3511,8 @@
       "timestamp": "2026-06-12T00:00:00.000Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "id": "ani-1004",
@@ -3830,8 +3830,8 @@
       "timestamp": "2026-06-15T04:36:54.666Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "id": "ani-2011",
@@ -3889,8 +3889,8 @@
       "timestamp": "2026-06-15T04:36:54.666Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "id": "ani-2007",
@@ -3948,8 +3948,8 @@
       "timestamp": "2026-06-15T04:36:54.666Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "id": "ani-2008",
@@ -4007,8 +4007,8 @@
       "timestamp": "2026-06-15T04:36:54.666Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
         "id": "ani-2009",
@@ -4058,1245 +4058,34 @@
     },
     {
       "id": "evt-77",
-      "eventType": "animal.created",
-      "animalId": "ani-1781498214666-djmui",
-      "roomId": "room-default",
-      "zoneId": "zone-conventional",
-      "projectId": "proj-immunology",
-      "timestamp": "2026-06-15T04:36:54.666Z",
-      "operator": {
-        "role": "system",
-        "name": "test",
-        "key": "test"
-      },
-      "payload": {
-        "id": "ani-1781498214666-djmui",
-        "strain": "BALB/c",
-        "cageId": "B-04",
-        "sex": "female",
-        "birthDate": "2026-03-01",
-        "project": "免疫反应",
-        "keeper": "周遥",
-        "initialStatus": "quarantine",
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "breedingInfo": null,
-        "migrated": true
-      },
-      "snapshotAfter": {
-        "id": "ani-1781498214666-djmui",
-        "strain": "BALB/c",
-        "cageId": "B-04",
-        "roomId": "room-default",
-        "zoneId": "zone-conventional",
-        "projectId": "proj-immunology",
-        "sex": "female",
-        "birthDate": "2026-03-01",
-        "project": "免疫反应",
-        "keeper": "周遥",
-        "status": "quarantine",
-        "enteredQuarantineAt": "2026-06-15T04:36:54.666Z",
-        "quarantineReleasedAt": null,
-        "removedAt": null,
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "notesCount": 0,
-        "movesCount": 0,
-        "quarantineRecordsCount": 0
-      },
-      "previousChecksum": "db9cf0d05b44f4883003de1870e00ab7e2a12db4d680c32d06ee171e3c53d9cd",
-      "metadata": {
-        "source": "snapshot_migration",
-        "migrationType": "animal_created"
-      },
-      "checksum": "6cc95852f6236cc284bbdf3e95748285982255577057202d265521d11549f3bc"
-    },
-    {
-      "id": "evt-78",
-      "eventType": "animal.created",
-      "animalId": "ani-test-mismatch",
-      "roomId": "room-default",
-      "zoneId": "zone-default",
-      "projectId": "proj-metabolism",
-      "timestamp": "2026-06-15T04:36:54.729Z",
-      "operator": {
-        "role": "system",
-        "name": "test",
-        "key": "test"
-      },
-      "payload": {
-        "id": "ani-test-mismatch",
-        "strain": "C57BL/6J",
-        "cageId": "A-01",
-        "sex": "male",
-        "birthDate": "2026-04-02",
-        "project": "代谢观察",
-        "keeper": "测试员",
-        "initialStatus": "quarantine",
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "breedingInfo": null,
-        "migrated": true
-      },
-      "snapshotAfter": {
-        "id": "ani-test-mismatch",
-        "strain": "C57BL/6J",
-        "cageId": "A-01",
-        "roomId": "room-default",
-        "zoneId": "zone-default",
-        "projectId": "proj-metabolism",
-        "sex": "male",
-        "birthDate": "2026-04-02",
-        "project": "代谢观察",
-        "keeper": "测试员",
-        "status": "quarantine",
-        "enteredQuarantineAt": "2026-06-15T04:36:54.729Z",
-        "quarantineReleasedAt": null,
-        "removedAt": null,
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "notesCount": 0,
-        "movesCount": 0,
-        "quarantineRecordsCount": 0
-      },
-      "previousChecksum": "6cc95852f6236cc284bbdf3e95748285982255577057202d265521d11549f3bc",
-      "metadata": {
-        "source": "snapshot_migration",
-        "migrationType": "animal_created"
-      },
-      "checksum": "1bc32d2599ea9720f22c5fedc55f6e3e68f25b9734df6de04a02e5269d508f4a"
-    },
-    {
-      "id": "evt-79",
-      "eventType": "animal.created",
-      "animalId": "ani-test-proj-priority",
-      "roomId": "room-default",
-      "zoneId": "zone-conventional",
-      "projectId": "proj-oncology",
-      "timestamp": "2026-06-15T04:36:55.144Z",
-      "operator": {
-        "role": "system",
-        "name": "test",
-        "key": "test"
-      },
-      "payload": {
-        "id": "ani-test-proj-priority",
-        "strain": "BALB/c",
-        "cageId": "B-04",
-        "sex": "female",
-        "birthDate": "2026-04-03",
-        "project": "代谢观察",
-        "keeper": "测试员",
-        "initialStatus": "quarantine",
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "breedingInfo": null,
-        "migrated": true
-      },
-      "snapshotAfter": {
-        "id": "ani-test-proj-priority",
-        "strain": "BALB/c",
-        "cageId": "B-04",
-        "roomId": "room-default",
-        "zoneId": "zone-conventional",
-        "projectId": "proj-oncology",
-        "sex": "female",
-        "birthDate": "2026-04-03",
-        "project": "代谢观察",
-        "keeper": "测试员",
-        "status": "quarantine",
-        "enteredQuarantineAt": "2026-06-15T04:36:55.144Z",
-        "quarantineReleasedAt": null,
-        "removedAt": null,
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "notesCount": 0,
-        "movesCount": 0,
-        "quarantineRecordsCount": 0
-      },
-      "previousChecksum": "1bc32d2599ea9720f22c5fedc55f6e3e68f25b9734df6de04a02e5269d508f4a",
-      "metadata": {
-        "source": "snapshot_migration",
-        "migrationType": "animal_created"
-      },
-      "checksum": "a2be37095bdf67cd661f31c781a6e8eee154c60eac79ea387be4d5fab553e317"
-    },
-    {
-      "id": "evt-80",
-      "eventType": "animal.created",
-      "animalId": "ani-test-single-1781500097005",
-      "roomId": "room-default",
-      "zoneId": "zone-default",
-      "projectId": "proj-metabolism",
-      "timestamp": "2026-06-15T05:08:17.019Z",
-      "operator": {
-        "role": "system",
-        "name": "test",
-        "key": "test"
-      },
-      "payload": {
-        "id": "ani-test-single-1781500097005",
-        "strain": "C57BL/6J",
-        "cageId": "A-02",
-        "sex": "female",
-        "birthDate": "2026-04-01",
-        "project": "代谢观察",
-        "keeper": "测试员",
-        "initialStatus": "quarantine",
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "breedingInfo": null,
-        "migrated": true
-      },
-      "snapshotAfter": {
-        "id": "ani-test-single-1781500097005",
-        "strain": "C57BL/6J",
-        "cageId": "A-02",
-        "roomId": "room-default",
-        "zoneId": "zone-default",
-        "projectId": "proj-metabolism",
-        "sex": "female",
-        "birthDate": "2026-04-01",
-        "project": "代谢观察",
-        "keeper": "测试员",
-        "status": "quarantine",
-        "enteredQuarantineAt": "2026-06-15T05:08:17.019Z",
-        "quarantineReleasedAt": null,
-        "removedAt": null,
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "notesCount": 0,
-        "movesCount": 0,
-        "quarantineRecordsCount": 0
-      },
-      "previousChecksum": "a2be37095bdf67cd661f31c781a6e8eee154c60eac79ea387be4d5fab553e317",
-      "metadata": {
-        "source": "snapshot_migration",
-        "migrationType": "animal_created"
-      },
-      "checksum": "a383700ce2dd9647f5652e1a03dff813c1d1abe865b93425ba4226170c115b48"
-    },
-    {
-      "id": "evt-81",
-      "eventType": "animal.created",
-      "animalId": "ani-test-mismatch-1781500097047",
-      "roomId": "room-default",
-      "zoneId": "zone-default",
-      "projectId": "proj-metabolism",
-      "timestamp": "2026-06-15T05:08:17.051Z",
-      "operator": {
-        "role": "system",
-        "name": "test",
-        "key": "test"
-      },
-      "payload": {
-        "id": "ani-test-mismatch-1781500097047",
-        "strain": "C57BL/6J",
-        "cageId": "A-01",
-        "sex": "male",
-        "birthDate": "2026-04-02",
-        "project": "代谢观察",
-        "keeper": "测试员",
-        "initialStatus": "quarantine",
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "breedingInfo": null,
-        "migrated": true
-      },
-      "snapshotAfter": {
-        "id": "ani-test-mismatch-1781500097047",
-        "strain": "C57BL/6J",
-        "cageId": "A-01",
-        "roomId": "room-default",
-        "zoneId": "zone-default",
-        "projectId": "proj-metabolism",
-        "sex": "male",
-        "birthDate": "2026-04-02",
-        "project": "代谢观察",
-        "keeper": "测试员",
-        "status": "quarantine",
-        "enteredQuarantineAt": "2026-06-15T05:08:17.051Z",
-        "quarantineReleasedAt": null,
-        "removedAt": null,
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "notesCount": 0,
-        "movesCount": 0,
-        "quarantineRecordsCount": 0
-      },
-      "previousChecksum": "a383700ce2dd9647f5652e1a03dff813c1d1abe865b93425ba4226170c115b48",
-      "metadata": {
-        "source": "snapshot_migration",
-        "migrationType": "animal_created"
-      },
-      "checksum": "4405d06c7cac39b80bf130e8a3752ccb5084d10542a5efae58bc5a98dcbae540"
-    },
-    {
-      "id": "evt-82",
-      "eventType": "animal.created",
-      "animalId": "ani-test-mismatch-1781500810828",
-      "roomId": "room-default",
-      "zoneId": "zone-default",
-      "projectId": "proj-metabolism",
-      "timestamp": "2026-06-15T05:20:10.831Z",
-      "operator": {
-        "role": "system",
-        "name": "test",
-        "key": "test"
-      },
-      "payload": {
-        "id": "ani-test-mismatch-1781500810828",
-        "strain": "C57BL/6J",
-        "cageId": "A-01",
-        "sex": "male",
-        "birthDate": "2026-04-02",
-        "project": "代谢观察",
-        "keeper": "测试员",
-        "initialStatus": "quarantine",
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "breedingInfo": null,
-        "migrated": true
-      },
-      "snapshotAfter": {
-        "id": "ani-test-mismatch-1781500810828",
-        "strain": "C57BL/6J",
-        "cageId": "A-01",
-        "roomId": "room-default",
-        "zoneId": "zone-default",
-        "projectId": "proj-metabolism",
-        "sex": "male",
-        "birthDate": "2026-04-02",
-        "project": "代谢观察",
-        "keeper": "测试员",
-        "status": "quarantine",
-        "enteredQuarantineAt": "2026-06-15T05:20:10.831Z",
-        "quarantineReleasedAt": null,
-        "removedAt": null,
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "notesCount": 0,
-        "movesCount": 0,
-        "quarantineRecordsCount": 0
-      },
-      "previousChecksum": "4405d06c7cac39b80bf130e8a3752ccb5084d10542a5efae58bc5a98dcbae540",
-      "metadata": {
-        "source": "snapshot_migration",
-        "migrationType": "animal_created"
-      },
-      "checksum": "e859a2e4756e788c34d0b2e129b6c8f69ca81e79ae3b88e127caf74e21ccde70"
-    },
-    {
-      "id": "evt-83",
-      "eventType": "animal.created",
-      "animalId": "ani-test-proj-priority-1781500810856",
-      "roomId": "room-default",
-      "zoneId": "zone-default",
-      "projectId": "proj-oncology",
-      "timestamp": "2026-06-15T05:20:10.881Z",
-      "operator": {
-        "role": "system",
-        "name": "test",
-        "key": "test"
-      },
-      "payload": {
-        "id": "ani-test-proj-priority-1781500810856",
-        "strain": "BALB/c",
-        "cageId": "A-01",
-        "sex": "female",
-        "birthDate": "2026-04-03",
-        "project": "代谢观察",
-        "keeper": "测试员",
-        "initialStatus": "quarantine",
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "breedingInfo": null,
-        "migrated": true
-      },
-      "snapshotAfter": {
-        "id": "ani-test-proj-priority-1781500810856",
-        "strain": "BALB/c",
-        "cageId": "A-01",
-        "roomId": "room-default",
-        "zoneId": "zone-default",
-        "projectId": "proj-oncology",
-        "sex": "female",
-        "birthDate": "2026-04-03",
-        "project": "代谢观察",
-        "keeper": "测试员",
-        "status": "quarantine",
-        "enteredQuarantineAt": "2026-06-15T05:20:10.881Z",
-        "quarantineReleasedAt": null,
-        "removedAt": null,
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "notesCount": 0,
-        "movesCount": 0,
-        "quarantineRecordsCount": 0
-      },
-      "previousChecksum": "e859a2e4756e788c34d0b2e129b6c8f69ca81e79ae3b88e127caf74e21ccde70",
-      "metadata": {
-        "source": "snapshot_migration",
-        "migrationType": "animal_created"
-      },
-      "checksum": "ecd80e924504c7cffeb58594752bc982bb6e8e8eee06c14674025adfa8f2c44a"
-    },
-    {
-      "id": "evt-84",
-      "eventType": "animal.created",
-      "animalId": "ani-test-single-1781501321237",
-      "roomId": "room-default",
-      "zoneId": "zone-default",
-      "projectId": "proj-metabolism",
-      "timestamp": "2026-06-15T05:28:41.245Z",
-      "operator": {
-        "role": "system",
-        "name": "test",
-        "key": "test"
-      },
-      "payload": {
-        "id": "ani-test-single-1781501321237",
-        "strain": "C57BL/6J",
-        "cageId": "CAGE-TEST6-1781501321236",
-        "sex": "female",
-        "birthDate": "2026-04-01",
-        "project": "代谢观察",
-        "keeper": "测试员",
-        "initialStatus": "quarantine",
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "breedingInfo": null,
-        "migrated": true
-      },
-      "snapshotAfter": {
-        "id": "ani-test-single-1781501321237",
-        "strain": "C57BL/6J",
-        "cageId": "CAGE-TEST6-1781501321236",
-        "roomId": "room-default",
-        "zoneId": "zone-default",
-        "projectId": "proj-metabolism",
-        "sex": "female",
-        "birthDate": "2026-04-01",
-        "project": "代谢观察",
-        "keeper": "测试员",
-        "status": "quarantine",
-        "enteredQuarantineAt": "2026-06-15T05:28:41.245Z",
-        "quarantineReleasedAt": null,
-        "removedAt": null,
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "notesCount": 0,
-        "movesCount": 0,
-        "quarantineRecordsCount": 0
-      },
-      "previousChecksum": "ecd80e924504c7cffeb58594752bc982bb6e8e8eee06c14674025adfa8f2c44a",
-      "metadata": {
-        "source": "snapshot_migration",
-        "migrationType": "animal_created"
-      },
-      "checksum": "df68b53d9eace88fda86c77bab5eae4d88ac876384368afe1eb4896ad551d755"
-    },
-    {
-      "id": "evt-85",
-      "eventType": "animal.created",
-      "animalId": "ani-test-mismatch-1781501321264",
-      "roomId": "room-default",
-      "zoneId": "zone-default",
-      "projectId": "proj-metabolism",
-      "timestamp": "2026-06-15T05:28:41.268Z",
-      "operator": {
-        "role": "system",
-        "name": "test",
-        "key": "test"
-      },
-      "payload": {
-        "id": "ani-test-mismatch-1781501321264",
-        "strain": "C57BL/6J",
-        "cageId": "CAGE-TEST8-1781501321258",
-        "sex": "male",
-        "birthDate": "2026-04-02",
-        "project": "代谢观察",
-        "keeper": "测试员",
-        "initialStatus": "quarantine",
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "breedingInfo": null,
-        "migrated": true
-      },
-      "snapshotAfter": {
-        "id": "ani-test-mismatch-1781501321264",
-        "strain": "C57BL/6J",
-        "cageId": "CAGE-TEST8-1781501321258",
-        "roomId": "room-default",
-        "zoneId": "zone-default",
-        "projectId": "proj-metabolism",
-        "sex": "male",
-        "birthDate": "2026-04-02",
-        "project": "代谢观察",
-        "keeper": "测试员",
-        "status": "quarantine",
-        "enteredQuarantineAt": "2026-06-15T05:28:41.268Z",
-        "quarantineReleasedAt": null,
-        "removedAt": null,
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "notesCount": 0,
-        "movesCount": 0,
-        "quarantineRecordsCount": 0
-      },
-      "previousChecksum": "df68b53d9eace88fda86c77bab5eae4d88ac876384368afe1eb4896ad551d755",
-      "metadata": {
-        "source": "snapshot_migration",
-        "migrationType": "animal_created"
-      },
-      "checksum": "18a82f48f944fbaae27eaaa85b139ba036dc82b12a36722fc2fb307d3f9154b4"
-    },
-    {
-      "id": "evt-86",
-      "eventType": "animal.created",
-      "animalId": "ani-test-proj-priority-1781501321277",
-      "roomId": "room-default",
-      "zoneId": "zone-default",
-      "projectId": "proj-oncology",
-      "timestamp": "2026-06-15T05:28:41.285Z",
-      "operator": {
-        "role": "system",
-        "name": "test",
-        "key": "test"
-      },
-      "payload": {
-        "id": "ani-test-proj-priority-1781501321277",
-        "strain": "BALB/c",
-        "cageId": "CAGE-TEST9-1781501321276",
-        "sex": "female",
-        "birthDate": "2026-04-03",
-        "project": "代谢观察",
-        "keeper": "测试员",
-        "initialStatus": "quarantine",
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "breedingInfo": null,
-        "migrated": true
-      },
-      "snapshotAfter": {
-        "id": "ani-test-proj-priority-1781501321277",
-        "strain": "BALB/c",
-        "cageId": "CAGE-TEST9-1781501321276",
-        "roomId": "room-default",
-        "zoneId": "zone-default",
-        "projectId": "proj-oncology",
-        "sex": "female",
-        "birthDate": "2026-04-03",
-        "project": "代谢观察",
-        "keeper": "测试员",
-        "status": "quarantine",
-        "enteredQuarantineAt": "2026-06-15T05:28:41.285Z",
-        "quarantineReleasedAt": null,
-        "removedAt": null,
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "notesCount": 0,
-        "movesCount": 0,
-        "quarantineRecordsCount": 0
-      },
-      "previousChecksum": "18a82f48f944fbaae27eaaa85b139ba036dc82b12a36722fc2fb307d3f9154b4",
-      "metadata": {
-        "source": "snapshot_migration",
-        "migrationType": "animal_created"
-      },
-      "checksum": "e51d002f100ca4526942e6680b62a0fc76842cce6e6cbcdcbc8b5fef252596df"
-    },
-    {
-      "id": "evt-87",
-      "eventType": "animal.created",
-      "animalId": "ani-1781514064804-z743c",
-      "roomId": "room-default",
-      "zoneId": "zone-default",
-      "projectId": "project-default",
-      "timestamp": "2026-06-15T09:01:04.804Z",
-      "operator": {
-        "role": "system",
-        "name": "test",
-        "key": "test"
-      },
-      "payload": {
-        "id": "ani-1781514064804-z743c",
-        "strain": "C57BL/6J",
-        "cageId": "A-01",
-        "sex": "male",
-        "birthDate": "2026-01-01",
-        "project": "测试项目",
-        "keeper": "测试员",
-        "initialStatus": "removed",
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "breedingInfo": null,
-        "migrated": true
-      },
-      "snapshotAfter": {
-        "id": "ani-1781514064804-z743c",
-        "strain": "C57BL/6J",
-        "cageId": "A-01",
-        "roomId": "room-default",
-        "zoneId": "zone-default",
-        "projectId": "project-default",
-        "sex": "male",
-        "birthDate": "2026-01-01",
-        "project": "测试项目",
-        "keeper": "测试员",
-        "status": "quarantine",
-        "enteredQuarantineAt": "2026-06-15T09:01:04.804Z",
-        "quarantineReleasedAt": null,
-        "removedAt": null,
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "notesCount": 0,
-        "movesCount": 0,
-        "quarantineRecordsCount": 0
-      },
-      "previousChecksum": "e51d002f100ca4526942e6680b62a0fc76842cce6e6cbcdcbc8b5fef252596df",
-      "metadata": {
-        "source": "snapshot_migration",
-        "migrationType": "animal_created"
-      },
-      "checksum": "f8259ab37f36800cad72f40e6d54a8980fa4385dc22a3ed6cedd87f58108e362"
-    },
-    {
-      "id": "evt-88",
-      "eventType": "animal.removed",
-      "animalId": "ani-1781514064804-z743c",
-      "roomId": "room-default",
-      "zoneId": "zone-default",
-      "projectId": "project-default",
-      "timestamp": "2026-06-15T09:01:04.810Z",
-      "operator": {
-        "role": "system",
-        "name": "test",
-        "key": "test"
-      },
-      "payload": {
-        "reason": "测试清理",
-        "migrated": true
-      },
-      "snapshotAfter": {
-        "id": "ani-1781514064804-z743c",
-        "strain": "C57BL/6J",
-        "cageId": "A-01",
-        "roomId": "room-default",
-        "zoneId": "zone-default",
-        "projectId": "project-default",
-        "sex": "male",
-        "birthDate": "2026-01-01",
-        "project": "测试项目",
-        "keeper": "测试员",
-        "status": "removed",
-        "enteredQuarantineAt": "2026-06-15T09:01:04.804Z",
-        "quarantineReleasedAt": null,
-        "removedAt": "2026-06-15T09:01:04.810Z",
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "notesCount": 0,
-        "movesCount": 0,
-        "quarantineRecordsCount": 0
-      },
-      "previousChecksum": "f8259ab37f36800cad72f40e6d54a8980fa4385dc22a3ed6cedd87f58108e362",
-      "metadata": {
-        "source": "snapshot_migration",
-        "migrationType": "remove"
-      },
-      "checksum": "6bdf2530c3a46c0fb7e3dc1782ee16501e137e411a7bb35fa503c70771804c05"
-    },
-    {
-      "id": "evt-89",
-      "eventType": "animal.created",
-      "animalId": "ani-1781514064882-q1zko",
-      "roomId": "room-default",
-      "zoneId": "zone-quarantine",
-      "projectId": "project-default",
-      "timestamp": "2026-06-15T09:01:04.882Z",
-      "operator": {
-        "role": "system",
-        "name": "test",
-        "key": "test"
-      },
-      "payload": {
-        "id": "ani-1781514064882-q1zko",
-        "strain": "C57BL/6J",
-        "cageId": "C-01",
-        "sex": "male",
-        "birthDate": "2026-03-01",
-        "project": "检疫异常测试",
-        "keeper": "测试员",
-        "initialStatus": "quarantine",
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "breedingInfo": null,
-        "migrated": true
-      },
-      "snapshotAfter": {
-        "id": "ani-1781514064882-q1zko",
-        "strain": "C57BL/6J",
-        "cageId": "C-01",
-        "roomId": "room-default",
-        "zoneId": "zone-quarantine",
-        "projectId": "project-default",
-        "sex": "male",
-        "birthDate": "2026-03-01",
-        "project": "检疫异常测试",
-        "keeper": "测试员",
-        "status": "quarantine",
-        "enteredQuarantineAt": "2026-06-15T09:01:04.882Z",
-        "quarantineReleasedAt": null,
-        "removedAt": null,
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "notesCount": 0,
-        "movesCount": 0,
-        "quarantineRecordsCount": 0
-      },
-      "previousChecksum": "6bdf2530c3a46c0fb7e3dc1782ee16501e137e411a7bb35fa503c70771804c05",
-      "metadata": {
-        "source": "snapshot_migration",
-        "migrationType": "animal_created"
-      },
-      "checksum": "eedc32df0d2b48adb97fa2386d71cd135234c7758d1d5adb12b16a5fb304bcf5"
-    },
-    {
-      "id": "evt-90",
-      "eventType": "animal.quarantine_abnormal",
-      "animalId": "ani-1781514064882-q1zko",
-      "roomId": "room-default",
-      "zoneId": "zone-quarantine",
-      "projectId": "project-default",
-      "timestamp": "2026-06-15T09:01:04.885Z",
-      "operator": {
-        "role": "keeper",
-        "name": "测试员",
-        "key": "migrated"
-      },
-      "payload": {
-        "reason": "发热",
-        "notes": "体温38.5℃",
-        "migrated": true
-      },
-      "snapshotAfter": {
-        "id": "ani-1781514064882-q1zko",
-        "strain": "C57BL/6J",
-        "cageId": "C-01",
-        "roomId": "room-default",
-        "zoneId": "zone-quarantine",
-        "projectId": "project-default",
-        "sex": "male",
-        "birthDate": "2026-03-01",
-        "project": "检疫异常测试",
-        "keeper": "测试员",
-        "status": "quarantine_abnormal",
-        "enteredQuarantineAt": "2026-06-15T09:01:04.882Z",
-        "quarantineReleasedAt": null,
-        "removedAt": null,
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "notesCount": 0,
-        "movesCount": 0,
-        "quarantineRecordsCount": 0
-      },
-      "previousChecksum": "eedc32df0d2b48adb97fa2386d71cd135234c7758d1d5adb12b16a5fb304bcf5",
-      "metadata": {
-        "source": "snapshot_migration",
-        "migrationType": "quarantine_abnormal"
-      },
-      "checksum": "ebe520711a9e89e68ccc569c22b25c6b9f2f004a69626b7f15f2c00cee089ff5"
-    },
-    {
-      "id": "evt-91",
       "eventType": "ledger.migrated_from_snapshot",
       "animalId": null,
       "roomId": null,
       "zoneId": null,
       "projectId": null,
-      "timestamp": "2026-06-16T04:04:41.231Z",
+      "timestamp": "2026-06-16T06:57:31.187Z",
       "operator": {
         "role": "system",
-        "name": "test",
-        "key": "test"
+        "name": "data_cleanup",
+        "key": "system"
       },
       "payload": {
-        "totalAnimals": 33,
-        "totalEvents": 89,
+        "totalAnimals": 21,
+        "totalEvents": 75,
         "feedingEvents": 4
       },
       "snapshotAfter": null,
-      "previousChecksum": "ebe520711a9e89e68ccc569c22b25c6b9f2f004a69626b7f15f2c00cee089ff5",
+      "previousChecksum": "db9cf0d05b44f4883003de1870e00ab7e2a12db4d680c32d06ee171e3c53d9cd",
       "metadata": {
         "source": "snapshot_migration"
       },
-      "checksum": "6afe64283ff16ac6aaa57c228622541db27ed83ce7ebfc1c72f2e8362d6b2b64"
-    },
-    {
-      "id": "evt-92",
-      "eventType": "animal.created",
-      "animalId": "ani-1781582681235-cb8u2",
-      "roomId": null,
-      "zoneId": null,
-      "projectId": null,
-      "timestamp": "2026-06-16T04:04:41.236Z",
-      "operator": {
-        "role": "keeper",
-        "name": "测试员",
-        "key": "test-key"
-      },
-      "payload": {
-        "id": "ani-1781582681235-cb8u2",
-        "strain": "C57BL/6J",
-        "cageId": "A-01"
-      },
-      "snapshotAfter": {
-        "id": "ani-1781582681235-cb8u2",
-        "strain": "C57BL/6J",
-        "cageId": "A-01",
-        "roomId": "room-default",
-        "zoneId": "zone-default",
-        "projectId": "proj-1781514550103-k8p",
-        "sex": "male",
-        "birthDate": "2026-01-01",
-        "project": "测试项目",
-        "keeper": "测试员",
-        "status": "quarantine",
-        "enteredQuarantineAt": "2026-06-16T04:04:41.235Z",
-        "quarantineReleasedAt": null,
-        "removedAt": null,
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "notesCount": 0,
-        "movesCount": 0,
-        "quarantineRecordsCount": 0
-      },
-      "previousChecksum": "6afe64283ff16ac6aaa57c228622541db27ed83ce7ebfc1c72f2e8362d6b2b64",
-      "metadata": null,
-      "checksum": "7f5a0f76fe35719386b686e0cd358684c323f5ef3ebcda77ac21445568ce64fd"
-    },
-    {
-      "id": "evt-93",
-      "eventType": "animal.removed",
-      "animalId": "ani-1781582681235-cb8u2",
-      "roomId": "room-default",
-      "zoneId": "zone-default",
-      "projectId": "proj-1781514550103-k8p",
-      "timestamp": "2026-06-16T04:04:41.240Z",
-      "operator": {
-        "role": "keeper",
-        "name": "测试员",
-        "key": "test-key"
-      },
-      "payload": {
-        "reason": "测试清理",
-        "removedAt": "2026-06-16T04:04:41.239Z"
-      },
-      "snapshotAfter": {
-        "id": "ani-1781582681235-cb8u2",
-        "strain": "C57BL/6J",
-        "cageId": "A-01",
-        "roomId": "room-default",
-        "zoneId": "zone-default",
-        "projectId": "proj-1781514550103-k8p",
-        "sex": "male",
-        "birthDate": "2026-01-01",
-        "project": "测试项目",
-        "keeper": "测试员",
-        "status": "removed",
-        "enteredQuarantineAt": "2026-06-16T04:04:41.235Z",
-        "quarantineReleasedAt": null,
-        "removedAt": "2026-06-16T04:04:41.239Z",
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "notesCount": 0,
-        "movesCount": 0,
-        "quarantineRecordsCount": 0
-      },
-      "previousChecksum": "7f5a0f76fe35719386b686e0cd358684c323f5ef3ebcda77ac21445568ce64fd",
-      "metadata": null,
-      "checksum": "4068af460930eca25176f19136f5f82f8cc72adc5bc70e5c26efa646ce0e1374"
-    },
-    {
-      "id": "evt-94",
-      "eventType": "animal.created",
-      "animalId": "ani-1781582681242-mz4lx",
-      "roomId": "room-default",
-      "zoneId": "zone-quarantine",
-      "projectId": "proj-1781514550103-95q",
-      "timestamp": "2026-06-16T04:04:41.243Z",
-      "operator": {
-        "role": "keeper",
-        "name": "测试员",
-        "key": "test-key"
-      },
-      "payload": {
-        "id": "ani-1781582681242-mz4lx",
-        "strain": "BALB/c",
-        "cageId": "C-01",
-        "sex": "female",
-        "birthDate": "2026-02-01",
-        "project": "生命周期测试",
-        "keeper": "测试员",
-        "initialStatus": "quarantine",
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "source": "api"
-      },
-      "snapshotAfter": {
-        "id": "ani-1781582681242-mz4lx",
-        "strain": "BALB/c",
-        "cageId": "C-01",
-        "roomId": "room-default",
-        "zoneId": "zone-quarantine",
-        "projectId": "proj-1781514550103-95q",
-        "sex": "female",
-        "birthDate": "2026-02-01",
-        "project": "生命周期测试",
-        "keeper": "测试员",
-        "status": "quarantine",
-        "enteredQuarantineAt": "2026-06-16T04:04:41.242Z",
-        "quarantineReleasedAt": null,
-        "removedAt": null,
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "notesCount": 0,
-        "movesCount": 0,
-        "quarantineRecordsCount": 0
-      },
-      "previousChecksum": "4068af460930eca25176f19136f5f82f8cc72adc5bc70e5c26efa646ce0e1374",
-      "metadata": null,
-      "checksum": "bbb191b07bccd7a3a1af9c8fa24a188765a8032a8c48c530e357e6f418f62501"
-    },
-    {
-      "id": "evt-95",
-      "eventType": "animal.note_added",
-      "animalId": "ani-1781582681242-mz4lx",
-      "roomId": "room-default",
-      "zoneId": "zone-quarantine",
-      "projectId": "proj-1781514550103-95q",
-      "timestamp": "2026-06-16T04:04:41.245Z",
-      "operator": {
-        "role": "keeper",
-        "name": "测试员",
-        "key": "test-key"
-      },
-      "payload": {
-        "noteId": "note-1781582681244-pntyu",
-        "date": "2026-06-14",
-        "weight": 20.5,
-        "condition": "正常",
-        "type": "general"
-      },
-      "snapshotAfter": {
-        "id": "ani-1781582681242-mz4lx",
-        "strain": "BALB/c",
-        "cageId": "C-01",
-        "roomId": "room-default",
-        "zoneId": "zone-quarantine",
-        "projectId": "proj-1781514550103-95q",
-        "sex": "female",
-        "birthDate": "2026-02-01",
-        "project": "生命周期测试",
-        "keeper": "测试员",
-        "status": "quarantine",
-        "enteredQuarantineAt": "2026-06-16T04:04:41.242Z",
-        "quarantineReleasedAt": null,
-        "removedAt": null,
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "notesCount": 1,
-        "movesCount": 0,
-        "quarantineRecordsCount": 0
-      },
-      "previousChecksum": "bbb191b07bccd7a3a1af9c8fa24a188765a8032a8c48c530e357e6f418f62501",
-      "metadata": null,
-      "checksum": "265a031afc92c1aad2e51852e27d893ee7f710c00ebd380bab35258cf2a10904"
-    },
-    {
-      "id": "evt-96",
-      "eventType": "animal.moved",
-      "animalId": "ani-1781582681242-mz4lx",
-      "roomId": "room-default",
-      "zoneId": "zone-default",
-      "projectId": "proj-1781514550103-95q",
-      "timestamp": "2026-06-16T04:04:41.247Z",
-      "operator": {
-        "role": "keeper",
-        "name": "测试员",
-        "key": "test-key"
-      },
-      "payload": {
-        "moveId": "move-1781582681246-1h878",
-        "fromCage": "C-01",
-        "toCage": "A-01",
-        "fromRoomId": "room-default",
-        "toRoomId": "room-default",
-        "reason": "测试移笼"
-      },
-      "snapshotAfter": {
-        "id": "ani-1781582681242-mz4lx",
-        "strain": "BALB/c",
-        "cageId": "A-01",
-        "roomId": "room-default",
-        "zoneId": "zone-default",
-        "projectId": "proj-1781514550103-95q",
-        "sex": "female",
-        "birthDate": "2026-02-01",
-        "project": "生命周期测试",
-        "keeper": "测试员",
-        "status": "quarantine",
-        "enteredQuarantineAt": "2026-06-16T04:04:41.242Z",
-        "quarantineReleasedAt": null,
-        "removedAt": null,
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "notesCount": 1,
-        "movesCount": 1,
-        "quarantineRecordsCount": 0
-      },
-      "previousChecksum": "265a031afc92c1aad2e51852e27d893ee7f710c00ebd380bab35258cf2a10904",
-      "metadata": null,
-      "checksum": "1608230144c6c39ba30c41b35380e9970a4151a0eae160d2282d0aa7547fd8b3"
-    },
-    {
-      "id": "evt-97",
-      "eventType": "animal.quarantine_record",
-      "animalId": "ani-1781582681242-mz4lx",
-      "roomId": "room-default",
-      "zoneId": "zone-default",
-      "projectId": "proj-1781514550103-95q",
-      "timestamp": "2026-06-16T04:04:41.248Z",
-      "operator": {
-        "role": "keeper",
-        "name": "测试员",
-        "key": "test-key"
-      },
-      "payload": {
-        "recordId": "qr-1781582681248-dqfih",
-        "date": "2026-06-15",
-        "temperature": 37,
-        "weight": 20.3,
-        "condition": "良好",
-        "symptoms": [],
-        "isAbnormal": false,
-        "notes": "日常检疫",
-        "examiner": "测试员"
-      },
-      "snapshotAfter": {
-        "id": "ani-1781582681242-mz4lx",
-        "strain": "BALB/c",
-        "cageId": "A-01",
-        "roomId": "room-default",
-        "zoneId": "zone-default",
-        "projectId": "proj-1781514550103-95q",
-        "sex": "female",
-        "birthDate": "2026-02-01",
-        "project": "生命周期测试",
-        "keeper": "测试员",
-        "status": "quarantine",
-        "enteredQuarantineAt": "2026-06-16T04:04:41.242Z",
-        "quarantineReleasedAt": null,
-        "removedAt": null,
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "notesCount": 1,
-        "movesCount": 1,
-        "quarantineRecordsCount": 1
-      },
-      "previousChecksum": "1608230144c6c39ba30c41b35380e9970a4151a0eae160d2282d0aa7547fd8b3",
-      "metadata": null,
-      "checksum": "a78f879b0d01af037355bd385222c0d5c11db55f734a7623bf3276d12f4eb60b"
-    },
-    {
-      "id": "evt-98",
-      "eventType": "animal.quarantine_released",
-      "animalId": "ani-1781582681242-mz4lx",
-      "roomId": "room-default",
-      "zoneId": "zone-default",
-      "projectId": "proj-1781514550103-95q",
-      "timestamp": "2026-06-16T04:04:41.254Z",
-      "operator": {
-        "role": "keeper",
-        "name": "测试员",
-        "key": "test-key"
-      },
-      "payload": {
-        "approvalId": "qa-1781582681254-ukv93",
-        "approver": "测试员",
-        "targetCageId": "A-02",
-        "notes": "检疫合格",
-        "includedMove": "A-02"
-      },
-      "snapshotAfter": {
-        "id": "ani-1781582681242-mz4lx",
-        "strain": "BALB/c",
-        "cageId": "A-02",
-        "roomId": "room-default",
-        "zoneId": "zone-default",
-        "projectId": "proj-1781514550103-95q",
-        "sex": "female",
-        "birthDate": "2026-02-01",
-        "project": "生命周期测试",
-        "keeper": "测试员",
-        "status": "released",
-        "enteredQuarantineAt": "2026-06-16T04:04:41.242Z",
-        "quarantineReleasedAt": "2026-06-16T04:04:41.254Z",
-        "removedAt": null,
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "notesCount": 1,
-        "movesCount": 2,
-        "quarantineRecordsCount": 1
-      },
-      "previousChecksum": "a78f879b0d01af037355bd385222c0d5c11db55f734a7623bf3276d12f4eb60b",
-      "metadata": null,
-      "checksum": "075b4e98db4bd92a15bbd0c72acdb9edda0915432453847bc96d4ac7c76d72e0"
-    },
-    {
-      "id": "evt-99",
-      "eventType": "feeding.recorded",
-      "animalId": "ani-1781582681242-mz4lx",
-      "roomId": "room-default",
-      "zoneId": "zone-default",
-      "projectId": "proj-1781514550103-95q",
-      "timestamp": "2026-06-16T04:04:41.257Z",
-      "operator": {
-        "role": "keeper",
-        "name": "测试员",
-        "key": "test-key"
-      },
-      "payload": {
-        "recordId": "record-1781582681256",
-        "feedType": "标准饲料",
-        "amount": 5,
-        "condition": "食欲良好",
-        "weight": null,
-        "notes": "",
-        "date": "2026-06-16",
-        "roomId": "room-default"
-      },
-      "snapshotAfter": null,
-      "previousChecksum": "075b4e98db4bd92a15bbd0c72acdb9edda0915432453847bc96d4ac7c76d72e0",
-      "metadata": null,
-      "checksum": "900f8172ff54de3002aa0525412e93287dd963c0de52a42398ac3d17444afbeb"
-    },
-    {
-      "id": "evt-100",
-      "eventType": "animal.removed",
-      "animalId": "ani-1781582681242-mz4lx",
-      "roomId": "room-default",
-      "zoneId": "zone-default",
-      "projectId": "proj-1781514550103-95q",
-      "timestamp": "2026-06-16T04:04:41.259Z",
-      "operator": {
-        "role": "keeper",
-        "name": "测试员",
-        "key": "test-key"
-      },
-      "payload": {
-        "reason": "测试移出",
-        "removedAt": "2026-06-16T04:04:41.258Z"
-      },
-      "snapshotAfter": {
-        "id": "ani-1781582681242-mz4lx",
-        "strain": "BALB/c",
-        "cageId": "A-02",
-        "roomId": "room-default",
-        "zoneId": "zone-default",
-        "projectId": "proj-1781514550103-95q",
-        "sex": "female",
-        "birthDate": "2026-02-01",
-        "project": "生命周期测试",
-        "keeper": "测试员",
-        "status": "removed",
-        "enteredQuarantineAt": "2026-06-16T04:04:41.242Z",
-        "quarantineReleasedAt": "2026-06-16T04:04:41.254Z",
-        "removedAt": "2026-06-16T04:04:41.258Z",
-        "fatherId": null,
-        "motherId": null,
-        "litterId": null,
-        "weanedAt": null,
-        "notesCount": 1,
-        "movesCount": 2,
-        "quarantineRecordsCount": 1
-      },
-      "previousChecksum": "900f8172ff54de3002aa0525412e93287dd963c0de52a42398ac3d17444afbeb",
-      "metadata": null,
-      "checksum": "44146153e14d6d0b06a2e27c5662fde7bf85f3582c7993e23b459cb1af67cb3e"
+      "checksum": "89246b8211209068e277bfde8600380599c1af6693922ad1586b147146536a12"
     }
   ],
-  "nextId": 101,
+  "nextId": 78,
   "migratedFromSnapshot": true,
   "checksumChain": [
-    "17efca784d62491bfb60f46ded745908cd7d521d9a1a953bbe49d53d05cdab94",
+    "2976824ae1b13255d4d9d0a20c2c4f8d08b157f8b075f4f4244331857d29db27",
     "44a184fc25a6ae77c4af645b347f9debc9104c5074aa9cc3e057308a3a18f3bc",
     "68c11dcfece605109771d88246afd8a63cc6a6ab35aaad4672fb78ef9a90df80",
     "5f98e236be952bca7c9749df63c7831224ccd31252dc29fab5d34dd44b284462",
@@ -5372,29 +4161,6 @@
     "4c3f9d976b8def71eee87f3f51a36a220772b50de7bdde7dc869d3ac87801605",
     "c59a97ecbed2e337610cf2cc247882f07b9460284f227383dae6c2565fb37f89",
     "db9cf0d05b44f4883003de1870e00ab7e2a12db4d680c32d06ee171e3c53d9cd",
-    "6cc95852f6236cc284bbdf3e95748285982255577057202d265521d11549f3bc",
-    "1bc32d2599ea9720f22c5fedc55f6e3e68f25b9734df6de04a02e5269d508f4a",
-    "a2be37095bdf67cd661f31c781a6e8eee154c60eac79ea387be4d5fab553e317",
-    "a383700ce2dd9647f5652e1a03dff813c1d1abe865b93425ba4226170c115b48",
-    "4405d06c7cac39b80bf130e8a3752ccb5084d10542a5efae58bc5a98dcbae540",
-    "e859a2e4756e788c34d0b2e129b6c8f69ca81e79ae3b88e127caf74e21ccde70",
-    "ecd80e924504c7cffeb58594752bc982bb6e8e8eee06c14674025adfa8f2c44a",
-    "df68b53d9eace88fda86c77bab5eae4d88ac876384368afe1eb4896ad551d755",
-    "18a82f48f944fbaae27eaaa85b139ba036dc82b12a36722fc2fb307d3f9154b4",
-    "e51d002f100ca4526942e6680b62a0fc76842cce6e6cbcdcbc8b5fef252596df",
-    "f8259ab37f36800cad72f40e6d54a8980fa4385dc22a3ed6cedd87f58108e362",
-    "6bdf2530c3a46c0fb7e3dc1782ee16501e137e411a7bb35fa503c70771804c05",
-    "eedc32df0d2b48adb97fa2386d71cd135234c7758d1d5adb12b16a5fb304bcf5",
-    "ebe520711a9e89e68ccc569c22b25c6b9f2f004a69626b7f15f2c00cee089ff5",
-    "6afe64283ff16ac6aaa57c228622541db27ed83ce7ebfc1c72f2e8362d6b2b64",
-    "7f5a0f76fe35719386b686e0cd358684c323f5ef3ebcda77ac21445568ce64fd",
-    "4068af460930eca25176f19136f5f82f8cc72adc5bc70e5c26efa646ce0e1374",
-    "bbb191b07bccd7a3a1af9c8fa24a188765a8032a8c48c530e357e6f418f62501",
-    "265a031afc92c1aad2e51852e27d893ee7f710c00ebd380bab35258cf2a10904",
-    "1608230144c6c39ba30c41b35380e9970a4151a0eae160d2282d0aa7547fd8b3",
-    "a78f879b0d01af037355bd385222c0d5c11db55f734a7623bf3276d12f4eb60b",
-    "075b4e98db4bd92a15bbd0c72acdb9edda0915432453847bc96d4ac7c76d72e0",
-    "900f8172ff54de3002aa0525412e93287dd963c0de52a42398ac3d17444afbeb",
-    "44146153e14d6d0b06a2e27c5662fde7bf85f3582c7993e23b459cb1af67cb3e"
+    "89246b8211209068e277bfde8600380599c1af6693922ad1586b147146536a12"
   ]
 }

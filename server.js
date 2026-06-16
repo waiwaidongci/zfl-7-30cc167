@@ -9,6 +9,7 @@ import { handleAuditRoutes } from "./routes/auditRoutes.js";
 import { handleLedgerRoutes } from "./routes/ledgerRoutes.js";
 import { facilityRoutes } from "./routes/facilityRoutes.js";
 import { handleSyncRoutes } from "./routes/syncRoutes.js";
+import { handleAdminRoutes } from "./routes/adminRoutes.js";
 import { ensureSyncCollections } from "./lib/syncData.js";
 import { ANIMAL_STATUS, ACTIVE_STOCK_STATUSES } from "./lib/animalValidator.js";
 import { ledgerExists, getLedgerInfo } from "./lib/eventLedger.js";
@@ -603,6 +604,9 @@ async function processRoutes(req, res, url, db) {
   if (ledgerHandled) return true;
   const syncHandled = await handleSyncRoutes(req, res, url, db);
   if (syncHandled) return true;
+
+  const adminHandled = await handleAdminRoutes(req, res, url, db);
+  if (adminHandled) return true;
 
   if (req.method === "GET" && url.pathname === "/reports/stock") {
     const roomId = url.searchParams.get("roomId") || undefined;

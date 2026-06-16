@@ -6,7 +6,12 @@ import {
   ISSUE_CATEGORIES,
   CATEGORY_LABELS
 } from "../lib/dataConsistency.js";
-import { verifyIntegrity, verifySnapshotConsistency } from "../lib/eventLedger.js";
+import {
+  verifyIntegrity,
+  verifySnapshotConsistency,
+  rebuildSnapshotFromLedger,
+  compareSnapshotWithCurrent
+} from "../lib/eventLedger.js";
 
 export async function handleAdminRoutes(req, res, url, db) {
   if (req.method === "GET" && url.pathname === "/admin/consistency/check") {
@@ -26,6 +31,16 @@ export async function handleAdminRoutes(req, res, url, db) {
 
   if (req.method === "GET" && url.pathname === "/admin/consistency/categories") {
     handleListCategories(req, res);
+    return true;
+  }
+
+  if (req.method === "GET" && url.pathname === "/admin/ledger/rebuild-snapshot") {
+    await handleRebuildSnapshot(req, res, url, db);
+    return true;
+  }
+
+  if (req.method === "GET" && url.pathname === "/admin/ledger/compare-snapshot") {
+    await handleCompareSnapshot(req, res, url, db);
     return true;
   }
 
@@ -191,4 +206,81 @@ function buildSummaryResponse(result) {
       Object.entries(result.checkResults).map(([k, v]) => [k, { count: v.count }])
     )
   };
+}
+
+async function handleRebuildSnapshot(req, res, url, db) {
+  const options = {};
+
+  const until = url.searchParams.get("until");
+  if (until) options.until = until;
+
+  const from = url.searchParams.get("from");
+  if (from) options.from = from;
+
+  const includeSnapshot = url.searchParams.get("includeSnapshot") !== "false";
+
+  try {
+    const result = await rebuildSnapshotFromLedger(options);
+
+    const response = {
+      readOnly: true,
+      timestamp: new Date().toISOString(),
+      meta: result.meta,
+      summary: {
+        animalCount: result.meta.animalCount,
+        breedingPairCount: result.meta.breedingPairCount,
+        breedingLitterCount: result.meta.breedingLitterCount,
+        feedingRecordCount: result.meta.feedingRecordCount,
+        warningCount: result.meta.warningCount,
+        unreplayableEventCount: result.meta.unreplayableEvents.length
+      }
+    };
+
+    if (includeSnapshot) {
+      response.snapshot = result.snapshot;
+    }
+
+    send(res, 200, response);
+  } catch (error) {
+    send(res, 500, {
+      error: "rebuild_snapshot_failed",
+      message: error.message
+    });
+  }
+}
+
+async function handleCompareSnapshot(req, res, url, db) {
+  const options = {};
+
+  const until = url.searchParams.get("until");
+  if (until) options.until = until;
+
+  const from = url.searchParams.get("from");
+  if (from) options.from = from;
+
+  const includeDetails = url.searchParams.get("includeDetails") !== "false";
+
+  try {
+    const result = await compareSnapshotWithCurrent(db, options);
+
+    if (!includeDetails) {
+      const summary = {
+        consistent: result.consistent,
+        totalDifferences: result.totalDifferences,
+        totalWarnings: result.totalWarnings,
+        summary: result.summary,
+        warnings: result.warnings,
+        unreplayableEvents: result.unreplayableEvents,
+        rebuiltMeta: result.rebuiltMeta
+      };
+      send(res, 200, summary);
+    } else {
+      send(res, 200, result);
+    }
+  } catch (error) {
+    send(res, 500, {
+      error: "compare_snapshot_failed",
+      message: error.message
+    });
+  }
 }

@@ -1800,6 +1800,102 @@
       "abnormalResolvedAt": "2026-06-15T09:01:04.889Z",
       "abnormalResolution": "已恢复正常",
       "abnormalResolver": "测试员"
+    },
+    {
+      "id": "ani-1781582681235-cb8u2",
+      "strain": "C57BL/6J",
+      "cageId": "A-01",
+      "roomId": "room-default",
+      "zoneId": "zone-default",
+      "projectId": "proj-1781514550103-k8p",
+      "sex": "male",
+      "birthDate": "2026-01-01",
+      "project": "测试项目",
+      "keeper": "测试员",
+      "status": "removed",
+      "observationNodes": [],
+      "notes": [],
+      "moves": [],
+      "quarantineRecords": [],
+      "enteredQuarantineAt": "2026-06-16T04:04:41.235Z",
+      "fatherId": null,
+      "motherId": null,
+      "litterId": null,
+      "breedingInfo": null,
+      "removedAt": "2026-06-16T04:04:41.239Z",
+      "removeReason": "测试清理"
+    },
+    {
+      "id": "ani-1781582681242-mz4lx",
+      "strain": "BALB/c",
+      "cageId": "A-02",
+      "roomId": "room-default",
+      "zoneId": "zone-default",
+      "projectId": "proj-1781514550103-95q",
+      "sex": "female",
+      "birthDate": "2026-02-01",
+      "project": "生命周期测试",
+      "keeper": "测试员",
+      "status": "removed",
+      "observationNodes": [],
+      "notes": [
+        {
+          "id": "note-1781582681244-pntyu",
+          "date": "2026-06-14",
+          "weight": 20.5,
+          "condition": "正常",
+          "keeper": "测试员"
+        }
+      ],
+      "moves": [
+        {
+          "id": "move-1781582681246-1h878",
+          "from": "C-01",
+          "to": "A-01",
+          "fromRoomId": "room-default",
+          "toRoomId": "room-default",
+          "movedAt": "2026-06-16T04:04:41.246Z",
+          "reason": "测试移笼"
+        },
+        {
+          "id": "move-1781582681254-e8n6p",
+          "from": "A-01",
+          "to": "A-02",
+          "fromRoomId": "room-default",
+          "toRoomId": "room-default",
+          "movedAt": "2026-06-16T04:04:41.254Z",
+          "reason": "检疫放行"
+        }
+      ],
+      "quarantineRecords": [
+        {
+          "id": "qr-1781582681248-dqfih",
+          "date": "2026-06-15",
+          "temperature": 37,
+          "weight": 20.3,
+          "condition": "良好",
+          "symptoms": [],
+          "isAbnormal": false,
+          "notes": "日常检疫",
+          "examiner": "测试员",
+          "createdAt": "2026-06-16T04:04:41.248Z"
+        }
+      ],
+      "enteredQuarantineAt": "2026-06-16T04:04:41.242Z",
+      "fatherId": null,
+      "motherId": null,
+      "litterId": null,
+      "breedingInfo": null,
+      "quarantineReleasedAt": "2026-06-16T04:04:41.254Z",
+      "quarantineApproval": {
+        "id": "qa-1781582681254-ukv93",
+        "approvedAt": "2026-06-16T04:04:41.254Z",
+        "approver": "测试员",
+        "targetCageId": "A-02",
+        "notes": "检疫合格"
+      },
+      "removedAt": "2026-06-16T04:04:41.258Z",
+      "removeReason": "测试移出"
     }
   ],
   "breedingPairs": [
@@ -2135,6 +2231,25 @@
       "zoneId": null,
       "project": "子代繁育群",
       "projectId": "proj-breeding"
+    },
+    {
+      "id": "record-1781582681256",
+      "targetType": "animal",
+      "targetId": "ani-1781582681242-mz4lx",
+      "roomId": "room-default",
+      "zoneId": "zone-default",
+      "project": "生命周期测试",
+      "projectId": "proj-1781514550103-95q",
+      "date": "2026-06-16",
+      "scheduledTime": null,
+      "actualTime": "2026-06-16T04:04:41.256Z",
+      "feedType": "标准饲料",
+      "amount": 5,
+      "keeper": "测试员",
+      "status": "completed",
+      "condition": "食欲良好",
+      "weight": null,
+      "notes": ""
     }
   ],
   "healthEvents": [

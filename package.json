@@ -13,6 +13,19 @@
     "test:feeding-schedule": "node scripts/test-feeding-schedule.js",
     "test:room-pressure": "node scripts/test-room-pressure-dashboard.js",
     "test:ledger": "node scripts/test-ledger.js",
-    "test": "npm run test:conflict-queue-regression"
+    "test": "npm run test:conflict-queue-regression",
+    "verify": "node scripts/run-verify.js",
+    "verify:ci": "node scripts/run-verify.js --ci",
+    "verify:quick": "node scripts/run-verify.js quick",
+    "verify:api": "node scripts/run-verify.js api",
+    "verify:auth-audit": "node scripts/run-verify.js auth-audit",
+    "verify:ledger": "node scripts/run-verify.js ledger",
+    "verify:consistency": "node scripts/run-verify.js consistency",
+    "verify:sync": "node scripts/run-verify.js sync",
+    "verify:conflict": "node scripts/run-verify.js conflict",
+    "verify:conflict-regression": "node scripts/run-verify.js conflict-regression",
+    "verify:batch-import": "node scripts/run-verify.js batch-import",
+    "verify:feeding": "node scripts/run-verify.js feeding",
+    "verify:room-pressure": "node scripts/run-verify.js room-pressure"
   }
 }

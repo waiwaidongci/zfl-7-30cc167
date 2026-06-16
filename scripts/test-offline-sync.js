@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const configPath = join(__dirname, "..", "config", "api-keys.json");
 
-const BASE_URL = "http://localhost:3007";
+const BASE_URL = process.env.VERIFY_BASE_URL || "http://localhost:3007";
 
 function loadApiKey() {
   const candidates = [configPath, join(__dirname, "..", "config", "api-keys.example.json")];

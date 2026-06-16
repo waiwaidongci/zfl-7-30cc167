@@ -200,12 +200,12 @@ function sleep(ms) {
   return new Promise(r => setTimeout(r, ms));
 }
 
-function findFreePort(startPort = 32000) {
+function findFreePort(startPort = 0) {
   return new Promise((resolve, reject) => {
     const server = createServer();
     server.unref();
     server.on("error", err => {
-      if (err.code === "EADDRINUSE") {
+      if (err.code === "EADDRINUSE" && startPort > 0) {
         resolve(findFreePort(startPort + 1));
       } else {
         reject(err);
@@ -380,8 +380,10 @@ function extractFailureSummary(stdout, stderr) {
   const apiLines = [];
   const errorLines = [];
 
+  const stripAnsi = (value) => value.replace(/\x1b\[[0-9;]*m/g, "");
+
   for (const line of lines) {
-    const trimmed = line.trim();
+    const trimmed = stripAnsi(line).trim();
     if (!trimmed) continue;
 
     const upper = trimmed.toUpperCase();
@@ -438,7 +440,7 @@ async function runSuite(suite, opts) {
     envPaths = await prepareIsolatedData(tmpDir);
 
     if (suite.needsServer) {
-      port = await findFreePort(32000);
+      port = await findFreePort();
       if (verbose && !ci && !json) {
         console.log(`${c.dim}  启动验证服务器: 127.0.0.1:${port}${c.reset}`);
       }

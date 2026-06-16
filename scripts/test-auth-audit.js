@@ -19,6 +19,8 @@ const KEYS = {
   INVALID: "invalid-key-12345"
 };
 
+const TEST_CAGE_ID = `AUTH-T-${Date.now()}`;
+
 const DATA_FILES = [
   join(ROOT, "data", "lab.json"),
   join(ROOT, "data", "audit-logs.json")
@@ -159,7 +161,7 @@ async function runTests() {
   {
     const r = await request("POST", "/cages", {
       apiKey: KEYS.ADMIN,
-      body: { id: "T-99", area: "TEST区", rack: "T", capacity: 5 }
+      body: { id: TEST_CAGE_ID, roomId: "room-default", zoneId: "zone-default", area: "SPF区", rack: "T", capacity: 5 }
     });
     const ok = r.status === 200 || r.status === 201;
     logResult("admin新增笼位成功", ok, `status=${r.status}`);
@@ -171,7 +173,7 @@ async function runTests() {
     const r = await request("POST", "/animals", {
       apiKey: KEYS.KEEPER,
       body: {
-        strain: "C57BL/6J", cageId: "C-01", sex: "female",
+        strain: "C57BL/6J", cageId: TEST_CAGE_ID, sex: "female",
         birthDate: "2026-05-01", project: "验证项目", keeper: "测试饲养员"
       }
     });

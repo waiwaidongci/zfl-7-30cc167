@@ -199,12 +199,16 @@ async function runTests() {
     console.log("-".repeat(60));
 
     const animalsRes = await req("/animals", "GET");
-    const withFacilityFields = animalsRes.body.filter(a => a.roomId && a.zoneId && a.projectId);
     assertResult(Array.isArray(animalsRes.body), "动物列表应返回数组");
-    assertResult(withFacilityFields.length === animalsRes.body.length, "所有动物都应有完整设施字段");
+    const importedIds = (importRes.body.animals || []).map(a => a.id);
+    const importedAnimals = animalsRes.body.filter(a => importedIds.includes(a.id));
+    const withFacilityFields = importedAnimals.filter(a => a.roomId && a.zoneId && a.projectId);
+    assertResult(importedAnimals.length === importedIds.length, "所有本次导入动物都应出现在列表中");
+    assertResult(withFacilityFields.length === importedAnimals.length, "本次导入动物都应有完整设施字段");
     console.log(`动物总数: ${animalsRes.body.length}`);
-    console.log(`含完整设施字段的动物数: ${withFacilityFields.length}`);
-    console.log(`结果: ${withFacilityFields.length === animalsRes.body.length ? "✓ 所有动物都有完整设施字段" : `✗ 有 ${animalsRes.body.length - withFacilityFields.length} 只动物缺失设施字段`}`);
+    console.log(`本次导入动物数: ${importedAnimals.length}`);
+    console.log(`本次导入且含完整设施字段的动物数: ${withFacilityFields.length}`);
+    console.log(`结果: ${withFacilityFields.length === importedAnimals.length ? "✓ 本次导入动物都有完整设施字段" : `✗ 有 ${importedAnimals.length - withFacilityFields.length} 只本次导入动物缺失设施字段`}`);
 
     console.log("\n4. 测试空数组导入预览");
     console.log("-".repeat(60));

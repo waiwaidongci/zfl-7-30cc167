@@ -4,8 +4,8 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const dbPath = join(__dirname, "..", "data", "lab.json");
-const ledgerPath = join(__dirname, "..", "data", "event-ledger.json");
+const dbPath = process.env.DB_PATH || join(__dirname, "..", "data", "lab.json");
+const ledgerPath = process.env.EVENT_LEDGER_PATH || join(__dirname, "..", "data", "event-ledger.json");
 
 import {
   EVENT_TYPES,
@@ -143,6 +143,14 @@ function cloneAnimalBase(animal) {
 
 function snapshotCopy(animal) {
   return JSON.parse(JSON.stringify(animal));
+}
+
+function finalSnapshotDiffers(state, animal) {
+  const fields = ["status", "cageId", "keeper"];
+  return fields.some((field) => JSON.stringify(state[field] ?? null) !== JSON.stringify(animal[field] ?? null)) ||
+    (state.notes?.length || 0) !== (animal.notes?.length || 0) ||
+    (state.moves?.length || 0) !== (animal.moves?.length || 0) ||
+    (state.quarantineRecords?.length || 0) !== (animal.quarantineRecords?.length || 0);
 }
 
 function buildAnimalEvents(animal, operator) {
@@ -383,6 +391,32 @@ function buildAnimalEvents(animal, operator) {
         metadata: { source: "snapshot_migration", migrationType: "weaned" }
       });
     }
+  }
+
+  if (finalSnapshotDiffers(state, animal)) {
+    const lastTimestamp = events.length > 0 ? events[events.length - 1].timestamp : createdTimestamp;
+    const finalTimestamp = normalizeEventTimestamp(lastTimestamp);
+    const fromCage = state.cageId || null;
+
+    Object.assign(state, snapshotCopy(animal));
+
+    events.push({
+      eventType: EVENT_TYPES.ANIMAL_MOVED,
+      animalId: animal.id,
+      roomId: animal.roomId || null,
+      zoneId: animal.zoneId || null,
+      projectId: animal.projectId || null,
+      timestamp: finalTimestamp,
+      operator,
+      payload: {
+        fromCage,
+        toCage: animal.cageId || null,
+        reason: "同步迁移快照最终状态",
+        migrated: true
+      },
+      snapshotAfter: snapshotCopy(state),
+      metadata: { source: "snapshot_migration", migrationType: "snapshot_final_state" }
+    });
   }
 
   return events.sort((a, b) => compareTimestamps(a.timestamp, b.timestamp));

@@ -7,11 +7,16 @@ import { randomUUID } from "node:crypto";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
-const PORT = 3098;
-const BASE = `http://localhost:${PORT}`;
+const IS_VERIFY_MODE = process.env.VERIFY_MODE === "1";
+const PORT = IS_VERIFY_MODE
+  ? parseInt(new URL(process.env.VERIFY_BASE_URL).port, 10)
+  : 3098;
+const BASE = process.env.VERIFY_BASE_URL || `http://localhost:${PORT}`;
 
 const TEST_ID = randomUUID().slice(0, 8);
-const TMP_DIR = join(ROOT, "tmp", `test-conflict-${TEST_ID}`);
+const TMP_DIR = IS_VERIFY_MODE
+  ? process.env.VERIFY_TMP_DIR
+  : join(ROOT, "tmp", `test-conflict-${TEST_ID}`);
 const DB_PATH = join(TMP_DIR, "lab.json");
 const EVENT_LEDGER_PATH = join(TMP_DIR, "event-ledger.json");
 const AUDIT_LOG_PATH = join(TMP_DIR, "audit-logs.json");
@@ -619,6 +624,17 @@ async function testKeeperCannotResolveConflict() {
 }
 
 async function main() {
+  if (IS_VERIFY_MODE) {
+    try {
+      await runTests();
+    } catch (err) {
+      console.error("运行错误:", err.message);
+      console.error(err.stack);
+      process.exitCode = 1;
+    }
+    return;
+  }
+
   console.log(`\n\x1b[36m\u267b  使用独立临时目录: ${TMP_DIR}\x1b[0m\n`);
 
   try {

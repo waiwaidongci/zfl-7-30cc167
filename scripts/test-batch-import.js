@@ -8,10 +8,19 @@ import { tmpdir } from "node:os";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = join(__dirname, "..");
-const TEST_PORT = 3099;
-const TEST_DB_PATH = join(tmpdir(), `lab-test-batch-${Date.now()}.json`);
-const TEST_AUDIT_PATH = join(tmpdir(), `audit-test-batch-${Date.now()}.json`);
-const TEST_LEDGER_PATH = join(tmpdir(), `ledger-test-batch-${Date.now()}.json`);
+const IS_VERIFY_MODE = process.env.VERIFY_MODE === "1";
+const TEST_PORT = IS_VERIFY_MODE
+  ? parseInt(new URL(process.env.VERIFY_BASE_URL).port, 10)
+  : 3099;
+const TEST_DB_PATH = IS_VERIFY_MODE
+  ? process.env.DB_PATH
+  : join(tmpdir(), `lab-test-batch-${Date.now()}.json`);
+const TEST_AUDIT_PATH = IS_VERIFY_MODE
+  ? process.env.AUDIT_LOG_PATH
+  : join(tmpdir(), `audit-test-batch-${Date.now()}.json`);
+const TEST_LEDGER_PATH = IS_VERIFY_MODE
+  ? process.env.EVENT_LEDGER_PATH
+  : join(tmpdir(), `ledger-test-batch-${Date.now()}.json`);
 
 const API_KEYS = {
   ADMIN: "admin-key-demo-001",
@@ -81,7 +90,7 @@ function assertResult(condition, message) {
 }
 
 async function runTests() {
-  const BASE_URL = `http://localhost:${TEST_PORT}`;
+  const BASE_URL = process.env.VERIFY_BASE_URL || `http://localhost:${TEST_PORT}`;
   const req = (path, method, body, apiKey) => request(BASE_URL, path, method, body, apiKey);
 
   console.log("=".repeat(60));
@@ -93,30 +102,32 @@ async function runTests() {
   console.log(`测试事件账本: ${TEST_LEDGER_PATH}`);
 
   let serverProcess;
-  try {
-    console.log("\n启动测试服务器...");
-    serverProcess = spawn("node", ["server.js"], {
-      cwd: PROJECT_ROOT,
-      env: {
-        ...process.env,
-        PORT: String(TEST_PORT),
-        DB_PATH: TEST_DB_PATH,
-        AUDIT_LOG_PATH: TEST_AUDIT_PATH,
-        EVENT_LEDGER_PATH: TEST_LEDGER_PATH
-      },
-      stdio: ["pipe", "pipe", "pipe"]
-    });
+  if (!IS_VERIFY_MODE) {
+    try {
+      console.log("\n启动测试服务器...");
+      serverProcess = spawn("node", ["server.js"], {
+        cwd: PROJECT_ROOT,
+        env: {
+          ...process.env,
+          PORT: String(TEST_PORT),
+          DB_PATH: TEST_DB_PATH,
+          AUDIT_LOG_PATH: TEST_AUDIT_PATH,
+          EVENT_LEDGER_PATH: TEST_LEDGER_PATH
+        },
+        stdio: ["pipe", "pipe", "pipe"]
+      });
 
-    serverProcess.stderr.on("data", (chunk) => {
-      const msg = chunk.toString().trim();
-      if (msg) process.stderr.write(`  [server] ${msg}\n`);
-    });
+      serverProcess.stderr.on("data", (chunk) => {
+        const msg = chunk.toString().trim();
+        if (msg) process.stderr.write(`  [server] ${msg}\n`);
+      });
 
-    await waitForServer(BASE_URL);
-    console.log("测试服务器已就绪");
-  } catch (e) {
-    console.error("无法启动测试服务器:", e.message);
-    process.exit(1);
+      await waitForServer(BASE_URL);
+      console.log("测试服务器已就绪");
+    } catch (e) {
+      console.error("无法启动测试服务器:", e.message);
+      process.exit(1);
+    }
   }
 
   try {
@@ -372,12 +383,16 @@ async function runTests() {
     console.log("测试完成");
     console.log("=".repeat(60));
   } finally {
-    console.log("\n清理测试服务器...");
-    serverProcess.kill("SIGTERM");
-    setTimeout(() => { try { serverProcess.kill("SIGKILL"); } catch {} }, 3000);
+    if (!IS_VERIFY_MODE) {
+      console.log("\n清理测试服务器...");
+      if (serverProcess) {
+        serverProcess.kill("SIGTERM");
+        setTimeout(() => { try { serverProcess.kill("SIGKILL"); } catch {} }, 3000);
+      }
 
-    for (const path of [TEST_DB_PATH, TEST_AUDIT_PATH, TEST_LEDGER_PATH]) {
-      try { await unlink(path); console.log(`已清理临时文件: ${path}`); } catch {}
+      for (const path of [TEST_DB_PATH, TEST_AUDIT_PATH, TEST_LEDGER_PATH]) {
+        try { await unlink(path); console.log(`已清理临时文件: ${path}`); } catch {}
+      }
     }
   }
 }

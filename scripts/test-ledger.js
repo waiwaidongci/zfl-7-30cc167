@@ -4,8 +4,9 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const dbPath = join(__dirname, "..", "data", "lab.json");
-const ledgerPath = join(__dirname, "..", "data", "event-ledger.json");
+const IS_VERIFY_MODE = process.env.VERIFY_MODE === "1";
+const dbPath = process.env.DB_PATH || join(__dirname, "..", "data", "lab.json");
+const ledgerPath = process.env.EVENT_LEDGER_PATH || join(__dirname, "..", "data", "event-ledger.json");
 const dbBackupPath = join(__dirname, "..", "data", "lab.json.test-backup");
 const ledgerBackupPath = join(__dirname, "..", "data", "event-ledger.json.test-backup");
 
@@ -626,7 +627,9 @@ async function main() {
   const specificTest = args[0];
 
   await cleanupTestFiles();
-  await backupData();
+  if (!IS_VERIFY_MODE) {
+    await backupData();
+  }
 
   let passed = 0;
   let failed = 0;
@@ -647,9 +650,11 @@ async function main() {
       results.push({ name: test.name, success });
     }
   } finally {
-    console.log("\nRestoring original data...");
-    await restoreData();
-    await cleanupTestFiles();
+    if (!IS_VERIFY_MODE) {
+      console.log("\nRestoring original data...");
+      await restoreData();
+      await cleanupTestFiles();
+    }
   }
 
   console.log("\n" + "=".repeat(60));

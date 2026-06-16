@@ -4,7 +4,8 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const dbPath = join(__dirname, "..", "data", "lab.json");
+const IS_VERIFY_MODE = process.env.VERIFY_MODE === "1";
+const dbPath = process.env.DB_PATH || join(__dirname, "..", "data", "lab.json");
 const dbBackupPath = join(__dirname, "..", "data", "lab.json.schedule-test-backup");
 
 import {
@@ -73,7 +74,9 @@ async function main() {
   console.log("│  饲喂日程 Schedule 接口验证测试脚本          │");
   console.log("└─────────────────────────────────────────────┘");
 
-  await backupData();
+  if (!IS_VERIFY_MODE) {
+    await backupData();
+  }
 
   try {
     const db = await loadDb();
@@ -379,7 +382,9 @@ async function main() {
     console.error("\n测试执行异常:", err.message);
     console.error(err.stack);
   } finally {
-    await restoreData();
+    if (!IS_VERIFY_MODE) {
+      await restoreData();
+    }
   }
 
   console.log("\n┌─────────────────────────────────────────────┐");

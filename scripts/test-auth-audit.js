@@ -6,8 +6,11 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
-const PORT = 3099;
-const BASE = `http://localhost:${PORT}`;
+const IS_VERIFY_MODE = process.env.VERIFY_MODE === "1";
+const PORT = IS_VERIFY_MODE
+  ? parseInt(new URL(process.env.VERIFY_BASE_URL).port, 10)
+  : 3099;
+const BASE = process.env.VERIFY_BASE_URL || `http://localhost:${PORT}`;
 
 const KEYS = {
   ADMIN: "admin-key-demo-001",
@@ -275,6 +278,16 @@ function dataMatchesSnapshot(snapshot) {
 }
 
 async function main() {
+  if (IS_VERIFY_MODE) {
+    try {
+      await runTests();
+    } catch (err) {
+      console.error("运行错误:", err.message);
+      process.exitCode = 1;
+    }
+    return;
+  }
+
   const beforeSnapshot = snapshotData();
   backupData();
   try {

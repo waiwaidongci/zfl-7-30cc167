@@ -21,9 +21,8 @@ import {
   resolveConflict,
   dismissConflict
 } from "../lib/syncData.js";
-import { checkRoomWriteAccess, validateRoomAccess } from "../lib/permissions.js";
-import { getAnimal } from "../lib/animalData.js";
-import { getCage } from "../lib/cageData.js";
+import { checkRoomWriteAccess } from "../lib/permissions.js";
+import { resolveOperationOwnership } from "../lib/targetOwnership.js";
 
 export async function handleSyncRoutes(req, res, url, db) {
   if (handleMeta(req, res, url, db)) return true;
@@ -389,26 +388,8 @@ async function checkOperationAccess(db, operation, principal) {
     return { authorized: false, error: "unauthenticated", message: "未认证用户" };
   }
 
-  const opType = operation.operationType;
-  const payload = operation.payload || {};
-
-  let targetRoomId = null;
-
-  if (opType === SYNC_OPERATION_TYPES.ANIMAL_NOTE || opType === SYNC_OPERATION_TYPES.ANIMAL_MOVE) {
-    const animal = getAnimal(db, payload.animalId);
-    if (animal) targetRoomId = animal.roomId;
-  } else if (opType === SYNC_OPERATION_TYPES.FEEDING_RECORD) {
-    if (payload.targetType === "animal") {
-      const animal = getAnimal(db, payload.targetId);
-      if (animal) targetRoomId = animal.roomId;
-    } else if (payload.targetType === "cage") {
-      const cage = getCage(db, payload.targetId);
-      if (cage) targetRoomId = cage.roomId;
-    }
-  } else if (opType === SYNC_OPERATION_TYPES.CAGE_ABNORMAL) {
-    const cage = getCage(db, payload.cageId);
-    if (cage) targetRoomId = cage.roomId;
-  }
+  const ownership = resolveOperationOwnership(db, operation);
+  const targetRoomId = ownership.roomId;
 
   if (targetRoomId) {
     return checkRoomWriteAccess(principal, targetRoomId);

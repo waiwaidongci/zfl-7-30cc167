@@ -17,9 +17,8 @@ import {
   getDefaultDateRange
 } from "../lib/feedingScheduler.js";
 import { detectAndCreateEvent } from "../lib/healthEventData.js";
-import { getAnimal } from "../lib/animalData.js";
-import { getCage } from "../lib/cageData.js";
 import { checkRoomWriteAccess } from "../lib/permissions.js";
+import { resolveTargetOwnership } from "../lib/targetOwnership.js";
 
 export async function handleFeedingRoutes(req, res, url, db) {
   if (handlePlans(req, res, url, db)) return true;
@@ -80,7 +79,7 @@ async function handleAddPlan(req, res, db) {
   if (input.feedTimes && !Array.isArray(input.feedTimes)) {
     return send(res, 400, { error: "feedTimes_must_be_array" });
   }
-  const targetRoomId = resolveTargetRoomId(db, input.targetType, input.targetId);
+  const targetRoomId = resolveTargetOwnership(db, { targetType: input.targetType, targetId: input.targetId }).roomId;
   const roomCheck = checkRoomWriteAccess(req._principal, targetRoomId);
   if (!roomCheck.authorized) {
     return send(res, 403, { error: roomCheck.error, message: roomCheck.message });
@@ -90,21 +89,6 @@ async function handleAddPlan(req, res, db) {
   send(res, 201, plan);
 }
 
-function resolveTargetRoomId(db, targetType, targetId) {
-  if (targetType === "cage") {
-    const cage = getCage(db, targetId);
-    return cage?.roomId || null;
-  }
-  if (targetType === "animal") {
-    const animal = getAnimal(db, targetId);
-    if (animal?.roomId) return animal.roomId;
-    if (animal?.cageId) {
-      const cage = getCage(db, animal.cageId);
-      return cage?.roomId || null;
-    }
-  }
-  return null;
-}
 
 function handleToday(req, res, url, db) {
   if (req.method === "GET" && url.pathname === "/feeding/today") {
@@ -248,7 +232,7 @@ async function handleCheckin(req, res, db) {
     if (!input.feedType) input.feedType = plan.feedType;
   }
 
-  const targetRoomId = resolveTargetRoomId(db, input.targetType, input.targetId);
+  const targetRoomId = resolveTargetOwnership(db, { targetType: input.targetType, targetId: input.targetId }).roomId;
   const roomCheck = checkRoomWriteAccess(req._principal, targetRoomId);
   if (!roomCheck.authorized) {
     return send(res, 403, { error: roomCheck.error, message: roomCheck.message });

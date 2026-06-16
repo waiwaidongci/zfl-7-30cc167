@@ -20,3 +20,5 @@ coverage/
 .vscode/
 
 config/api-keys.json
+
+tmp/

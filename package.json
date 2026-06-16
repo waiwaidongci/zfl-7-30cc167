@@ -4,6 +4,15 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test:auth-audit": "node scripts/test-auth-audit.js",
+    "test:offline-sync": "node scripts/test-offline-sync.js",
+    "test:conflict-queue": "node scripts/test-conflict-queue.js",
+    "test:conflict-queue-regression": "node scripts/test-conflict-queue-regression.js",
+    "test:batch-import": "node scripts/test-batch-import.js",
+    "test:feeding-schedule": "node scripts/test-feeding-schedule.js",
+    "test:room-pressure": "node scripts/test-room-pressure-dashboard.js",
+    "test:ledger": "node scripts/test-ledger.js",
+    "test": "npm run test:conflict-queue-regression"
   }
 }

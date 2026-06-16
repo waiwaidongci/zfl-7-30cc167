@@ -5,6 +5,7 @@ import { validateCageForAnimal } from "../lib/cageValidator.js";
 import { validateBatchImport, getValidImportItems } from "../lib/batchImportValidator.js";
 import { detectAndCreateEvent, detectAbnormalKeywords, calculateWeightChange, findMergeableEvent, mergeToExistingEvent, createHealthEvent, EVENT_SEVERITY, inferSeverityFromKeywords } from "../lib/healthEventData.js";
 import { checkRoomWriteAccess } from "../lib/permissions.js";
+import { resolveTargetOwnership } from "../lib/targetOwnership.js";
 
 export async function handleAnimalRoutes(req, res, url, db) {
   if (req.method === "GET" && url.pathname === "/animals") {
@@ -110,7 +111,8 @@ async function handleAddNote(req, res, db, animalId) {
   const animal = getAnimal(db, animalId);
   if (!animal) { send(res, 404, { error: "animal_not_found" }); return; }
 
-  const roomCheck = checkRoomWriteAccess(req._principal, animal.roomId);
+  const ownership = resolveTargetOwnership(db, { targetType: "animal", targetId: animalId });
+  const roomCheck = checkRoomWriteAccess(req._principal, ownership.roomId);
   if (!roomCheck.authorized) {
     return send(res, 403, { error: roomCheck.error, message: roomCheck.message });
   }
@@ -171,7 +173,8 @@ async function handleRemoveAnimal(req, res, db, animalId) {
   const animal = getAnimal(db, animalId);
   if (!animal) { send(res, 404, { error: "animal_not_found" }); return; }
 
-  const roomCheck = checkRoomWriteAccess(req._principal, animal.roomId);
+  const ownership = resolveTargetOwnership(db, { targetType: "animal", targetId: animalId });
+  const roomCheck = checkRoomWriteAccess(req._principal, ownership.roomId);
   if (!roomCheck.authorized) {
     return send(res, 403, { error: roomCheck.error, message: roomCheck.message });
   }
